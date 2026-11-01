@@ -1,0 +1,14 @@
+{
+  "name": "Real Polar | Proposta Interativa",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "forwardPorts": [
+    5500
+  ],
+  "portsAttributes": {
+    "5500": {
+      "label": "Prévia da proposta Real Polar",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "postStartCommand": "(nohup python3 -m http.server 5500 --bind 0.0.0.0 >/tmp/realpolar-http.log 2>&1 </dev/null &)"
+}
