@@ -89,7 +89,7 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 | --- | --- |
 | HTML interativo com planos/FAQ/simulador | **Implementado na `main`** (inclui o PR #1, já mesclado), mas com divergências comerciais versus Canva |
 | Site do cliente em Vercel | **Existente** em https://realpolar-proposta.vercel.app/; verificar deployment e commit antes de afirmar versão em produção |
-| Apresentação comercial (protótipo) | **4ª rodada, codada e testada** em `prototipo/index.html`: comparativo como fonte única de 14 serviços, pop-up explicador por entregável, cartões e mapa gerados do comparativo, audiovisual, 90 dias, acompanhamento e simulador. Aguardando aprovação; não publicado na produção |
+| Apresentação comercial (protótipo) | **5ª rodada (Adendo V2), codada e testada** em `prototipo/index.html`: comparativo como fonte única de 14 serviços, pop-up explicador por entregável, cartões e mapa gerados do comparativo, audiovisual, 90 dias, acompanhamento e simulador. Aguardando aprovação; não publicado na produção |
 | Fluxo dos primeiros 90 dias | **Codado e testado em protótipo**, como marco de avaliação, sem meta fixa de leads |
 | Acompanhamento por objetivo e simulador com custos separados | **Codados e testados em protótipo** (3ª rodada) |
 | Contrato a anexar | **Pendente de leitura e validação** |
@@ -108,6 +108,8 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 - **Ponto de entrada para Claude:** ler `CLAUDE.md`, depois `docs/AUDITORIA_DESIGN_REALPOLAR.md` (seção “Brief de execução para o Claude”).
 
 ## 8. Histórico de alterações
+
+- **02/11/2026 | Adendo V2: pop-ups em três camadas (Claude Code):** base `e93f9ee` (o adendo foi escrito sobre `396a403`, anterior aos pop-ups da 4ª rodada). **Codado** (`1186405`): camada 1 no cabeçalho; abas "O que recebo", "Como funciona", "Limites e custos" e "Comparar planos"; 3 possibilidades do painel rotuladas como não aprovadas; serviço relacionado; mensalidade como item próprio; botões de informação no simulador; **AC16 corrigido** (explorar o mapa ou o pop-up não muda o orçamento). **Testado:** 186 verificações, inclusive zoom de 200%. **Pendente:** tamanho de fonte ampliado (fontes em px), leitura por decisor (AC40), contrato, logo e as divergências já registradas (Meta Ads e relatórios do Ampliado, prospecção no Essencial, módulos do painel apenas como hipóteses).
 
 - **02/11/2026 | Explicador por entregável, 4ª rodada (Claude Code):** branch `design/prototipo-esclarecimento`, PR #3, base `396a403`. **Briefing:** "prompt mestre" recebido **cortado no capítulo 07 (ficha S01)**; capítulos 01–06 aplicados integralmente; fichas S02 em diante escritas a partir dos fatos F01–F36. **Codado:** comparativo HTML como fonte única; pop-up único com 4 abas, troca de plano, navegação e acessibilidade; cartões, mapa, custos externos e resumo gerados dessa fonte; seção Execução removida. **Testado:** 145 verificações, inclusive página sem JavaScript e varredura de 14 serviços × 3 planos × 4 abas (auditoria, seção O). **Publicado:** nada em produção. **Commit da interface:** `12c0c57`.
   - **Estados "A confirmar" (conflito):** Meta Ads no Ampliado (F30) e periodicidade dos relatórios do Ampliado (F23 mensal × F32 quinzenal). O cliente vê "a confirmar em contrato"; a divergência fica só neste registro.

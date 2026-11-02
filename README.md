@@ -10,11 +10,11 @@ Página HTML responsiva para apresentar os planos de marketing da Real Polar e e
 
 `prototipo/index.html` é a nova versão da apresentação comercial: planos e investimento logo no início, pop-up explicativo para cada serviço, mapa de serviços e comparativo lado a lado, produção audiovisual, primeiros 90 dias, acompanhamento e simulador.
 
-**Para editar serviços, estados ou textos:** altere somente a tabela `#cmp` (comparativo). Cartões, mapa, pop-ups e resumo copiado são gerados a partir dela. Cada célula de plano usa `data-st` (`incluido`, `limitado`, `pendente`, `conflito`, `opcional`, `fora`) e a explicação fica no `<details>` da linha. **Ainda não substitui a página principal** e não deve ser enviado ao cliente antes da aprovação.
+**Para editar serviços, estados ou textos:** altere somente a tabela `#cmp` (comparativo). Cartões, mapa, pop-ups e resumo copiado são gerados a partir dela. Cada célula de plano usa `data-st` (`incluido`, `limitado`, `pendente`, `conflito`, `opcional`, `fora`) e a explicação fica no `<details>` da linha. Campos da explicação: `short` (frase do cabeçalho), `get` (O que recebo, até 3 itens), `how` (até 3 passos), `result`, `limit` (até 3), `dep`, `ext` (custos), `qty` (quantidade) e, no painel, `hyp` (possibilidades não aprovadas). O atributo `data-rel` da linha liga a um serviço relacionado. **Ainda não substitui a página principal** e não deve ser enviado ao cliente antes da aprovação.
 
 - No Codespaces: porta **5500**, caminho `/prototipo/`.
 - Na prévia da Vercel do pull request: mesmo caminho, `/prototipo/`.
-- Auditoria, decisões e testes: [docs/AUDITORIA_DESIGN_REALPOLAR.md](docs/AUDITORIA_DESIGN_REALPOLAR.md), seções I a O.
+- Auditoria, decisões e testes: [docs/AUDITORIA_DESIGN_REALPOLAR.md](docs/AUDITORIA_DESIGN_REALPOLAR.md), seções I a P.
 - O aviso amarelo "Ambiente de teste" no topo é interno e deve ser removido antes de qualquer versão para o cliente.
 
 ## Ver a página (não o código)

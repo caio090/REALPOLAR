@@ -506,3 +506,62 @@ Larguras 1440, 768 e 390, mais um contexto com movimento reduzido e outro **sem 
 - comparativo comprimido no celular.
 
 **Não testado:** leitores de tela reais (VoiceOver/NVDA), zoom de 200%, Safari e Firefox, e o teste com decisor não técnico (CC-001 a CC-020). **Capturas:** `docs/capturas/antes-r4-396a403-*` e `docs/capturas/depois-r4-*`.
+
+## P. Quinta rodada: Adendo V2, pop-ups em três camadas (02/11/2026)
+
+**Base real:** commit `e93f9ee`. O Adendo V2 foi escrito sobre `396a403`, anterior à 4ª rodada; a "lacuna crítica" do A01 (ausência de pop-ups) já estava resolvida em `12c0c57`. Esta rodada fez a auditoria dos AC01–AC40 sobre o código real e implementou o que faltava. A mensagem chegou cortada no capítulo 04 da V1 anexa; o Adendo A01–A09, que tem precedência, chegou completo.
+
+### P.1 O que mudou
+
+- **Dados (tabela `#cmp`):** cada linha ganhou `data-f="get"` (O que recebo, até 3 itens), `data-rel` (serviço relacionado), `data-f="qty"` (quantidade em contrato, em artes e vídeos) e, no painel, `data-f="hyp"` (3 possibilidades). Novo item **X00 Mensalidade de gestão** no grupo `investimento`. Os textos de vídeos, rebranding e painel seguem os exemplos do A02, e o bônus lista quantidade, formatos, rodadas de revisão e prazo como pendentes.
+- **Pop-up em três camadas (A02/A05):**
+  - Camada 1: título, uma frase e estado no plano, no cabeçalho.
+  - Camada 2: abas "O que recebo", "Como funciona", "Limites e custos" e "Comparar planos".
+  - Camada 3: no máximo 3 itens por aba, mais "Para quê", o custo, a quantidade e o link do serviço relacionado.
+- **Painel (AC12):** "Possibilidades para o briefing" com 3 botões (Visão geral de atividades; Solicitações e oportunidades; Indicadores e relatórios). Cada um abre, no mesmo pop-up, um esquema visual rotulado "Ilustração · possibilidade para o briefing, não aprovada", sem dados, login, CRM ou prazo, e com "Voltar ao painel".
+- **Simulador (AC15):** botões de informação "Entender mensalidade de gestão", "Entender verba de anúncios" e "Entender captação presencial", que abrem o pop-up no plano do simulador.
+- **AC16 corrigido:** o filtro do mapa e o seletor de plano dentro do pop-up **não alteram mais o simulador**. Só "Simular este plano" e os botões do simulador mudam o orçamento. Antes, o filtro do mapa trocava o plano do simulador.
+
+### P.2 Critérios de aceite (AC01–AC40)
+
+| AC | Situação | Evidência |
+| --- | --- | --- |
+| 01–04 | Atendido | Todo item dos cartões é `<button>` e abre o pop-up com o título exato e o plano de origem |
+| 05 | Atendido | Estado "Limitado" com a observação no cabeçalho (ex.: Econômico, operação enxuta) |
+| 06 | Atendido | Bônus só no Presença Ampliada (teste) |
+| 07, 11 | Atendido | Meta Ads e relatórios do Ampliado como "A confirmar"; nada pendente aparece como incluído |
+| 08–10 | Atendido | Abas trocam o conteúdo sem fechar; dados de uma única tabela; comparação com 3 planos |
+| 12 | Atendido | 3 possibilidades rotuladas como não aprovadas |
+| 13 | Atendido | Frase do rebranding começa pelo briefing de identidade |
+| 14 | Atendido | "Não é ilimitado"; quantidade, formatos, revisão e prazo em contrato; sem 48h |
+| 15 | Atendido | Pop-ups próprios para mensalidade, verba e captação |
+| 16–17 | Atendido | Mapa e pop-up não alteram o orçamento; "Simular este plano" altera |
+| 18–21 | Atendido | Foco entra e volta; Tab preso no pop-up; Esc; clique fora no computador; corpo rolável com Fechar visível |
+| 22–24 | Atendido | 390, 768 e 1440 sem rolagem horizontal nem sobreposição |
+| 25 | **Parcial** | Zoom de 200% verificado (equivalente a 720×450). **Tamanho de fonte ampliado nas configurações do navegador não funciona:** as fontes estão em `px` |
+| 26–29 | Atendido | Movimento reduzido, mapa, linha do tempo, filtro, menu, resumo copiado, impressão, console sem erros |
+| 30 | Atendido | Cartões, mapa, pop-up e resumo vêm da mesma tabela |
+| 31 | Atendido | Detalhes ficam nos pop-ups; a página não ganhou texto |
+| 32, 37 | Atendido | Produção não alterada; sem merge |
+| 33–36, 38 | Atendido | Testes reais desta rodada (abaixo); Markdown e README atualizados; link da prévia |
+| 39 | Atendido | "Previsto · detalhes em contrato" e "A confirmar" separam item citado de requisito a definir |
+| 40 | **Não testado** | Depende de leitura por um decisor não técnico |
+
+### P.3 Testes desta rodada
+
+**186 verificações automáticas, todas aprovadas** (Playwright + Chromium, em `~/realpolar-qa/t6.js`). Cobertura:
+- larguras 1440, 768 e 390, mais zoom de 200%, movimento reduzido e página sem JavaScript;
+- varredura de 15 itens × 3 planos × 4 abas, com 1 a 3 itens em "O que recebo" e em "Limites e custos";
+- hipóteses do painel (rótulo, esquema, pop-up único, retorno do foco);
+- serviço relacionado trocando o conteúdo no mesmo pop-up;
+- botões de informação do simulador;
+- AC16;
+- primeira camada visível sem rolar no celular (as abas terminam em 454px de 844px).
+
+Conferência textual: sem Canva, LKT ou marcadores internos; sem "quinzenal", "ilimitado", 48h, login, CRM, brandbook ou quantidades inventadas.
+
+**Defeitos encontrados e corrigidos nesta rodada:** filtro do mapa alterando o simulador (AC16); rótulo "não aprovada" saindo de vista ao abrir uma hipótese no celular; link de serviço relacionado centralizado.
+
+**Não testado:** leitores de tela reais, iOS e Android físicos, Safari e Firefox, tamanho de fonte ampliado e leitura por decisor (AC40).
+**Commits:** a interface entrou em um único commit (`1186405`). Separar dados e componente deixaria um commit intermediário quebrado, porque o novo formato dos dados removeu campos que o pop-up anterior lia.
+**Capturas:** `docs/capturas/depois-r5-*`.
