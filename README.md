@@ -1,6 +1,27 @@
 # Real Polar | Proposta Interativa
 
+> **Trabalho coordenado entre ChatGPT e Claude:** antes de qualquer alteração, leia [AGENTS.md](AGENTS.md), [docs/ESTADO_DO_PROJETO.md](docs/ESTADO_DO_PROJETO.md) e [docs/AUDITORIA_DESIGN_REALPOLAR.md](docs/AUDITORIA_DESIGN_REALPOLAR.md). O Claude Code deve iniciar também pelo [CLAUDE.md](CLAUDE.md). Depois da alteração, atualize o registro de decisões, diferenças entre Canva e código, pendências, testes, branch e PR.
+>
+> **Situação (02/11/2026):** a página principal (`index.html`) passou a ser a versão V5 da apresentação comercial, com os valores R$ 1.280 / R$ 2.100 / R$ 3.200. A versão anterior (R$ 1.100 / R$ 1.800 / R$ 3.200) fica só no histórico do git. Pendências de contrato continuam em `docs/ESTADO_DO_PROJETO.md`.
+
 Página HTML responsiva para apresentar os planos de marketing da Real Polar e esclarecer dúvidas comerciais.
+
+## Página da proposta
+
+`index.html` é a apresentação comercial: planos e investimento logo no início, pop-up explicativo para cada serviço, mapa de serviços e comparativo lado a lado, produção audiovisual, primeiros 90 dias, acompanhamento e simulador.
+
+**Para editar serviços, estados ou textos:** altere somente a tabela `#cmp` (comparativo). Cartões, mapa, pop-ups e resumo copiado são gerados a partir dela. Cada célula de plano usa `data-st` (`incluido`, `limitado`, `pendente`, `conflito`, `opcional`, `fora`) e a explicação fica no `<details>` da linha. Campos comuns da explicação: `short` (definição neutra do serviço), `dep` (o que precisamos da Real Polar), `ext` (custos externos), `qty` (quantidade) e, no painel, `hyp` (possibilidades não aprovadas). **O conteúdo de cada plano fica em `<div data-plan-detail="E|S|A">`**, com `lead` (resumo do plano), `get` (O que recebo), `how` (Como funciona) e `lim` (Limites e custos), até 3 itens cada. Os três planos precisam ter textos diferentes; um item fora da mensalidade ou a confirmar descreve a ausência, nunca benefícios. O atributo `data-rel` da linha liga a um serviço relacionado.
+
+**Celular e tablet (até 900 px):** o menu vira o botão "Seções" e os planos aparecem um por vez pelo seletor `.plantabs`, que só muda o cartão exibido, nunca o simulador. As fontes usam `rem`, para acompanhar a fonte do navegador; novos tamanhos devem seguir o mesmo padrão.
+
+**Edição avulsa do Econômico:** o preço está na constante `ECON_EDIT_UNIT` (R$ 180) do script e no item `X04` da tabela; altere os dois juntos.
+
+**Logo:** `assets/real-polar-logo-original.png` é o arquivo original e não deve ser editado. As cópias `real-polar-logo-96/192/512.png` são só recortes do enquadramento e redimensionamentos para exibição.
+
+- No Codespaces: porta **5500**, caminho `/`.
+- Na prévia da Vercel do pull request e na produção: caminho `/`.
+- `.vercelignore` mantém `AGENTS.md`, `CLAUDE.md`, `README.md`, `docs/` e `.devcontainer/` fora do site publicado; eles ficam só no GitHub.
+- Auditoria, decisões e testes: [docs/AUDITORIA_DESIGN_REALPOLAR.md](docs/AUDITORIA_DESIGN_REALPOLAR.md), seções I a S.
 
 ## Ver a página (não o código)
 

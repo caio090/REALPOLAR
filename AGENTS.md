@@ -38,13 +38,13 @@ Esses itens são **direções de evolução, não funcionalidades contratadas ne
 
 Antes de qualquer modificação, o agente deve:
 
-1. Ler este arquivo e o `README.md`.
+1. Ler este arquivo, `docs/ESTADO_DO_PROJETO.md`, `docs/AUDITORIA_DESIGN_REALPOLAR.md`, `CLAUDE.md` (quando usando Claude Code) e o `README.md`, na branch/commit atuais.
 2. Inspecionar a estrutura e o código **reais**, em vez de supor que módulos ou bibliotecas existem.
-3. Identificar o pedido específico e limitar a alteração a ele.
+3. Identificar o pedido específico e limitar a alteração a ele; comparar proposta Canva, conceito visual e código real sem confundir os três.
 4. Preservar o que já funciona, especialmente a proposta interativa e o ambiente Codespaces.
 5. Informar mudanças de escopo, dependências, integrações e custos antes de implementá-las.
-6. Validar o resultado antes de afirmar que foi concluído.
-7. Registrar decisões estruturais relevantes no `README.md` ou na documentação pertinente.
+6. Validar o resultado antes de afirmar que foi concluído e distinguir implementado de publicado.
+7. **Atualizar `docs/ESTADO_DO_PROJETO.md` em cada tarefa** com decisões, alterações efetivas, pendências, branch/commit/PR e testes. Atualizar `README.md` para mudanças operacionais e este `AGENTS.md` para novas regras permanentes.
 
 **Nunca trocar o objetivo do projeto por uma interpretação criativa do agente.**
 Na dúvida, perguntar em vez de inventar.
@@ -61,20 +61,19 @@ A comunicação deve:
 - Facilitar o entendimento do serviço, gerar oportunidades de contato e apoiar a equipe comercial.
 - Evitar promessas de vendas, resultados garantidos ou posição certa em mecanismos de busca.
 
-### Proposta comercial atual: valores de referência
+### Proposta comercial: fonte, valores e divergências
 
-Os valores abaixo representam **a versão de trabalho da proposta**, não um contrato assinado nem preços permanentes. Não mudar sem orientação explícita.
+**Leia primeiro [docs/ESTADO_DO_PROJETO.md](docs/ESTADO_DO_PROJETO.md).** Conferência em 01/11/2026 da proposta Canva `DAHZWbzR63g`, especialmente página 9:
 
-| Escopo | Econômico | Essencial | Ampliado |
-| --- | --- | --- | --- |
-| Mensalidade pelo serviço | R$ 1.100 | R$ 1.800 | R$ 3.200 |
-| Conteúdos com design profissional | Produção simplificada com acervo fornecido e apoio de IA/revisão humana | 7 artes mensais | 7 artes mensais |
-| Roteiro e edição de vídeos | Não incluídos no escopo econômico | 2 vídeos/mês | 6 vídeos/mês |
-| Gestão de Instagram e publicações | Conforme escopo | Incluída | Incluída |
-| Gestão de anúncios Meta Ads | Incluída | Incluída | Incluída |
-| Análise de resultados | Acompanhamento conforme escopo | Relatório mensal | Relatório e propostas de melhoria |
-| SEO | Não pressupor inclusão | Melhorias básicas, conforme escopo | Melhorias básicas, conforme escopo |
-| Artes extras solicitadas | Não incluídas | Não incluídas | Bônus sujeito a regras e limite contratual |
+| Referência comercial consultada | Econômico | Essencial | Presença Ampliada |
+| --- | ---: | ---: | ---: |
+| **Gestão mensal no Canva** | **R$ 1.280** | **R$ 2.100** | **R$ 3.200** |
+| Captação presencial terceirizada | À parte, mediante cotação | Base ilustrativa R$ 1.200/diária | Base ilustrativa R$ 1.200/diária |
+| Verba de anúncios Meta Ads | À parte | À parte | À parte |
+
+A referência de R$ 1.200/diária **não é preço fechado nem mensalidade fixa**. O Canva informa totais ilustrativos de R$ 3.300 e R$ 4.400 para Essencial e Ampliado quando se adiciona uma diária; mídia paga continua à parte.
+
+**Histórico: a versão de `index.html` inspecionada em 01/11/2026 mostrava Econômico R$ 1.100, Essencial R$ 1.800, Ampliado R$ 3.200 e outro valor de captação. Em 02/11/2026, com aprovação do responsável, a página principal passou a ser a versão V5 (R$ 1.280 / R$ 2.100 / R$ 3.200).** A proposta Canva lista revisão básica do Google Meu Negócio no Essencial e rebranding, gestão do Google Meu Negócio, SEO e painel central interno no Ampliado. Não presumir que quantidades e condições específicas do HTML estão comprovadas no Canva. Contrato formal, quando anexado, deve ser lido e confrontado antes da correção completa. **Não desenvolver painel/rebranding automaticamente porque são citados na proposta.**
 
 #### Condições que precisam estar claras
 
@@ -83,8 +82,8 @@ Os valores abaixo representam **a versão de trabalho da proposta**, não um con
 - A **captação presencial em São Paulo**, incluindo videomaker/fotografia e opcionais como Storymaker, drone ou apresentador, é **terceirizada e cobrada à parte**.
 - A equipe de marketing faz estratégia, redação, roteiros, criação visual, edição conforme plano, Instagram e gestão de anúncios.
 - Quantidades de vídeos editados **não são promessa de filmagem incluída**: dependem de imagens adequadas do cliente ou de captação contratada separadamente.
-- O bônus de artes extras do Ampliado contempla peças **pontuais fora das sete artes de feed**. Exige briefing completo, aceite, criação e revisão; referência de **até 48 horas úteis** após o aceite. **Quantidade, revisões e tipos de arte ainda precisam de definição contratual. Não tratar como solicitações ilimitadas.**
-- SEO básico deve ser explicado como melhorias simples e delimitadas de presença e conteúdo para buscas, conforme acessos. **Não** apresentar como auditoria técnica completa, desenvolvimento de site, posicionamento garantido ou Google Ads.
+- O bônus de artes extras do Ampliado contempla peças **pontuais além do volume de feed contratualmente confirmado**. Exige briefing completo, aceite, criação e revisão; referência de **até 48 horas úteis** após o aceite. **Quantidade, revisões e tipos de arte ainda precisam de definição contratual. Não tratar como solicitações ilimitadas.**
+- SEO e melhorias de presença nas buscas devem ser explicados de modo delimitado **conforme o plano e o contrato**. O Canva diferencia Essencial (revisão básica do Google Meu Negócio) de Ampliado (gestão do perfil e SEO). **Não** apresentar como auditoria técnica completa, desenvolvimento de site, posicionamento garantido ou Google Ads.
 - A Real Polar atende contatos comerciais, qualifica oportunidades, realiza orçamentos e fecha contratos, salvo contratação específica em sentido contrário.
 - Não incluir Perfil da Empresa no Google como serviço certo se isso não estiver expressamente confirmado no escopo.
 
@@ -167,14 +166,15 @@ Antes de escolher Next.js, React, Supabase, n8n, qualquer hospedagem ou modelo d
 Antes de declarar uma tarefa pronta:
 
 - [ ] A alteração atende exatamente ao pedido?
-- [ ] O arquivo `AGENTS.md` e o contexto vigente foram respeitados?
+- [ ] Foram lidos `AGENTS.md`, `docs/ESTADO_DO_PROJETO.md`, `README.md` e o código mais recente?
 - [ ] Os preços, escopos e responsabilidades permanecem consistentes?
 - [ ] Nenhum recurso ou promessa foi inventado?
 - [ ] O HTML abre e os controles essenciais funcionam?
 - [ ] A interface permanece legível no celular?
 - [ ] O Codespaces e a porta `5500` continuam funcionando?
 - [ ] Nenhum segredo ou dado confidencial foi exposto?
-- [ ] As alterações foram feitas no repositório e na branch corretos?
+- [ ] As alterações foram feitas no repositório e na branch corretos, sem sobrescrever trabalho do outro agente?
+- [ ] `docs/ESTADO_DO_PROJETO.md` foi atualizado com decisão, mudança, status, divergências, testes e commit/PR?
 - [ ] A resposta final informa o que mudou, o que não mudou e o que ainda depende de aprovação?
 
 ## 10. Prioridade das fontes e controle de decisões
@@ -188,6 +188,14 @@ Em caso de divergência, seguir esta ordem:
 5. Propostas, versões e ideias antigas, apenas como referência.
 
 Se houver conflito entre o pedido e uma regra antiga, **não alterar silenciosamente a regra**. Explicar a divergência, registrar a nova decisão e atualizar este documento quando apropriado.
+
+## 11. Continuidade entre ChatGPT e Claude
+
+- **Toda sessão começa por releitura do estado atual no GitHub**, não por lembrança de conversa. Verificar branch, commit, alterações pendentes e PRs antes de editar.
+- **Registro comum:** `docs/ESTADO_DO_PROJETO.md` documenta separadamente **proposta comercial**, **conceito/design**, **código implementado** e **deploy publicado**; atualizar após cada tarefa material.
+- Se ChatGPT ou Claude mudou arquivo ou abriu PR, **inspecionar o diff** antes de continuar. Não sobrescrever nem presumir que está em `main`.
+- Mudanças em produção exigem autorização explícita. Preferir branch, PR e prévia; o MD sozinho não altera o HTML do site.
+- Quando chegar o contrato citado pelo responsável, ler e comparar com Canva/HTML **antes de assumir que os valores, entregas, direitos de cancelamento ou condições estão aprovados**.
 
 ### Resumo obrigatório para agentes
 
