@@ -307,3 +307,20 @@ Playwright + Chromium, em **1440×900, 768×1024 e 390×844**, mais um contexto 
 
 **Não testado:** leitores de tela reais, zoom de 200%, Safari e Firefox.
 
+
+### M.4 Ajuste obrigatório: metas de conversão nos 90 dias (02/11/2026)
+
+**Pedido do responsável:** manter a explicação de diagnóstico, testes, validação e ajustes; acrescentar um aviso pequeno, integrado à linha do tempo, dizendo que os objetivos de conversão são trabalhados a partir do Plano Essencial; diferenciar o foco dos planos; não dizer que a conversão começa só depois de 90 dias; não prometer quantidades.
+
+**Implementado** em `prototipo/index.html`, dentro da linha do tempo, logo abaixo dos três marcos:
+
+- Faixa tracejada que vai do mês 1 ao mês 3, mostrando que as metas de conversão acompanham o período inteiro. Ela se desenha da esquerda para a direita quando entra na tela, e o ícone de alvo aparece em seguida.
+- Frase: "Metas de conversão desde o início, a partir do Plano Essencial. Os testes ajudam a estabelecer e ajustar metas realistas, sem prometer quantidades."
+- Etiquetas cumulativas por plano: Econômico = posicionamento e presença digital; Essencial = + prospecção e objetivos de conversão; Presença Ampliada = + estratégia mais abrangente e acompanhamento dos resultados.
+- Sem caixa de fundo; 132px de altura no desktop, 167px no tablet e 233px no celular. **Primeira versão descartada:** um bloco com fundo, fora da linha do tempo, com 176px no desktop e 355px no celular, que não atendia a "pequeno e discreto".
+- Coerência: a etapa "Definir metas" do mapa de 90 dias e o resumo copiado passaram a dizer que, a partir do Essencial, os objetivos de conversão orientam os testes desde o início.
+- Com movimento reduzido, faixa e ícone aparecem já completos, sem animação.
+
+**Testes:** a bateria completa passou de 111 para **123 verificações, todas aprovadas** nas larguras 1440, 768 e 390 e com movimento reduzido. Novas verificações: entrada animada ao rolar, posição dentro da linha do tempo (14px abaixo dos marcos), faixa alinhada do mês 1 ao mês 3 e concluída, aviso visível em qualquer mês, impressão, ausência de animação com movimento reduzido. Conferência textual: nenhuma frase do tipo "só após 90 dias" e nenhuma quantidade de conversões.
+
+**Origem do conteúdo:** o foco de cada plano e o termo "prospecção" no Essencial vêm do pedido do responsável em 02/11/2026, não do texto registrado do Canva (seção 3 do estado do projeto). Conferir com o contrato.
