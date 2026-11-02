@@ -398,3 +398,111 @@ Larguras 1440, 768 e 390, mais um contexto com movimento reduzido:
 **Defeitos encontrados e corrigidos:** resumo com texto interno no item pendente; serviços "Não listado" com contraste de 2,8:1 (a opacidade foi trocada por fundo cinza); abertura longa demais no celular (os planos estavam na tela 3,7); linha da execução passando da última etapa.
 
 **Não testado:** leitores de tela reais, zoom de 200%, Safari e Firefox.
+
+## O. Quarta rodada: explicador interativo por entregável (02/11/2026)
+
+**Base:** branch `design/prototipo-esclarecimento`, commit `396a403` (PR #3, que depende do PR #2, ainda aberto). **Briefing:** "Prompt mestre" com capítulos numerados. **A mensagem chegou cortada no capítulo 07, na ficha S01** (limite de 50 mil caracteres). O TXT original não foi encontrado no repositório, nas branches nem no Codespace. Foram aplicados integralmente os capítulos 01 a 06: regras, 36 fatos comerciais (F01–F36), critérios CC-001 a CC-020, os 7 estados, os 10 blocos e os 30 requisitos do pop-up. **Não recebidos:** fichas S02 em diante e capítulos seguintes. Os textos das fichas foram escritos seguindo o formato da S01 e os fatos do capítulo 02. **Os "três módulos do painel" (F34) não foram descritos, porque não chegaram.**
+
+**Skills:** `design:design-critique`, `design:ux-copy`, `design:design-system` e `design:accessibility-review`. Não há skill de motion nem de testes; os testes usam Playwright + Chromium em `~/realpolar-qa/`, fora do repositório e sem dependência adicionada.
+
+### O.1 Arquitetura: fonte única
+
+O comparativo `#cmp`, em HTML, é **a única fonte dos serviços**. Cada linha (`data-id` S01–S11 e X01–X03) traz:
+- nome comercial;
+- por plano: estado (`data-st`), rótulo, observação e origem interna (`data-src`: `canva` ou `conflito`);
+- explicação em `<details>`, com resumo, papel da equipe, até 3 passos, resultado esperado, limites, dependências, custos externos e exemplo ilustrativo.
+
+Sem JavaScript, a tabela fica visível e legível (requisito MODAL-030). Com JavaScript, a página lê a tabela e gera os **cartões dos planos**, o **mapa**, a faixa **fora da mensalidade**, o **pop-up** e o **resumo copiado** (requisito MODAL-025: nenhum texto de serviço duplicado entre HTML e JS).
+
+### O.2 Estados comerciais (capítulo 04)
+
+| Estado | Rótulo ao cliente | Uso |
+| --- | --- | --- |
+| incluido | Incluído | Previsto no plano pela proposta |
+| limitado | Limitado | Existe, com abrangência menor (ex.: revisão básica do Google Meu Negócio no Essencial) |
+| pendente | Previsto | Consta na proposta, com detalhes em contrato (rebranding, painel, bônus, gestão do Google Meu Negócio no Ampliado) |
+| conflito | A confirmar | Fontes divergem; não afirmar obrigação (Meta Ads e periodicidade dos relatórios no Ampliado) |
+| opcional | Opcional | Contratação à parte, com orçamento e aprovação (captação, storymaker, drone, apresentador) |
+| fora | Fora da mensalidade / Pago à parte | Não faz parte da mensalidade do plano (inclui a verba de anúncios) |
+| depende | Depende de insumos | Definido no sistema, não usado nesta versão; as dependências aparecem na aba "Como funciona" |
+
+Cada estado tem texto e forma própria (marcador cheio, meio cheio, vazio, losango, "+", traço), não só cor.
+
+### O.3 Matriz atual
+
+| ID | Serviço | Econômico | Essencial | Presença Ampliada | Origem |
+| --- | --- | --- | --- | --- | --- |
+| S01 | Gestão do perfil e das publicações | Limitado (operação enxuta) | Incluído | Incluído | F10, F18, F25 |
+| S02 | Estratégia de posicionamento | Fora | Incluído | Incluído | F07, F15 |
+| S03 | Artes com design profissional | Limitado (IA dirigida pela equipe, fotos da Real Polar) | Incluído | Incluído | F08, F16, F27, F28 |
+| S04 | Vídeos com roteiro e edição profissional | Fora | Incluído | Incluído | F09, F17 |
+| S05 | Gestão de anúncios Meta Ads | Incluído | Incluído | **A confirmar** | F11, F26, **F30** |
+| S06 | Google Meu Negócio | Fora | Limitado (revisão básica) | Previsto | F12, F19 |
+| S07 | SEO | Fora | Fora | Incluído | F20 |
+| S08 | Relatórios e análise de resultados | Fora | Incluído (mensal) | **A confirmar** (periodicidade) | F13, F21, **F23/F32** |
+| S09 | Rebranding da identidade da marca | Fora | Fora | Previsto (com briefing de identidade) | F14, F33 |
+| S10 | Painel central interno no site | Fora | Fora | Previsto (requisitos em contrato) | F22, F34 |
+| S11 | Bônus de artes extras | Fora | Fora | Previsto (limites em contrato) | F24 |
+| X01 | Verba de anúncios (Meta) | Pago à parte | Pago à parte | Pago à parte | F05 |
+| X02 | Captação presencial | Opcional | Opcional (R$ 1.200/diária) | Opcional (R$ 1.200/diária) | F04, F29 |
+| X03 | Storymaker, drone e apresentador | Opcional | Opcional | Opcional | briefings anteriores |
+
+**Mudança em relação à rodada N:** a estratégia de posicionamento do Econômico passou de "Versão básica" para "Fora da mensalidade", porque F25–F28 não a listam. O foco do plano ("presença digital e posicionamento") continua no cartão.
+
+### O.4 Pop-up explicador (capítulo 06)
+
+Um único `<dialog>` nativo, preenchido a partir da fonte única. Ele abre a partir de qualquer serviço: cartões, mapa, comparativo, faixa de custos externos e audiovisual.
+
+- **Conteúdo:**
+  - cabeçalho com grupo e nome do serviço;
+  - seletor de plano interno, que não muda a escolha da página (MODAL-028);
+  - estado no plano;
+  - abas "O que recebo", "Como funciona", "Limites" e "Comparar planos";
+  - navegação anterior/próximo entre os 14 itens, sem fechar.
+- **Comportamento:**
+  - fecha por botão, Esc ou clique fora (este só em telas ≥ 641px, para evitar toques acidentais no celular);
+  - o foco volta ao botão de origem;
+  - o fundo fica travado e a posição de rolagem é restaurada;
+  - no celular, abre como folha a partir da base;
+  - sem animação com movimento reduzido.
+- **Requisito MODAL-022 (sem depender da área de transferência):** atendido. O botão "Copiar resumo" é opcional e fica fora do pop-up.
+
+### O.5 Estrutura da página (capítulo 05)
+
+Abertura → Planos (listas geradas + "Não incluído neste plano" + fora da mensalidade) → Serviços (Mapa / Lado a lado) → Audiovisual → 90 dias (aviso de conversão preservado) → Acompanhamento → Investimento (simulador + 2 perguntas não respondidas nos pop-ups) → Próximo passo. **Removida:** a seção "Execução", porque cada pop-up tem o "Como funciona" do serviço. O plano ativo (Presença Ampliada por padrão) fica sincronizado entre filtro do mapa, cartões e simulador.
+
+### O.6 Testes (145 verificações automáticas, todas aprovadas)
+
+Larguras 1440, 768 e 390, mais um contexto com movimento reduzido e outro **sem JavaScript**:
+
+- **Sem JS:** comparativo com os 14 serviços, estados, explicações e preços visíveis.
+- **Fonte única:** cartões iguais ao comparativo (Econômico 3, Essencial 7, Presença Ampliada 11 serviços); estados do mapa iguais aos do comparativo nos três planos; nenhum `id` duplicado.
+- **Pop-up:**
+  - abre por cartão, mapa, comparativo, faixa externa e audiovisual, com nome acessível e foco dentro;
+  - 25 tabulações sem sair;
+  - 4 abas por clique e setas;
+  - troca de plano interna sem alterar a página;
+  - Esc, botão Fechar e clique fora (no computador; no celular o toque fora não fecha) devolvem o foco;
+  - fundo travado e rolagem restaurada;
+  - folha inferior no celular;
+  - varredura completa de **14 serviços × 3 planos × 4 abas** sem vazio, "undefined" ou "NaN";
+  - primeira frase de cada pop-up com até 2 frases;
+  - "Ver o plano" leva ao cartão sem trocar a escolha.
+- **Mapa:** 11 serviços ligados ao centro, sem sobreposição; Mapa ↔ Lado a lado por clique e setas.
+- **Simulador:** sincronizado com mapa e cartões; cálculos 2.550, 3.920 e 2.100; sem NaN.
+- **Geral:**
+  - aviso de conversão preservado; revelação ao rolar; menu com seção atual;
+  - sem rolagem horizontal nem erros de console;
+  - alvos ≥ 44px na página e no pop-up; contraste ≥ 4,5:1 na página, no pop-up e nas etiquetas de estado;
+  - impressão com o comparativo e as explicações.
+
+**Conferência textual:** F01–F06, F13, F23/F30/F32 (como "a confirmar", sem expor a divergência ao cliente), F29, F33, F34 (nenhum módulo inventado), CC-009, CC-011 a CC-014, CC-017 a CC-019 e F36.
+
+**Defeitos encontrados e corrigidos:**
+- os cartões listavam os 11 serviços em todos os planos (filtro comparava o objeto, não o estado), um erro comercial grave detectado antes do commit;
+- texto duplicado no estado "A confirmar";
+- regra CSS que quebraria os contêineres flex/grid exibidos só com JavaScript;
+- colunas da linha do tempo passando 5px da tela em 390px;
+- comparativo comprimido no celular.
+
+**Não testado:** leitores de tela reais (VoiceOver/NVDA), zoom de 200%, Safari e Firefox, e o teste com decisor não técnico (CC-001 a CC-020). **Capturas:** `docs/capturas/antes-r4-396a403-*` e `docs/capturas/depois-r4-*`.

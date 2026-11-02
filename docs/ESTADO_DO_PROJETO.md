@@ -89,7 +89,7 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 | --- | --- |
 | HTML interativo com planos/FAQ/simulador | **Implementado na `main`** (inclui o PR #1, já mesclado), mas com divergências comerciais versus Canva |
 | Site do cliente em Vercel | **Existente** em https://realpolar-proposta.vercel.app/; verificar deployment e commit antes de afirmar versão em produção |
-| Apresentação comercial (protótipo) | **3ª rodada, codada e testada** em `prototipo/index.html`: planos primeiro, mapa mental de serviços com seletor de plano, execução, audiovisual, 90 dias, acompanhamento e simulador. Os mapas de jornada da 2ª rodada foram removidos. Aguardando aprovação; não publicado na produção |
+| Apresentação comercial (protótipo) | **4ª rodada, codada e testada** em `prototipo/index.html`: comparativo como fonte única de 14 serviços, pop-up explicador por entregável, cartões e mapa gerados do comparativo, audiovisual, 90 dias, acompanhamento e simulador. Aguardando aprovação; não publicado na produção |
 | Fluxo dos primeiros 90 dias | **Codado e testado em protótipo**, como marco de avaliação, sem meta fixa de leads |
 | Acompanhamento por objetivo e simulador com custos separados | **Codados e testados em protótipo** (3ª rodada) |
 | Contrato a anexar | **Pendente de leitura e validação** |
@@ -108,6 +108,13 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 - **Ponto de entrada para Claude:** ler `CLAUDE.md`, depois `docs/AUDITORIA_DESIGN_REALPOLAR.md` (seção “Brief de execução para o Claude”).
 
 ## 8. Histórico de alterações
+
+- **02/11/2026 | Explicador por entregável, 4ª rodada (Claude Code):** branch `design/prototipo-esclarecimento`, PR #3, base `396a403`. **Briefing:** "prompt mestre" recebido **cortado no capítulo 07 (ficha S01)**; capítulos 01–06 aplicados integralmente; fichas S02 em diante escritas a partir dos fatos F01–F36. **Codado:** comparativo HTML como fonte única; pop-up único com 4 abas, troca de plano, navegação e acessibilidade; cartões, mapa, custos externos e resumo gerados dessa fonte; seção Execução removida. **Testado:** 145 verificações, inclusive página sem JavaScript e varredura de 14 serviços × 3 planos × 4 abas (auditoria, seção O). **Publicado:** nada em produção. **Commit da interface:** `12c0c57`.
+  - **Estados "A confirmar" (conflito):** Meta Ads no Ampliado (F30) e periodicidade dos relatórios do Ampliado (F23 mensal × F32 quinzenal). O cliente vê "a confirmar em contrato"; a divergência fica só neste registro.
+  - **Estados "Previsto" (detalhes em contrato):** rebranding (F14/F33), painel (F22), bônus de artes (F24), gestão do Google Meu Negócio no Ampliado (F19).
+  - **Mudança:** estratégia de posicionamento do Econômico passou a "Fora da mensalidade" (F25–F28 não a listam).
+  - **Não definido:** os "três módulos do painel" (F34) não chegaram no briefing; nada foi descrito.
+  - **Ainda pendente:** contrato final (mencionado, não fornecido), logo oficial, confirmação de "prospecção" no Essencial (F31) e se o nome da agência deve aparecer na página.
 
 - **02/11/2026 | Revisão comercial definitiva do protótipo (Claude Code):** branch `design/prototipo-esclarecimento`, PR #3. **Decidido pelo responsável:** proposta comercial antes da explicação; abertura "O marketing da Real Polar, sob nossa gestão."; planos logo no início, com nomes padronizados e Presença Ampliada em destaque; mapa mental de serviços com seletor de plano; execução em 4 etapas; 90 dias curto, com o aviso de conversão mantido; acompanhamento por objetivo; simulador com três grupos; sem explicar a operação da Real Polar. **Codado:** `prototipo/index.html` reestruturado (detalhes na seção N da auditoria). **Testado:** 114 verificações + conferência das 10 perguntas comerciais, aprovadas no local e na prévia da Vercel; commit `915d543`; descrição do PR #3 atualizada. **Publicado:** nada em produção. **Divergências registradas:** ver lista abaixo.
   - **Meta Ads na Presença Ampliada:** não consta na lista do Canva; o responsável indica que o plano trabalha conversão. Exibido como **"A confirmar"**, sem entrar formalmente no escopo.

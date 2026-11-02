@@ -8,11 +8,13 @@ Página HTML responsiva para apresentar os planos de marketing da Real Polar e e
 
 ## Protótipo em revisão
 
-`prototipo/index.html` é a nova versão da apresentação comercial: planos e investimento logo no início, mapa interativo de serviços com seletor de plano, execução em 4 etapas, produção audiovisual, primeiros 90 dias, acompanhamento por objetivo e simulador de investimento, com animações discretas que respeitam a preferência por movimento reduzido. **Ainda não substitui a página principal** e não deve ser enviado ao cliente antes da aprovação.
+`prototipo/index.html` é a nova versão da apresentação comercial: planos e investimento logo no início, pop-up explicativo para cada serviço, mapa de serviços e comparativo lado a lado, produção audiovisual, primeiros 90 dias, acompanhamento e simulador.
+
+**Para editar serviços, estados ou textos:** altere somente a tabela `#cmp` (comparativo). Cartões, mapa, pop-ups e resumo copiado são gerados a partir dela. Cada célula de plano usa `data-st` (`incluido`, `limitado`, `pendente`, `conflito`, `opcional`, `fora`) e a explicação fica no `<details>` da linha. **Ainda não substitui a página principal** e não deve ser enviado ao cliente antes da aprovação.
 
 - No Codespaces: porta **5500**, caminho `/prototipo/`.
 - Na prévia da Vercel do pull request: mesmo caminho, `/prototipo/`.
-- Auditoria, decisões e testes: [docs/AUDITORIA_DESIGN_REALPOLAR.md](docs/AUDITORIA_DESIGN_REALPOLAR.md), seções I a N.
+- Auditoria, decisões e testes: [docs/AUDITORIA_DESIGN_REALPOLAR.md](docs/AUDITORIA_DESIGN_REALPOLAR.md), seções I a O.
 - O aviso amarelo "Ambiente de teste" no topo é interno e deve ser removido antes de qualquer versão para o cliente.
 
 ## Ver a página (não o código)
