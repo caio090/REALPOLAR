@@ -89,7 +89,7 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 | --- | --- |
 | HTML interativo com planos/FAQ/simulador | **Implementado na `main`** (inclui o PR #1, já mesclado), mas com divergências comerciais versus Canva |
 | Site do cliente em Vercel | **Existente** em https://realpolar-proposta.vercel.app/; verificar deployment e commit antes de afirmar versão em produção |
-| Apresentação comercial (protótipo) | **7ª rodada (V4), codada e testada** em `prototipo/index.html`: comparativo como fonte única de 18 itens com conteúdo próprio por plano, pop-up explicador por entregável, cartões e mapa gerados do comparativo, audiovisual, 90 dias, acompanhamento e simulador. Aguardando aprovação; não publicado na produção |
+| Apresentação comercial (protótipo) | **8ª rodada (V5, mobile-first), codada e testada** sobre a V4 em `prototipo/index.html`: comparativo como fonte única de 18 itens com conteúdo próprio por plano, pop-up explicador por entregável, cartões e mapa gerados do comparativo, audiovisual, 90 dias, acompanhamento e simulador. Aguardando aprovação; não publicado na produção |
 | Fluxo dos primeiros 90 dias | **Codado e testado em protótipo**, como marco de avaliação, sem meta fixa de leads |
 | Acompanhamento por objetivo e simulador com custos separados | **Codados e testados em protótipo** (3ª rodada) |
 | Contrato a anexar | **Pendente de leitura e validação** |
@@ -108,6 +108,18 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 - **Ponto de entrada para Claude:** ler `CLAUDE.md`, depois `docs/AUDITORIA_DESIGN_REALPOLAR.md` (seção “Brief de execução para o Claude”).
 
 ## 8. Histórico de alterações
+
+- **02/11/2026 | V5: adaptação mobile-first (Claude Code):** base `1cec07b`. Briefing recebido **cortado no capítulo 22** (critérios de 768×1024). **Auditado antes** em 8 tamanhos; 12 problemas classificados P0, P1 e P2 (auditoria, seção S). **Codado** em `prototipo/index.html`, só em CSS, HTML e JS de interface:
+  - sem rolagem lateral em 320 px;
+  - pop-up com abas numa linha e rolagem única em telas baixas;
+  - menu "Seções";
+  - seletor de planos com um cartão por vez;
+  - preços antes dos botões;
+  - total imediato no simulador e rótulos de custo recorrente e eventual;
+  - fontes em `rem`;
+  - audiovisual vertical e mapa agrupado por tema.
+
+  **Matriz comercial, preços e cálculo sem alteração.** **Testado:** regressão 289/289 e V5 199/199. **Publicado:** nada em produção; `index.html` da raiz intacto. **Não testado:** Safari iOS, Firefox, aparelhos físicos e leitores de tela reais. **Pendências comerciais:** as mesmas da V4 (contrato, fichas escritas por Claude, Meta Ads e relatórios do Ampliado).
 
 - **02/11/2026 | V4: conteúdo por plano nos pop-ups (Claude Code):** base `14d6c41`. **Problema confirmado:** as abas do pop-up repetiam o mesmo texto nos três planos (captura `docs/capturas/antes-r7-14d6c41-popup-S01-economico-1440x900.jpg`). **Briefing:** Prompt Mestre V4 recebido **cortado no capítulo 08, na ficha X04 (limites do Presença Ampliada)**. Fichas S01–S11 e X00 transcritas; **X01, X02, X03, X05, X06 e o fim de X04 escritos por Claude** no mesmo padrão, sem preço, quantidade ou entrega novos. **Codado** (`5ab501b`): blocos por plano (`data-plan-detail`) para os 18 itens; resumo, "O que recebo", "Como funciona" e "Limites e custos" mudam com o plano; "Fora" e "A confirmar" mostram ausência; troca de plano mantém a aba e vice-versa; "Comparar planos" com a diferença de escopo; Storymaker, drone e piloto, e apresentador ou ator separados; edição explicada por plano no audiovisual; 90 dias com o resultado de cada mês, sem etiquetas com cara de filtro e empilhado no celular; base de 1 mês no simulador; revelação de rolagem mais leve. **Testado:** 289 verificações (auditoria, seção R). **Publicado:** nada em produção; `index.html` da raiz intacto.
   - **A validar em contrato:** todo o texto por plano das fichas escritas por Claude (X01, X02, extras e limites de X04 no Ampliado); Meta Ads e periodicidade dos relatórios no Ampliado (continuam "A confirmar"); duração, formatos e revisões incluídos nos R$ 180; quantidade de vídeos do Essencial e do Ampliado.

@@ -683,3 +683,67 @@ Capturas depois: `docs/capturas/depois-r7-*` (pop-up S01 nos 3 planos, extras e 
 
 **Não testado:** leitores de tela reais, aparelhos físicos, Safari e Firefox.
 
+## S. Oitava rodada: Prompt Mestre V5, adaptação mobile-first (02/11/2026)
+
+**Base:** `1cec07b`, igual ao HEAD observado no V5. A mensagem chegou cortada no capítulo 22 (critérios de 768×1024); os capítulos 01–21 chegaram completos. Nada da matriz comercial V4 foi alterado: preços, estados, textos por plano e cálculo continuam iguais. Canva e contrato continuam indisponíveis ao Claude.
+
+### S.1 Auditoria antes da mudança (prévia local, Chromium, 8 tamanhos)
+
+Medições em `~/realpolar-qa/audit8.js`; capturas `docs/capturas/antes-r8-*` (início, pop-up e página inteira).
+
+| Sev. | Problema medido | Causa (código) | Correção |
+| --- | --- | --- | --- |
+| P0 | Rolagem lateral em 320 px (página com 348 px); no pop-up, o Fechar e o botão "Presença Ampliada" ficavam cortados | `.sim` e `.receipt` em `1fr` sem mínimo zero; os botões de plano e o recibo esticavam a coluna | `minmax(0,1fr)` nas grades de uma coluna e no recibo |
+| P0 | Abas do pop-up 195 a 277 px além da tela de 320 a 430 px; "Limites e custos" e "Comparar planos" escondidas | `.m-tabs` com rolagem horizontal, concorrente com o seletor de plano | Quatro abas numa linha, com quebra de texto, sem rolagem lateral |
+| P0 | Pop-up em 320×568 com 135 px de leitura; em paisagem baixa, conteúdo e rodapé fora de alcance | Cabeçalho, plano e abas fixos, com rolagem só no corpo | Em telas de até 740 px de altura, o pop-up inteiro rola como uma única região, com cabeçalho (Fechar) e rodapé fixos; altura em `dvh` e área segura |
+| P1 | Menu mostrava 1 ou 2 das 6 seções no celular e 4 no tablet | Faixa horizontal com máscara, pouco perceptível | Botão "Seções" (`aria-expanded`, `aria-controls`) com painel vertical de 48 px por item; fecha ao escolher, com Esc ou com toque fora |
+| P1 | Seção de planos com 4.400 a 5.200 px no celular (três cartões completos empilhados) | Três cartões em uma coluna abaixo de 900 px | Seletor com os três nomes e preços sempre visíveis e um cartão por vez; não altera o simulador |
+| P1 | Preços fora da primeira tela em 320, 360 e 375 px | Preços depois de dois botões grandes e logo de 72 px | Preços antes dos botões (também no computador), logo de 56 px e título menor no celular |
+| P1 | Total do simulador cerca de 1.000 px abaixo da escolha do plano | Recibo depois de todos os campos | Linha "Total estimado agora", logo após a escolha do plano, até 900 px de largura (sem fixar na tela) |
+| P1 | Ampliar a fonte do navegador não tinha efeito | 112 tamanhos de fonte em `px` | Fontes convertidas para `rem`; testado a 125% e 200%, sem rolagem lateral |
+| P2 | Etapas do audiovisual quebravam como etiquetas soltas, com traços pendurados | Fluxo horizontal com `flex-wrap` | Sequência vertical com setas curtas até 640 px |
+| P2 | Mapa em lista: 11 itens sem agrupamento | Ordem do comparativo | Grupos por tema: Presença; Conteúdo; Campanhas; Busca e análise; Estrutura visual e digital |
+| P2 | Recibo não diferenciava custo recorrente de eventual | Só a nota de rodapé explicava | Rótulo em cada linha: "Recorrente, todo mês", "Pago direto à Meta", "Eventual, com orçamento aprovado", "Por vídeo, quando solicitada" |
+| P2 | Etiquetas de estado em 12 px | — | 13 px (`.8125rem`) |
+
+Também verificados: barra de progresso com `pointer-events:none` e sem deslocar o layout; 90 dias já vertical desde a V4; seletor de objetivos do acompanhamento quebra linha sem corte; `inputmode` correto em todos os campos.
+
+### S.2 Antes × depois (medido)
+
+| Tamanho | Largura da página | Fim dos 3 preços | Seção de planos | Página inteira | Abas fora da tela |
+| --- | --- | --- | --- | --- | --- |
+| 320×568 | 348 → 320 | 865 → 705 | 5.190 → 3.151 | 14.502 → 13.189 | 277 → 0 |
+| 360×800 | 360 → 360 | 821 → 658 | 4.855 → 2.929 | 13.741 → 12.317 | 265 → 0 |
+| 390×844 | 390 → 390 | 792 → 638 | 4.641 → 2.804 | 13.227 → 11.805 | 235 → 0 |
+| 768×1024 | 768 → 768 | 702 → 622 | 3.957 → 2.426 | 10.813 → 9.556 | 0 → 0 |
+| 1440×900 | sem mudança de layout, exceto preços antes dos botões | 783 → 703 | 2.443 → 2.453 | 8.705 → 8.696 | 0 → 0 |
+
+Em 320×568 os preços terminam em 705 px: a faixa interna "Ambiente de teste" ocupa cerca de 95 px e sai na versão do cliente.
+
+### S.3 Testes
+
+- **Regressão (`~/realpolar-qa/t9.js`, derivada de `t8.js`):** 289 verificações, todas aprovadas. Ajustes, sem apagar nenhuma verificação:
+  - nos tamanhos com seletor, o teste toca no plano antes de abrir o cartão, como faria uma pessoa;
+  - o mapa é comparado por serviço, não pela ordem;
+  - a logo da abertura no celular passou de 72 para 56 px.
+- **V5 (`~/realpolar-qa/t9m.js`):** 199 verificações, todas aprovadas.
+  - **Nos 8 tamanhos:**
+    - sem rolagem lateral;
+    - três preços na primeira tela a partir de 360 px;
+    - menu "Seções": abre, recebe o foco, fecha com Esc e ao escolher uma seção;
+    - um cartão por vez, sem mudar o simulador;
+    - pop-up aberto pelo Econômico começa no Econômico, com Fechar visível, abas inteiras e fim do conteúdo alcançável;
+    - foco e posição restaurados ao fechar;
+    - `inputmode` correto e campos de 48 px;
+    - total imediato igual ao recibo;
+    - rótulos de recorrente e eventual;
+    - audiovisual e 90 dias verticais;
+    - mapa agrupado;
+    - sem erros de script.
+  - **Varredura em 390×844:** 18 serviços × 3 planos × 4 abas = 216 telas, sem vazar a largura.
+  - **Paisagem:** 568×320 e 844×390.
+  - **Fonte do navegador:** 125% e 200%.
+  - **Sem JavaScript:** links de seção, três cartões e comparativo completo.
+  - **Impressão:** os três cartões saem impressos.
+- **Não testado:** Safari iOS (barra dinâmica, teclado virtual e área segura reais), Firefox, aparelhos físicos e leitores de tela reais. O comportamento do teclado virtual foi tratado com `scroll-margin` nos campos, sem prova em aparelho.
+
