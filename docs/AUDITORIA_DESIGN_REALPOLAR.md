@@ -565,3 +565,69 @@ Conferência textual: sem Canva, LKT ou marcadores internos; sem "quinzenal", "i
 **Não testado:** leitores de tela reais, iOS e Android físicos, Safari e Firefox, tamanho de fonte ampliado e leitura por decisor (AC40).
 **Commits:** a interface entrou em um único commit (`1186405`). Separar dados e componente deixaria um commit intermediário quebrado, porque o novo formato dos dados removeu campos que o pop-up anterior lia.
 **Capturas:** `docs/capturas/depois-r5-*`.
+
+## Q. Sexta rodada: Prompt Mestre V3, edição avulsa, barra e logo (02/11/2026)
+
+**Base:** `aa1b450`. O V3 citava `e93f9ee` como HEAD observado; os commits do Adendo V2 já estavam na branch e foram preservados. A mensagem chegou cortada no capítulo 18 (matriz de regressão, caso SM-0022). Os capítulos 01–17 chegaram completos, e os casos faltantes seguem a mesma fórmula, que foi usada como oráculo.
+
+### Q.1 Decisão comercial nova
+
+**Edição de vídeos avulsa no Econômico: R$ 180 por vídeo**, quando solicitada. É uma **decisão do responsável em 02/11/2026**, não consta no Canva e **precisa ser validada em contrato**. Regras aplicadas:
+- **Essencial e Presença Ampliada:** a edição prevista no plano não recebe cobrança por vídeo (sem cobrança dupla).
+- **Criação, roteiro, conceito ou produções adicionais:** **sem preço fixo**; "sob orçamento".
+- **Captação:** independente da edição. A diária não inclui edição, e a edição pode ser contratada sem captação.
+- **Não definidos:** duração, formatos e revisões incluídos nos R$ 180; quantidade de vídeos dos planos superiores.
+
+### Q.2 O que foi codado
+
+- **Simulador:**
+  - Grupo "Edição de vídeos" (`#econEdit`), visível só no Econômico, logo após a escolha do plano.
+  - Campo "Quantidade de vídeos para editar" (`#sEditQty`): inteiro de 0 a 50, valor inicial 0.
+  - "R$ 180,00 por vídeo" visível como texto, não editável, e botão "Zerar vídeos".
+  - Recibo com a linha "Edição de vídeos (Econômico)", ex.: "2 vídeos × R$ 180,00".
+  - No Essencial e no Presença Ampliada, o grupo e a linha somem e aparece a nota "Edição de vídeos prevista no plano, conforme contrato. Sem cobrança por vídeo".
+- **Cálculo:** uma única função `calc()`, com `ECON_EDIT_UNIT = 180`:
+  `total = mensalidade + verba diária × dias + diárias × valor da diária + (Econômico ? vídeos × 180 : 0)`.
+  Fica exposta como `window.RealPolarSim`, só para verificação automatizada.
+- **Troca de plano (RF-012):** a quantidade digitada no Econômico fica guardada. Ao voltar, reaparece no campo, no recibo e num aviso para leitor de tela (`#simStatus`). Nos outros planos ela é ignorada.
+- **Validação:** vazio, negativo, fração ou valor acima de 50 viram um inteiro de 0 a 50 ao sair do campo, com o aviso "Ajustado para N".
+- **Tabela-fonte:**
+  - Novo item **X04 "Edição de vídeos avulsa"**: Econômico "R$ 180 por vídeo" (opcional, origem: responsável); Essencial e Ampliado "Prevista no plano · sem cobrança por vídeo".
+  - **S04 (vídeos):** Econômico continua "Fora da mensalidade", com a observação "Edição avulsa: R$ 180 por vídeo, quando solicitada".
+  - **X02 (captação):** "Captação e edição são etapas distintas: a diária não inclui edição, que depende do plano".
+- **Cartão Econômico:** nota "Edição de vídeos avulsa: R$ 180 por vídeo, quando solicitada", com botão "Entender" que abre o pop-up.
+- **Resumo copiado:** passa a trazer o bloco "SIMULAÇÃO ATUAL", com edição avulsa no Econômico ou "prevista no plano" nos demais.
+- **Impressão:** mantém a linha de edição e o total.
+- **Barra de progresso:** de 3px para **6px** no computador e **5px** no celular, com trilho `rgba(18,48,73,.12)`, `pointer-events:none`, limitada a 0–100%. Recalcula ao rolar, redimensionar e quando o conteúdo muda de altura.
+- **Logo:**
+  - `prototipo/assets/real-polar-logo-original.png`: arquivo enviado pelo responsável na conversa do Claude Code em 02/11/2026, idêntico ao recebido (hash conferido). 1254×1254, fundo azul-marinho opaco (`#011842`, sem transparência).
+  - Cópias de 96, 192 e 512 px: **apenas recorte do enquadramento** em volta do símbolo (área 812×812 a partir de 222,232) e redimensionamento, **sem alterar cores, geometria ou proporções**. O recorte foi necessário porque, no quadro original, o símbolo ocupa menos da metade da imagem e ficava ilegível em 40px.
+  - Uso: cabeçalho (40px; 34px no celular, `alt=""` porque o nome "REAL POLAR" está ao lado) e abertura (104px; 72px no celular, `alt` descritivo). `width` e `height` declarados para evitar deslocamento de layout.
+- **Correção extra:** os preços da abertura no celular saíam colados ao nome do plano ("EconômicoR$ 1.280").
+
+### Q.3 Testes (241 verificações automáticas, todas aprovadas)
+
+`~/realpolar-qa/t7.js`: larguras 1440, 768 e 390, zoom de 200%, movimento reduzido e página sem JavaScript, mais toda a regressão anterior. Novos nesta rodada:
+
+- **Oráculo:** 432 combinações (3 planos × verba 0/15/25/50 × 0/15/30 dias × 0/1/2 diárias × 0–3 vídeos) conferidas contra a fórmula do V3, calculada de forma independente no teste.
+- **Exemplos do capítulo 05 na interface:**
+
+  | Plano e cenário | Total |
+  | --- | --- |
+  | Econômico sem audiovisual | 1.730 |
+  | Econômico com 2 vídeos | 2.090 |
+  | Econômico com 3 vídeos e 1 diária | 3.470 |
+  | Essencial com 1 diária e 4 vídeos residuais ignorados | 3.750 |
+  | Presença Ampliada com 5 vídeos residuais ignorados | 3.650 |
+
+- **Simulador:**
+  - grupo e linha só no Econômico; restauração do valor ao voltar; "Zerar vídeos" com retorno do foco;
+  - validação de -3, 2,5, vazio e 999;
+  - rótulo e preço ligados ao campo para leitor de tela;
+  - "Simular este plano" revela o campo.
+- **Saídas:** resumo copiado com e sem edição; impressão (1.280 + 450 + 1.200 + 360 = R$ 3.290).
+- **Pop-ups:** edição (gravação, criação e edição separadas; Essencial sem cobrança por vídeo) e captação.
+- **Barra:** 6/5px, de 0 a 100%, acompanhando navegação por âncora.
+- **Logo:** carregada, quadrada, nos tamanhos esperados, com dimensões reservadas.
+
+**Não testado:** leitores de tela reais, iOS e Android físicos, Safari e Firefox, tamanho de fonte ampliado (fontes em px, limitação já registrada) e largura de 320px (só 390).

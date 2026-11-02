@@ -89,11 +89,11 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 | --- | --- |
 | HTML interativo com planos/FAQ/simulador | **Implementado na `main`** (inclui o PR #1, já mesclado), mas com divergências comerciais versus Canva |
 | Site do cliente em Vercel | **Existente** em https://realpolar-proposta.vercel.app/; verificar deployment e commit antes de afirmar versão em produção |
-| Apresentação comercial (protótipo) | **5ª rodada (Adendo V2), codada e testada** em `prototipo/index.html`: comparativo como fonte única de 14 serviços, pop-up explicador por entregável, cartões e mapa gerados do comparativo, audiovisual, 90 dias, acompanhamento e simulador. Aguardando aprovação; não publicado na produção |
+| Apresentação comercial (protótipo) | **6ª rodada (V3), codada e testada** em `prototipo/index.html`: comparativo como fonte única de 14 serviços, pop-up explicador por entregável, cartões e mapa gerados do comparativo, audiovisual, 90 dias, acompanhamento e simulador. Aguardando aprovação; não publicado na produção |
 | Fluxo dos primeiros 90 dias | **Codado e testado em protótipo**, como marco de avaliação, sem meta fixa de leads |
 | Acompanhamento por objetivo e simulador com custos separados | **Codados e testados em protótipo** (3ª rodada) |
 | Contrato a anexar | **Pendente de leitura e validação** |
-| Arte/logo oficial | **Ausente do repositório e do Codespace em 02/11/2026.** Protótipo usa a marca em texto |
+| Arte/logo oficial | **Recebida em 02/11/2026** e incorporada ao protótipo em `prototipo/assets/` (original preservado). Página principal não alterada |
 | Correção de preços no HTML | **Pendente no `index.html` principal.** O protótipo já usa os valores do Canva (R$ 1.280 / 2.100 / 3.200 e diária de referência R$ 1.200) |
 | Rebranding e painel interno mencionados no Canva | **Itens comerciais a detalhar/validar**, não sistemas implantados |
 
@@ -108,6 +108,8 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 - **Ponto de entrada para Claude:** ler `CLAUDE.md`, depois `docs/AUDITORIA_DESIGN_REALPOLAR.md` (seção “Brief de execução para o Claude”).
 
 ## 8. Histórico de alterações
+
+- **02/11/2026 | V3: edição avulsa no Econômico, barra e logo (Claude Code):** base `aa1b450`. **Decidido pelo responsável (nova, a validar em contrato):** edição de vídeos no Econômico a **R$ 180 por vídeo**, quando solicitada; criação, roteiro e produções adicionais sem preço fixo (sob orçamento); captação independente da edição; Essencial e Ampliado sem cobrança por vídeo. **Codado:** campo condicional no simulador, item X04 na tabela-fonte, textos de vídeos e captação, resumo e impressão com a simulação, barra de 6px (5px no celular) e logo oficial (`prototipo/assets/`, original preservado e cópias só recortadas e redimensionadas). **Testado:** 241 verificações, incluindo um oráculo de 432 combinações (seção Q da auditoria). **Commits:** `5c7b2d0` (logo) e `2da6082` (interface). **Publicado:** nada em produção.
 
 - **02/11/2026 | Adendo V2: pop-ups em três camadas (Claude Code):** base `e93f9ee` (o adendo foi escrito sobre `396a403`, anterior aos pop-ups da 4ª rodada). **Codado** (`1186405`): camada 1 no cabeçalho; abas "O que recebo", "Como funciona", "Limites e custos" e "Comparar planos"; 3 possibilidades do painel rotuladas como não aprovadas; serviço relacionado; mensalidade como item próprio; botões de informação no simulador; **AC16 corrigido** (explorar o mapa ou o pop-up não muda o orçamento). **Testado:** 186 verificações, inclusive zoom de 200%. **Pendente:** tamanho de fonte ampliado (fontes em px), leitura por decisor (AC40), contrato, logo e as divergências já registradas (Meta Ads e relatórios do Ampliado, prospecção no Essencial, módulos do painel apenas como hipóteses).
 
