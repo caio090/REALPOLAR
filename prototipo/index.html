@@ -91,7 +91,7 @@ h2{font-size:clamp(28px,4vw,42px);max-width:22ch}
 .st-fora::before{background:none;border-top:2px solid currentColor;border-radius:0;height:0;width:9px}
 
 /* Revelação progressiva */
-.motion [data-reveal]{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease);transition-delay:var(--d,0s)}
+.motion [data-reveal]{opacity:0;transform:translateY(10px);transition:opacity .45s var(--ease),transform .45s var(--ease);transition-delay:var(--d,0s)}
 .motion [data-reveal].in{opacity:1;transform:none}
 
 /* 01 Abertura */
@@ -195,6 +195,12 @@ h2{font-size:clamp(28px,4vw,42px);max-width:22ch}
 .ref p{margin:8px 0 0;font-size:15px;color:var(--ink-2)}
 .ref .btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 
+/* Profissionais opcionais: três itens separados */
+.extras-t{font-size:18px;margin-top:36px}
+.extras{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
+.xo{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:16px;border-radius:14px;background:#fff;border:1px solid var(--silver-200);border-top:3px solid var(--ext);font-size:14px;color:var(--ink-2)}
+.xo b{font-size:16px;color:var(--ink)}
+.xo .lnk{min-height:44px;padding:0;border:0;background:none;color:var(--glacial-600);font-weight:700;font-size:14px;text-decoration:underline}
 /* 06 Linha do tempo */
 .tl{position:relative;margin-top:32px}
 .tl-track{position:absolute;left:16.66%;right:16.66%;top:21px;height:4px;background:var(--silver-200);border-radius:4px;overflow:hidden}
@@ -202,10 +208,11 @@ h2{font-size:clamp(28px,4vw,42px);max-width:22ch}
 .motion .tl-track span{--fill:0;transition:transform 1.2s var(--ease) .2s}
 .motion .tl.in .tl-track span{--fill:1}
 .tl-marks{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));list-style:none;margin:0;padding:0}
-.tl-marks li{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 6px;overflow-wrap:break-word;hyphens:auto}
+.tl-marks li{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 6px;overflow-wrap:break-word}
 .tl-marks .dot{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:var(--navy-800);color:#fff}
 .tl-marks .m{font-weight:800;margin-top:8px}
 .tl-marks p{margin:4px 0 0;font-size:15px;color:var(--ink-2);max-width:30ch}
+.tl-marks small{display:block;margin-top:6px;font-size:13px;font-weight:700;color:var(--glacial-600);max-width:30ch}
 /* Aviso de metas de conversão: faixa fina sob os 3 meses (mês 1 → mês 3) */
 .conv{position:relative;margin-top:18px;padding-top:16px;font-size:14px;color:var(--ink-2)}
 .conv-lane{position:absolute;top:0;left:16.66%;right:16.66%;height:2px}
@@ -217,7 +224,8 @@ h2{font-size:clamp(28px,4vw,42px);max-width:22ch}
 .conv-ico circle{fill:none;stroke:var(--glacial-600);stroke-width:1.6;transform-box:fill-box;transform-origin:center}
 .conv-ico .core{fill:var(--glacial-600);stroke:none}
 .conv-plans{list-style:none;margin:8px 0 0 30px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
-.conv-plans li{font-size:13px;border:1px solid var(--silver-300);border-radius:999px;padding:3px 10px;background:#fff}
+.conv-plans li{font-size:14px;color:var(--ink-2)}
+.conv-plans li:not(:last-child)::after{content:"·";margin-left:10px;color:var(--silver-500)}
 .conv-plans b{color:var(--ink);margin-right:6px}
 .motion .conv .conv-lane span{transform:scaleX(0);transition:transform .9s var(--ease) .35s}
 .motion .conv.in .conv-lane span{transform:none}
@@ -331,6 +339,9 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
 .m-body ul.get{margin:0;padding:0;list-style:none;display:grid;gap:8px}
 .m-body ul.get li{position:relative;padding-left:24px;font-size:16px}
 .m-body ul.get li::before{content:"";position:absolute;left:3px;top:.42em;width:11px;height:6px;border-left:2px solid var(--glacial-600);border-bottom:2px solid var(--glacial-600);transform:rotate(-45deg)}
+.m-body ul.get.neg li::before{border:0;width:10px;height:2px;background:var(--silver-700);transform:none;top:.75em}
+.svc-btn .ld{display:block;margin-left:21px;font-size:13px;color:var(--ink-2);font-weight:400}
+.cmp details h4{margin:10px 0 2px;font-size:13px;color:var(--ink)}
 .m-body .why{margin-top:14px;font-size:15px;color:var(--ink-2)}
 .m-body .why b{color:var(--ink)}
 .m-body .rel{margin-top:16px;font-size:14px;color:var(--ink-2)}
@@ -361,6 +372,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
 
 /* Responsivo */
 @media (max-width:900px){
+  .extras{grid-template-columns:1fr}
   .plans,.outside,.av,.track-box,.sim{grid-template-columns:1fr}
 }
 @media (max-width:760px){
@@ -390,7 +402,18 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
   .prices a{flex:1 1 100%;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:6px 14px}
   .prices strong{font-size:18px}
   #planos{padding-top:44px}
-  .conv-plans{margin-left:0}
+  .conv-plans{margin-left:0;flex-direction:column;gap:4px}
+  .conv-plans li::after{display:none}
+  /* 90 dias empilhados: trilha vertical à esquerda, texto com largura total */
+  .tl-track{display:none}
+  .tl-marks{grid-template-columns:1fr;gap:18px}
+  .tl-marks li{position:relative;display:grid;grid-template-columns:46px 1fr;column-gap:14px;align-items:start;text-align:left;padding:0}
+  .tl-marks li:not(:last-child)::before{content:"";position:absolute;left:21px;top:46px;bottom:-18px;width:4px;background:var(--glacial-400)}
+  .tl-marks .dot{grid-row:span 3}
+  .tl-marks .m{margin-top:10px}
+  .tl-marks p,.tl-marks small{grid-column:2;max-width:none}
+  .conv-lane{display:none}
+  .conv{padding-top:4px}
   .row2{grid-template-columns:1fr}
   .planpick button{font-size:13px}
   dialog.sheet{width:100%;max-height:90vh;margin:auto 0 0;border-radius:18px 18px 0 0}
@@ -535,125 +558,113 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
           <tr data-id="S01" data-node="Redes sociais" data-rel="S03">
             <th scope="row"><span class="nm">Gestão do perfil e das publicações</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Organizamos a presença da Real Polar no perfil contratado, com publicações planejadas.</p>
-                <ul data-f="get"><li>Calendário de publicações alinhado aos serviços prioritários</li><li>Publicações preparadas e programadas, conforme o plano</li><li>Acompanhamento da regularidade do perfil</li></ul>
-                <ol data-f="how"><li>Alinhamos temas e serviços prioritários.</li><li>Preparamos as publicações e enviamos para aprovação.</li><li>Publicamos e acompanhamos.</li></ol>
-                <p data-f="result">O perfil passa a comunicar os serviços com regularidade.</p>
-                <ul data-f="limit"><li>Não inclui o atendimento das mensagens comerciais.</li><li>A quantidade de publicações segue o plano contratado.</li></ul>
-                <p data-f="dep">Acesso autorizado ao perfil e informações atualizadas da empresa.</p>
+                <p data-f="short">Organização das publicações nos canais previstos.</p>
+                <p data-f="dep">Insumos: Acesso ao perfil, informações atualizadas e aprovações.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Presença organizada com operação enxuta.</p><ul data-f="get"><li>Presença organizada com operação enxuta</li><li>Publicações compatíveis com o limite definido em contrato</li><li>Uso de materiais fornecidos pela Real Polar</li></ul><ol data-f="how"><li>Recebemos fotos e serviços prioritários.</li><li>Selecionamos uma pauta enxuta dentro do limite.</li><li>Aprovamos e programamos somente as peças previstas.</li></ol><ul data-f="lim"><li>Publicações do limite reduzido na mensalidade</li><li>Não inclui atendimento comercial</li><li>Qualquer expansão precisa de contrato</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Planejamento recorrente de publicações.</p><ul data-f="get"><li>Planejamento recorrente de publicações</li><li>Preparação, aprovação e programação de conteúdos no escopo</li><li>Acompanhamento editorial do perfil</li></ul><ol data-f="how"><li>Levantamos campanhas e prioridades.</li><li>Planejamos a sequência recorrente de publicações.</li><li>Aprovamos, programamos e acompanhamos o calendário contratado.</li></ol><ul data-f="lim"><li>Publicações previstas na mensalidade</li><li>Quantidades e revisões seguem o contrato</li><li>Extras serão orçados</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Gestão editorial no escopo mais abrangente.</p><ul data-f="get"><li>Gestão editorial no escopo mais abrangente</li><li>Organização de pautas e acompanhamento dos conteúdos previstos</li><li>Integração da comunicação com as iniciativas aprovadas</li></ul><ol data-f="how"><li>Conectamos as prioridades de comunicação às frentes aprovadas.</li><li>Distribuímos os conteúdos previstos por finalidade.</li><li>Acompanhamos a consistência editorial e os ajustes autorizados.</li></ol><ul data-f="lim"><li>Publicações previstas na mensalidade ampliada</li><li>Volumes ou canais adicionais só com validação em contrato</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="limitado" data-src="canva">Limitado<small>Operação mais enxuta</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
           </tr>
           <tr data-id="S02" data-node="Posicionamento" data-rel="S09">
             <th scope="row"><span class="nm">Estratégia de posicionamento</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Definimos como a Real Polar quer ser percebida e quais serviços destacar para cada público.</p>
-                <ul data-f="get"><li>Mensagens e diferenciais prioritários definidos</li><li>Públicos e serviços em destaque organizados</li><li>Diretrizes que orientam conteúdos e anúncios</li></ul>
-                <ol data-f="how"><li>Levantamos serviços, diferenciais e públicos.</li><li>Definimos as mensagens prioritárias.</li><li>Validamos com a Real Polar e aplicamos nos conteúdos.</li></ol>
-                <p data-f="result">Comunicação coerente entre perfil, anúncios e materiais.</p>
-                <ul data-f="limit"><li>Formato da entrega e revisões definidos em contrato.</li></ul>
-                <p data-f="dep">Informações sobre serviços, regiões de atuação e prioridades comerciais.</p>
+                <p data-f="short">Definição de como a Real Polar quer ser percebida e quais serviços destacar.</p>
+                <p data-f="dep">Insumos: Informações de serviços, público e regiões atendidas.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Foco geral de presença digital não equivale a estratégia formal contratada.</p><ul data-f="get"><li>Estratégia formal de posicionamento não faz parte deste plano</li><li>Orientações pontuais nas peças não são diagnóstico completo</li><li>Uma versão básica, se desejada, depende de confirmação em contrato</li></ul><ol data-f="how"><li>Explicamos que a estratégia formal não integra a mensalidade.</li><li>Registramos a demanda, se houver.</li><li>Cotamos um diagnóstico separado antes de qualquer execução.</li></ol><ul data-f="lim"><li>Estratégia formal fora da mensalidade</li><li>Orçamento separado, se solicitada</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Diagnóstico de comunicação e prioridades.</p><ul data-f="get"><li>Diagnóstico de comunicação e prioridades</li><li>Mensagens e públicos prioritários organizados</li><li>Diretrizes para campanhas e conteúdos</li></ul><ol data-f="how"><li>Ouvimos serviços, público e diferenciais.</li><li>Organizamos mensagens e direcionamento de comunicação.</li><li>Validamos as diretrizes e aplicamos nos conteúdos previstos.</li></ol><ul data-f="lim"><li>Estratégia incluída no Essencial, dentro do escopo aprovado</li><li>Sem valor extra</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Direção de comunicação mais abrangente, conforme escopo.</p><ul data-f="get"><li>Direção de comunicação mais abrangente, conforme escopo</li><li>Coerência das mensagens nos canais previstos</li><li>Alinhamento do posicionamento com as demais frentes aprovadas</li></ul><ol data-f="how"><li>Levantamos o posicionamento atual e as prioridades.</li><li>Integramos as mensagens às frentes contratadas.</li><li>Revisamos a coerência da comunicação dentro do escopo aprovado.</li></ol><ul data-f="lim"><li>Estratégia incluída no Presença Ampliada, dentro do escopo aprovado</li><li>Expansões dependem de contrato</li></ul></div>
               </details></th>
-            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade<small>O plano prioriza presença digital, sem estratégia completa listada</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
+            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade<small>O plano prioriza presença digital, sem estratégia formal</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
           </tr>
           <tr data-id="S03" data-node="Artes e design" data-rel="S11">
             <th scope="row"><span class="nm">Artes com design profissional</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Criamos as peças das publicações e das campanhas com a identidade da Real Polar.</p>
-                <ul data-f="get"><li>Artes para publicações e campanhas</li><li>Peças alinhadas à identidade da marca</li><li>Ajustes após a aprovação</li></ul>
-                <ol data-f="how"><li>Definimos tema e formato.</li><li>Criamos e enviamos para aprovação.</li><li>Ajustamos e publicamos.</li></ol>
-                <p data-f="result">Materiais visuais consistentes, que apresentam os serviços com clareza.</p>
-                <ul data-f="limit"><li>Quantidade de peças e de revisões definida em contrato.</li></ul>
-                <p data-f="dep">Fotos, informações técnicas e aprovação da Real Polar.</p>
+                <p data-f="short">Criação das peças das publicações e das campanhas.</p>
+                <p data-f="dep">Insumos: Fotos, briefing, marca e aprovação.</p>
                 <p data-f="qty">Quantidade de peças: definida em contrato.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Peças simples, com direção da equipe e apoio de IA quando adequado.</p><ul data-f="get"><li>Peças simples, com direção da equipe e apoio de IA quando adequado</li><li>Uso de imagens e informações entregues pela Real Polar</li><li>Complexidade e quantidade reduzidas, a definir em contrato</li></ul><ol data-f="how"><li>Reunimos os materiais enviados pela Real Polar.</li><li>Preparamos peças simples, com apoio de IA supervisionada quando adequado.</li><li>Validamos a versão final dentro do limite acordado.</li></ol><ul data-f="lim"><li>Artes limitadas dentro da mensalidade</li><li>Quantidades, formatos e extras a validar em contrato</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Peças criadas pela equipe dentro do escopo do plano.</p><ul data-f="get"><li>Peças criadas pela equipe dentro do escopo do plano</li><li>Adaptações de formatos alinhadas à identidade atual</li><li>Aprovação e ajustes conforme o limite contratado</li></ul><ol data-f="how"><li>Recebemos a pauta e as informações técnicas.</li><li>Criamos as peças conforme a identidade existente.</li><li>Ajustamos, aprovamos e entregamos os formatos contratados.</li></ol><ul data-f="lim"><li>Artes previstas na mensalidade</li><li>Revisões conforme limites contratuais</li><li>Extras sob orçamento</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Peças com direção visual integrada às frentes contratadas.</p><ul data-f="get"><li>Peças com direção visual integrada às frentes contratadas</li><li>Materiais coerentes com a identidade e as campanhas aprovadas</li><li>Escopo e revisões definidos em contrato</li></ul><ol data-f="how"><li>Relacionamos campanha, posicionamento e identidade.</li><li>Criamos as peças previstas com direção visual consistente.</li><li>Aprovamos variações e revisamos apenas o que estiver contratado.</li></ol><ul data-f="lim"><li>Artes previstas no escopo ampliado</li><li>O bônus de artes não se mistura com as peças de rotina</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="limitado" data-src="canva">Limitado<small>Peças com apoio de IA, dirigidas pela equipe, a partir de fotos e informações fornecidas pela Real Polar</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
           </tr>
           <tr data-id="S04" data-node="Roteiro e edição" data-rel="X02">
             <th scope="row"><span class="nm">Vídeos com roteiro e edição profissional</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Planejamos roteiros e editamos materiais disponíveis para os vídeos previstos no plano.</p>
-                <ul data-f="get"><li>Roteiro de cada vídeo previsto</li><li>Orientação para a gravação</li><li>Edição profissional do material</li></ul>
-                <ol data-f="how"><li>Definimos o tema e o roteiro.</li><li>O material é gravado pela Real Polar ou por profissional contratado à parte.</li><li>Editamos e enviamos para aprovação.</li></ol>
-                <p data-f="result">Vídeos que mostram projetos e serviços de forma profissional.</p>
-                <ul data-f="limit"><li>A gravação presencial em São Paulo não está incluída automaticamente na mensalidade.</li><li>A edição prevista no plano está incluída; vídeos além do escopo exigem orçamento.</li></ul>
-                <p data-f="dep">Material gravado com qualidade suficiente.</p>
-                <p data-f="ext">Captação presencial, quando necessária: referência de R$ 1.200 por diária, sujeita a cotação.</p>
+                <p data-f="short">Roteiro e edição dos vídeos a partir do material disponível.</p>
+                <p data-f="dep">Insumos: Material de captação adequado, briefing e aprovações.</p>
                 <p data-f="qty">Quantidade de vídeos: definida em contrato.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Roteiro e produção não fazem parte da mensalidade; a edição pode ser contratada por vídeo.</p><ul data-f="get"><li>Roteiro e produção não fazem parte da mensalidade, salvo aprovação expressa</li><li>Edição avulsa a R$ 180 por vídeo solicitado</li><li>Captação independente, cotada à parte</li></ul><ol data-f="how"><li>Confirmamos a quantidade e o material disponível.</li><li>Orçamos a edição avulsa a R$ 180 por vídeo, mais captação ou criação, se solicitadas.</li><li>Produzimos só depois da aprovação do custo.</li></ol><ul data-f="lim"><li>Edição avulsa de R$ 180 por vídeo, fora da mensalidade</li><li>Criação, roteiro especial e captação são cobrados separadamente</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Roteiro e edição dos vídeos previstos em contrato.</p><ul data-f="get"><li>Roteiros dos vídeos previstos em contrato</li><li>Edição dos vídeos previstos sem cobrança por unidade</li><li>Aprovação de formatos e revisões conforme contrato</li></ul><ol data-f="how"><li>Definimos os vídeos previstos e os materiais disponíveis.</li><li>Preparamos os roteiros e editamos o volume contratado.</li><li>Aprovamos com as revisões do plano, sem cobrar a edição outra vez.</li></ol><ul data-f="lim"><li>Roteiro e edição dos vídeos contratados incluídos na mensalidade</li><li>Captação à parte</li><li>Vídeos excedentes sob orçamento</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Roteirização e edição dentro do escopo mais abrangente aprovado.</p><ul data-f="get"><li>Roteirização e edição dentro do escopo mais abrangente aprovado</li><li>Vídeos previstos no pacote sem segunda cobrança de edição</li><li>Demandas extras ou especiais sujeitas a orçamento</li></ul><ol data-f="how"><li>Relacionamos os vídeos previstos às prioridades aprovadas.</li><li>Roteirizamos e editamos o escopo do pacote.</li><li>Validamos as peças finais e cotamos apenas novas produções fora do contrato.</li></ol><ul data-f="lim"><li>Roteiro e edição dos vídeos previstos incluídos na mensalidade</li><li>Captação à parte</li><li>Vídeos excedentes sob orçamento</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade<small>Edição avulsa: R$ 180 por vídeo, quando solicitada</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído<small>Sem cobrança por vídeo; quantidade em contrato</small></td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído<small>Sem cobrança por vídeo; quantidade em contrato</small></td>
           </tr>
           <tr data-id="S05" data-node="Anúncios Meta Ads" data-rel="X01">
             <th scope="row"><span class="nm">Gestão de anúncios Meta Ads</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Configuramos e acompanhamos campanhas no Instagram e no Facebook.</p>
-                <ul data-f="get"><li>Campanhas configuradas com objetivo, público e mensagem</li><li>Testes de públicos e mensagens</li><li>Acompanhamento e ajustes das campanhas</li></ul>
-                <ol data-f="how"><li>Definimos objetivo, público e mensagem.</li><li>Configuramos e publicamos as campanhas.</li><li>Acompanhamos e ajustamos.</li></ol>
-                <p data-f="result">Mais pessoas com perfil de cliente conhecendo os serviços, e aprendizado sobre o que funciona.</p>
-                <ul data-f="limit"><li>A gestão está na mensalidade; a verba de anúncios não.</li><li>Investir mais pode ampliar os testes, mas não garante vendas.</li></ul>
-                <p data-f="dep">Conta de anúncios com acesso autorizado e forma de pagamento da Real Polar.</p>
-                <p data-f="ext">Verba de anúncios paga direto à Meta: referência a partir de R$ 15 por dia.</p>
+                <p data-f="short">Configuração e acompanhamento de campanhas no Instagram e no Facebook.</p>
+                <p data-f="dep">Insumos: Acesso às contas e orçamento de anúncios aprovado.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Gestão de campanhas em formato enxuto.</p><ul data-f="get"><li>Gestão de campanhas em formato enxuto</li><li>Foco inicial em objetivos compatíveis com a verba e os materiais disponíveis</li><li>Verba de mídia sempre paga fora da mensalidade</li></ul><ol data-f="how"><li>Definimos o objetivo e o teto de verba do formato enxuto.</li><li>Configuramos as campanhas dentro do escopo.</li><li>Acompanhamos indicadores básicos, sem confundir gestão e verba.</li></ol><ul data-f="lim"><li>Gestão de campanhas prevista na mensalidade do Econômico</li><li>Verba de mídia sempre paga à parte</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Planejamento, configuração e acompanhamento das campanhas previstas.</p><ul data-f="get"><li>Planejamento, configuração e acompanhamento das campanhas previstas</li><li>Testes de públicos e mensagens conforme escopo</li><li>Objetivos de conversão e acompanhamento das métricas cabíveis</li></ul><ol data-f="how"><li>Organizamos objetivos e públicos de conversão.</li><li>Configuramos, testamos e ajustamos as campanhas previstas.</li><li>Consolidamos os aprendizados conforme escopo e dados disponíveis.</li></ol><ul data-f="lim"><li>Gestão prevista na mensalidade do Essencial</li><li>Verba de mídia separada</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">A gestão de Meta Ads ainda não consta como entrega confirmada neste plano.</p><ul data-f="get"><li>Gestão de Meta Ads ainda não confirmada neste plano</li><li>Integração com outras frentes depende de decisão comercial</li><li>Campanhas não são apresentadas como serviço incluído antes da validação</li></ul><ol data-f="how"><li>Informamos que Meta Ads não está confirmado neste pacote.</li><li>Solicitamos a validação do escopo.</li><li>Só planejamos e executamos campanhas se o contrato passar a incluí-las.</li></ol><ul data-f="lim"><li>Gestão de Meta Ads não confirmada: não é entrega antes da validação</li><li>Verba sempre paga à parte</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="incluido" data-src="canva">Incluído<small>Foco compatível com a proposta enxuta</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td><td data-plan="Presença Ampliada" data-st="conflito" data-src="conflito">A confirmar<small>Ainda não listado no plano; será confirmado em contrato</small></td>
           </tr>
           <tr data-id="S06" data-node="Google Meu Negócio" data-rel="S07">
             <th scope="row"><span class="nm">Google Meu Negócio (Perfil da Empresa no Google)</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Organizamos as informações do Perfil da Empresa no Google, como contatos, serviços e fotos.</p>
-                <ul data-f="get"><li>Revisão das informações do perfil</li><li>Correção e complemento dos dados</li><li>No Presença Ampliada, manutenção do perfil</li></ul>
-                <ol data-f="how"><li>Conferimos as informações atuais.</li><li>Corrigimos e completamos o perfil.</li><li>No Presença Ampliada, acompanhamos e mantemos o perfil.</li></ol>
-                <p data-f="result">Informações corretas para quem procura a empresa no Google.</p>
-                <ul data-f="limit"><li>Não é o mesmo serviço que SEO.</li><li>Não inclui Google Ads nem garante posição nas buscas.</li></ul>
-                <p data-f="dep">Acesso ao perfil da empresa.</p>
+                <p data-f="short">Informações do Perfil da Empresa no Google, como contatos, serviços e fotos.</p>
+                <p data-f="dep">Insumos: Acesso administrativo ao Perfil da Empresa no Google.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Nenhuma gestão do Perfil da Empresa no Google na mensalidade.</p><ul data-f="get"><li>Nenhuma gestão do Perfil da Empresa no Google na mensalidade</li><li>O serviço é explicado sem simular entrega contratada</li><li>Contratação separada só após orçamento</li></ul><ol data-f="how"><li>Identificamos a solicitação sobre o perfil.</li><li>Informamos que não há gestão contratada.</li><li>Oferecemos orçamento separado, se a Real Polar quiser.</li></ol><ul data-f="lim"><li>Perfil da Empresa fora da mensalidade</li><li>Somente mediante orçamento específico</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Conferência e organização básica das informações do perfil.</p><ul data-f="get"><li>Conferência e organização básica das informações do perfil</li><li>Correções pontuais previstas no escopo</li><li>Sem manutenção contínua presumida</li></ul><ol data-f="how"><li>Obtemos acesso ao perfil.</li><li>Conferimos os dados básicos e corrigimos as informações previstas.</li><li>Encerramos após a revisão pontual, sem presumir manutenção.</li></ol><ul data-f="lim"><li>Revisão básica incluída, com escopo limitado</li><li>Manutenção recorrente não presumida</li><li>Não é o mesmo serviço que SEO</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Gestão do Perfil da Empresa no Google prevista.</p><ul data-f="get"><li>Gestão prevista do Perfil da Empresa no Google</li><li>Frequência e ações de manutenção a especificar em contrato</li><li>Não é SEO técnico completo nem Google Ads</li></ul><ol data-f="how"><li>Confirmamos o escopo de manutenção, ainda pendente.</li><li>Planejamos as informações e rotinas autorizadas.</li><li>Executamos apenas a frequência e as ações definidas em contrato.</li></ol><ul data-f="lim"><li>Gestão prevista: extensão, frequência e entregas a definir em contrato</li><li>Não é um pacote ilimitado</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="limitado" data-src="canva">Limitado<small>Revisão básica do perfil</small></td><td data-plan="Presença Ampliada" data-st="pendente" data-src="canva">Previsto<small>Gestão do perfil; detalhes em contrato</small></td>
           </tr>
           <tr data-id="S07" data-node="SEO" data-rel="S06">
             <th scope="row"><span class="nm">Otimização de busca no Google (SEO)</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Ações para melhorar a visibilidade orgânica da Real Polar nas buscas do Google.</p>
-                <ul data-f="get"><li>Avaliação das buscas relevantes para os serviços</li><li>Ajustes de textos e informações do site</li><li>Acompanhamento da evolução</li></ul>
-                <ol data-f="how"><li>Avaliamos as buscas relevantes.</li><li>Ajustamos textos e informações.</li><li>Acompanhamos a evolução.</li></ol>
-                <p data-f="result">Mais chances de ser encontrado por quem procura os serviços.</p>
-                <ul data-f="limit"><li>Não garante primeira posição no Google.</li><li>Não inclui SEO técnico integral nem Google Ads.</li></ul>
-                <p data-f="dep">Acesso ao site.</p>
+                <p data-f="short">Ações para melhorar a visibilidade orgânica do site nas buscas do Google.</p>
+                <p data-f="dep">Insumos: Acesso ao site, prioridades e informações técnicas.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">SEO não consta da mensalidade.</p><ul data-f="get"><li>SEO não consta da mensalidade</li><li>Presença em redes sociais não substitui a otimização do site</li><li>Sem promessa de posicionamento orgânico</li></ul><ol data-f="how"><li>Mostramos que SEO não consta no Econômico.</li><li>Distinguimos publicação nas redes de otimização do site.</li><li>Estimamos um serviço separado, se solicitado.</li></ol><ul data-f="lim"><li>SEO fora da mensalidade</li><li>Serviço adicional teria orçamento próprio</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">SEO não consta do Essencial.</p><ul data-f="get"><li>SEO não consta do Essencial</li><li>Otimizações técnicas extras só mediante proposta</li><li>A revisão do Perfil da Empresa no Google não é SEO</li></ul><ol data-f="how"><li>Mostramos que SEO não consta no Essencial.</li><li>Distinguimos a revisão do perfil no Google da otimização do site.</li><li>Cotamos a expansão somente mediante pedido.</li></ol><ul data-f="lim"><li>SEO fora da mensalidade do Essencial</li><li>Não confundir com a revisão do Google Meu Negócio</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Avaliação de páginas e termos pertinentes ao negócio.</p><ul data-f="get"><li>Avaliação de páginas e termos pertinentes ao negócio</li><li>Ajustes previstos de conteúdo e informações do site</li><li>Acompanhamento de sinais e melhorias possíveis</li></ul><ol data-f="how"><li>Identificamos páginas e buscas pertinentes.</li><li>Ajustamos conteúdos e informações dentro do escopo.</li><li>Acompanhamos os sinais orgânicos, sem prometer posição no ranking.</li></ol><ul data-f="lim"><li>SEO incluído conforme escopo aprovado</li><li>Desenvolvimento técnico amplo não presumido</li><li>Sem garantia de primeiro lugar no Google</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
           </tr>
           <tr data-id="S08" data-node="Relatórios e análise">
             <th scope="row"><span class="nm">Relatórios e análise de resultados</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Apresentamos os resultados do período e as recomendações para o próximo.</p>
-                <ul data-f="get"><li>Indicadores do período reunidos</li><li>Explicação do que mudou</li><li>Recomendações para o próximo período</li></ul>
-                <ol data-f="how"><li>Coletamos os dados das plataformas.</li><li>Analisamos o desempenho.</li><li>Apresentamos o relatório.</li></ol>
-                <p data-f="result">Decisões baseadas em dados, não em impressões.</p>
-                <ul data-f="limit"><li>Resultados comerciais dependem das informações compartilhadas pela Real Polar.</li><li>Sem promessa de quantidade de contatos ou vendas.</li></ul>
-                <p data-f="dep">Retorno da Real Polar sobre contatos e propostas, quando possível.</p>
+                <p data-f="short">Apresentação dos resultados do período e recomendações.</p>
+                <p data-f="dep">Insumos: Dados das plataformas e retorno da Real Polar sobre as oportunidades.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Relatório formal periódico não incluído neste plano.</p><ul data-f="get"><li>Relatório formal periódico não incluído neste plano</li><li>Métricas básicas observadas internamente não equivalem a relatório contratual</li><li>Sem periodicidade nem reuniões extras prometidas</li></ul><ol data-f="how"><li>Explicamos que não existe relatório formal periódico incluído.</li><li>Distinguimos o monitoramento interno da apresentação ao cliente.</li><li>Cotamos a entrega adicional, se necessária.</li></ol><ul data-f="lim"><li>Relatório formal recorrente não integra o Econômico</li><li>Se solicitado, será item à parte</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Relatório mensal de resultados.</p><ul data-f="get"><li>Relatório mensal</li><li>Apresentação dos indicadores disponíveis no período</li><li>Recomendações de ajuste de campanhas e conteúdos</li></ul><ol data-f="how"><li>Reunimos as métricas disponíveis do período.</li><li>Elaboramos a leitura mensal.</li><li>Apresentamos os achados e as sugestões de ajuste.</li></ol><ul data-f="lim"><li>Relatório mensal previsto na mensalidade do Essencial</li><li>Formato e prazo conforme contrato</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Análise de resultados prevista; periodicidade a confirmar em contrato.</p><ul data-f="get"><li>Ainda sem periodicidade confirmada: análise de resultados prevista</li><li>Periodicidade dos relatórios a confirmar em contrato</li><li>Calendário de relatórios definido após o contrato</li></ul><ol data-f="how"><li>Informamos que a periodicidade ainda será confirmada.</li><li>Validamos o escopo do acompanhamento.</li><li>Publicamos o calendário de relatórios somente após o contrato.</li></ol><ul data-f="lim"><li>Frequência dos relatórios a confirmar em contrato</li><li>Sem custo adicional presumido</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído<small>Relatório mensal</small></td><td data-plan="Presença Ampliada" data-st="conflito" data-src="conflito">A confirmar<small>Análise de resultados e relatórios previstos; periodicidade a confirmar em contrato</small></td>
           </tr>
           <tr data-id="S09" data-node="Identidade visual" data-rel="S02">
             <th scope="row"><span class="nm">Rebranding da identidade da marca</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Começamos com briefing de identidade e análise da comunicação visual atual, para orientar o escopo de rebranding.</p>
-                <ul data-f="get"><li>Briefing de identidade com a Real Polar</li><li>Análise da comunicação visual atual</li><li>Direcionamento para os ajustes da marca</li></ul>
-                <ol data-f="how"><li>Briefing de identidade.</li><li>Análise da comunicação visual atual.</li><li>Direcionamento dos ajustes, conforme o contrato.</li></ol>
-                <p data-f="result">Uma identidade mais coerente com o posicionamento da empresa.</p>
-                <ul data-f="limit"><li>Quantidade de propostas, rodadas de revisão e arquivos finais definidos em contrato.</li><li>Guia de marca só se previsto em contrato.</li></ul>
-                <p data-f="dep">Participação no briefing e aprovação das etapas.</p>
+                <p data-f="short">Revisão da identidade visual da marca, a partir de um briefing de identidade.</p>
+                <p data-f="dep">Insumos: Logo, referências, briefing e aprovações.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Sem serviço de rebranding na mensalidade.</p><ul data-f="get"><li>Sem serviço de rebranding na mensalidade</li><li>Uso da identidade atual, conforme o material recebido</li><li>Projeto de marca separado depende de proposta</li></ul><ol data-f="how"><li>Trabalhamos com a identidade fornecida.</li><li>Explicamos que não há projeto de rebranding.</li><li>Orçamos a identidade separadamente, se houver demanda.</li></ol><ul data-f="lim"><li>Rebranding não faz parte da mensalidade</li><li>Projeto separado sujeito a orçamento</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Sem rebranding completo no Essencial.</p><ul data-f="get"><li>Sem rebranding completo no Essencial</li><li>Consistência visual dos posts não equivale a redesenho de marca</li><li>Qualquer pacote de identidade depende de contratação</li></ul><ol data-f="how"><li>Aplicamos a identidade atual aos materiais previstos.</li><li>Diferenciamos consistência de marca de redesenho completo.</li><li>Encaminhamos uma nova identidade para proposta específica.</li></ol><ul data-f="lim"><li>Rebranding não faz parte da mensalidade</li><li>A identidade atual orienta os posts contratados</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Começamos com briefing de identidade e análise da comunicação visual atual, para orientar o escopo de rebranding.</p><ul data-f="get"><li>Briefing de identidade visual como primeira etapa</li><li>Análise da identidade atual e direção dos ajustes</li><li>Propostas, revisões e arquivos finais definidos em contrato</li></ul><ol data-f="how"><li>Aplicamos o briefing de identidade.</li><li>Avaliamos a marca e mapeamos os ajustes desejados.</li><li>Validamos opções, revisões e arquivos finais antes de produzir.</li></ol><ul data-f="lim"><li>Rebranding previsto: o briefing é o ponto de partida</li><li>Arquivos e revisões dependem de aprovação contratual</li><li>Guia de marca só se previsto em contrato</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Presença Ampliada" data-st="pendente" data-src="canva">Previsto<small>Escopo final em contrato</small></td>
           </tr>
           <tr data-id="S10" data-node="Painel no site">
             <th scope="row"><span class="nm">Painel central interno no site</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">A proposta prevê a construção de uma estrutura interna para consultar informações da operação. As funções e o prazo serão definidos no projeto.</p>
-                <ul data-f="get"><li>Levantamento das necessidades com a Real Polar</li><li>Definição das funções no projeto</li><li>Implantação do que for aprovado</li></ul>
-                <ol data-f="how"><li>Levantamos as necessidades.</li><li>Definimos funções e prazo no projeto.</li><li>Implantamos o que for aprovado.</li></ol>
-                <p data-f="result">Uma estrutura digital própria, dentro do escopo aprovado.</p>
-                <ul data-f="limit"><li>Funções, módulos e prazo ainda não definidos.</li><li>Não é um sistema pronto nem está ativo hoje.</li></ul>
-                <p data-f="dep">Acesso ao site e definição dos requisitos.</p>
+                <p data-f="short">Estrutura interna no site para consultar informações da operação.</p>
+                <p data-f="dep">Insumos: Briefing funcional, acesso técnico e aprovação dos requisitos.</p>
                 <ul data-f="hyp" aria-label="Possibilidades para o briefing, não aprovadas"><li data-t="Visão geral de atividades">Visão geral de atividades: Um resumo das ações de marketing em andamento.</li><li data-t="Solicitações e oportunidades">Solicitações e oportunidades: Um espaço para acompanhar pedidos e oportunidades que chegam pelos canais.</li><li data-t="Indicadores e relatórios">Indicadores e relatórios: Uma área para consultar indicadores e relatórios do período.</li></ul>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Não há painel interno na mensalidade.</p><ul data-f="get"><li>Não há painel interno na mensalidade</li><li>Sem acesso a painel neste plano</li><li>Interesse futuro seria outro escopo</li></ul><ol data-f="how"><li>Informamos que o painel não está contratado.</li><li>Escutamos a necessidade apenas se houver demanda futura.</li><li>Cotamos um projeto independente.</li></ol><ul data-f="lim"><li>Painel não contratado</li><li>Eventual produto novo depende de orçamento e aceite</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Não há construção de painel no Essencial.</p><ul data-f="get"><li>Não há construção de painel no Essencial</li><li>Sem sistema pronto nem login</li><li>Evolução opcional dependeria de orçamento e contrato</li></ul><ol data-f="how"><li>Esclarecemos que não há painel nem login no pacote.</li><li>Avaliamos possíveis necessidades como oportunidade separada.</li><li>Orçamos antes de qualquer desenvolvimento.</li></ol><ul data-f="lim"><li>Painel não contratado</li><li>Sem sistema incluído nem login prometido</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">A proposta prevê a construção de uma estrutura interna para consultar informações da operação. As funções e o prazo serão definidos no projeto.</p><ul data-f="get"><li>Levantamento dos objetivos e requisitos do painel</li><li>Três possibilidades ilustrativas, sem aprovação contratual</li><li>Funções, prazo e implantação só após o escopo aprovado</li></ul><ol data-f="how"><li>Levantamos as decisões e objetivos que o painel precisa apoiar.</li><li>Comparamos três hipóteses de módulos, sem prometer nenhuma.</li><li>Aprovamos requisitos e prazo antes de construir.</li></ol><ul data-f="lim"><li>Painel previsto: módulos, implantação, prazo e integrações sujeitos a escopo e aprovação</li><li>Não é um sistema pronto nem está ativo hoje</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Presença Ampliada" data-st="pendente" data-src="canva">Previsto<small>Funções e prazo definidos no projeto</small></td>
           </tr>
@@ -661,43 +672,37 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
             <th scope="row"><span class="nm">Bônus de artes extras</span>
               <details><summary>Ver explicação</summary>
                 <p data-f="short">Artes pontuais além das previstas, mediante solicitação.</p>
-                <ul data-f="get"><li>Peças extras dentro do limite acordado</li><li>Mesmo padrão visual das artes do plano</li></ul>
-                <ol data-f="how"><li>A Real Polar envia a solicitação com o briefing.</li><li>Avaliamos e confirmamos o pedido.</li><li>Criamos e enviamos para aprovação.</li></ol>
-                <p data-f="result">Mais flexibilidade para demandas pontuais.</p>
-                <ul data-f="limit"><li>Não é ilimitado.</li><li>Quantidade, formatos, rodadas de revisão e prazo definidos em contrato.</li></ul>
-                <p data-f="dep">Briefing completo da peça solicitada.</p>
+                <p data-f="dep">Insumos: Pedido com briefing e aprovações.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">O bônus de artes extras não pertence a este plano.</p><ul data-f="get"><li>O bônus de artes extras não pertence a este plano</li><li>Criações adicionais exigem acerto separado</li><li>Nenhuma franquia de bônus</li></ul><ol data-f="how"><li>Informamos que não há bônus no Econômico.</li><li>Recebemos pedidos extras, se surgirem.</li><li>Orçamos quantidade e prazo previamente.</li></ol><ul data-f="lim"><li>Sem bônus de artes no Econômico</li><li>Artes extras sob orçamento prévio</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">O bônus de artes não consta neste plano.</p><ul data-f="get"><li>O bônus de artes não consta neste plano</li><li>Extras orçados quando necessários</li><li>Sem promessa de artes adicionais</li></ul><ol data-f="how"><li>Informamos que artes extras não são automáticas.</li><li>Levantamos briefing e volume, se necessário.</li><li>Cotamos fora da mensalidade.</li></ol><ul data-f="lim"><li>Sem bônus de artes no Essencial</li><li>Artes além das previstas sob orçamento</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Bônus pontual previsto, com regras definidas em contrato.</p><ul data-f="get"><li>Bônus pontual previsto, com regras definidas em contrato</li><li>Briefing, formato e quantidade sujeitos a validação</li><li>Sem prazo automático nem revisões sem limite</li></ul><ol data-f="how"><li>Confirmamos as regras e a quantidade do bônus previsto.</li><li>Recebemos o briefing do que foi validado.</li><li>Produzimos somente nas condições registradas em contrato.</li></ol><ul data-f="lim"><li>Não é ilimitado</li><li>Quantidade, formatos, rodadas de revisão e prazo definidos em contrato</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Presença Ampliada" data-st="pendente" data-src="canva">Previsto<small>Limites em contrato</small></td>
           </tr>
         </tbody>
         <tbody data-group="investimento">
-          <tr class="grp"><th colspan="4" scope="colgroup">Valor mensal da gestão</th></tr>
+          <tr class="grp"><th colspan="4" scope="colgroup">Valor mensal da gestão e edição avulsa</th></tr>
           <tr data-id="X00">
             <th scope="row"><span class="nm">Mensalidade de gestão</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">O valor mensal que remunera a gestão da nossa equipe, conforme o plano escolhido.</p>
-                <ul data-f="get"><li>Os serviços listados no plano</li><li>Planejamento, execução e acompanhamento pela equipe</li><li>Valor fixo, separado dos custos externos</li></ul>
-                <ol data-f="how"><li>A Real Polar escolhe o plano.</li><li>Escopo e condições são confirmados em contrato.</li><li>A mensalidade cobre os serviços do plano a cada mês.</li></ol>
-                <p data-f="result">Previsibilidade: um valor fixo pela gestão.</p>
-                <ul data-f="limit"><li>Não inclui verba de anúncios nem captação presencial.</li><li>Não inclui atendimento comercial, orçamentos técnicos ou fechamento de contratos.</li><li>Período mínimo de três meses; demais condições no contrato.</li></ul>
-                <p data-f="dep">Contrato com o escopo do plano.</p>
+                <p data-f="short">Valor mensal que remunera a gestão da nossa equipe.</p>
+                <p data-f="dep">Insumos: Formalização do escopo e condições de pagamento.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Gestão das entregas e limites específicos do Econômico.</p><ul data-f="get"><li>Gestão das entregas e limites específicos do Econômico</li><li>Custo mensal fixo pelos serviços confirmados neste plano</li><li>Captação e edição avulsa não integram a mensalidade</li></ul><ol data-f="how"><li>Você seleciona o Econômico.</li><li>Confere as entregas reduzidas e os custos externos.</li><li>Simula o investimento antes da contratação.</li></ol><ul data-f="lim"><li>Período mínimo de três meses</li><li>O simulador mostra a base de 1 mês</li><li>Edição avulsa e captação somam à parte</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Gestão dos serviços previstos no Essencial.</p><ul data-f="get"><li>Gestão dos serviços previstos no Essencial</li><li>Roteiro e edição previstos sem preço por vídeo</li><li>Verba de anúncios e captação permanecem separadas</li></ul><ol data-f="how"><li>Você seleciona o Essencial.</li><li>Confere os serviços e a edição prevista no pacote.</li><li>Soma somente mídia e produções externas opcionais.</li></ol><ul data-f="lim"><li>Período mínimo de três meses</li><li>O simulador mostra a base de 1 mês</li><li>A edição dos vídeos previstos já está na mensalidade</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Gestão ampliada do escopo definido em contrato.</p><ul data-f="get"><li>Gestão ampliada do escopo definido em contrato</li><li>Meta Ads e frequência dos relatórios ainda a confirmar</li><li>Custos externos continuam separados</li></ul><ol data-f="how"><li>Você seleciona o Presença Ampliada.</li><li>Distingue serviços incluídos, previstos e a confirmar.</li><li>Simula os custos externos sem presumir aprovação das pendências.</li></ol><ul data-f="lim"><li>Período mínimo de três meses</li><li>O simulador mostra a base de 1 mês</li><li>Meta Ads e periodicidade dos relatórios ainda a confirmar</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="incluido" data-src="canva">R$ 1.280/mês</td><td data-plan="Essencial" data-st="incluido" data-src="canva">R$ 2.100/mês</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">R$ 3.200/mês</td>
           </tr>
           <tr data-id="X04" data-rel="X02">
             <th scope="row"><span class="nm">Edição de vídeos avulsa</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">No Econômico, cada vídeo solicitado para edição custa R$ 180.</p>
-                <ul data-f="get"><li>Edição de um vídeo a partir de material adequado e alinhado</li><li>Cobrança por unidade, só quando houver pedido</li><li>Sem exigir nova gravação</li></ul>
-                <ol data-f="how"><li>Você informa quantos vídeos quer editar; o simulador calcula R$ 180 por vídeo.</li><li>Usamos material adequado já existente ou captado à parte.</li><li>Editamos e enviamos para aprovação.</li></ol>
-                <p data-f="result">Vídeos editados no Econômico, sem mudar de plano.</p>
-                <ul data-f="limit"><li>Gravação presencial e produções especiais são cobradas à parte.</li><li>Roteiro, conceito ou vídeo criado do zero dependem de avaliação e orçamento.</li><li>Duração, formatos e revisões são alinhados antes da edição.</li></ul>
-                <p data-f="dep">Material com qualidade suficiente e alinhamento prévio do vídeo.</p>
-                <p data-f="ext">R$ 180 por vídeo editado no Econômico. Captação, se necessária, é cotada à parte.</p>
+                <p data-f="short">Edição de vídeos cobrada por unidade no Econômico.</p>
+                <p data-f="dep">Insumos: Arquivos brutos adequados para edição.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Edição por unidade, quando a Real Polar solicitar.</p><ul data-f="get"><li>Edição por unidade, quando a Real Polar solicitar</li><li>Quantidade de 0 a 50 no simulador</li><li>Roteiro e criação especiais fora do preço fixo</li></ul><ol data-f="how"><li>Você informa o número de vídeos desejados.</li><li>Multiplicamos por R$ 180 apenas a edição.</li><li>Avaliamos captação e criação como despesas independentes.</li></ol><ul data-f="lim"><li>R$ 180 por vídeo editado, apenas se solicitado</li><li>A tarifa não inclui captação</li><li>Roteiro, conceito ou vídeo criado do zero sob orçamento</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Edição dos vídeos previstos sem cobrança por unidade.</p><ul data-f="get"><li>Edição dos vídeos previstos sem cobrança por unidade</li><li>Quantidade e formatos de entrega em contrato</li><li>Adicionais além do escopo passam por orçamento</li></ul><ol data-f="how"><li>Conferimos os vídeos contemplados no contrato.</li><li>Editamos esse volume sem taxa unitária adicional.</li><li>Orçamos os excedentes antes de produzi-los.</li></ol><ul data-f="lim"><li>Sem tarifa unitária para vídeos já previstos no Essencial</li><li>Excedentes precisam de orçamento</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Edição dos vídeos previstos no escopo ampliado, sem cobrança por unidade.</p><ul data-f="get"><li>Edição dos vídeos previstos sem cobrança por unidade</li><li>Sem edição ilimitada: volume e formatos em contrato</li><li>Extras cobrados só após orçamento</li></ul><ol data-f="how"><li>Conferimos o escopo audiovisual do Presença Ampliada.</li><li>Editamos somente o volume previsto, sem nova tarifa.</li><li>Negociamos produção especial se exceder o contrato.</li></ol><ul data-f="lim"><li>Sem tarifa unitária para vídeos já previstos</li><li>Volume e formatos definidos em contrato</li><li>Excedentes sob orçamento</li></ul></div>
               </details></th>
-            <td data-plan="Econômico" data-st="opcional" data-src="responsavel">R$ 180 por vídeo<small>Quando solicitada</small></td>
-            <td data-plan="Essencial" data-st="incluido" data-src="canva">Prevista no plano<small>Sem cobrança por vídeo; quantidade em contrato</small></td>
-            <td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Prevista no plano<small>Sem cobrança por vídeo; quantidade em contrato</small></td>
+            <td data-plan="Econômico" data-st="opcional" data-src="responsavel">R$ 180 por vídeo<small>Quando solicitada</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Prevista no plano<small>Sem cobrança por vídeo; quantidade em contrato</small></td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Prevista no plano<small>Sem cobrança por vídeo; quantidade em contrato</small></td>
           </tr>
         </tbody>
         <tbody data-group="externo">
@@ -705,39 +710,60 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
           <tr data-id="X01" data-rel="S05">
             <th scope="row"><span class="nm">Verba de anúncios (Meta)</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">O dinheiro investido na distribuição dos anúncios, pago pela Real Polar direto à Meta.</p>
-                <ul data-f="get"><li>Distribuição dos anúncios no Instagram e no Facebook</li><li>Valor definido pela Real Polar, com a nossa recomendação</li><li>Acompanhamento do uso da verba</li></ul>
-                <ol data-f="how"><li>Definimos juntos a verba inicial.</li><li>A Meta cobra diretamente da Real Polar.</li><li>Ajustamos a distribuição conforme os testes.</li></ol>
-                <p data-f="result">Mais verba pode ampliar os testes e acelerar o aprendizado.</p>
-                <ul data-f="limit"><li>Não faz parte da mensalidade.</li><li>Investir mais não garante mais vendas.</li></ul>
-                <p data-f="dep">Forma de pagamento cadastrada na conta de anúncios.</p>
+                <p data-f="short">Dinheiro investido na distribuição dos anúncios, pago pela Real Polar direto à Meta.</p>
+                <p data-f="dep">Insumos: Forma de pagamento cadastrada na conta de anúncios.</p>
                 <p data-f="ext">Referência: a partir de R$ 15 por dia.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Verba das campanhas do formato enxuto, paga direto à Meta.</p><ul data-f="get"><li>Não sai da mensalidade: a verba é paga direto à Meta</li><li>Distribui os anúncios das campanhas do formato enxuto</li><li>Acompanhamento do uso dentro do teto aprovado</li></ul><ol data-f="how"><li>Definimos juntos um teto de verba compatível com o formato enxuto.</li><li>A Meta cobra diretamente da Real Polar.</li><li>Acompanhamos o consumo e ajustamos a distribuição.</li></ol><ul data-f="lim"><li>Não faz parte da mensalidade de R$ 1.280</li><li>Referência a partir de R$ 15 por dia</li><li>Investir mais não garante mais vendas</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Verba das campanhas de conversão do Essencial, paga direto à Meta.</p><ul data-f="get"><li>Não sai da mensalidade: a verba dos testes é paga direto à Meta</li><li>Distribui as campanhas e os testes previstos</li><li>Leitura do uso da verba no relatório mensal</li></ul><ol data-f="how"><li>Definimos juntos a verba inicial dos testes.</li><li>A Meta cobra diretamente da Real Polar.</li><li>Redistribuímos a verba conforme a resposta dos testes.</li></ol><ul data-f="lim"><li>Não faz parte da mensalidade de R$ 2.100</li><li>Mais verba pode ampliar os testes, sem garantir vendas</li><li>Referência a partir de R$ 15 por dia</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Só se aplica se a gestão de Meta Ads for confirmada neste plano.</p><ul data-f="get"><li>Nenhuma campanha confirmada neste plano até a validação</li><li>Se confirmada, verba paga direto à Meta</li><li>Valor definido pela Real Polar</li></ul><ol data-f="how"><li>Validamos se o contrato inclui gestão de Meta Ads.</li><li>Se incluir, definimos a verba inicial.</li><li>A Meta cobra diretamente da Real Polar.</li></ol><ul data-f="lim"><li>Não faz parte da mensalidade de R$ 3.200</li><li>Depende da confirmação da gestão de Meta Ads</li><li>Investir mais não garante mais vendas</li></ul></div>
               </details></th>
-            <td data-plan="Econômico" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta</small></td><td data-plan="Essencial" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta</small></td><td data-plan="Presença Ampliada" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta</small></td>
+            <td data-plan="Econômico" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta</small></td><td data-plan="Essencial" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta</small></td><td data-plan="Presença Ampliada" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta; depende da gestão de anúncios a confirmar</small></td>
           </tr>
           <tr data-id="X02" data-rel="S04">
             <th scope="row"><span class="nm">Captação presencial (videomaker e fotografia)</span>
               <details><summary>Ver explicação</summary>
                 <p data-f="short">Gravação e fotos no local, feitas por profissional terceirizado em São Paulo, quando necessário.</p>
-                <ul data-f="get"><li>Pauta e roteiro preparados pela nossa equipe</li><li>Gravação e fotos por profissional contratado</li><li>Edição conforme o plano</li></ul>
-                <ol data-f="how"><li>Identificamos a necessidade e pedimos o orçamento.</li><li>A Real Polar aprova a contratação.</li><li>O profissional realiza a captação e editamos conforme o plano.</li></ol>
-                <p data-f="result">Material próprio para os conteúdos; uma diária pode render conteúdo para mais de um mês.</p>
-                <ul data-f="limit"><li>Eventual, não é cobrança mensal.</li><li>Captação e edição são etapas distintas: a diária não inclui edição, que depende do plano.</li></ul>
-                <p data-f="dep">Aprovação do orçamento e acesso aos locais.</p>
-                <p data-f="ext">Referência de R$ 1.200 por diária, sujeita a cotação. Varia conforme duração, deslocamentos, equipamentos, locais e profissionais envolvidos.</p>
+                <p data-f="dep">Insumos: Aprovação do orçamento e acesso aos locais.</p>
+                <p data-f="ext">Referência de R$ 1.200 por diária, sujeita a cotação.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Gravação eventual por profissional terceirizado; a edição do material é cobrada à parte, a R$ 180 por vídeo.</p><ul data-f="get"><li>Pauta e orientação da gravação pela nossa equipe</li><li>Gravação e fotos por profissional contratado</li><li>Edição avulsa a R$ 180 por vídeo, se solicitada</li></ul><ol data-f="how"><li>Identificamos a necessidade e pedimos o orçamento.</li><li>A Real Polar aprova a diária e, se quiser, a edição avulsa.</li><li>O profissional grava; editamos os vídeos aprovados a R$ 180 cada.</li></ol><ul data-f="lim"><li>Diária de referência R$ 1.200, sujeita a cotação</li><li>Captação e edição somam separadamente no simulador</li><li>Eventual, não é cobrança mensal</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Gravação eventual por profissional terceirizado; a edição dos vídeos previstos já está no plano.</p><ul data-f="get"><li>Pauta e roteiro dos vídeos previstos</li><li>Gravação e fotos por profissional contratado</li><li>Edição dos vídeos previstos sem cobrança por vídeo</li></ul><ol data-f="how"><li>Planejamos a gravação a partir dos vídeos previstos.</li><li>A Real Polar aprova o orçamento da diária.</li><li>O profissional grava e editamos conforme o plano.</li></ol><ul data-f="lim"><li>Diária de referência R$ 1.200, sujeita a cotação</li><li>A diária não inclui edição; a edição prevista segue o contrato</li><li>Eventual, não é cobrança mensal</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Gravação eventual por profissional terceirizado, alinhada às frentes do plano; edição prevista no plano.</p><ul data-f="get"><li>Pauta alinhada às frentes aprovadas</li><li>Gravação e fotos por profissional contratado</li><li>Edição dos vídeos previstos sem cobrança por vídeo</li></ul><ol data-f="how"><li>Planejamos a gravação a partir das prioridades aprovadas.</li><li>A Real Polar aprova o orçamento da diária.</li><li>O profissional grava e editamos conforme o plano.</li></ol><ul data-f="lim"><li>Diária de referência R$ 1.200, sujeita a cotação</li><li>A diária não inclui edição; a edição prevista no escopo ampliado segue o contrato</li><li>Eventual, não é cobrança mensal</li></ul></div>
               </details></th>
-            <td data-plan="Econômico" data-st="opcional" data-src="canva">Opcional<small>Cotação separada</small></td><td data-plan="Essencial" data-st="opcional" data-src="canva">Opcional<small>Referência R$ 1.200/diária</small></td><td data-plan="Presença Ampliada" data-st="opcional" data-src="canva">Opcional<small>Referência R$ 1.200/diária</small></td>
+            <td data-plan="Econômico" data-st="opcional" data-src="canva">Opcional<small>Cotação separada; edição avulsa à parte</small></td><td data-plan="Essencial" data-st="opcional" data-src="canva">Opcional<small>Referência R$ 1.200/diária</small></td><td data-plan="Presença Ampliada" data-st="opcional" data-src="canva">Opcional<small>Referência R$ 1.200/diária</small></td>
           </tr>
           <tr data-id="X03" data-rel="X02">
-            <th scope="row"><span class="nm">Storymaker, drone e apresentador</span>
+            <th scope="row"><span class="nm">Storymaker</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Profissionais complementares para gravações específicas, contratados só quando necessários.</p>
-                <ul data-f="get"><li>Indicação de quando fazem sentido</li><li>Orçamento antes de qualquer contratação</li></ul>
-                <ol data-f="how"><li>Avaliamos a necessidade.</li><li>Apresentamos o orçamento.</li><li>A Real Polar decide se contrata.</li></ol>
-                <p data-f="result">Recursos extras para bastidores, imagens aéreas ou apresentação.</p>
-                <ul data-f="limit"><li>Opcionais, sem contratação mensal.</li><li>Drone depende de viabilidade e das autorizações de voo.</li></ul>
-                <p data-f="dep">Aprovação do orçamento.</p>
+                <p data-f="short">Profissional que registra bastidores e momentos rápidos no local, para os Stories.</p>
+                <p data-f="dep">Insumos: Aprovação do orçamento e acesso ao local.</p>
                 <p data-f="ext">Valor sob orçamento, conforme o profissional.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Opcional, sob orçamento; no Econômico, a edição do material é avulsa.</p><ul data-f="get"><li>Registros rápidos no local por profissional contratado</li><li>Pauta do que registrar definida pela nossa equipe</li><li>Uso nos Stories dentro da operação enxuta</li></ul><ol data-f="how"><li>Avaliamos se a gravação justifica esse profissional.</li><li>Apresentamos o orçamento do profissional.</li><li>A Real Polar aprova; a edição do material, se houver, é avulsa a R$ 180 por vídeo.</li></ol><ul data-f="lim"><li>Opcional, sem contratação mensal e sem preço fixo</li><li>Cobre momentos específicos, não a gravação completa</li><li>Edição de vídeos desse material: R$ 180 por vídeo, se solicitada</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Opcional, sob orçamento; a edição entra nos vídeos previstos do Essencial.</p><ul data-f="get"><li>Registros rápidos no local por profissional contratado</li><li>Pauta alinhada ao calendário de publicações</li><li>Uso nos Stories e conteúdos previstos</li></ul><ol data-f="how"><li>Avaliamos se a gravação justifica esse profissional.</li><li>Apresentamos o orçamento do profissional.</li><li>A Real Polar aprova; a edição entra nos vídeos previstos do Essencial.</li></ol><ul data-f="lim"><li>Opcional, sem contratação mensal e sem preço fixo</li><li>Cobre momentos específicos, não a gravação completa</li><li>Edição dentro dos vídeos previstos do Essencial</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Opcional, sob orçamento; a edição entra no escopo audiovisual previsto.</p><ul data-f="get"><li>Registros rápidos no local por profissional contratado</li><li>Pauta alinhada às frentes aprovadas</li><li>Uso na comunicação do escopo ampliado</li></ul><ol data-f="how"><li>Avaliamos se a gravação justifica esse profissional.</li><li>Apresentamos o orçamento do profissional.</li><li>A Real Polar aprova; a edição entra nos vídeos previstos do escopo ampliado.</li></ol><ul data-f="lim"><li>Opcional, sem contratação mensal e sem preço fixo</li><li>Cobre momentos específicos, não a gravação completa</li><li>Edição dentro do escopo audiovisual previsto</li></ul></div>
+              </details></th>
+            <td data-plan="Econômico" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td><td data-plan="Essencial" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td><td data-plan="Presença Ampliada" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td>
+          </tr>
+          <tr data-id="X05" data-rel="X02">
+            <th scope="row"><span class="nm">Drone e piloto</span>
+              <details><summary>Ver explicação</summary>
+                <p data-f="short">Imagens aéreas feitas por piloto terceirizado, quando o local permitir.</p>
+                <p data-f="dep">Insumos: Aprovação do orçamento, viabilidade do local e autorizações de voo.</p>
+                <p data-f="ext">Valor sob orçamento, conforme o profissional.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Opcional, sob orçamento; no Econômico, a edição do material é avulsa.</p><ul data-f="get"><li>Imagens aéreas por piloto contratado</li><li>Planejamento das tomadas pela nossa equipe</li><li>Uso nas peças da operação enxuta</li></ul><ol data-f="how"><li>Avaliamos se a gravação justifica esse profissional.</li><li>Apresentamos o orçamento do profissional.</li><li>A Real Polar aprova; a edição do material, se houver, é avulsa a R$ 180 por vídeo.</li></ol><ul data-f="lim"><li>Opcional, sem contratação mensal e sem preço fixo</li><li>Depende de viabilidade do local e das autorizações de voo</li><li>Edição de vídeos desse material: R$ 180 por vídeo, se solicitada</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Opcional, sob orçamento; a edição entra nos vídeos previstos do Essencial.</p><ul data-f="get"><li>Imagens aéreas por piloto contratado</li><li>Tomadas planejadas para os vídeos previstos</li><li>Uso nos conteúdos e campanhas previstos</li></ul><ol data-f="how"><li>Avaliamos se a gravação justifica esse profissional.</li><li>Apresentamos o orçamento do profissional.</li><li>A Real Polar aprova; a edição entra nos vídeos previstos do Essencial.</li></ol><ul data-f="lim"><li>Opcional, sem contratação mensal e sem preço fixo</li><li>Depende de viabilidade do local e das autorizações de voo</li><li>Edição dentro dos vídeos previstos do Essencial</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Opcional, sob orçamento; a edição entra no escopo audiovisual previsto.</p><ul data-f="get"><li>Imagens aéreas por piloto contratado</li><li>Tomadas planejadas para as frentes aprovadas</li><li>Uso na comunicação do escopo ampliado</li></ul><ol data-f="how"><li>Avaliamos se a gravação justifica esse profissional.</li><li>Apresentamos o orçamento do profissional.</li><li>A Real Polar aprova; a edição entra nos vídeos previstos do escopo ampliado.</li></ol><ul data-f="lim"><li>Opcional, sem contratação mensal e sem preço fixo</li><li>Depende de viabilidade do local e das autorizações de voo</li><li>Edição dentro do escopo audiovisual previsto</li></ul></div>
+              </details></th>
+            <td data-plan="Econômico" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td><td data-plan="Essencial" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td><td data-plan="Presença Ampliada" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td>
+          </tr>
+          <tr data-id="X06" data-rel="X02">
+            <th scope="row"><span class="nm">Apresentador ou ator</span>
+              <details><summary>Ver explicação</summary>
+                <p data-f="short">Profissional que conduz o vídeo em frente à câmera, quando o formato pedir.</p>
+                <p data-f="dep">Insumos: Aprovação do orçamento e do roteiro.</p>
+                <p data-f="ext">Valor sob orçamento, conforme o profissional.</p>
+                <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Opcional, sob orçamento; no Econômico, a edição do material é avulsa.</p><ul data-f="get"><li>Profissional contratado para apresentar o vídeo</li><li>Roteiro da fala preparado com a Real Polar</li><li>Uso nas peças da operação enxuta</li></ul><ol data-f="how"><li>Avaliamos se a gravação justifica esse profissional.</li><li>Apresentamos o orçamento do profissional.</li><li>A Real Polar aprova; a edição do material, se houver, é avulsa a R$ 180 por vídeo.</li></ol><ul data-f="lim"><li>Opcional, sem contratação mensal e sem preço fixo</li><li>Condições de uso da imagem definidas na contratação</li><li>Edição de vídeos desse material: R$ 180 por vídeo, se solicitada</li></ul></div>
+                <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Opcional, sob orçamento; a edição entra nos vídeos previstos do Essencial.</p><ul data-f="get"><li>Profissional contratado para apresentar o vídeo</li><li>Roteiro da fala dentro dos vídeos previstos</li><li>Uso nos conteúdos previstos</li></ul><ol data-f="how"><li>Avaliamos se a gravação justifica esse profissional.</li><li>Apresentamos o orçamento do profissional.</li><li>A Real Polar aprova; a edição entra nos vídeos previstos do Essencial.</li></ol><ul data-f="lim"><li>Opcional, sem contratação mensal e sem preço fixo</li><li>Condições de uso da imagem definidas na contratação</li><li>Edição dentro dos vídeos previstos do Essencial</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Opcional, sob orçamento; a edição entra no escopo audiovisual previsto.</p><ul data-f="get"><li>Profissional contratado para apresentar o vídeo</li><li>Roteiro da fala alinhado às frentes aprovadas</li><li>Uso na comunicação do escopo ampliado</li></ul><ol data-f="how"><li>Avaliamos se a gravação justifica esse profissional.</li><li>Apresentamos o orçamento do profissional.</li><li>A Real Polar aprova; a edição entra nos vídeos previstos do escopo ampliado.</li></ol><ul data-f="lim"><li>Opcional, sem contratação mensal e sem preço fixo</li><li>Condições de uso da imagem definidas na contratação</li><li>Edição dentro do escopo audiovisual previsto</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td><td data-plan="Essencial" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td><td data-plan="Presença Ampliada" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td>
           </tr>
@@ -763,16 +789,20 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
       <ul data-reveal>
         <li>Nossa equipe organiza pautas e roteiros com base nos objetivos e nas informações aprovadas.</li>
         <li>A captação presencial é terceirizada e só acontece com orçamento aprovado pela Real Polar.</li>
-        <li>A edição prevista no plano está incluída, conforme o escopo contratado.</li>
+        <li><b>Essencial e Presença Ampliada:</b> a edição dos vídeos previstos está na mensalidade, sem cobrança por vídeo.</li>
+        <li><b>Econômico:</b> a edição é avulsa, a R$ 180 por vídeo, quando solicitada. A captação é cotada à parte.</li>
         <li>Produções adicionais podem exigir orçamento separado, com aprovação prévia.</li>
       </ul>
       <div class="ref" data-reveal style="--d:.08s">
         <span class="k">Referência de captação</span>
         <strong>R$ 1.200 por diária</strong>
         <p>Sujeita a cotação. Eventual, não é despesa mensal obrigatória.</p>
-        <div class="btns js-only"><button class="btn btn-line" type="button" data-open="X02">Ver detalhes da captação</button><button class="btn btn-line" type="button" data-open="X03">Profissionais opcionais</button></div>
+        <div class="btns js-only"><button class="btn btn-line" type="button" data-open="X02">Ver detalhes da captação</button></div>
       </div>
     </div>
+    <h3 class="extras-t" data-reveal>Profissionais opcionais, cada um sob orçamento próprio</h3>
+    <div class="extras js-only" id="extras" data-reveal></div>
+    <p class="small no-js-only">Storymaker, drone e piloto, e apresentador ou ator: opcionais, cada um sob orçamento próprio. Detalhes no comparativo.</p>
   </div>
 </section>
 
@@ -783,9 +813,9 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
     <div class="tl" data-reveal style="--d:.08s">
       <div class="tl-track" aria-hidden="true"><span></span></div>
       <ol class="tl-marks">
-        <li><span class="dot" aria-hidden="true">1</span><span class="m">Mês 1: Estruturar</span><p>Organizamos posicionamento, materiais, canais e planejamento.</p></li>
-        <li><span class="dot" aria-hidden="true">2</span><span class="m">Mês 2: Testar</span><p>Acompanhamos a resposta das primeiras ações e ajustamos a estratégia.</p></li>
-        <li><span class="dot" aria-hidden="true">3</span><span class="m">Mês 3: Avaliar</span><p>Analisamos os resultados disponíveis e definimos os próximos objetivos.</p></li>
+        <li><span class="dot" aria-hidden="true">1</span><span class="m">Mês 1: Estruturar</span><p>Organizamos posicionamento, materiais, canais e planejamento.</p><small>Ao final: base pronta para os primeiros testes.</small></li>
+        <li><span class="dot" aria-hidden="true">2</span><span class="m">Mês 2: Testar</span><p>Acompanhamos a resposta das primeiras ações e ajustamos a estratégia.</p><small>Ao final: primeiras leituras do que responde melhor.</small></li>
+        <li><span class="dot" aria-hidden="true">3</span><span class="m">Mês 3: Avaliar</span><p>Analisamos os resultados disponíveis e definimos os próximos objetivos.</p><small>Ao final: próximos objetivos definidos com a Real Polar.</small></li>
       </ol>
       <div class="conv" data-reveal style="--d:.3s">
         <div class="conv-lane" aria-hidden="true"><span></span></div>
@@ -866,7 +896,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
         <div class="line"><span><b>Produção audiovisual externa</b><small id="oShootDetail">Sem captação no período</small></span><strong id="oShoot">R$ 0,00</strong></div>
         <div class="line" id="oEditLine" hidden><span><b>Edição de vídeos (Econômico)</b><small id="oEditDetail">Nenhum vídeo</small></span><strong id="oEdit">R$ 0,00</strong></div>
         <div class="total"><span>Investimento estimado no período</span><strong id="oTotal">R$ 3.650,00</strong></div>
-        <p class="fine">Estimativa de custos, não previsão de contatos ou vendas. A verba é paga à Meta e a captação, ao profissional contratado. Outros custos externos podem existir, sob orçamento.</p>
+        <p class="fine">Estimativa de custos, não previsão de contatos ou vendas. A verba é paga à Meta e a captação, ao profissional contratado. Outros custos externos podem existir, sob orçamento. Base: 1 mês de gestão; o período mínimo de contratação é de três meses.</p>
         <p class="sr-only" id="simStatus" aria-live="polite"></p>
       </div>
     </div>
@@ -942,12 +972,16 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',
 const SV=[...document.querySelectorAll('#cmp tbody tr[data-id]')].map(tr=>{
   const f=n=>tr.querySelector(`[data-f="${n}"]`),txt=n=>f(n)?f(n).textContent.trim():'',items=n=>f(n)?[...f(n).querySelectorAll('li')].map(l=>l.textContent.trim()):[];
   const cells=[...tr.querySelectorAll('td')];const p={};
-  KEYS.forEach((k,i)=>{const td=cells[i],sm=td.querySelector('small');p[k]={st:td.dataset.st,src:td.dataset.src,label:td.firstChild.textContent.trim(),note:sm?sm.textContent.trim():''}});
+  KEYS.forEach((k,i)=>{const td=cells[i],sm=td.querySelector('small'),dt=tr.querySelector(`[data-plan-detail="${k}"]`),li=n=>[...dt.querySelectorAll(`[data-f="${n}"] li`)].map(l=>l.textContent.trim());
+    p[k]={st:td.dataset.st,src:td.dataset.src,label:td.firstChild.textContent.trim(),note:sm?sm.textContent.trim():'',lead:dt.querySelector('[data-f="lead"]').textContent.trim(),get:li('get'),how:li('how'),lim:li('lim')}});
   return {id:tr.dataset.id,node:tr.dataset.node||'',rel:tr.dataset.rel||'',group:tr.closest('tbody').dataset.group,name:tr.querySelector('.nm').textContent.trim(),
-    short:txt('short'),get:items('get'),how:items('how'),result:txt('result'),limit:items('limit'),dep:txt('dep'),ext:txt('ext'),qty:txt('qty'),
+    short:txt('short'),dep:txt('dep').replace(/^Insumos:\s*/,''),ext:txt('ext'),qty:txt('qty'),
     hyp:f('hyp')?[...f('hyp').querySelectorAll('li')].map(l=>({t:l.dataset.t,d:l.textContent.slice(l.dataset.t.length+1).trim()})):[],p,tr};
 });
 const byId=Object.fromEntries(SV.map(s=>[s.id,s]));
+/* Conteúdo de uma aba sempre vem do plano escolhido; nunca há lista global */
+const same=(a,b)=>{const n=t=>t.toLowerCase().replace(/[.\s]+$/,'');return n(b).startsWith(n(a))};
+const resolve=(id,plan,tab)=>{const c=byId[id].p[plan];return {receb:c.get,como:c.how,lim:c.lim,lead:c.lead}[tab]};
 const INCL=st=>st!=='fora';
 
 /* Botões "Ver explicação" no comparativo (substituem os <details> quando há JS) */
@@ -962,11 +996,12 @@ function setActive(k){active=k;listeners.forEach(fn=>fn(k))}
 document.querySelectorAll('.plan').forEach(card=>{
   const k=card.dataset.plan;
   const inc=SV.filter(s=>s.group==='mensalidade'&&INCL(s.p[k].st)),out=SV.filter(s=>s.group==='mensalidade'&&!INCL(s.p[k].st));
-  card.querySelector('.svc-list').innerHTML=inc.map(s=>{const c=s.p[k];const extra=c.st!=='incluido'?pill(c.st,c.label):'';
+  card.querySelector('.svc-list').innerHTML=inc.map(s=>{const c=s.p[k];const extra=c.st!=='incluido'?pill(c.st,c.label)+`<span class="ld">${esc(c.lead)}</span>`:'';
     return `<li><button class="svc-btn" type="button" data-open="${s.id}" data-ctx="${k}" aria-haspopup="dialog"><span class="col"><span class="nm">${esc(s.name)}</span>${extra}</span><span class="i"><span class="sr-only">Ver explicação</span></span></button></li>`}).join('');
   card.querySelector('.not').innerHTML=(out.length?`<b>Não incluído neste plano:</b> ${out.map(s=>esc(s.name)).join('; ')}.`:'<b>Inclui todos os serviços listados</b>, com os detalhes indicados.')+
     (k==='E'?`<span class="avulsa"><b>Edição de vídeos avulsa:</b> R$ 180 por vídeo, quando solicitada. <button type="button" class="lnk" data-open="X04" data-ctx="E" aria-haspopup="dialog">Entender</button></span>`:'');
 });
+$('extras').innerHTML=['X03','X05','X06'].map(id=>{const s=byId[id];return `<div class="xo"><b>${esc(s.name)}</b><span>${esc(s.short)}</span><span class="st st-opcional">Sob orçamento</span><button type="button" class="lnk" data-open="${id}" aria-haspopup="dialog" aria-label="Entender ${esc(s.name)}">Entender</button></div>`}).join('');
 $('outside').innerHTML=SV.filter(s=>s.group==='externo').map(s=>`<div class="o"><b>${esc(s.name)}</b>${esc(s.ext)}<br><button type="button" data-open="${s.id}">Ver explicação</button></div>`).join('');
 
 /* ===== Pop-up explicador ===== */
@@ -979,19 +1014,19 @@ function render(){
   $('mGroup').textContent=s.group==='externo'?'Custo externo':s.group==='investimento'?'Investimento':'Serviço da gestão';
   $('mTitle').textContent=s.name;$('mShort').textContent=s.short;
   dlg.querySelectorAll('[data-mplan]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mplan===ctx)));
-  $('mNow').innerHTML=`No ${PLAN[ctx]}: ${pill(c.st,c.label)}${c.note?` <span>${esc(c.note)}</span>`:''}`;
+  $('mNow').innerHTML=`No ${PLAN[ctx]}: ${pill(c.st,c.label)} <span>${esc(c.lead)}</span>`;
   tabs.forEach(t=>{const on=t.id==='mt-'+tab;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1});
   body.setAttribute('aria-labelledby','mt-'+tab);
   let h='';
   if(tab==='receb'&&sub!==null){const y=s.hyp[sub];
     h=`<div class="hyp-view"><span class="ill">Ilustração · possibilidade para o briefing, não aprovada</span><h3>${esc(y.t)}</h3><p>${esc(y.d)}</p>${WF[sub]}<p class="note">Esquema sem dados reais. Não é um módulo contratado nem tem prazo definido.</p><button class="btn btn-line" type="button" data-back="${sub}">← Voltar ao painel</button></div>`}
-  else if(tab==='receb'){h=`<ul class="get">${s.get.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p class="why"><b>Para quê:</b> ${esc(s.result)}</p>`;
-    if(s.hyp.length)h+=`<h4>Possibilidades para o briefing</h4><p class="ill-note">Ilustrações, não aprovadas. Ajudam a imaginar o painel; nada aqui é módulo contratado.</p><div class="hyps">${s.hyp.map((y,i)=>`<button type="button" data-hyp="${i}"><b>${esc(y.t)}</b><span>${esc(y.d)}</span></button>`).join('')}</div>`;
+  else if(tab==='receb'){const neg=c.st==='fora'||c.st==='conflito';
+    h=`<ul class="get${neg?' neg':''}">${resolve(s.id,ctx,'receb').filter(x=>!same(x,s.p[ctx].lead)).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;
+    if(s.hyp.length&&ctx==='A')h+=`<h4>Possibilidades para o briefing</h4><p class="ill-note">Ilustrações, não aprovadas. Ajudam a imaginar o painel; nada aqui é módulo contratado.</p><div class="hyps">${s.hyp.map((y,i)=>`<button type="button" data-hyp="${i}"><b>${esc(y.t)}</b><span>${esc(y.d)}</span></button>`).join('')}</div>`;
     h+=relLink(s)}
-  if(tab==='como'){h=`<ol>${s.how.map(x=>`<li>${esc(x)}</li>`).join('')}</ol><h4>O que precisamos da Real Polar</h4><p>${esc(s.dep)}</p>`}
-  if(tab==='lim'){const L=[];if(c.st==='fora')L.push(`Não faz parte da mensalidade do ${PLAN[ctx]}.`);else if(c.st==='pendente'||c.st==='conflito')L.push(`No ${PLAN[ctx]}: ${c.note||STL[c.st]}.`);L.push(...s.limit);
-    h=`<ul class="lim">${L.slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('')}</ul><h4>Custos</h4><p>${esc(s.ext||'Sem custo externo específico deste serviço.')}</p>`+relLink(s)}
-  if(tab==='cmp'){h=`<div class="cmpm">${KEYS.map(k=>{const q=s.p[k];return `<div class="${k===ctx?'cur':''}"><b>${PLAN[k]}</b>${pill(q.st,q.label)}${q.note?`<small>${esc(q.note)}</small>`:''}<button type="button" data-goplan="${k}">Ver o plano ${PLAN[k]}</button></div>`}).join('')}</div>`+(s.qty?`<p class="qty">${esc(s.qty)}</p>`:'')}
+  if(tab==='como'){h=`<ol>${resolve(s.id,ctx,'como').map(x=>`<li>${esc(x)}</li>`).join('')}</ol><h4>O que precisamos da Real Polar</h4><p>${esc(s.dep)}</p>`}
+  if(tab==='lim'){h=`<ul class="lim">${resolve(s.id,ctx,'lim').map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`+relLink(s)}
+  if(tab==='cmp'){h=`<div class="cmpm">${KEYS.map(k=>{const q=s.p[k];return `<div class="${k===ctx?'cur':''}"><b>${PLAN[k]}</b>${pill(q.st,q.label)}<small>${esc(q.lead)}</small><button type="button" data-goplan="${k}">Ver o plano ${PLAN[k]}</button></div>`}).join('')}</div>`+(s.qty?`<p class="qty">${esc(s.qty)}</p>`:'')}
   body.innerHTML=h;body.scrollTop=0;
   const i=SV.indexOf(s);$('mPos').textContent=`${i+1} de ${SV.length}`;
   $('mPrev').disabled=i===0;$('mNext').disabled=i===SV.length-1;
@@ -1004,7 +1039,7 @@ function open(id,k,from){
 dlg.addEventListener('close',()=>{document.documentElement.style.overflow='';if(Math.abs(scrollY-savedY)>2)scrollTo({top:savedY,behavior:'instant'});if(opener&&document.contains(opener))opener.focus({preventScroll:true})});
 $('mClose').addEventListener('click',()=>dlg.close());
 dlg.addEventListener('click',e=>{if(e.target===dlg&&matchMedia('(min-width:641px)').matches)dlg.close()});
-dlg.querySelectorAll('[data-mplan]').forEach(b=>b.addEventListener('click',()=>{ctx=b.dataset.mplan;render()}));
+dlg.querySelectorAll('[data-mplan]').forEach(b=>b.addEventListener('click',()=>{ctx=b.dataset.mplan;if(ctx!=='A')sub=null;render()}));
 tabs.forEach((t,i)=>{t.addEventListener('click',()=>{tab=t.id.slice(3);sub=null;render()});t.addEventListener('keydown',e=>{const d={ArrowRight:1,ArrowLeft:-1}[e.key];let n=null;if(d)n=tabs[(i+d+tabs.length)%tabs.length];if(e.key==='Home')n=tabs[0];if(e.key==='End')n=tabs[tabs.length-1];if(n){e.preventDefault();tab=n.id.slice(3);sub=null;render();n.focus()}})});
 $('mPrev').addEventListener('click',()=>{cur=SV[SV.indexOf(cur)-1];sub=null;render()});
 $('mNext').addEventListener('click',()=>{cur=SV[SV.indexOf(cur)+1];sub=null;render()});
