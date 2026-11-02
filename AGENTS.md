@@ -38,7 +38,7 @@ Esses itens são **direções de evolução, não funcionalidades contratadas ne
 
 Antes de qualquer modificação, o agente deve:
 
-1. Ler este arquivo, `docs/ESTADO_DO_PROJETO.md` e o `README.md`, na branch/commit atuais.
+1. Ler este arquivo, `docs/ESTADO_DO_PROJETO.md`, `docs/AUDITORIA_DESIGN_REALPOLAR.md`, `CLAUDE.md` (quando usando Claude Code) e o `README.md`, na branch/commit atuais.
 2. Inspecionar a estrutura e o código **reais**, em vez de supor que módulos ou bibliotecas existem.
 3. Identificar o pedido específico e limitar a alteração a ele; comparar proposta Canva, conceito visual e código real sem confundir os três.
 4. Preservar o que já funciona, especialmente a proposta interativa e o ambiente Codespaces.
