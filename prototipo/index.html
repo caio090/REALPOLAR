@@ -316,6 +316,35 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
 .m-body .cmpm b{font-size:15px}
 .m-body .cmpm small{grid-column:1/-1;color:var(--ink-2);font-size:14px}
 .m-body .cmpm button{grid-column:1/-1;justify-self:start;min-height:44px;padding:0;border:0;background:none;color:var(--glacial-600);font-weight:700;text-decoration:underline;font-size:14px}
+.m-short{margin:6px 0 0;font-size:16px;color:var(--ink-2);max-width:56ch}
+.m-body ul.get{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.m-body ul.get li{position:relative;padding-left:24px;font-size:16px}
+.m-body ul.get li::before{content:"";position:absolute;left:3px;top:.42em;width:11px;height:6px;border-left:2px solid var(--glacial-600);border-bottom:2px solid var(--glacial-600);transform:rotate(-45deg)}
+.m-body .why{margin-top:14px;font-size:15px;color:var(--ink-2)}
+.m-body .why b{color:var(--ink)}
+.m-body .rel{margin-top:16px;font-size:14px;color:var(--ink-2)}
+.m-body .rel button,.m-body .qty{font-size:14px}
+.m-body .rel button{min-height:44px;padding:0 4px;text-align:left;border:0;background:none;color:var(--glacial-600);font-weight:700;text-decoration:underline}
+.m-body .qty{margin-top:12px;color:var(--ink-2)}
+.m-body .ill-note{font-size:14px;color:var(--ink-2)}
+.hyps{display:grid;gap:8px;margin-top:8px}
+.hyps button{display:grid;gap:2px;text-align:left;min-height:56px;padding:10px 14px;border-radius:12px;border:1.5px dashed var(--silver-300);background:var(--silver-50);transition:border-color var(--dur-fast),background var(--dur-fast)}
+.hyps button:hover{border-color:var(--glacial-600);background:#fff}
+.hyps b{font-size:15px}
+.hyps span{font-size:14px;color:var(--ink-2)}
+.hyp-view .ill{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--amber);background:var(--amber-bg);border:1.5px dashed var(--amber);border-radius:999px;padding:3px 10px}
+.hyp-view h3{font-size:20px;margin-top:10px}
+.hyp-view p{margin-top:6px}
+.hyp-view .note{font-size:14px;color:var(--ink-2)}
+.hyp-view .btn{margin-top:14px}
+.wf{margin-top:12px;border:1.5px dashed var(--silver-300);border-radius:12px;padding:12px;background:repeating-linear-gradient(135deg,#fff 0 10px,var(--silver-50) 10px 20px)}
+.wf i,.wf b{display:block;background:var(--silver-200);border-radius:6px}
+.wf-list{display:grid;gap:8px}.wf-list i{height:14px}.wf-list i:nth-child(2){width:80%}.wf-list i:nth-child(3){width:90%}.wf-list i:nth-child(4){width:60%}
+.wf-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.wf-cols b{background:#fff;border:1px solid var(--silver-200);padding:6px;display:grid;gap:6px;align-content:start;min-height:80px}.wf-cols i{height:18px}
+.wf-ind{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.wf-ind b{height:34px}.wf-ind span{grid-column:1/-1;display:flex;align-items:flex-end;gap:8px;height:70px}.wf-ind span i{flex:1;background:var(--silver-300)}
+.info{display:inline-grid;place-items:center;width:44px;height:44px;margin-left:2px;vertical-align:middle;border-radius:50%;border:0;background:none;color:var(--glacial-600);font:italic 700 13px Georgia,serif;position:relative}
+.info::before{content:"";position:absolute;width:22px;height:22px;border-radius:50%;border:1.5px solid currentColor}
+.info:hover::before{background:var(--glacial-50)}
 .m-foot{display:flex;justify-content:space-between;gap:8px;padding:12px 20px;border-top:1px solid var(--silver-200);background:var(--silver-50)}
 .m-foot .pos{align-self:center;font-size:13px;color:var(--silver-700)}
 
@@ -350,6 +379,10 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
   .row2{grid-template-columns:1fr}
   .planpick button{font-size:13px}
   dialog.sheet{width:100%;max-height:90vh;margin:auto 0 0;border-radius:18px 18px 0 0}
+  .m-head{padding:14px 16px 8px}.m-plan{padding:10px 16px 0}.m-tabs{padding:8px 16px 0}.m-body{padding:14px 16px 16px}.m-foot{padding:10px 16px}
+  .m-short{font-size:15px}
+  .m-plan .pp{flex-wrap:nowrap}.m-plan .pp button{flex:1 1 auto;padding:4px 8px;font-size:12px}
+  .m-plan .now{margin-top:8px}
   .motion dialog.sheet[open]{animation:sheet .25s var(--ease)}
   @keyframes sheet{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
 }
@@ -483,210 +516,199 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
         <thead><tr><th scope="col">Serviço</th><th scope="col">Econômico<br>R$ 1.280/mês</th><th scope="col">Essencial<br>R$ 2.100/mês</th><th scope="col" class="feat">Presença Ampliada<br>R$ 3.200/mês</th></tr></thead>
         <tbody data-group="mensalidade">
           <tr class="grp"><th colspan="4" scope="colgroup">Na mensalidade</th></tr>
-          <tr data-id="S01" data-node="Redes sociais">
+          <tr data-id="S01" data-node="Redes sociais" data-rel="S03">
             <th scope="row"><span class="nm">Gestão do perfil e das publicações</span>
               <details><summary>Ver explicação</summary>
                 <p data-f="short">Organizamos a presença da Real Polar no perfil contratado, com publicações planejadas.</p>
-                <p data-f="role">Planejamos o calendário, preparamos as publicações e programamos o que está previsto no plano.</p>
-                <ol data-f="how"><li>Alinhamos temas e serviços prioritários com a Real Polar.</li><li>Preparamos as publicações e enviamos para aprovação.</li><li>Publicamos e acompanhamos a regularidade.</li></ol>
+                <ul data-f="get"><li>Calendário de publicações alinhado aos serviços prioritários</li><li>Publicações preparadas e programadas, conforme o plano</li><li>Acompanhamento da regularidade do perfil</li></ul>
+                <ol data-f="how"><li>Alinhamos temas e serviços prioritários.</li><li>Preparamos as publicações e enviamos para aprovação.</li><li>Publicamos e acompanhamos.</li></ol>
                 <p data-f="result">O perfil passa a comunicar os serviços com regularidade.</p>
-                <ul data-f="limit"><li>Não inclui o atendimento das mensagens comerciais.</li><li>Não são publicações ilimitadas: a quantidade segue o plano contratado.</li></ul>
+                <ul data-f="limit"><li>Não inclui o atendimento das mensagens comerciais.</li><li>A quantidade de publicações segue o plano contratado.</li></ul>
                 <p data-f="dep">Acesso autorizado ao perfil e informações atualizadas da empresa.</p>
-                <p data-f="ex">Uma publicação apresentando um projeto real, com autorização de uso das imagens.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="limitado" data-src="canva">Limitado<small>Operação mais enxuta</small></td>
-            <td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td>
-            <td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
+            <td data-plan="Econômico" data-st="limitado" data-src="canva">Limitado<small>Operação mais enxuta</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
           </tr>
-          <tr data-id="S02" data-node="Posicionamento">
+          <tr data-id="S02" data-node="Posicionamento" data-rel="S09">
             <th scope="row"><span class="nm">Estratégia de posicionamento</span>
               <details><summary>Ver explicação</summary>
                 <p data-f="short">Definimos como a Real Polar quer ser percebida e quais serviços destacar para cada público.</p>
-                <p data-f="role">Organizamos mensagens, diferenciais e prioridades que orientam os conteúdos e os anúncios.</p>
+                <ul data-f="get"><li>Mensagens e diferenciais prioritários definidos</li><li>Públicos e serviços em destaque organizados</li><li>Diretrizes que orientam conteúdos e anúncios</li></ul>
                 <ol data-f="how"><li>Levantamos serviços, diferenciais e públicos.</li><li>Definimos as mensagens prioritárias.</li><li>Validamos com a Real Polar e aplicamos nos conteúdos.</li></ol>
                 <p data-f="result">Comunicação coerente entre perfil, anúncios e materiais.</p>
-                <ul data-f="limit"><li>Revisões e formato da entrega definidos em contrato.</li></ul>
+                <ul data-f="limit"><li>Formato da entrega e revisões definidos em contrato.</li></ul>
                 <p data-f="dep">Informações sobre serviços, regiões de atuação e prioridades comerciais.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade<small>O plano prioriza presença digital, sem estratégia completa listada</small></td>
-            <td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td>
-            <td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
+            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade<small>O plano prioriza presença digital, sem estratégia completa listada</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
           </tr>
-          <tr data-id="S03" data-node="Artes e design">
+          <tr data-id="S03" data-node="Artes e design" data-rel="S11">
             <th scope="row"><span class="nm">Artes com design profissional</span>
               <details><summary>Ver explicação</summary>
                 <p data-f="short">Criamos as peças das publicações e das campanhas com a identidade da Real Polar.</p>
-                <p data-f="role">Produzimos as artes previstas no plano, a partir do planejamento aprovado.</p>
-                <ol data-f="how"><li>Definimos o tema e o formato.</li><li>Criamos e enviamos para aprovação.</li><li>Ajustamos e publicamos.</li></ol>
+                <ul data-f="get"><li>Artes para publicações e campanhas</li><li>Peças alinhadas à identidade da marca</li><li>Ajustes após a aprovação</li></ul>
+                <ol data-f="how"><li>Definimos tema e formato.</li><li>Criamos e enviamos para aprovação.</li><li>Ajustamos e publicamos.</li></ol>
                 <p data-f="result">Materiais visuais consistentes, que apresentam os serviços com clareza.</p>
-                <ul data-f="limit"><li>Quantidades e número de revisões definidos em contrato.</li></ul>
+                <ul data-f="limit"><li>Quantidade de peças e de revisões definida em contrato.</li></ul>
                 <p data-f="dep">Fotos, informações técnicas e aprovação da Real Polar.</p>
+                <p data-f="qty">Quantidade de peças: definida em contrato.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="limitado" data-src="canva">Limitado<small>Peças com apoio de IA, dirigidas pela equipe, a partir de fotos e informações fornecidas pela Real Polar</small></td>
-            <td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td>
-            <td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
+            <td data-plan="Econômico" data-st="limitado" data-src="canva">Limitado<small>Peças com apoio de IA, dirigidas pela equipe, a partir de fotos e informações fornecidas pela Real Polar</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
           </tr>
-          <tr data-id="S04" data-node="Roteiro e edição">
+          <tr data-id="S04" data-node="Roteiro e edição" data-rel="X02">
             <th scope="row"><span class="nm">Vídeos com roteiro e edição profissional</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Planejamos os roteiros e editamos o material disponível para produzir os vídeos previstos no plano.</p>
-                <p data-f="role">Escrevemos os roteiros, orientamos a gravação e fazemos a edição.</p>
+                <p data-f="short">Planejamos roteiros e editamos materiais disponíveis para os vídeos previstos no plano.</p>
+                <ul data-f="get"><li>Roteiro de cada vídeo previsto</li><li>Orientação para a gravação</li><li>Edição profissional do material</li></ul>
                 <ol data-f="how"><li>Definimos o tema e o roteiro.</li><li>O material é gravado pela Real Polar ou por profissional contratado à parte.</li><li>Editamos e enviamos para aprovação.</li></ol>
                 <p data-f="result">Vídeos que mostram projetos e serviços de forma profissional.</p>
-                <ul data-f="limit"><li>A edição prevista no plano está incluída; a captação presencial não.</li><li>Vídeos adicionais, fora do escopo contratado, exigem orçamento.</li></ul>
+                <ul data-f="limit"><li>A gravação presencial em São Paulo não está incluída automaticamente na mensalidade.</li><li>A edição prevista no plano está incluída; vídeos além do escopo exigem orçamento.</li></ul>
                 <p data-f="dep">Material gravado com qualidade suficiente.</p>
-                <p data-f="ext">Captação presencial: referência de R$ 1.200 por diária, sujeita a cotação.</p>
+                <p data-f="ext">Captação presencial, quando necessária: referência de R$ 1.200 por diária, sujeita a cotação.</p>
+                <p data-f="qty">Quantidade de vídeos: definida em contrato.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td>
-            <td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td>
-            <td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
+            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
           </tr>
-          <tr data-id="S05" data-node="Anúncios Meta Ads">
+          <tr data-id="S05" data-node="Anúncios Meta Ads" data-rel="X01">
             <th scope="row"><span class="nm">Gestão de anúncios Meta Ads</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Configuramos e acompanhamos campanhas no Instagram e no Facebook. A verba dos anúncios é paga à parte.</p>
-                <p data-f="role">Montamos as campanhas, definimos públicos e ajustamos conforme as respostas.</p>
+                <p data-f="short">Configuramos e acompanhamos campanhas no Instagram e no Facebook.</p>
+                <ul data-f="get"><li>Campanhas configuradas com objetivo, público e mensagem</li><li>Testes de públicos e mensagens</li><li>Acompanhamento e ajustes das campanhas</li></ul>
                 <ol data-f="how"><li>Definimos objetivo, público e mensagem.</li><li>Configuramos e publicamos as campanhas.</li><li>Acompanhamos e ajustamos.</li></ol>
                 <p data-f="result">Mais pessoas com perfil de cliente conhecendo os serviços, e aprendizado sobre o que funciona.</p>
                 <ul data-f="limit"><li>A gestão está na mensalidade; a verba de anúncios não.</li><li>Investir mais pode ampliar os testes, mas não garante vendas.</li></ul>
                 <p data-f="dep">Conta de anúncios com acesso autorizado e forma de pagamento da Real Polar.</p>
                 <p data-f="ext">Verba de anúncios paga direto à Meta: referência a partir de R$ 15 por dia.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="incluido" data-src="canva">Incluído<small>Foco compatível com a proposta enxuta</small></td>
-            <td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td>
-            <td data-plan="Presença Ampliada" data-st="conflito" data-src="conflito">A confirmar<small>Ainda não listado no plano; será confirmado em contrato</small></td>
+            <td data-plan="Econômico" data-st="incluido" data-src="canva">Incluído<small>Foco compatível com a proposta enxuta</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td><td data-plan="Presença Ampliada" data-st="conflito" data-src="conflito">A confirmar<small>Ainda não listado no plano; será confirmado em contrato</small></td>
           </tr>
-          <tr data-id="S06" data-node="Google Meu Negócio">
+          <tr data-id="S06" data-node="Google Meu Negócio" data-rel="S07">
             <th scope="row"><span class="nm">Google Meu Negócio (Perfil da Empresa no Google)</span>
               <details><summary>Ver explicação</summary>
                 <p data-f="short">Organizamos as informações do Perfil da Empresa no Google, como contatos, serviços e fotos.</p>
-                <p data-f="role">Revisamos ou mantemos o perfil, conforme o plano.</p>
+                <ul data-f="get"><li>Revisão das informações do perfil</li><li>Correção e complemento dos dados</li><li>No Presença Ampliada, manutenção do perfil</li></ul>
                 <ol data-f="how"><li>Conferimos as informações atuais.</li><li>Corrigimos e completamos o perfil.</li><li>No Presença Ampliada, acompanhamos e mantemos o perfil.</li></ol>
                 <p data-f="result">Informações corretas para quem procura a empresa no Google.</p>
                 <ul data-f="limit"><li>Não é o mesmo serviço que SEO.</li><li>Não inclui Google Ads nem garante posição nas buscas.</li></ul>
                 <p data-f="dep">Acesso ao perfil da empresa.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td>
-            <td data-plan="Essencial" data-st="limitado" data-src="canva">Limitado<small>Revisão básica do perfil</small></td>
-            <td data-plan="Presença Ampliada" data-st="pendente" data-src="canva">Previsto<small>Gestão do perfil; detalhes em contrato</small></td>
+            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="limitado" data-src="canva">Limitado<small>Revisão básica do perfil</small></td><td data-plan="Presença Ampliada" data-st="pendente" data-src="canva">Previsto<small>Gestão do perfil; detalhes em contrato</small></td>
           </tr>
-          <tr data-id="S07" data-node="SEO">
+          <tr data-id="S07" data-node="SEO" data-rel="S06">
             <th scope="row"><span class="nm">Otimização de busca no Google (SEO)</span>
               <details><summary>Ver explicação</summary>
                 <p data-f="short">Ações para melhorar a visibilidade orgânica da Real Polar nas buscas do Google.</p>
-                <p data-f="role">Ajustamos conteúdos e informações do site, dentro dos limites contratados.</p>
-                <ol data-f="how"><li>Avaliamos as buscas relevantes para os serviços.</li><li>Ajustamos textos e informações.</li><li>Acompanhamos a evolução.</li></ol>
+                <ul data-f="get"><li>Avaliação das buscas relevantes para os serviços</li><li>Ajustes de textos e informações do site</li><li>Acompanhamento da evolução</li></ul>
+                <ol data-f="how"><li>Avaliamos as buscas relevantes.</li><li>Ajustamos textos e informações.</li><li>Acompanhamos a evolução.</li></ol>
                 <p data-f="result">Mais chances de ser encontrado por quem procura os serviços.</p>
                 <ul data-f="limit"><li>Não garante primeira posição no Google.</li><li>Não inclui SEO técnico integral nem Google Ads.</li></ul>
                 <p data-f="dep">Acesso ao site.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td>
-            <td data-plan="Essencial" data-st="fora" data-src="canva">Fora da mensalidade</td>
-            <td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
+            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
           </tr>
           <tr data-id="S08" data-node="Relatórios e análise">
             <th scope="row"><span class="nm">Relatórios e análise de resultados</span>
               <details><summary>Ver explicação</summary>
                 <p data-f="short">Apresentamos os resultados do período e as recomendações para o próximo.</p>
-                <p data-f="role">Reunimos os indicadores disponíveis e explicamos o que mudou.</p>
-                <ol data-f="how"><li>Coletamos os dados das plataformas.</li><li>Analisamos o desempenho.</li><li>Apresentamos o relatório com recomendações.</li></ol>
+                <ul data-f="get"><li>Indicadores do período reunidos</li><li>Explicação do que mudou</li><li>Recomendações para o próximo período</li></ul>
+                <ol data-f="how"><li>Coletamos os dados das plataformas.</li><li>Analisamos o desempenho.</li><li>Apresentamos o relatório.</li></ol>
                 <p data-f="result">Decisões baseadas em dados, não em impressões.</p>
-                <ul data-f="limit"><li>Resultados comerciais dependem das informações compartilhadas pela Real Polar.</li><li>Não há promessa de quantidade de contatos ou vendas.</li></ul>
+                <ul data-f="limit"><li>Resultados comerciais dependem das informações compartilhadas pela Real Polar.</li><li>Sem promessa de quantidade de contatos ou vendas.</li></ul>
                 <p data-f="dep">Retorno da Real Polar sobre contatos e propostas, quando possível.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td>
-            <td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído<small>Relatório mensal</small></td>
-            <td data-plan="Presença Ampliada" data-st="conflito" data-src="conflito">A confirmar<small>Análise de resultados e relatórios previstos; periodicidade a confirmar em contrato</small></td>
+            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído<small>Relatório mensal</small></td><td data-plan="Presença Ampliada" data-st="conflito" data-src="conflito">A confirmar<small>Análise de resultados e relatórios previstos; periodicidade a confirmar em contrato</small></td>
           </tr>
-          <tr data-id="S09" data-node="Identidade visual">
+          <tr data-id="S09" data-node="Identidade visual" data-rel="S02">
             <th scope="row"><span class="nm">Rebranding da identidade da marca</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Revisão da identidade visual da marca, que começa por um briefing de identidade.</p>
-                <p data-f="role">Conduzimos o briefing e a análise do posicionamento visual para orientar os ajustes.</p>
-                <ol data-f="how"><li>Briefing de identidade com a Real Polar.</li><li>Análise do posicionamento visual atual.</li><li>Ajustes previstos no projeto, com aprovação.</li></ol>
+                <p data-f="short">Começamos com briefing de identidade e análise da comunicação visual atual, para orientar o escopo de rebranding.</p>
+                <ul data-f="get"><li>Briefing de identidade com a Real Polar</li><li>Análise da comunicação visual atual</li><li>Direcionamento para os ajustes da marca</li></ul>
+                <ol data-f="how"><li>Briefing de identidade.</li><li>Análise da comunicação visual atual.</li><li>Direcionamento dos ajustes, conforme o contrato.</li></ol>
                 <p data-f="result">Uma identidade mais coerente com o posicionamento da empresa.</p>
-                <ul data-f="limit"><li>Entregas, quantidade de propostas e revisões definidas em contrato.</li></ul>
+                <ul data-f="limit"><li>Quantidade de propostas, rodadas de revisão e arquivos finais definidos em contrato.</li><li>Guia de marca só se previsto em contrato.</li></ul>
                 <p data-f="dep">Participação no briefing e aprovação das etapas.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td>
-            <td data-plan="Essencial" data-st="fora" data-src="canva">Fora da mensalidade</td>
-            <td data-plan="Presença Ampliada" data-st="pendente" data-src="canva">Previsto<small>Escopo final em contrato</small></td>
+            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Presença Ampliada" data-st="pendente" data-src="canva">Previsto<small>Escopo final em contrato</small></td>
           </tr>
           <tr data-id="S10" data-node="Painel no site">
             <th scope="row"><span class="nm">Painel central interno no site</span>
               <details><summary>Ver explicação</summary>
-                <p data-f="short">Uma área interna no site da Real Polar, prevista no Presença Ampliada.</p>
-                <p data-f="role">Planejamos e implantamos o painel conforme o escopo definido em contrato.</p>
-                <ol data-f="how"><li>Levantamos as necessidades com a Real Polar.</li><li>Definimos funcionalidades e prazo em contrato.</li><li>Implantamos o que for aprovado.</li></ol>
+                <p data-f="short">A proposta prevê a construção de uma estrutura interna para consultar informações da operação. As funções e o prazo serão definidos no projeto.</p>
+                <ul data-f="get"><li>Levantamento das necessidades com a Real Polar</li><li>Definição das funções no projeto</li><li>Implantação do que for aprovado</li></ul>
+                <ol data-f="how"><li>Levantamos as necessidades.</li><li>Definimos funções e prazo no projeto.</li><li>Implantamos o que for aprovado.</li></ol>
                 <p data-f="result">Uma estrutura digital própria, dentro do escopo aprovado.</p>
-                <ul data-f="limit"><li>Funcionalidades, módulos e prazo ainda não definidos.</li><li>Não é um sistema pronto nem está ativo hoje.</li></ul>
+                <ul data-f="limit"><li>Funções, módulos e prazo ainda não definidos.</li><li>Não é um sistema pronto nem está ativo hoje.</li></ul>
                 <p data-f="dep">Acesso ao site e definição dos requisitos.</p>
+                <ul data-f="hyp" aria-label="Possibilidades para o briefing, não aprovadas"><li data-t="Visão geral de atividades">Visão geral de atividades: Um resumo das ações de marketing em andamento.</li><li data-t="Solicitações e oportunidades">Solicitações e oportunidades: Um espaço para acompanhar pedidos e oportunidades que chegam pelos canais.</li><li data-t="Indicadores e relatórios">Indicadores e relatórios: Uma área para consultar indicadores e relatórios do período.</li></ul>
               </details></th>
-            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td>
-            <td data-plan="Essencial" data-st="fora" data-src="canva">Fora da mensalidade</td>
-            <td data-plan="Presença Ampliada" data-st="pendente" data-src="canva">Previsto<small>Requisitos e prazo em contrato</small></td>
+            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Presença Ampliada" data-st="pendente" data-src="canva">Previsto<small>Funções e prazo definidos no projeto</small></td>
           </tr>
-          <tr data-id="S11" data-node="Artes extras">
+          <tr data-id="S11" data-node="Artes extras" data-rel="S03">
             <th scope="row"><span class="nm">Bônus de artes extras</span>
               <details><summary>Ver explicação</summary>
                 <p data-f="short">Artes pontuais além das previstas, mediante solicitação.</p>
-                <p data-f="role">Criamos peças extras dentro do limite acordado.</p>
+                <ul data-f="get"><li>Peças extras dentro do limite acordado</li><li>Mesmo padrão visual das artes do plano</li></ul>
                 <ol data-f="how"><li>A Real Polar envia a solicitação com o briefing.</li><li>Avaliamos e confirmamos o pedido.</li><li>Criamos e enviamos para aprovação.</li></ol>
                 <p data-f="result">Mais flexibilidade para demandas pontuais.</p>
-                <ul data-f="limit"><li>Não é ilimitado.</li><li>Quantidade, prazo e revisões definidos em contrato.</li></ul>
+                <ul data-f="limit"><li>Não é ilimitado.</li><li>Quantidade, formatos, rodadas de revisão e prazo definidos em contrato.</li></ul>
                 <p data-f="dep">Briefing completo da peça solicitada.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td>
-            <td data-plan="Essencial" data-st="fora" data-src="canva">Fora da mensalidade</td>
-            <td data-plan="Presença Ampliada" data-st="pendente" data-src="canva">Previsto<small>Limites em contrato</small></td>
+            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Presença Ampliada" data-st="pendente" data-src="canva">Previsto<small>Limites em contrato</small></td>
+          </tr>
+        </tbody>
+        <tbody data-group="investimento">
+          <tr class="grp"><th colspan="4" scope="colgroup">Valor mensal da gestão</th></tr>
+          <tr data-id="X00">
+            <th scope="row"><span class="nm">Mensalidade de gestão</span>
+              <details><summary>Ver explicação</summary>
+                <p data-f="short">O valor mensal que remunera a gestão da nossa equipe, conforme o plano escolhido.</p>
+                <ul data-f="get"><li>Os serviços listados no plano</li><li>Planejamento, execução e acompanhamento pela equipe</li><li>Valor fixo, separado dos custos externos</li></ul>
+                <ol data-f="how"><li>A Real Polar escolhe o plano.</li><li>Escopo e condições são confirmados em contrato.</li><li>A mensalidade cobre os serviços do plano a cada mês.</li></ol>
+                <p data-f="result">Previsibilidade: um valor fixo pela gestão.</p>
+                <ul data-f="limit"><li>Não inclui verba de anúncios nem captação presencial.</li><li>Não inclui atendimento comercial, orçamentos técnicos ou fechamento de contratos.</li><li>Período mínimo de três meses; demais condições no contrato.</li></ul>
+                <p data-f="dep">Contrato com o escopo do plano.</p>
+              </details></th>
+            <td data-plan="Econômico" data-st="incluido" data-src="canva">R$ 1.280/mês</td><td data-plan="Essencial" data-st="incluido" data-src="canva">R$ 2.100/mês</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">R$ 3.200/mês</td>
           </tr>
         </tbody>
         <tbody data-group="externo">
           <tr class="grp"><th colspan="4" scope="colgroup">Custos externos, fora da mensalidade</th></tr>
-          <tr data-id="X01">
+          <tr data-id="X01" data-rel="S05">
             <th scope="row"><span class="nm">Verba de anúncios (Meta)</span>
               <details><summary>Ver explicação</summary>
                 <p data-f="short">O dinheiro investido na distribuição dos anúncios, pago pela Real Polar direto à Meta.</p>
-                <p data-f="role">Recomendamos o valor e acompanhamos o uso; a Real Polar define e paga.</p>
+                <ul data-f="get"><li>Distribuição dos anúncios no Instagram e no Facebook</li><li>Valor definido pela Real Polar, com a nossa recomendação</li><li>Acompanhamento do uso da verba</li></ul>
                 <ol data-f="how"><li>Definimos juntos a verba inicial.</li><li>A Meta cobra diretamente da Real Polar.</li><li>Ajustamos a distribuição conforme os testes.</li></ol>
                 <p data-f="result">Mais verba pode ampliar os testes e acelerar o aprendizado.</p>
                 <ul data-f="limit"><li>Não faz parte da mensalidade.</li><li>Investir mais não garante mais vendas.</li></ul>
                 <p data-f="dep">Forma de pagamento cadastrada na conta de anúncios.</p>
                 <p data-f="ext">Referência: a partir de R$ 15 por dia.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta</small></td>
-            <td data-plan="Essencial" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta</small></td>
-            <td data-plan="Presença Ampliada" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta</small></td>
+            <td data-plan="Econômico" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta</small></td><td data-plan="Essencial" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta</small></td><td data-plan="Presença Ampliada" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta</small></td>
           </tr>
-          <tr data-id="X02">
+          <tr data-id="X02" data-rel="S04">
             <th scope="row"><span class="nm">Captação presencial (videomaker e fotografia)</span>
               <details><summary>Ver explicação</summary>
                 <p data-f="short">Gravação e fotos no local, feitas por profissional terceirizado em São Paulo, quando necessário.</p>
-                <p data-f="role">Organizamos a pauta e o roteiro e coordenamos a contratação, com aprovação da Real Polar.</p>
-                <ol data-f="how"><li>Identificamos a necessidade e pedimos o orçamento.</li><li>A Real Polar aprova a contratação.</li><li>O profissional realiza a captação e nós editamos conforme o plano.</li></ol>
-                <p data-f="result">Material próprio para os conteúdos. Uma diária pode ser planejada para gerar conteúdo por mais de um mês.</p>
+                <ul data-f="get"><li>Pauta e roteiro preparados pela nossa equipe</li><li>Gravação e fotos por profissional contratado</li><li>Edição conforme o plano</li></ul>
+                <ol data-f="how"><li>Identificamos a necessidade e pedimos o orçamento.</li><li>A Real Polar aprova a contratação.</li><li>O profissional realiza a captação e editamos conforme o plano.</li></ol>
+                <p data-f="result">Material próprio para os conteúdos; uma diária pode render conteúdo para mais de um mês.</p>
                 <ul data-f="limit"><li>Eventual, não é cobrança mensal.</li><li>O valor varia conforme duração, deslocamentos, equipamentos, locais e profissionais envolvidos.</li></ul>
                 <p data-f="dep">Aprovação do orçamento e acesso aos locais.</p>
                 <p data-f="ext">Referência de R$ 1.200 por diária, sujeita a cotação.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="opcional" data-src="canva">Opcional<small>Cotação separada</small></td>
-            <td data-plan="Essencial" data-st="opcional" data-src="canva">Opcional<small>Referência R$ 1.200/diária</small></td>
-            <td data-plan="Presença Ampliada" data-st="opcional" data-src="canva">Opcional<small>Referência R$ 1.200/diária</small></td>
+            <td data-plan="Econômico" data-st="opcional" data-src="canva">Opcional<small>Cotação separada</small></td><td data-plan="Essencial" data-st="opcional" data-src="canva">Opcional<small>Referência R$ 1.200/diária</small></td><td data-plan="Presença Ampliada" data-st="opcional" data-src="canva">Opcional<small>Referência R$ 1.200/diária</small></td>
           </tr>
-          <tr data-id="X03">
+          <tr data-id="X03" data-rel="X02">
             <th scope="row"><span class="nm">Storymaker, drone e apresentador</span>
               <details><summary>Ver explicação</summary>
                 <p data-f="short">Profissionais complementares para gravações específicas, contratados só quando necessários.</p>
-                <p data-f="role">Indicamos quando fazem sentido e pedimos o orçamento.</p>
+                <ul data-f="get"><li>Indicação de quando fazem sentido</li><li>Orçamento antes de qualquer contratação</li></ul>
                 <ol data-f="how"><li>Avaliamos a necessidade.</li><li>Apresentamos o orçamento.</li><li>A Real Polar decide se contrata.</li></ol>
-                <p data-f="result">Recursos extras para conteúdos que pedem bastidores, imagens aéreas ou apresentação.</p>
+                <p data-f="result">Recursos extras para bastidores, imagens aéreas ou apresentação.</p>
                 <ul data-f="limit"><li>Opcionais, sem contratação mensal.</li><li>Drone depende de viabilidade e das autorizações de voo.</li></ul>
                 <p data-f="dep">Aprovação do orçamento.</p>
                 <p data-f="ext">Valor sob orçamento, conforme o profissional.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td>
-            <td data-plan="Essencial" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td>
-            <td data-plan="Presença Ampliada" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td>
+            <td data-plan="Econômico" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td><td data-plan="Essencial" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td><td data-plan="Presença Ampliada" data-st="opcional" data-src="canva">Opcional<small>Sob orçamento</small></td>
           </tr>
         </tbody>
       </table>
@@ -772,7 +794,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
     <div class="sim" data-reveal style="--d:.12s">
       <div>
         <div class="grp">
-          <h3>Mensalidade de gestão</h3>
+          <h3>Mensalidade de gestão <button class="info js-only" type="button" data-open="X00" aria-label="Entender mensalidade de gestão" aria-haspopup="dialog">i</button></h3>
           <p class="desc">Valor do plano escolhido.</p>
           <div class="planpick" role="group" aria-label="Plano">
             <button type="button" data-plan="E" aria-pressed="false">Econômico<small>R$ 1.280</small></button>
@@ -781,7 +803,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
           </div>
         </div>
         <div class="grp">
-          <h3>Investimento em anúncios</h3>
+          <h3>Investimento em anúncios <button class="info js-only" type="button" data-open="X01" aria-label="Entender verba de anúncios" aria-haspopup="dialog">i</button></h3>
           <p class="desc">Orçamento de tráfego pago no Instagram e no Facebook, definido pela Real Polar e pago à Meta.</p>
           <div class="row2">
             <div class="field"><label for="sDaily">Verba por dia (R$)</label><input id="sDaily" type="number" inputmode="decimal" min="0" max="10000" step="1" value="15"><p class="hint">Referência: a partir de R$ 15</p></div>
@@ -789,7 +811,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
           </div>
         </div>
         <div class="grp">
-          <h3>Produção audiovisual externa</h3>
+          <h3>Produção audiovisual externa <button class="info js-only" type="button" data-open="X02" aria-label="Entender captação presencial" aria-haspopup="dialog">i</button></h3>
           <p class="desc">Valor eventual, conforme a demanda e o orçamento aprovado.</p>
           <div class="row2">
             <div class="field"><label for="sShoots">Diárias de captação</label><input id="sShoots" type="number" inputmode="numeric" min="0" max="10" step="1" value="0"><p class="hint">Zero se não houver gravação no período</p></div>
@@ -835,9 +857,9 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
 <footer><div class="wrap">REAL POLAR · Protótipo em revisão</div></footer>
 
 <!-- Pop-up explicador: componente único, preenchido a partir do comparativo -->
-<dialog class="sheet" id="sheet" aria-labelledby="mTitle">
+<dialog class="sheet" id="sheet" aria-labelledby="mTitle" aria-describedby="mShort">
   <div class="m-head">
-    <div><span class="grp-l" id="mGroup"></span><h2 id="mTitle"></h2></div>
+    <div><span class="grp-l" id="mGroup"></span><h2 id="mTitle"></h2><p class="m-short" id="mShort"></p></div>
     <button class="m-close" type="button" id="mClose" aria-label="Fechar explicação">×</button>
   </div>
   <div class="m-plan">
@@ -851,7 +873,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
   <div class="m-tabs" role="tablist" aria-label="Detalhes do serviço">
     <button role="tab" type="button" id="mt-receb" aria-controls="mBody" aria-selected="true">O que recebo</button>
     <button role="tab" type="button" id="mt-como" aria-controls="mBody" aria-selected="false" tabindex="-1">Como funciona</button>
-    <button role="tab" type="button" id="mt-lim" aria-controls="mBody" aria-selected="false" tabindex="-1">Limites</button>
+    <button role="tab" type="button" id="mt-lim" aria-controls="mBody" aria-selected="false" tabindex="-1">Limites e custos</button>
     <button role="tab" type="button" id="mt-cmp" aria-controls="mBody" aria-selected="false" tabindex="-1">Comparar planos</button>
   </div>
   <div class="m-body" id="mBody" role="tabpanel" tabindex="0"></div>
@@ -878,8 +900,9 @@ const SV=[...document.querySelectorAll('#cmp tbody tr[data-id]')].map(tr=>{
   const f=n=>tr.querySelector(`[data-f="${n}"]`),txt=n=>f(n)?f(n).textContent.trim():'',items=n=>f(n)?[...f(n).querySelectorAll('li')].map(l=>l.textContent.trim()):[];
   const cells=[...tr.querySelectorAll('td')];const p={};
   KEYS.forEach((k,i)=>{const td=cells[i],sm=td.querySelector('small');p[k]={st:td.dataset.st,src:td.dataset.src,label:td.firstChild.textContent.trim(),note:sm?sm.textContent.trim():''}});
-  return {id:tr.dataset.id,node:tr.dataset.node||'',group:tr.closest('tbody').dataset.group,name:tr.querySelector('.nm').textContent.trim(),
-    short:txt('short'),role:txt('role'),how:items('how'),result:txt('result'),limit:items('limit'),dep:txt('dep'),ext:txt('ext'),ex:txt('ex'),p,tr};
+  return {id:tr.dataset.id,node:tr.dataset.node||'',rel:tr.dataset.rel||'',group:tr.closest('tbody').dataset.group,name:tr.querySelector('.nm').textContent.trim(),
+    short:txt('short'),get:items('get'),how:items('how'),result:txt('result'),limit:items('limit'),dep:txt('dep'),ext:txt('ext'),qty:txt('qty'),
+    hyp:f('hyp')?[...f('hyp').querySelectorAll('li')].map(l=>({t:l.dataset.t,d:l.textContent.slice(l.dataset.t.length+1).trim()})):[],p,tr};
 });
 const byId=Object.fromEntries(SV.map(s=>[s.id,s]));
 const INCL=st=>st!=='fora';
@@ -904,27 +927,33 @@ $('outside').innerHTML=SV.filter(s=>s.group==='externo').map(s=>`<div class="o">
 
 /* ===== Pop-up explicador ===== */
 const dlg=$('sheet'),body=$('mBody'),tabs=[...dlg.querySelectorAll('[role="tab"]')];
-let cur=null,ctx='A',tab='receb',opener=null,savedY=0;
+let cur=null,ctx='A',tab='receb',opener=null,savedY=0,sub=null;
+const WF=['<div class="wf wf-list"><i></i><i></i><i></i><i></i></div>','<div class="wf wf-cols"><b><i></i><i></i></b><b><i></i></b><b><i></i><i></i><i></i></b></div>','<div class="wf wf-ind"><b></b><b></b><b></b><span><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:85%"></i><i style="height:60%"></i></span></div>'];
+const relLink=s=>{const r=byId[s.rel];return r?`<p class="rel">Relacionado: <button type="button" data-rel="${r.id}">${esc(r.name)}</button></p>`:''};
 function render(){
   const s=cur,c=s.p[ctx];
-  $('mGroup').textContent=s.group==='externo'?'Custo externo':'Serviço da gestão';
-  $('mTitle').textContent=s.name;
+  $('mGroup').textContent=s.group==='externo'?'Custo externo':s.group==='investimento'?'Investimento':'Serviço da gestão';
+  $('mTitle').textContent=s.name;$('mShort').textContent=s.short;
   dlg.querySelectorAll('[data-mplan]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mplan===ctx)));
   $('mNow').innerHTML=`No ${PLAN[ctx]}: ${pill(c.st,c.label)}${c.note?` <span>${esc(c.note)}</span>`:''}`;
   tabs.forEach(t=>{const on=t.id==='mt-'+tab;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1});
   body.setAttribute('aria-labelledby','mt-'+tab);
   let h='';
-  if(tab==='receb'){h=`<p class="first">${esc(s.short)}</p><h4>O que nossa equipe faz</h4><p>${esc(s.role)}</p><h4>Resultado esperado</h4><p>${esc(s.result)}</p>`+(s.ex?`<p class="ex"><b>Exemplo ilustrativo</b>${esc(s.ex)}</p>`:'')}
-  if(tab==='como'){h=`<h4 style="margin-top:0">Em três passos</h4><ol>${s.how.map(x=>`<li>${esc(x)}</li>`).join('')}</ol><h4>O que precisamos da Real Polar</h4><p>${esc(s.dep)}</p>`}
-  if(tab==='lim'){const L=[...s.limit];if(c.st==='pendente'||c.st==='conflito')L.unshift(`No ${PLAN[ctx]}: ${c.note||STL[c.st]}.`);if(c.st==='fora')L.unshift(`Não faz parte da mensalidade do ${PLAN[ctx]}.`);
-    h=`<h4 style="margin-top:0">Limites</h4><ul class="lim">${L.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`+(s.ext?`<h4>Custos externos</h4><p>${esc(s.ext)}</p>`:`<h4>Custos externos</h4><p>Nenhum custo externo específico deste serviço.</p>`)}
-  if(tab==='cmp'){h=`<div class="cmpm">${KEYS.map(k=>{const q=s.p[k];return `<div class="${k===ctx?'cur':''}"><b>${PLAN[k]}</b>${pill(q.st,q.label)}${q.note?`<small>${esc(q.note)}</small>`:''}<button type="button" data-goplan="${k}">Ver o plano ${PLAN[k]}</button></div>`}).join('')}</div>`}
+  if(tab==='receb'&&sub!==null){const y=s.hyp[sub];
+    h=`<div class="hyp-view"><span class="ill">Ilustração · possibilidade para o briefing, não aprovada</span><h3>${esc(y.t)}</h3><p>${esc(y.d)}</p>${WF[sub]}<p class="note">Esquema sem dados reais. Não é um módulo contratado nem tem prazo definido.</p><button class="btn btn-line" type="button" data-back="${sub}">← Voltar ao painel</button></div>`}
+  else if(tab==='receb'){h=`<ul class="get">${s.get.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p class="why"><b>Para quê:</b> ${esc(s.result)}</p>`;
+    if(s.hyp.length)h+=`<h4>Possibilidades para o briefing</h4><p class="ill-note">Ilustrações, não aprovadas. Ajudam a imaginar o painel; nada aqui é módulo contratado.</p><div class="hyps">${s.hyp.map((y,i)=>`<button type="button" data-hyp="${i}"><b>${esc(y.t)}</b><span>${esc(y.d)}</span></button>`).join('')}</div>`;
+    h+=relLink(s)}
+  if(tab==='como'){h=`<ol>${s.how.map(x=>`<li>${esc(x)}</li>`).join('')}</ol><h4>O que precisamos da Real Polar</h4><p>${esc(s.dep)}</p>`}
+  if(tab==='lim'){const L=[];if(c.st==='fora')L.push(`Não faz parte da mensalidade do ${PLAN[ctx]}.`);else if(c.st==='pendente'||c.st==='conflito')L.push(`No ${PLAN[ctx]}: ${c.note||STL[c.st]}.`);L.push(...s.limit);
+    h=`<ul class="lim">${L.slice(0,3).map(x=>`<li>${esc(x)}</li>`).join('')}</ul><h4>Custos</h4><p>${esc(s.ext||'Sem custo externo específico deste serviço.')}</p>`+relLink(s)}
+  if(tab==='cmp'){h=`<div class="cmpm">${KEYS.map(k=>{const q=s.p[k];return `<div class="${k===ctx?'cur':''}"><b>${PLAN[k]}</b>${pill(q.st,q.label)}${q.note?`<small>${esc(q.note)}</small>`:''}<button type="button" data-goplan="${k}">Ver o plano ${PLAN[k]}</button></div>`}).join('')}</div>`+(s.qty?`<p class="qty">${esc(s.qty)}</p>`:'')}
   body.innerHTML=h;body.scrollTop=0;
   const i=SV.indexOf(s);$('mPos').textContent=`${i+1} de ${SV.length}`;
   $('mPrev').disabled=i===0;$('mNext').disabled=i===SV.length-1;
 }
 function open(id,k,from){
-  cur=byId[id];if(!cur)return;ctx=k||active;tab='receb';opener=from||document.activeElement;
+  cur=byId[id];if(!cur)return;ctx=k||active;tab='receb';sub=null;opener=from||document.activeElement;
   savedY=scrollY;document.documentElement.style.overflow='hidden';
   render();if(!dlg.open)dlg.showModal();$('mClose').focus();
 }
@@ -932,10 +961,14 @@ dlg.addEventListener('close',()=>{document.documentElement.style.overflow='';if(
 $('mClose').addEventListener('click',()=>dlg.close());
 dlg.addEventListener('click',e=>{if(e.target===dlg&&matchMedia('(min-width:641px)').matches)dlg.close()});
 dlg.querySelectorAll('[data-mplan]').forEach(b=>b.addEventListener('click',()=>{ctx=b.dataset.mplan;render()}));
-tabs.forEach((t,i)=>{t.addEventListener('click',()=>{tab=t.id.slice(3);render()});t.addEventListener('keydown',e=>{const d={ArrowRight:1,ArrowLeft:-1}[e.key];let n=null;if(d)n=tabs[(i+d+tabs.length)%tabs.length];if(e.key==='Home')n=tabs[0];if(e.key==='End')n=tabs[tabs.length-1];if(n){e.preventDefault();tab=n.id.slice(3);render();n.focus()}})});
-$('mPrev').addEventListener('click',()=>{cur=SV[SV.indexOf(cur)-1];render()});
-$('mNext').addEventListener('click',()=>{cur=SV[SV.indexOf(cur)+1];render()});
-body.addEventListener('click',e=>{const b=e.target.closest('[data-goplan]');if(!b)return;const k=b.dataset.goplan;opener=null;dlg.close();const card=$('plano-'+k);card.scrollIntoView({behavior:motion?'smooth':'auto',block:'start'});card.querySelector('h3').setAttribute('tabindex','-1');card.querySelector('h3').focus({preventScroll:true})});
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>{tab=t.id.slice(3);sub=null;render()});t.addEventListener('keydown',e=>{const d={ArrowRight:1,ArrowLeft:-1}[e.key];let n=null;if(d)n=tabs[(i+d+tabs.length)%tabs.length];if(e.key==='Home')n=tabs[0];if(e.key==='End')n=tabs[tabs.length-1];if(n){e.preventDefault();tab=n.id.slice(3);sub=null;render();n.focus()}})});
+$('mPrev').addEventListener('click',()=>{cur=SV[SV.indexOf(cur)-1];sub=null;render()});
+$('mNext').addEventListener('click',()=>{cur=SV[SV.indexOf(cur)+1];sub=null;render()});
+body.addEventListener('click',e=>{
+  const h=e.target.closest('[data-hyp]');if(h){sub=+h.dataset.hyp;render();body.querySelector('[data-back]').focus({preventScroll:true});body.scrollTop=0;return}
+  const bk=e.target.closest('[data-back]');if(bk){const i=+bk.dataset.back;sub=null;render();body.querySelector(`[data-hyp="${i}"]`).focus();return}
+  const rl=e.target.closest('[data-rel]');if(rl){cur=byId[rl.dataset.rel];tab='receb';sub=null;render();$('mTitle').setAttribute('tabindex','-1');$('mTitle').focus();return}
+  const b=e.target.closest('[data-goplan]');if(!b)return;const k=b.dataset.goplan;opener=null;dlg.close();const card=$('plano-'+k);card.scrollIntoView({behavior:motion?'smooth':'auto',block:'start'});card.querySelector('h3').setAttribute('tabindex','-1');card.querySelector('h3').focus({preventScroll:true})});
 document.addEventListener('click',e=>{const b=e.target.closest('[data-open]');if(b&&!dlg.contains(b))open(b.dataset.open,b.dataset.ctx,b)});
 
 /* ===== Explorador: mapa mental ===== */
@@ -970,8 +1003,8 @@ function states(){
     n.setAttribute('aria-label',`${s.name}${c?', '+c.label+' no '+PLAN[mmPlan]:''}. Abrir explicação`);
     const p=paths[i];if(p){p.setAttribute('class',c?(c.st==='fora'?'out':'inc'):'');if(revealed){p.style.strokeDasharray=c&&c.st==='conflito'?'5 6':'';p.style.strokeDashoffset=''}}});
 }
-document.querySelectorAll('[data-mm-plan]').forEach(b=>b.addEventListener('click',()=>{mmPlan=b.dataset.mmPlan;if(mmPlan!=='all')setActive(mmPlan);else states()}));
-listeners.push(k=>{mmPlan=k;states()});
+/* Explorar o mapa não altera o simulador (só "Simular este plano" e os botões do simulador alteram) */
+document.querySelectorAll('[data-mm-plan]').forEach(b=>b.addEventListener('click',()=>{mmPlan=b.dataset.mmPlan;states()}));
 nodes.forEach((n,i)=>n.addEventListener('keydown',e=>{const d={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];if(d){e.preventDefault();nodes[(i+d+nodes.length)%nodes.length].focus()}}));
 /* Mapa × lado a lado */
 const vt=[$('v-map'),$('v-cmp')];
