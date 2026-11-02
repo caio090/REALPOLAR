@@ -6,6 +6,14 @@
 
 Página HTML responsiva para apresentar os planos de marketing da Real Polar e esclarecer dúvidas comerciais.
 
+## Protótipo em revisão
+
+`prototipo/index.html` é uma nova versão da apresentação, em formato de perguntas clicáveis, cronograma de 90 dias, funil de métricas e custos separados. **Ainda não substitui a página principal** e não deve ser enviado ao cliente antes da aprovação.
+
+- No Codespaces: porta **5500**, caminho `/prototipo/`.
+- Na prévia da Vercel do pull request: mesmo caminho, `/prototipo/`.
+- Auditoria, decisões e testes: [docs/AUDITORIA_DESIGN_REALPOLAR.md](docs/AUDITORIA_DESIGN_REALPOLAR.md), seções I a L.
+
 ## Ver a página (não o código)
 
 **Endereço publicado:** https://realpolar-proposta.vercel.app/

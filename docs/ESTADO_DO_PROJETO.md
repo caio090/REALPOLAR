@@ -1,8 +1,8 @@
 # REAL POLAR | Estado do projeto e alinhamento entre agentes
 
-> Atualizado em **01/11/2026**. Documento de trabalho compartilhado para ChatGPT, Claude/Codespaces e colaboradores.
+> Atualizado em **02/11/2026**. Documento de trabalho compartilhado para ChatGPT, Claude/Codespaces e colaboradores.
 > **Leia junto com `AGENTS.md`, `CLAUDE.md` e `docs/AUDITORIA_DESIGN_REALPOLAR.md` antes de editar.** Este registro distingue a proposta, o conceito visual e o que existe de verdade no código.
-> **Status deste documento:** alinhamento/documentação; nenhuma mudança de HTML ou publicação de produção foi feita por esta revisão.
+> **Status:** existe um **protótipo isolado** em `prototipo/index.html` (branch `design/prototipo-esclarecimento`). O `index.html` principal e a produção **não foram alterados**.
 
 ## 1. Objetivo atual, em uma frase
 
@@ -87,25 +87,29 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 
 | Item | Situação em 01/11/2026 |
 | --- | --- |
-| HTML interativo com planos/FAQ/simulador | **Implementado na `main`**, mas com divergências comerciais versus Canva |
+| HTML interativo com planos/FAQ/simulador | **Implementado na `main`** (inclui o PR #1, já mesclado), mas com divergências comerciais versus Canva |
 | Site do cliente em Vercel | **Existente** em https://realpolar-proposta.vercel.app/; verificar deployment e commit antes de afirmar versão em produção |
-| Novo storytelling de dúvidas e mapas clicáveis | **Conceito registrado, ainda não codado** |
-| Fluxo dos primeiros 90 dias | **Conceito registrado, ainda não codado** |
+| Novo storytelling de dúvidas e mapas clicáveis | **Codado e testado em protótipo** (`prototipo/index.html`); aguardando aprovação; não publicado na produção |
+| Fluxo dos primeiros 90 dias | **Codado e testado em protótipo**, como marco de avaliação, sem meta fixa de leads |
+| Funil de métricas, comparador de verba e trilha do audiovisual | **Codados e testados em protótipo** |
 | Contrato a anexar | **Pendente de leitura e validação** |
-| Arte/logo oficial | **Arquivo apresentado na conversa**; incorporação e aprovação no repositório ainda precisam ser verificadas |
-| Correção de preços no HTML | **Pendente**, não confundir com esta correção documental |
+| Arte/logo oficial | **Ausente do repositório e do Codespace em 02/11/2026.** Protótipo usa a marca em texto |
+| Correção de preços no HTML | **Pendente no `index.html` principal.** O protótipo já usa os valores do Canva (R$ 1.280 / 2.100 / 3.200 e diária de referência R$ 1.200) |
 | Rebranding e painel interno mencionados no Canva | **Itens comerciais a detalhar/validar**, não sistemas implantados |
 
 ## 7. Auditoria e execução de design no Claude
 
 - **Claude Code:** `CLAUDE.md`, na raiz, contém instruções persistentes que referenciam as mesmas regras, proposta e estado do projeto.
 - **Auditoria/brief:** `docs/AUDITORIA_DESIGN_REALPOLAR.md` registra achados confirmados no código, o que não está codado, recomendações P0/P1/P2, direção visual e roteiro de execução/validação.
-- **Inventário de skills:** ao iniciar no Claude, verificar as skills e plugins realmente disponíveis para frontend, UI, UX, motion, acessibilidade e design QA; ler o que for pertinente antes de executar. **Nenhuma skill do ambiente do Claude foi executada ou verificada por esta revisão documental.**
-- **Limite:** auditoria **estática de HTML e documentação**, sem screenshots do site renderizado nesta rodada. O protótipo visual e os testes são **tarefas futuras**; sem merge/deploy autorizado.
-- **Logo:** a imagem RP azul-marinho/prateada foi inspecionada na conversa, mas o asset não foi incorporado ao código do repositório nesta rodada.
+- **Inventário de skills (02/11/2026):** usadas `design:design-critique`, `design:accessibility-review`, `design:ux-copy` e `design:design-system`. Não há skill de animação nem de testes de frontend instalada; testes feitos com Playwright + Chromium fora do repositório. Detalhes em `docs/AUDITORIA_DESIGN_REALPOLAR.md`, seções I a L.
+- **Auditoria visual e testes:** feitos em 02/11/2026 em 1440×900 e 390×844 (capturas em `docs/capturas/`). Sem merge nem deploy de produção autorizados.
+- **Logo:** a imagem RP azul-marinho/prateada foi vista na conversa com o ChatGPT, mas o arquivo não está no repositório nem no Codespace. Precisa ser enviado.
+- **Canva:** não acessível ao Claude em 02/11/2026 (403; conector sem autorização). O protótipo depende da conferência da seção 3.
 - **Ponto de entrada para Claude:** ler `CLAUDE.md`, depois `docs/AUDITORIA_DESIGN_REALPOLAR.md` (seção “Brief de execução para o Claude”).
 
 ## 8. Histórico de alterações
+
+- **02/11/2026 | Protótipo de esclarecimento (Claude Code):** branch `design/prototipo-esclarecimento`, criada a partir de `docs/alinhamento-chatgpt-claude-20261101`. **Decidido:** protótipo isolado, sem tocar no `index.html` principal. **Codado:** `prototipo/index.html` com dois polos, mapa de 3 perguntas (18 etapas com o que fazemos / por quê / responsável / medição), cronograma de 90 dias, funil de 6 métricas, comparador de verba, trilha do audiovisual, planos com valores do Canva, simulador e próximos passos. **Testado:** 48 verificações automáticas em 1440×900 e 390×844, porta 5500 e conferência textual (seção L da auditoria). **Publicado:** nada em produção; prévia somente pela Vercel da branch. **Divergências novas:** Meta Ads não listado na Presença Ampliada no texto extraído do Canva; prazo de 48h do bônus sem confirmação no Canva. **Limitações:** Canva inacessível ao Claude; logo ausente; contrato não recebido.
 
 - **01/11/2026 | Preparação para auditoria de design Claude:** criados `CLAUDE.md` e `docs/AUDITORIA_DESIGN_REALPOLAR.md`; auditados estaticamente os componentes do `index.html` (hero, 3 planos, processo em 5 etapas, 15 FAQs, filtros e simulador). Registradas lacunas: mapa clicável, timeline 30/60/90 e aplicação da logo. **Nenhum HTML modificado; sem screenshot/teste visual/deploy nesta etapa.** PR #2 mantém a revisão apenas documental.
 - **01/11/2026 | Documentação de alinhamento:** leitura do `AGENTS.md`, `README.md` e `index.html`; conferência do Canva `DAHZWbzR63g`, sobretudo página 9. Registradas divergências de preços, proposta do mapa interativo, processo de 90 dias e protocolo ChatGPT/Claude. **Nenhuma alteração de código de produção nesta etapa.** Conferir o PR desta documentação para identificação do commit e aprovação.

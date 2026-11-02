@@ -2,6 +2,8 @@
 
 **Data:** 01/11/2026  
 **Alvo auditado:** `index.html` na `main`, conforme consulta ao GitHub (blob `7f5d3c157d0f38ef1701b86e98b14aebbfe26395`), e documentos comerciais do Canva.  
+> **Atualização 02/11/2026 (Claude Code):** auditoria visual em navegador, sistema de design e protótipo isolado registrados nas seções I a L, ao final. O protótipo está em `prototipo/index.html`, na branch `design/prototipo-esclarecimento`. **O `index.html` principal e a produção não foram alterados.**
+
 **Limite da auditoria:** inspeção **estática do código e da proposta**. A visualização remota da URL de produção não foi capturada nesta rodada; **não afirmar que houve teste visual, responsivo real, performance, teclado ou click-through no navegador**. Esses testes são tarefas do Claude com acesso ao ambiente de preview.
 
 ## A. Finalidade do redesign
@@ -160,9 +162,96 @@ Concluir com alinhamento de escopo, aprovação da produção externa, escolha d
 ## H. Pendente antes de declarar concluído
 
 1. **Contrato** mencionado pelo responsável, ainda não inspecionado aqui.
-2. Arquivo original de logo disponibilizado ao **ambiente do Claude**, além da imagem vista nesta conversa.
+2. Arquivo original de logo disponibilizado ao **ambiente do Claude**, além da imagem vista nesta conversa. **Em 02/11/2026 continua ausente** do repositório e do Codespace.
 3. Confirmação comercial das quantidades exatas de peças/vídeos, bônus e responsabilidades de painel/rebranding.
-4. Screenshots e inspeção visual do site ao vivo, que não foram realizados nesta auditoria estática.
+4. ~~Screenshots e inspeção visual do site ao vivo.~~ **Feito em 02/11/2026** (seção I).
 5. Aprovação do protótipo e da versão final para merge/publicação.
+6. **Gestão de Meta Ads na Presença Ampliada:** o texto do Canva registrado na seção 3 do estado do projeto não lista "Meta Ads" entre os itens da Presença Ampliada, embora o Econômico e o Essencial listem. O protótipo reproduz a lista como registrada; confirmar se é omissão do texto extraído.
+7. **Prazo de 48 horas úteis do bônus:** consta no `AGENTS.md`, mas não na conferência do Canva. O protótipo não o cita até confirmação.
 
-**Status:** auditoria estática e brief de execução. **Não representa redesign implementado ou deploy verificado.**
+## I. Auditoria visual do HTML atual (02/11/2026, Claude Code)
+
+**Alvo:** `index.html` da branch `docs/alinhamento-chatgpt-claude-20261101` (igual ao da `main` após o merge do PR #1), servido localmente e aberto no Chromium headless em **1440×900** e **390×844**. Capturas: `docs/capturas/antes-1440x900.jpg` e `docs/capturas/antes-390x844.jpg`.
+
+**Skills usadas nesta sessão** (instaladas no ambiente e lidas antes do trabalho): `design:design-critique`, `design:accessibility-review`, `design:ux-copy` e `design:design-system`. **Não há skill específica de animação ou de testes de frontend instalada.** Os testes foram feitos com Playwright 1.49.1 + Chromium, instalados só na pasta temporária da sessão, **sem dependência adicionada ao repositório**.
+
+| Achado | Evidência | Severidade |
+| --- | --- | --- |
+| Primeira informação concreta é um preço divergente do Canva | Cartão do hero: "A partir de R$ 1.100" | 🔴 Crítico |
+| A primeira tela não diz quem faz o marketing e quem fecha as vendas | Hero com pergunta genérica "O que a Real Polar ganha" | 🔴 Crítico |
+| Conteúdo longo e linear | ~1.350 palavras; 6,4 telas no desktop e 12,9 no celular; no celular, processo começa na tela 6,6 e dúvidas na 9,2 | 🟡 Moderado |
+| Navegação some no celular | Em 390px restam a marca e o botão "Imprimir / PDF" | 🟡 Moderado |
+| Alvos de toque menores que 44px | 12 no desktop e 7 no celular (links do menu, filtros do FAQ) | 🟡 Moderado |
+| Sem mapa de caminhos, cronograma de 90 dias, funil de métricas e fluxo do audiovisual | Nenhum componente equivalente; 0 `@keyframes` | 🟡 Moderado |
+| Funcionando | Sem erros de console; sem rolagem horizontal; FAQ, busca, filtros, simulador, copiar e impressão funcionais (testes do PR #1) | ✅ |
+
+**Confirmação dos achados estáticos (seção B):** todos confirmados no navegador. Adicionados: a navegação ausente no celular e os alvos de toque pequenos.
+
+## J. Sistema de design do protótipo
+
+Tokens derivados do CSS existente e da direção da seção E. **Não são hex oficiais da marca**; substituir quando houver identidade aprovada.
+
+| Grupo | Tokens |
+| --- | --- |
+| Azul-marinho | `--navy-950 #08192a`, `--navy-900 #0c2235`, `--navy-800 #123049`, `--navy-700 #1b4260` |
+| Prata e cinzas | `--silver-50 #f5f7f9` a `--silver-700 #4a5a66` |
+| Azul frio (destaque) | `--glacial-300 #9fe0ea`, `--glacial-400 #6fcbdb` (sobre fundo escuro), `--glacial-600 #14708a` (sobre fundo claro) |
+| Responsabilidade | Marketing = azul frio (`--mkt`); Real Polar = azul-marinho (`--rp`); compartilhado = os dois |
+| Tipografia | Fonte do sistema; títulos 28 a 56px com `clamp`; corpo 15 a 18px; rótulos em caixa alta 12px |
+| Movimento | `--dur .32s`, `--dur-fast .16s`, curva `cubic-bezier(.2,.7,.2,1)`; tudo desligado com `prefers-reduced-motion` |
+| Alvos | Mínimo de 44px em links, botões, abas e campos |
+
+| Componente | Uso | Acessibilidade |
+| --- | --- | --- |
+| Dois polos | Hero: Equipe de marketing ↔ Real Polar, com conexão animada nos dois sentidos | Texto alternativo descrevendo a troca de informações |
+| Mapa de caminhos | Perguntas (`aria-pressed`) → etapas numeradas ligadas por linha que acende até a etapa ativa → painel com O que fazemos / Por que / Responsável / O que medimos | `aria-current="step"`, setas do teclado, painel `aria-live`, botão "Ver próximo passo". No celular o painel aparece logo abaixo da etapa ativa |
+| Cronograma 90 dias | Abas Mês 1/2/3 com barra de progresso; Entregamos / Aprendemos / Próxima decisão | `role="tablist"`, setas, Home/End |
+| Funil de métricas | 6 etapas clicáveis, cores separando indicador de marketing e resultado comercial | Botões `aria-pressed`, painel `aria-live` |
+| Comparador de verba | Orçamento menor ↔ maior: quantidade de testes simultâneos (ilustrativo, sem números) | Botões `aria-pressed`, texto lido por leitor de tela |
+| Trilha do audiovisual | 5 passos com responsável + abas dos 4 serviços externos | Abas verticais acessíveis |
+| Planos e simulador | Valores do Canva; gestão, verba e captação em linhas separadas | Rótulos em todos os campos |
+
+**Wireframe da ordem implementada** (desktop; no celular tudo vira uma coluna):
+
+```
+[faixa: protótipo para revisão interna]
+[REAL POLAR]                  Dúvidas · 90 dias · Métricas · Anúncios · Audiovisual · Planos
+01 HERO       Pergunta principal
+              [Equipe de marketing] ⇄ [Real Polar]
+02 CAMINHOS   (pergunta)(pergunta)(pergunta)
+              ① ─ ② ─ ③ … ⑧          | Etapa n de N · responsável
+              linha acende até a ativa | O que fazemos / Por quê / Quem / Medimos
+                                       | [Etapa anterior] [Ver próximo passo]
+03 90 DIAS    [Mês 1][Mês 2][Mês 3]  ▬▬▬▬▬▬▬░░░
+              Entregamos | Aprendemos | Próxima decisão
+04 MÉTRICAS   funil (marketing ▸ fronteira ▸ Real Polar) | painel da métrica
+05 VERBA      leilão em 2 parágrafos | [menor|maior] → barras de testes
+06 AUDIOVIS.  5 passos com responsável → abas dos 4 serviços externos
+07 PLANOS     3 cartões (gestão / verba / captação) → simulador → 4 perguntas
+08 PRÓXIMO    5 decisões de alinhamento → [Copiar resumo] [Imprimir]
+```
+
+## K. Protótipo implementado
+
+- **Arquivo:** `prototipo/index.html`, HTML/CSS/JS nativos, sem dependências externas, com `noindex`. Faixa no topo identifica a página como protótipo.
+- **Conteúdo comercial:** somente o registrado na seção 3 de `docs/ESTADO_DO_PROJETO.md`: Econômico R$ 1.280, Essencial R$ 2.100, Presença Ampliada R$ 3.200, captação de referência R$ 1.200/diária sujeita a cotação, Meta Ads à parte (referência a partir de R$ 15/dia) e período mínimo de três meses. Google Meu Negócio, SEO, rebranding e painel interno aparecem nos planos em que o Canva os cita; painel, rebranding e bônus estão marcados como "a definir em contrato". **Não aparecem** quantidades de artes/vídeos, o prazo de 48 horas do bônus nem valores antigos do HTML.
+- **Canva:** não acessível nesta sessão (o link redireciona para uma página do Canva que responde 403; o conector do Canva exige autorização). O conteúdo depende da conferência registrada no estado do projeto em 01/11/2026.
+- **Logo:** não há arquivo da logo no repositório nem no Codespace. O protótipo usa a marca em texto "REAL POLAR", sem símbolo substituto.
+
+## L. Testes do protótipo (02/11/2026)
+
+Playwright + Chromium em 1440×900 e 390×844, servidor local e porta 5500 do Codespaces. **48 verificações automáticas, todas aprovadas na última execução:**
+
+- Sem rolagem horizontal e sem erros de console nas duas larguras.
+- Mapa: as 18 etapas dos 3 caminhos clicadas, cada uma com os 4 campos preenchidos; "Ver próximo passo" percorre até o fim e volta; linhas acendem até a etapa ativa; setas do teclado navegam; no celular o painel abre sob a etapa ativa.
+- Abas de 90 dias (clique, setas, End) e 4 abas do audiovisual; funil com 6 etapas; comparador de verba (2 × 4 testes).
+- Simulador: 1.280 + 31 × 20 + 1 × 1.200 = R$ 3.100,00 com dias limitados a 31; vazio e negativo contam como zero; 3.200 + 30 × 15 = R$ 3.650,00.
+- Copiar resumo, FAQ, impressão/PDF (lista as 18 etapas e mostra todos os meses e serviços).
+- `prefers-reduced-motion`: sem transições nem animações, conteúdo visível, painel troca imediatamente.
+- Contraste ≥ 4,5:1 (≥ 3:1 em texto grande) e alvos de toque ≥ 44px.
+- Conferência textual: valores do Canva presentes; nenhum valor antigo; nenhuma quantidade ou prazo não confirmado; sem promessa de resultado nem condição contratual inventada.
+
+**Defeitos encontrados e corrigidos durante os testes:** botão "Imprimir" do fechamento com fundo cinza padrão do navegador (texto branco ilegível); menu do celular com os primeiros itens cortados e sem rolagem; esmaecimento escondendo "Planos" no desktop; observações dos planos quebrando em coluna separada; área de toque da marca com 24px.
+
+**Não testado:** leitores de tela reais (VoiceOver/NVDA), zoom de 200% e navegadores além do Chromium.
+
