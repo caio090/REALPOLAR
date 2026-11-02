@@ -324,3 +324,77 @@ Playwright + Chromium, em **1440×900, 768×1024 e 390×844**, mais um contexto 
 **Testes:** a bateria completa passou de 111 para **123 verificações, todas aprovadas** nas larguras 1440, 768 e 390 e com movimento reduzido. Novas verificações: entrada animada ao rolar, posição dentro da linha do tempo (14px abaixo dos marcos), faixa alinhada do mês 1 ao mês 3 e concluída, aviso visível em qualquer mês, impressão, ausência de animação com movimento reduzido. Conferência textual: nenhuma frase do tipo "só após 90 dias" e nenhuma quantidade de conversões.
 
 **Origem do conteúdo:** o foco de cada plano e o termo "prospecção" no Essencial vêm do pedido do responsável em 02/11/2026, não do texto registrado do Canva (seção 3 do estado do projeto). Conferir com o contrato.
+
+## N. Terceira rodada: revisão comercial definitiva (02/11/2026)
+
+**Problema apontado pelo responsável:** a apresentação explicava demais o funcionamento do marketing e não deixava claro o que o cliente está comprando. **Medição antes da mudança** (Chromium, movimento reduzido): o primeiro preço aparecia na **tela 8,0** no desktop e na **tela 11,3** no celular; havia 11 menções à operação da Real Polar (visita técnica, orçamento, negociação, fechamento) e 4 mapas de jornada antes dos planos.
+
+**Skills usadas:** `design:design-critique`, `design:ux-copy`, `design:design-system` e `design:accessibility-review` (instaladas e lidas na sessão). Não há skill de motion nem de testes de frontend; testes com Playwright + Chromium fora do repositório.
+
+### N.1 Nova estrutura
+
+| # | Seção (`id`) | Conteúdo |
+| --- | --- | --- |
+| 1 | Abertura (`inicio`) | "O marketing da Real Polar, sob nossa gestão." + subtítulo + botões "Ver os planos" / "Conhecer os serviços" + os três preços clicáveis |
+| 2 | Planos (`planos`) | 3 cartões com foco, serviços com nomes padronizados, limites; Presença Ampliada em destaque ("Mais completo"); faixa "Fora da mensalidade" |
+| 3 | Serviços (`servicos`) | Mapa mental com nó central e 9 ramos + seletor de plano |
+| 4 | Execução (`execucao`) | 4 etapas conectadas: planejamento, produção, publicação e gestão, análise e ajustes |
+| 5 | Audiovisual (`audiovisual`) | Fluxo de 5 passos, 5 pontos curtos e referência de R$ 1.200/diária |
+| 6 | 90 dias (`noventa`) | Estruturar, testar, avaliar (uma frase cada) + **aviso de metas de conversão preservado** |
+| 7 | Acompanhamento (`acompanhamento`) | Seletor Posicionamento / Prospecção / Resultados comerciais |
+| 8 | Investimento (`investimento`) | Simulador com 3 grupos separados + 6 perguntas rápidas |
+| 9 | Próximo passo (`proximo`) | 5 passos para contratar, copiar resumo, imprimir |
+
+**Resultado:** primeiro cartão de plano na **tela 2,2** (desktop e celular); página com 9,0 telas no desktop e 13,9 no celular.
+
+### N.2 O que foi removido
+
+- Título abstrato "Quem cuida de encontrar o próximo projeto…" e a comparação de responsabilidades na abertura.
+- Os 4 mapas de jornada (atrair clientes, por que marketing em duas trilhas, por que 90 dias, como medir) e o motor de roteiro em trilha.
+- Explicações da operação da Real Polar. Ficou só a frase comercial "A gestão de marketing não inclui atendimento comercial, elaboração de orçamentos técnicos ou fechamento de contratos", na faixa "Fora da mensalidade" e nas perguntas rápidas.
+- A pergunta duplicada "Por que não definimos metas fixas nos primeiros três meses?".
+- O funil de 6 etapas e a seção separada de verba (a verba agora está explicada no simulador).
+- As abas mensais dos 90 dias e as abas de profissionais do audiovisual.
+- Os rótulos repetidos "O que fazemos / Por que fazemos / Quem é responsável / O que medimos".
+
+### N.3 Mapa mental de serviços
+
+- Nó central "Nossa gestão de marketing" e 9 ramos: Posicionamento, Redes sociais, Conteúdo e design, Roteiro e edição, Anúncios Meta Ads, Presença no Google, Análise e relatórios, Identidade visual e Estrutura digital (as duas últimas com "Quando contemplada").
+- Desktop (largura ≥ 760px): disposição radial com curvas SVG do centro até cada ramo. Tablet e celular: lista com tronco à esquerda e ramificações; o detalhe abre logo abaixo do serviço tocado.
+- Ao tocar em um serviço: ramo destacado, ligação acesa, nome comercial da entrega, frase curta, limite (quando há) e disponibilidade por plano.
+- Seletor "Todos os serviços / Econômico / Essencial / Presença Ampliada": cada ramo recebe um estado, entre **Incluído**, **Versão básica**, **A confirmar** (borda tracejada laranja) e **Não listado** (fundo cinza, borda tracejada, ligação apagada). A descrição do plano aparece acima do mapa.
+- Os botões "Ver no mapa de serviços" dos cartões abrem o mapa já filtrado pelo plano.
+- Animação: as ligações são desenhadas do centro para fora, em sequência, quando o mapa entra na tela. Com movimento reduzido, aparecem prontas.
+- Impressão: matriz de 9 serviços × 3 planos.
+
+| Serviço | Econômico | Essencial | Presença Ampliada |
+| --- | --- | --- | --- |
+| Estratégia de posicionamento | Versão básica (foco do plano, formato enxuto) | Incluído | Incluído |
+| Gestão do perfil e das publicações | Incluído | Incluído | Incluído |
+| Artes com design profissional | Versão básica (peças com apoio de IA e orientação da equipe) | Incluído | Incluído + bônus de artes extras |
+| Vídeos com roteiro e edição profissional | Não listado | Incluído | Incluído |
+| Gestão de anúncios Meta Ads | Versão básica (foco compatível com a proposta enxuta) | Incluído | **A confirmar** |
+| Google Meu Negócio e SEO | Não listado | Versão básica (revisão básica do Google Meu Negócio) | Incluído (gestão do perfil e SEO) |
+| Análise e relatórios | Não listado | Relatório mensal | Incluído; **periodicidade a confirmar** |
+| Rebranding da identidade da marca | Não listado | Não listado | Incluído (começa com briefing de identidade) |
+| Painel central interno no site | Não listado | Não listado | Incluído (funcionalidades e prazo em contrato) |
+
+"Não listado" significa que o item não aparece na lista do plano, sem afirmar proibição contratual.
+
+### N.4 Testes (114 verificações automáticas, todas aprovadas)
+
+Larguras 1440, 768 e 390, mais um contexto com movimento reduzido:
+
+- Ordem comercial das seções; preços na abertura; planos na tela 2,2.
+- Mapa: 9 ramos ligados ao centro por SVG, sem sobreposição; 9 serviços clicados com destaque, ligação acesa e disponibilidade; estados por plano conferidos um a um nos três planos; esmaecimento e conexões apagadas; botão do cartão abre o mapa filtrado; setas do teclado.
+- Execução e 90 dias revelados ao rolar; aviso de conversão com o texto exato e a faixa animada.
+- Acompanhamento por objetivo; menu com a seção atual; barra de progresso.
+- Simulador: botões de plano ↔ cartões, cálculos (3.650, 3.100 e 1.280 nos casos de borda), destaque na mudança, rótulo "Investimento estimado no período".
+- Resumo copiado (planos, "a confirmar", fora da mensalidade), perguntas rápidas, impressão com matriz de serviços.
+- Sem rolagem horizontal e sem erros de console; alvos ≥ 44px; contraste ≥ 4,5:1, inclusive nos serviços "Não listado" (6,3:1).
+
+**Conferência textual:** as 10 perguntas do item 16 do briefing têm resposta localizável na página. Confirmados ainda: nenhum valor antigo, nenhuma promessa, nenhum número fictício, nomenclatura consistente entre os cartões, sem Canva, LKT ou "capta".
+
+**Defeitos encontrados e corrigidos:** resumo com texto interno no item pendente; serviços "Não listado" com contraste de 2,8:1 (a opacidade foi trocada por fundo cinza); abertura longa demais no celular (os planos estavam na tela 3,7); linha da execução passando da última etapa.
+
+**Não testado:** leitores de tela reais, zoom de 200%, Safari e Firefox.
