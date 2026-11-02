@@ -1,7 +1,7 @@
 # REAL POLAR | Estado do projeto e alinhamento entre agentes
 
 > Atualizado em **01/11/2026**. Documento de trabalho compartilhado para ChatGPT, Claude/Codespaces e colaboradores.
-> **Leia junto com `AGENTS.md` antes de editar.** Este registro distingue a proposta, o conceito visual e o que existe de verdade no código.
+> **Leia junto com `AGENTS.md`, `CLAUDE.md` e `docs/AUDITORIA_DESIGN_REALPOLAR.md` antes de editar.** Este registro distingue a proposta, o conceito visual e o que existe de verdade no código.
 > **Status deste documento:** alinhamento/documentação; nenhuma mudança de HTML ou publicação de produção foi feita por esta revisão.
 
 ## 1. Objetivo atual, em uma frase
@@ -96,8 +96,18 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 | Correção de preços no HTML | **Pendente**, não confundir com esta correção documental |
 | Rebranding e painel interno mencionados no Canva | **Itens comerciais a detalhar/validar**, não sistemas implantados |
 
-## 7. Histórico de alterações
+## 7. Auditoria e execução de design no Claude
 
+- **Claude Code:** `CLAUDE.md`, na raiz, contém instruções persistentes que referenciam as mesmas regras, proposta e estado do projeto.
+- **Auditoria/brief:** `docs/AUDITORIA_DESIGN_REALPOLAR.md` registra achados confirmados no código, o que não está codado, recomendações P0/P1/P2, direção visual e roteiro de execução/validação.
+- **Inventário de skills:** ao iniciar no Claude, verificar as skills e plugins realmente disponíveis para frontend, UI, UX, motion, acessibilidade e design QA; ler o que for pertinente antes de executar. **Nenhuma skill do ambiente do Claude foi executada ou verificada por esta revisão documental.**
+- **Limite:** auditoria **estática de HTML e documentação**, sem screenshots do site renderizado nesta rodada. O protótipo visual e os testes são **tarefas futuras**; sem merge/deploy autorizado.
+- **Logo:** a imagem RP azul-marinho/prateada foi inspecionada na conversa, mas o asset não foi incorporado ao código do repositório nesta rodada.
+- **Ponto de entrada para Claude:** ler `CLAUDE.md`, depois `docs/AUDITORIA_DESIGN_REALPOLAR.md` (seção “Brief de execução para o Claude”).
+
+## 8. Histórico de alterações
+
+- **01/11/2026 | Preparação para auditoria de design Claude:** criados `CLAUDE.md` e `docs/AUDITORIA_DESIGN_REALPOLAR.md`; auditados estaticamente os componentes do `index.html` (hero, 3 planos, processo em 5 etapas, 15 FAQs, filtros e simulador). Registradas lacunas: mapa clicável, timeline 30/60/90 e aplicação da logo. **Nenhum HTML modificado; sem screenshot/teste visual/deploy nesta etapa.** PR #2 mantém a revisão apenas documental.
 - **01/11/2026 | Documentação de alinhamento:** leitura do `AGENTS.md`, `README.md` e `index.html`; conferência do Canva `DAHZWbzR63g`, sobretudo página 9. Registradas divergências de preços, proposta do mapa interativo, processo de 90 dias e protocolo ChatGPT/Claude. **Nenhuma alteração de código de produção nesta etapa.** Conferir o PR desta documentação para identificação do commit e aprovação.
 
 > Princípio final: **proposta é o combinado, conceito é o planejado, código é o implementado e deploy é o publicado. Nunca apresentar um como se fosse outro.**
