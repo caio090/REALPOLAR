@@ -1,0 +1,6 @@
+# Documentos internos ficam só no GitHub, fora do site publicado
+AGENTS.md
+CLAUDE.md
+README.md
+docs/
+.devcontainer/

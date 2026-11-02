@@ -73,7 +73,7 @@ A comunicação deve:
 
 A referência de R$ 1.200/diária **não é preço fechado nem mensalidade fixa**. O Canva informa totais ilustrativos de R$ 3.300 e R$ 4.400 para Essencial e Ampliado quando se adiciona uma diária; mídia paga continua à parte.
 
-**Atenção: a versão de `index.html` inspecionada em 01/11/2026 ainda mostrava Econômico R$ 1.100, Essencial R$ 1.800, Ampliado R$ 3.200 e outro valor de captação. Isso é uma divergência pendente, não atualização publicada.** A proposta Canva lista revisão básica do Google Meu Negócio no Essencial e rebranding, gestão do Google Meu Negócio, SEO e painel central interno no Ampliado. Não presumir que quantidades e condições específicas do HTML estão comprovadas no Canva. Contrato formal, quando anexado, deve ser lido e confrontado antes da correção completa. **Não desenvolver painel/rebranding automaticamente porque são citados na proposta.**
+**Histórico: a versão de `index.html` inspecionada em 01/11/2026 mostrava Econômico R$ 1.100, Essencial R$ 1.800, Ampliado R$ 3.200 e outro valor de captação. Em 02/11/2026, com aprovação do responsável, a página principal passou a ser a versão V5 (R$ 1.280 / R$ 2.100 / R$ 3.200).** A proposta Canva lista revisão básica do Google Meu Negócio no Essencial e rebranding, gestão do Google Meu Negócio, SEO e painel central interno no Ampliado. Não presumir que quantidades e condições específicas do HTML estão comprovadas no Canva. Contrato formal, quando anexado, deve ser lido e confrontado antes da correção completa. **Não desenvolver painel/rebranding automaticamente porque são citados na proposta.**
 
 #### Condições que precisam estar claras
 

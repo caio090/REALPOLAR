@@ -87,14 +87,14 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 
 | Item | Situação em 01/11/2026 |
 | --- | --- |
-| HTML interativo com planos/FAQ/simulador | **Implementado na `main`** (inclui o PR #1, já mesclado), mas com divergências comerciais versus Canva |
+| HTML interativo com planos/FAQ/simulador | **V5 publicada como página principal em 02/11/2026** (aprovação do responsável); a página antiga fica no histórico do git |
 | Site do cliente em Vercel | **Existente** em https://realpolar-proposta.vercel.app/; verificar deployment e commit antes de afirmar versão em produção |
 | Apresentação comercial (protótipo) | **8ª rodada (V5, mobile-first), codada e testada** sobre a V4 em `prototipo/index.html`: comparativo como fonte única de 18 itens com conteúdo próprio por plano, pop-up explicador por entregável, cartões e mapa gerados do comparativo, audiovisual, 90 dias, acompanhamento e simulador. Aguardando aprovação; não publicado na produção |
 | Fluxo dos primeiros 90 dias | **Codado e testado em protótipo**, como marco de avaliação, sem meta fixa de leads |
 | Acompanhamento por objetivo e simulador com custos separados | **Codados e testados em protótipo** (3ª rodada) |
 | Contrato a anexar | **Pendente de leitura e validação** |
 | Arte/logo oficial | **Recebida em 02/11/2026** e incorporada ao protótipo em `prototipo/assets/` (original preservado). Página principal não alterada |
-| Correção de preços no HTML | **Pendente no `index.html` principal.** O protótipo já usa os valores do Canva (R$ 1.280 / 2.100 / 3.200 e diária de referência R$ 1.200) |
+| Correção de preços no HTML | **Feita com a publicação da V5** (R$ 1.280 / 2.100 / 3.200 e diária de referência R$ 1.200) |
 | Rebranding e painel interno mencionados no Canva | **Itens comerciais a detalhar/validar**, não sistemas implantados |
 
 ## 7. Auditoria e execução de design no Claude
@@ -108,6 +108,15 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 - **Ponto de entrada para Claude:** ler `CLAUDE.md`, depois `docs/AUDITORIA_DESIGN_REALPOLAR.md` (seção “Brief de execução para o Claude”).
 
 ## 8. Histórico de alterações
+
+- **02/11/2026 | Publicação da V5 como página principal (Claude Code):** **decidido pelo responsável:** a versão nova substitui a antiga na raiz, e os documentos internos ficam fora do site. **Motivo:** a produção mostrava a página antiga (R$ 1.100 / R$ 1.800 / R$ 3.200), enquanto a prévia tinha a V5 (R$ 1.280 / R$ 2.100 / R$ 3.200); havia duas versões com preços conflitantes. Além disso, `/AGENTS.md` estava acessível no site. **Codado** na branch `release/proposta-v5`:
+  - `prototipo/index.html` passou a ser `index.html`, e `prototipo/assets/` passou a ser `assets/`;
+  - saíram a faixa "Ambiente de teste" e o rodapé "Protótipo em revisão";
+  - entraram as tags de compartilhamento (og) e a cor de tema da página antiga;
+  - o `noindex` foi mantido, como na página antiga;
+  - o `.vercelignore` tira `AGENTS.md`, `CLAUDE.md`, `README.md`, `docs/` e `.devcontainer/` do site publicado.
+
+  **Testado:** regressão 289/289 e V5 199/199 na raiz. **Pendências comerciais:** as mesmas da V4 (contrato, fichas escritas por Claude, Meta Ads e relatórios do Ampliado).
 
 - **02/11/2026 | V5: adaptação mobile-first (Claude Code):** base `1cec07b`. Briefing recebido **cortado no capítulo 22** (critérios de 768×1024). **Auditado antes** em 8 tamanhos; 12 problemas classificados P0, P1 e P2 (auditoria, seção S). **Codado** em `prototipo/index.html`, só em CSS, HTML e JS de interface:
   - sem rolagem lateral em 320 px;
