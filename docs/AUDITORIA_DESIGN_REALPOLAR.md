@@ -631,3 +631,55 @@ Conferência textual: sem Canva, LKT ou marcadores internos; sem "quinzenal", "i
 - **Logo:** carregada, quadrada, nos tamanhos esperados, com dimensões reservadas.
 
 **Não testado:** leitores de tela reais, iOS e Android físicos, Safari e Firefox, tamanho de fonte ampliado (fontes em px, limitação já registrada) e largura de 320px (só 390).
+
+## R. Sétima rodada: Prompt Mestre V4, conteúdo por plano (02/11/2026)
+
+**Base:** `14d6c41`. A mensagem chegou cortada no capítulo 08, na ficha X04 (limites do Presença Ampliada). As fichas S01–S11 e X00 foram transcritas. X01, X02, X03, X05, X06 e o fim de X04 foram escritos no mesmo padrão, usando apenas fatos já registrados: nenhum preço, quantidade ou entrega novos.
+
+### R.1 Problema confirmado antes da mudança
+
+Nos pop-ups, "O que recebo", "Como funciona" e "Limites e custos" mostravam o mesmo texto nos três planos; só a etiqueta mudava. Um item "Limitado" descrevia o serviço completo e um item "Fora" listava benefícios. Evidência: `docs/capturas/antes-r7-14d6c41-popup-S01-economico-1440x900.jpg`.
+
+### R.2 O que foi codado (`5ab501b`)
+
+- **Fonte única mantida:** cada linha do comparativo `#cmp` ganhou três blocos `<div data-plan-detail="E|S|A">` com `lead`, `get`, `how` e `lim`. São 18 itens: 11 da mensalidade, mensalidade e edição avulsa, e 5 custos externos. Os blocos aparecem também na página sem JavaScript.
+- **Pop-up:**
+  - O resumo do plano ("No Econômico: Limitado · …") fica abaixo dos botões de plano.
+  - As quatro abas leem o conteúdo do plano escolhido pela função `resolve(id, plano, aba)`.
+  - "O que recebo" não repete o resumo exibido logo acima.
+  - Itens "Fora" e "A confirmar" usam marcador neutro e frases de ausência.
+  - As hipóteses do painel aparecem só no Presença Ampliada.
+  - "Comparar planos" mostra a etiqueta e a diferença de escopo de cada plano.
+  - Trocar o plano mantém a aba, e trocar a aba ou ir ao próximo serviço mantém o plano.
+- **Cartões dos planos:** itens que não estão incluídos por completo mostram o que muda no plano, não só a etiqueta.
+- **Audiovisual:**
+  - A frase única sobre edição foi trocada por duas: Econômico com edição avulsa a R$ 180 por vídeo; Essencial e Presença Ampliada com edição prevista na mensalidade.
+  - Storymaker, drone e piloto, e apresentador ou ator viraram três cartões separados, cada um com pop-up e condições próprias, sem preço fixo.
+  - A faixa de custos externos passou a ter 5 itens.
+- **90 dias:**
+  - Cada mês diz o que fica pronto ao final.
+  - Os focos dos planos viraram texto corrido, sem bordas com aparência de filtro.
+  - No celular, os meses ficam empilhados, ligados por conectores.
+  - O aviso de metas de conversão foi preservado palavra por palavra.
+- **Simulador:** nota "Base: 1 mês de gestão; o período mínimo de contratação é de três meses". O cálculo, o AC16 e a edição avulsa continuam iguais.
+- **Rolagem:** a revelação ficou mais leve (10px, 0,45s), e o movimento reduzido continua respeitado.
+
+### R.3 Testes (289 verificações automáticas, todas aprovadas)
+
+`~/realpolar-qa/t8.js`, derivado de `t7.js`, sem apagar testes anteriores, em 1440, 768 e 390px, mais zoom de 200%, movimento reduzido e página sem JavaScript. Novos nesta rodada:
+
+- **Varredura completa:** nos 18 itens, resumo, "O que recebo", "Como funciona" e "Limites e custos" são diferentes nos 3 planos.
+- **Ausência:** itens "Fora" e "A confirmar" não listam benefícios.
+- **Nada repetido:** "O que recebo" não repete o resumo do plano.
+- **Estado preservado:** a aba se mantém ao trocar o plano, e o plano se mantém ao trocar a aba ou o serviço.
+- **Comparar planos:** mostra 3 resumos diferentes.
+- **Painel:** hipóteses só no Presença Ampliada.
+- **Extras:** 3 extras separados, com pop-ups próprios; a faixa de custos externos tem 5 itens.
+- **Audiovisual:** o texto separa a edição por plano, e a frase antiga não aparece mais.
+- **90 dias:** sem controles; resultado de cada mês; aviso preservado; layout em linha no computador e empilhado no celular.
+- **Simulador:** nota de base de 1 mês. O oráculo de 432 combinações continua aprovado.
+
+Capturas depois: `docs/capturas/depois-r7-*` (pop-up S01 nos 3 planos, extras e 90 dias, em 1440 e 390).
+
+**Não testado:** leitores de tela reais, aparelhos físicos, Safari e Firefox.
+
