@@ -52,8 +52,9 @@ Campos vazios ficam ocultos. Com eles preenchidos, a página mostra quem assina 
 
 A página está publicada na Vercel, no projeto `realpolar-proposta`, em https://realpolar-proposta.vercel.app/.
 
-- Em 02/11/2026 a versão publicada era idêntica ao `index.html` da branch `main` (commit `6e39383`), o que indica deploy automático a cada push na `main`. A configuração do projeto não pôde ser conferida porque ele não pertence ao time Vercel `caio21`, acessível neste ambiente.
-- Por isso, mudanças devem ser feitas em uma branch e revisadas em pull request antes do merge na `main`, que atualiza o site.
+- O repositório está conectado à Vercel (time `caio21`): cada push na `main` atualiza o site, e cada pull request gera um link de prévia, no formato `https://realpolar-proposta-git-<branch>-caio21.vercel.app/`, informado nos checks do PR.
+- Por isso, mudanças devem ser feitas em uma branch e conferidas na prévia do PR antes do merge na `main`.
+- Existe um segundo projeto Vercel ligado ao mesmo repositório, `realpolar` (https://realpolar.vercel.app/), que publica a mesma página. O endereço oficial para o cliente é o do projeto `realpolar-proposta`.
 - A Vercel publica todos os arquivos da raiz. Hoje `AGENTS.md` também fica acessível em `/AGENTS.md`.
 
 > O site é público para quem tem o link. A página tem `noindex` para não aparecer no Google, mas os valores da proposta ficam visíveis para qualquer pessoa com o endereço e, se o repositório for público, também no código.
