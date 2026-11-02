@@ -34,13 +34,14 @@ html:not(.js) .js-only{display:none!important}
 /* Aviso de ambiente de teste (remover ao promover para a página do cliente) */
 .proto-bar{background:#fff7e0;color:#5a4300;font-size:13px;border-bottom:1px solid #f0dfa8}
 .proto-bar .wrap{padding-block:6px}
-.progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:40;pointer-events:none}
+.progress{position:fixed;top:0;left:0;right:0;height:6px;z-index:40;pointer-events:none;background:rgba(18,48,73,.12)}
 .progress span{display:block;height:100%;background:linear-gradient(90deg,var(--glacial-600),var(--glacial-400));transform-origin:0 50%;transform:scaleX(var(--p,0))}
 
 /* Cabeçalho */
 .top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);border-bottom:1px solid var(--silver-200);backdrop-filter:blur(8px)}
 .top .wrap{display:flex;align-items:center;gap:20px;min-height:60px}
-.brand{font-weight:800;letter-spacing:.14em;font-size:15px;color:var(--navy-800);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
+.brand{font-weight:800;letter-spacing:.14em;font-size:15px;color:var(--navy-800);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:10px;min-height:44px}
+.brand img{width:40px;height:40px;border-radius:8px;display:block;flex:0 0 40px}
 .nav{flex:1;overflow-x:auto;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
 .nav ul{display:flex;gap:2px;list-style:none;margin:0 0 0 auto;padding:0;width:max-content}
@@ -94,6 +95,7 @@ h2{font-size:clamp(28px,4vw,42px);max-width:22ch}
 .motion [data-reveal].in{opacity:1;transform:none}
 
 /* 01 Abertura */
+.hero-logo{display:block;width:104px;height:104px;border-radius:22px;margin-bottom:24px;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 14px 34px rgba(0,0,0,.25)}
 .hero{background:radial-gradient(ellipse 70% 60% at 85% 0%,#1d4d6b 0,transparent 60%),var(--navy-900);color:#fff;padding-block:clamp(56px,8vw,96px)}
 .hero h1{font-size:clamp(34px,5.4vw,58px);max-width:16ch}
 .hero .lead{color:#d7e3ea;font-size:clamp(18px,1.9vw,21px)}
@@ -261,6 +263,15 @@ h2{font-size:clamp(28px,4vw,42px);max-width:22ch}
 .total strong.bump{animation:bump .3s var(--ease)}
 @keyframes bump{40%{transform:scale(1.06)}}
 .fine{font-size:13px;color:var(--silver-700);margin:0}
+/* Edição avulsa no Econômico */
+.grp-edit{border-left:3px solid var(--glacial-600);padding-left:14px;margin-left:-17px}
+.grp-edit.show{animation:rise .22s var(--ease)}
+.unitbox{display:flex;flex-direction:column;justify-content:flex-start;gap:2px;padding-top:2px}
+.unitbox span{font-size:14px;font-weight:700}
+.unitbox strong{font-size:18px;color:var(--navy-800);min-height:48px;display:flex;align-items:center}
+.unitbox .zero,.avulsa .lnk{min-height:44px;padding:0;border:0;background:none;color:var(--glacial-600);font-weight:700;font-size:14px;text-decoration:underline;align-self:flex-start}
+.edit-note{margin:16px 0 0;padding:10px 12px;border-radius:10px;background:var(--glacial-50);font-size:14px;color:var(--ink-2)}
+.avulsa{display:block;margin-top:10px;padding-top:10px;border-top:1px dashed var(--silver-300)}
 
 /* Perguntas rápidas */
 .faq{max-width:840px;margin-top:20px;display:grid;gap:10px}
@@ -370,9 +381,13 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
   .nav{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
   .nav ul{padding-right:28px}
   .hero{padding-block:40px 44px}
+  .hero-logo{width:72px;height:72px;border-radius:16px;margin-bottom:18px}
+  .progress{height:5px}
+  .grp-edit{margin-left:0}
+  .brand img{width:34px;height:34px;flex-basis:34px}
   .hero-actions{margin-top:22px}
   .prices{margin-top:22px;gap:6px}
-  .prices a{flex:1 1 100%;flex-direction:row;align-items:center;justify-content:space-between;min-height:48px;padding:6px 14px}
+  .prices a{flex:1 1 100%;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:6px 14px}
   .prices strong{font-size:18px}
   #planos{padding-top:44px}
   .conv-plans{margin-left:0}
@@ -391,7 +406,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
 @media print{
-  .proto-bar,.progress,.top,.hero-actions,.views,.mm,.mm-desc,.plan .acts,#copySummary,#printBtn,.planpick,.row-open,.svc-btn .i,dialog,.outside button,.ref .btns{display:none!important}
+  .proto-bar,.progress,.top,.hero-actions,#editReset,.views,.mm,.mm-desc,.plan .acts,#copySummary,#printBtn,.planpick,.row-open,.svc-btn .i,dialog,.outside button,.ref .btns{display:none!important}
   .js-only{display:none!important}
   .cmp-wrap{display:block!important}
   .js .cmp details,.cmp details{display:block!important}
@@ -415,7 +430,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#inicio">REAL POLAR</a>
+    <a class="brand" href="#inicio"><img src="assets/real-polar-logo-96.png" srcset="assets/real-polar-logo-96.png 1x, assets/real-polar-logo-192.png 2x" width="40" height="40" alt="">REAL POLAR</a>
     <nav class="nav" aria-label="Seções" id="nav">
       <ul>
         <li><a href="#planos">Planos</a></li>
@@ -433,6 +448,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
 <!-- 01 Abertura -->
 <section class="hero" id="inicio" aria-labelledby="t-hero">
   <div class="wrap">
+    <img class="hero-logo" src="assets/real-polar-logo-192.png" srcset="assets/real-polar-logo-192.png 192w, assets/real-polar-logo-512.png 512w" sizes="(max-width:640px) 72px, 104px" width="104" height="104" alt="Logotipo da Real Polar: monograma RP prateado com detalhe azul-claro sobre fundo azul-marinho" data-reveal>
     <h1 id="t-hero" data-reveal>O marketing da Real Polar, sob nossa gestão.</h1>
     <p class="lead" data-reveal style="--d:.08s">Posicionamento, conteúdo, redes sociais e anúncios, com serviços e acompanhamento definidos por plano.</p>
     <div class="hero-actions" data-reveal style="--d:.16s">
@@ -565,7 +581,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
                 <p data-f="ext">Captação presencial, quando necessária: referência de R$ 1.200 por diária, sujeita a cotação.</p>
                 <p data-f="qty">Quantidade de vídeos: definida em contrato.</p>
               </details></th>
-            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído</td>
+            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade<small>Edição avulsa: R$ 180 por vídeo, quando solicitada</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído<small>Sem cobrança por vídeo; quantidade em contrato</small></td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Incluído<small>Sem cobrança por vídeo; quantidade em contrato</small></td>
           </tr>
           <tr data-id="S05" data-node="Anúncios Meta Ads" data-rel="X01">
             <th scope="row"><span class="nm">Gestão de anúncios Meta Ads</span>
@@ -668,6 +684,21 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
               </details></th>
             <td data-plan="Econômico" data-st="incluido" data-src="canva">R$ 1.280/mês</td><td data-plan="Essencial" data-st="incluido" data-src="canva">R$ 2.100/mês</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">R$ 3.200/mês</td>
           </tr>
+          <tr data-id="X04" data-rel="X02">
+            <th scope="row"><span class="nm">Edição de vídeos avulsa</span>
+              <details><summary>Ver explicação</summary>
+                <p data-f="short">No Econômico, cada vídeo solicitado para edição custa R$ 180.</p>
+                <ul data-f="get"><li>Edição de um vídeo a partir de material adequado e alinhado</li><li>Cobrança por unidade, só quando houver pedido</li><li>Sem exigir nova gravação</li></ul>
+                <ol data-f="how"><li>Você informa quantos vídeos quer editar; o simulador calcula R$ 180 por vídeo.</li><li>Usamos material adequado já existente ou captado à parte.</li><li>Editamos e enviamos para aprovação.</li></ol>
+                <p data-f="result">Vídeos editados no Econômico, sem mudar de plano.</p>
+                <ul data-f="limit"><li>Gravação presencial e produções especiais são cobradas à parte.</li><li>Roteiro, conceito ou vídeo criado do zero dependem de avaliação e orçamento.</li><li>Duração, formatos e revisões são alinhados antes da edição.</li></ul>
+                <p data-f="dep">Material com qualidade suficiente e alinhamento prévio do vídeo.</p>
+                <p data-f="ext">R$ 180 por vídeo editado no Econômico. Captação, se necessária, é cotada à parte.</p>
+              </details></th>
+            <td data-plan="Econômico" data-st="opcional" data-src="responsavel">R$ 180 por vídeo<small>Quando solicitada</small></td>
+            <td data-plan="Essencial" data-st="incluido" data-src="canva">Prevista no plano<small>Sem cobrança por vídeo; quantidade em contrato</small></td>
+            <td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">Prevista no plano<small>Sem cobrança por vídeo; quantidade em contrato</small></td>
+          </tr>
         </tbody>
         <tbody data-group="externo">
           <tr class="grp"><th colspan="4" scope="colgroup">Custos externos, fora da mensalidade</th></tr>
@@ -691,9 +722,9 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
                 <ul data-f="get"><li>Pauta e roteiro preparados pela nossa equipe</li><li>Gravação e fotos por profissional contratado</li><li>Edição conforme o plano</li></ul>
                 <ol data-f="how"><li>Identificamos a necessidade e pedimos o orçamento.</li><li>A Real Polar aprova a contratação.</li><li>O profissional realiza a captação e editamos conforme o plano.</li></ol>
                 <p data-f="result">Material próprio para os conteúdos; uma diária pode render conteúdo para mais de um mês.</p>
-                <ul data-f="limit"><li>Eventual, não é cobrança mensal.</li><li>O valor varia conforme duração, deslocamentos, equipamentos, locais e profissionais envolvidos.</li></ul>
+                <ul data-f="limit"><li>Eventual, não é cobrança mensal.</li><li>Captação e edição são etapas distintas: a diária não inclui edição, que depende do plano.</li></ul>
                 <p data-f="dep">Aprovação do orçamento e acesso aos locais.</p>
-                <p data-f="ext">Referência de R$ 1.200 por diária, sujeita a cotação.</p>
+                <p data-f="ext">Referência de R$ 1.200 por diária, sujeita a cotação. Varia conforme duração, deslocamentos, equipamentos, locais e profissionais envolvidos.</p>
               </details></th>
             <td data-plan="Econômico" data-st="opcional" data-src="canva">Opcional<small>Cotação separada</small></td><td data-plan="Essencial" data-st="opcional" data-src="canva">Opcional<small>Referência R$ 1.200/diária</small></td><td data-plan="Presença Ampliada" data-st="opcional" data-src="canva">Opcional<small>Referência R$ 1.200/diária</small></td>
           </tr>
@@ -790,7 +821,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
 <section id="investimento" aria-labelledby="t-inv">
   <div class="wrap">
     <h2 id="t-inv" data-reveal>Simule o investimento</h2>
-    <p class="lead" data-reveal style="--d:.08s">Três valores separados: a mensalidade da gestão, a verba de anúncios e, quando houver, a produção audiovisual externa.</p>
+    <p class="lead" data-reveal style="--d:.08s">Valores separados: a mensalidade da gestão, a verba de anúncios e, quando houver, a produção audiovisual externa. No Econômico, também a edição de vídeos avulsa.</p>
     <div class="sim" data-reveal style="--d:.12s">
       <div>
         <div class="grp">
@@ -802,6 +833,16 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
             <button type="button" data-plan="A" aria-pressed="true">Presença Ampliada<small>R$ 3.200</small></button>
           </div>
         </div>
+        <div class="grp grp-edit" id="econEdit" hidden>
+          <h3>Edição de vídeos <button class="info js-only" type="button" data-open="X04" data-ctx="E" aria-label="Entender a edição de vídeos no Econômico" aria-haspopup="dialog">i</button></h3>
+          <p class="desc">No Econômico, a edição é contratada por vídeo, quando necessária.</p>
+          <div class="row2">
+            <div class="field"><label for="sEditQty">Quantidade de vídeos para editar</label><input id="sEditQty" type="number" inputmode="numeric" min="0" max="50" step="1" value="0" aria-describedby="editUnit editHint"><p class="hint" id="editHint">Zero se não houver edição no período</p></div>
+            <div class="unitbox"><span>Valor por vídeo</span><strong id="editUnit">R$ 180,00 por vídeo</strong><button type="button" class="zero" id="editReset">Zerar vídeos</button></div>
+          </div>
+          <p class="desc">Roteiro, conceito ou produções adicionais, se necessários, sob orçamento.</p>
+        </div>
+        <p class="edit-note" id="editNote">Edição de vídeos prevista no plano, conforme contrato. Sem cobrança por vídeo.</p>
         <div class="grp">
           <h3>Investimento em anúncios <button class="info js-only" type="button" data-open="X01" aria-label="Entender verba de anúncios" aria-haspopup="dialog">i</button></h3>
           <p class="desc">Orçamento de tráfego pago no Instagram e no Facebook, definido pela Real Polar e pago à Meta.</p>
@@ -823,8 +864,10 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
         <div class="line"><span><b>Mensalidade de gestão</b><small id="oPlan">Presença Ampliada</small></span><strong id="oFee">R$ 3.200,00</strong></div>
         <div class="line"><span><b>Investimento em anúncios</b><small id="oAdsDetail">30 dias × R$ 15,00</small></span><strong id="oAds">R$ 450,00</strong></div>
         <div class="line"><span><b>Produção audiovisual externa</b><small id="oShootDetail">Sem captação no período</small></span><strong id="oShoot">R$ 0,00</strong></div>
+        <div class="line" id="oEditLine" hidden><span><b>Edição de vídeos (Econômico)</b><small id="oEditDetail">Nenhum vídeo</small></span><strong id="oEdit">R$ 0,00</strong></div>
         <div class="total"><span>Investimento estimado no período</span><strong id="oTotal">R$ 3.650,00</strong></div>
-        <p class="fine">Estimativa de custos, não previsão de contatos ou vendas. A verba é paga à Meta e a captação, ao profissional contratado.</p>
+        <p class="fine">Estimativa de custos, não previsão de contatos ou vendas. A verba é paga à Meta e a captação, ao profissional contratado. Outros custos externos podem existir, sob orçamento.</p>
+        <p class="sr-only" id="simStatus" aria-live="polite"></p>
       </div>
     </div>
 
@@ -921,7 +964,8 @@ document.querySelectorAll('.plan').forEach(card=>{
   const inc=SV.filter(s=>s.group==='mensalidade'&&INCL(s.p[k].st)),out=SV.filter(s=>s.group==='mensalidade'&&!INCL(s.p[k].st));
   card.querySelector('.svc-list').innerHTML=inc.map(s=>{const c=s.p[k];const extra=c.st!=='incluido'?pill(c.st,c.label):'';
     return `<li><button class="svc-btn" type="button" data-open="${s.id}" data-ctx="${k}" aria-haspopup="dialog"><span class="col"><span class="nm">${esc(s.name)}</span>${extra}</span><span class="i"><span class="sr-only">Ver explicação</span></span></button></li>`}).join('');
-  card.querySelector('.not').innerHTML=out.length?`<b>Não incluído neste plano:</b> ${out.map(s=>esc(s.name)).join('; ')}.`:'<b>Inclui todos os serviços listados</b>, com os detalhes indicados.';
+  card.querySelector('.not').innerHTML=(out.length?`<b>Não incluído neste plano:</b> ${out.map(s=>esc(s.name)).join('; ')}.`:'<b>Inclui todos os serviços listados</b>, com os detalhes indicados.')+
+    (k==='E'?`<span class="avulsa"><b>Edição de vídeos avulsa:</b> R$ 180 por vídeo, quando solicitada. <button type="button" class="lnk" data-open="X04" data-ctx="E" aria-haspopup="dialog">Entender</button></span>`:'');
 });
 $('outside').innerHTML=SV.filter(s=>s.group==='externo').map(s=>`<div class="o"><b>${esc(s.name)}</b>${esc(s.ext)}<br><button type="button" data-open="${s.id}">Ver explicação</button></div>`).join('');
 
@@ -1028,27 +1072,42 @@ document.querySelectorAll('[data-goal]').forEach(b=>b.addEventListener('click',(
 /* ===== Simulador ===== */
 const brl=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
 const FEE={E:1280,S:2100,A:3200};
+const ECON_EDIT_UNIT=180,EDIT_MAX=50; // edição avulsa: decisão do responsável em 02/11/2026, a validar em contrato
 const num=(id,max)=>{const v=Number($(id).value);return Math.max(0,Math.min(max,Number.isFinite(v)?v:0))};
-let lastTotal=null;
-function sim(){const fee=FEE[active],d=num('sDaily',10000),n=num('sDays',31),sh=num('sShoots',10),sp=num('sShootPrice',100000);
-  const ads=d*n,shoot=sh*sp,total=fee+ads+shoot;
-  $('oPlan').textContent=PLAN[active];$('oFee').textContent=brl.format(fee);$('oAds').textContent=brl.format(ads);$('oShoot').textContent=brl.format(shoot);
+const int=(id,max)=>Math.floor(num(id,max));
+/* Fonte única do cálculo: a edição avulsa só entra no Econômico */
+function calc(st){const fee=FEE[st.plan],ads=st.daily*st.days,shoot=st.shoots*st.shootPrice,edit=st.plan==='E'?st.editQty*ECON_EDIT_UNIT:0;return {fee,ads,shoot,edit,total:fee+ads+shoot+edit}}
+window.RealPolarSim={calc,ECON_EDIT_UNIT};
+const readSim=()=>({plan:active,daily:num('sDaily',10000),days:num('sDays',31),shoots:num('sShoots',10),shootPrice:num('sShootPrice',100000),editQty:int('sEditQty',EDIT_MAX)});
+let lastTotal=null,lastPlan=null;
+function sim(){const st=readSim(),r=calc(st),d=st.daily,n=st.days,sh=st.shoots,sp=st.shootPrice,econ=st.plan==='E';
+  $('oPlan').textContent=PLAN[active];$('oFee').textContent=brl.format(r.fee);$('oAds').textContent=brl.format(r.ads);$('oShoot').textContent=brl.format(r.shoot);
   $('oAdsDetail').textContent=`${n} dia${n===1?'':'s'} × ${brl.format(d)}`;
   $('oShootDetail').textContent=sh?`${sh} diária${sh===1?'':'s'} × ${brl.format(sp)}`:'Sem captação no período';
-  const t=$('oTotal');t.textContent=brl.format(total);
+  const grp=$('econEdit');if(grp.hidden===econ){grp.hidden=!econ;if(econ&&motion){grp.classList.remove('show');void grp.offsetWidth;grp.classList.add('show')}}
+  $('editNote').hidden=econ;$('oEditLine').hidden=!econ;
+  $('oEdit').textContent=brl.format(r.edit);$('oEditDetail').textContent=st.editQty?`${st.editQty} vídeo${st.editQty===1?'':'s'} × ${brl.format(ECON_EDIT_UNIT)}`:'Nenhum vídeo';
+  if(lastPlan!==null&&lastPlan!==st.plan)$('simStatus').textContent=econ?`Econômico selecionado. Campo de edição de vídeos disponível: ${st.editQty} vídeo${st.editQty===1?'':'s'}.`:`${PLAN[st.plan]} selecionado. Edição prevista no plano, sem cobrança por vídeo.`;
+  lastPlan=st.plan;
+  const t=$('oTotal'),total=r.total;t.textContent=brl.format(total);
   if(lastTotal!==null&&total!==lastTotal&&motion){t.classList.remove('bump');void t.offsetWidth;t.classList.add('bump')}lastTotal=total;
   document.querySelectorAll('.planpick button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.plan===active)));
   document.querySelectorAll('.plan').forEach(p=>{const on=p.dataset.plan===active;p.classList.toggle('selected',on);p.querySelector('.pick').setAttribute('aria-pressed',String(on))})}
 listeners.push(sim);
 document.querySelectorAll('.planpick button').forEach(b=>b.addEventListener('click',()=>setActive(b.dataset.plan)));
 document.querySelectorAll('[data-pick]').forEach(b=>b.addEventListener('click',()=>{setActive(b.dataset.pick);$('investimento').scrollIntoView({behavior:motion?'smooth':'auto'})}));
-['sDaily','sDays','sShoots','sShootPrice'].forEach(id=>$(id).addEventListener('input',sim));
+['sDaily','sDays','sShoots','sShootPrice','sEditQty'].forEach(id=>$(id).addEventListener('input',sim));
+/* Quantidade de vídeos: inteiro de 0 a 50; vazio, negativo ou fração são corrigidos ao sair do campo, com aviso */
+$('sEditQty').addEventListener('change',function(){const raw=this.value,v=int('sEditQty',EDIT_MAX);const fixed=raw===''||String(v)!==raw;this.value=v;
+  $('editHint').textContent=fixed?`Ajustado para ${v}: use um número inteiro de 0 a ${EDIT_MAX}.`:'Zero se não houver edição no período';sim()});
+$('editReset').addEventListener('click',()=>{$('sEditQty').value=0;$('editHint').textContent='Zero se não houver edição no período';sim();$('sEditQty').focus()});
 setActive('A');
 
 /* ===== Rolagem: progresso, seção ativa e revelação ===== */
 const bar=$('progress');let ticking=false;
-function prog(){const h=document.documentElement.scrollHeight-innerHeight;bar.style.setProperty('--p',h>0?Math.min(1,scrollY/h):0);ticking=false}
-addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(prog)}},{passive:true});prog();
+function prog(){const h=document.documentElement.scrollHeight-innerHeight;bar.style.setProperty('--p',h>0?Math.max(0,Math.min(1,scrollY/h)):0);ticking=false}
+const onScroll=()=>{if(!ticking){ticking=true;requestAnimationFrame(prog)}};
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);new ResizeObserver(onScroll).observe(document.body);prog();
 const links=[...document.querySelectorAll('#nav a')],nav=$('nav');
 if('IntersectionObserver' in window){
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;
@@ -1065,7 +1124,10 @@ addEventListener('afterprint',()=>document.querySelectorAll('.faq details').forE
 $('printBtn').addEventListener('click',()=>window.print());
 $('copySummary').addEventListener('click',async function(){
   const plan=k=>`${PLAN[k].toUpperCase()}: ${brl.format(FEE[k])}/mês\n`+SV.filter(s=>s.group==='mensalidade'&&INCL(s.p[k].st)).map(s=>{const c=s.p[k];return `- ${s.name}${c.st==='incluido'&&!c.note?'':` (${c.label}${c.note?': '+c.note:''})`}`}).join('\n');
-  const txt='REAL POLAR | GESTÃO DE MARKETING\n\n'+KEYS.map(plan).join('\n\n')+'\n\nFORA DA MENSALIDADE:\n'+SV.filter(s=>s.group==='externo').map(s=>`- ${s.name}: ${s.ext}`).join('\n')+'\n- Atendimento comercial, orçamentos técnicos e fechamento de contratos continuam com a Real Polar.\n\nPRIMEIROS 90 DIAS: estruturar, testar, avaliar. A partir do Essencial, metas de conversão desde o início, ajustadas com os testes, sem quantidades prometidas. Período mínimo de três meses; demais condições no contrato.';
+  const st=readSim(),r=calc(st);
+  const simTxt=`SIMULAÇÃO ATUAL (estimativa):\n- Plano: ${PLAN[st.plan]} | Mensalidade de gestão: ${brl.format(r.fee)}\n- Investimento em anúncios: ${st.days} dias × ${brl.format(st.daily)} = ${brl.format(r.ads)}\n- Produção audiovisual externa: ${st.shoots} diária(s) × ${brl.format(st.shootPrice)} = ${brl.format(r.shoot)}\n`+
+    (st.plan==='E'?`- Edição de vídeos (Econômico): ${st.editQty} × ${brl.format(ECON_EDIT_UNIT)} = ${brl.format(r.edit)}\n`:`- Edição de vídeos: prevista no plano, sem cobrança por vídeo\n`)+`- Investimento estimado no período: ${brl.format(r.total)}\n\n`;
+  const txt='REAL POLAR | GESTÃO DE MARKETING\n\n'+simTxt+KEYS.map(plan).join('\n\n')+'\n\nFORA DA MENSALIDADE:\n'+SV.filter(s=>s.group==='externo').map(s=>`- ${s.name}: ${s.ext}`).join('\n')+'\n- Atendimento comercial, orçamentos técnicos e fechamento de contratos continuam com a Real Polar.\n\nPRIMEIROS 90 DIAS: estruturar, testar, avaliar. A partir do Essencial, metas de conversão desde o início, ajustadas com os testes, sem quantidades prometidas. Período mínimo de três meses; demais condições no contrato.';
   const b=this,o=b.textContent;try{await navigator.clipboard.writeText(txt);b.textContent='Resumo copiado'}catch(e){b.textContent='Não foi possível copiar'}setTimeout(()=>b.textContent=o,2400)});
 })();
 </script>
