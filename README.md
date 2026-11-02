@@ -1,6 +1,6 @@
 # Real Polar | Proposta Interativa
 
-> **Trabalho coordenado entre ChatGPT e Claude:** antes de qualquer alteração, leia [AGENTS.md](AGENTS.md) e [docs/ESTADO_DO_PROJETO.md](docs/ESTADO_DO_PROJETO.md). Depois da alteração, atualize o registro de decisões, diferenças entre Canva e código, pendências, testes, branch e PR.
+> **Trabalho coordenado entre ChatGPT e Claude:** antes de qualquer alteração, leia [AGENTS.md](AGENTS.md), [docs/ESTADO_DO_PROJETO.md](docs/ESTADO_DO_PROJETO.md) e [docs/AUDITORIA_DESIGN_REALPOLAR.md](docs/AUDITORIA_DESIGN_REALPOLAR.md). O Claude Code deve iniciar também pelo [CLAUDE.md](CLAUDE.md). Depois da alteração, atualize o registro de decisões, diferenças entre Canva e código, pendências, testes, branch e PR.
 >
 > **Atenção comercial (01/11/2026):** o HTML da `main` ainda apresenta valores diferentes dos verificados na proposta do Canva. O registro de divergências está em `docs/ESTADO_DO_PROJETO.md`. A correção do HTML precisa passar por revisão e prévia antes de usar com o cliente.
 
