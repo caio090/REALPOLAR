@@ -2,7 +2,7 @@
 
 **Data:** 01/11/2026  
 **Alvo auditado:** `index.html` na `main`, conforme consulta ao GitHub (blob `7f5d3c157d0f38ef1701b86e98b14aebbfe26395`), e documentos comerciais do Canva.  
-> **Atualização 02/11/2026 (Claude Code):** auditoria visual em navegador, sistema de design e protótipo isolado registrados nas seções I a L, ao final. O protótipo está em `prototipo/index.html`, na branch `design/prototipo-esclarecimento`. **O `index.html` principal e a produção não foram alterados.**
+> **Atualização 02/11/2026 (Claude Code):** auditoria visual em navegador, sistema de design e protótipo isolado registrados nas seções I a L; **segunda rodada de refinamento (roteiros em SVG, movimento e textos) na seção M**, ao final. O protótipo está em `prototipo/index.html`, na branch `design/prototipo-esclarecimento`. **O `index.html` principal e a produção não foram alterados.**
 
 **Limite da auditoria:** inspeção **estática do código e da proposta**. A visualização remota da URL de produção não foi capturada nesta rodada; **não afirmar que houve teste visual, responsivo real, performance, teclado ou click-through no navegador**. Esses testes são tarefas do Claude com acesso ao ambiente de preview.
 
@@ -254,4 +254,56 @@ Playwright + Chromium em 1440×900 e 390×844, servidor local e porta 5500 do Co
 **Defeitos encontrados e corrigidos durante os testes:** botão "Imprimir" do fechamento com fundo cinza padrão do navegador (texto branco ilegível); menu do celular com os primeiros itens cortados e sem rolagem; esmaecimento escondendo "Planos" no desktop; observações dos planos quebrando em coluna separada; área de toque da marca com 24px.
 
 **Não testado:** leitores de tela reais (VoiceOver/NVDA), zoom de 200% e navegadores além do Chromium.
+
+## M. Segunda rodada: refinamento do protótipo (02/11/2026)
+
+**Pedido:** deixar a apresentação mais visual, curta e guiada pela navegação; animações que acompanhem a rolagem; mapas conectados em vez de listas; sem "Esclarecimentos da proposta", sem Canva e sem "Diagnóstico LKT" na interface. Branch `design/prototipo-esclarecimento`, PR #3. **`index.html` principal e produção não foram alterados.**
+
+**Briefing incompleto:** o texto colado chegou cortado na seção 11 (em "Pode variar conforme: - Des…") e a versão resumida termina em "Serviço…". As seções seguintes, se existiam (provavelmente investimentos/planos e entrega), **não foram lidas**. Os planos foram mantidos como estavam, só com o texto ajustado. A lista de variação da diária usa "deslocamento, profissionais envolvidos e equipamentos", termos já registrados no briefing anterior; **confirmar**.
+
+### M.1 Diagnóstico da primeira versão do protótipo
+
+| Problema | Onde | Mudança |
+| --- | --- | --- |
+| O "mapa" era uma lista numerada com painel lateral | Seção de dúvidas | Roteiro com caminhos SVG reais entre as etapas |
+| Quatro rótulos repetidos em toda etapa (O que fazemos / Por quê / Quem / Medimos) | Painel do mapa | Uma frase contextual + responsável + indicador |
+| Página estática | Todas | Revelação progressiva, barra de progresso, menu com seção ativa, conexões animadas |
+| Termos internos e de ferramenta na interface | Hero, planos, 90 dias | Removidos "Esclarecimentos da proposta", "Canva" e "Diagnóstico LKT" |
+| Três cartões grandes no cronograma | 90 dias | Linha do tempo com 3 marcos e um painel curto por mês |
+| Funil único para qualquer objetivo | Métricas | Seletor de objetivo: Posicionamento, Contatos, Projetos |
+| Verba sem dizer que é tráfego pago | Anúncios | Título e frase dizem Instagram/Facebook e separação da mensalidade |
+| "Profissional em São Paulo capta"; edição podia parecer cobrada à parte | Audiovisual | Fluxo de 6 etapas com responsáveis; edição do plano × produção adicional × terceiros |
+
+### M.2 O que foi implementado
+
+- **Motor de roteiro (`Roadmap`)**, usado nos 4 mapas e no audiovisual. As etapas ficam num grid; os caminhos SVG são calculados a partir da linha e coluna de cada etapa e redesenhados quando a largura muda.
+  - Desktop: percurso em "serpentina" (5 ou 6 por linha). O mapa de duas trilhas mostra marketing em cima e Real Polar embaixo, com ligações tracejadas entre elas.
+  - Celular: uma coluna com a explicação **logo abaixo da etapa tocada**; o mapa de duas trilhas vira duas colunas, com ligações laterais.
+  - Ao clicar: a etapa fica azul-marinho, o caminho de chegada acende, o caminho até a próxima etapa é **desenhado** (traço animado) e a próxima etapa recebe contorno. As etapas anteriores ficam marcadas.
+  - Etapa ativa com `aria-current="step"`, setas do teclado, botões "Etapa anterior" e "Próxima etapa".
+- **Mapas:** 1) atrair clientes (9 etapas, com aviso de que o Econômico tem foco mais restrito e de que Meta Ads entra "quando previsto no plano"); 2) por que marketing (duas trilhas de 5 etapas + 3 ligações reais: projetos viram conteúdo; oportunidades chegam ao atendimento; negociação retorna ao acompanhamento); 3) por que 90 dias (5 decisões, com o mês de cada uma); 4) como medir (6 etapas, com link para a seção de indicadores).
+- **90 dias:** pergunta como título, resposta curta em destaque, linha do tempo com 3 marcos que avança e marca os meses anteriores; por mês, objetivo + ações em etiquetas + aprendizado esperado.
+- **Indicadores:** seletor de 3 objetivos; a cadeia Exposição → Resultado comercial acende só as etapas pertinentes, em sequência; marcação de onde começam os dados da Real Polar; exemplos do briefing (WhatsApp, site, projeto de maior valor) sem números.
+- **Anúncios:** comparação menor × maior investimento com 6 públicos ilustrativos (2 × 5 em teste simultâneo); três pontos por cenário; frase "Investir mais pode ampliar os testes, mas não garante mais vendas"; leilão em uma frase.
+- **Audiovisual:** roteiro de 6 etapas (definição, planejamento, orçamento e aprovação, captação por profissional terceirizado, pós-produção, aprovação e publicação); três faixas que distinguem edição prevista no plano, produções adicionais e serviços de terceiros; 4 profissionais externos opcionais; referência de R$ 1.200 por diária.
+- **Movimento:** revelação progressiva com `IntersectionObserver` (opacidade + 14px, 0,5s, atraso em sequência); barra de progresso de 3px no topo; menu destaca a seção atual; microinterações (pressionar botões, etapas, abas e escolha de plano; total do simulador pulsa quando muda). Sem bloqueio de rolagem, sem bibliotecas.
+- **Movimento reduzido:** sem a classe `motion`, todo o conteúdo aparece já visível; transições e a animação contínua do hero ficam desligadas; os mapas respondem na hora, com a conexão já desenhada.
+- **Planos:** botão "Simular este plano" seleciona o cartão e o simulador; trocar o plano no simulador destaca o cartão. Nova pergunta: "A edição dos vídeos é cobrada à parte?".
+- **Aviso de ambiente de teste:** mantido no topo, marcado com `data-internal`. **Remover ao promover para a página do cliente.**
+
+### M.3 Testes da segunda rodada
+
+Playwright + Chromium, em **1440×900, 768×1024 e 390×844**, mais um contexto com movimento reduzido. **111 verificações automáticas, todas aprovadas na última execução local.** Destaques:
+
+- Geometria: em cada largura, o início e o fim de **todos os caminhos SVG** (4 mapas + audiovisual) encostam nas etapas que eles ligam.
+- As 30 etapas dos 4 mapas clicadas em cada largura: destaque, conexão de saída desenhada e explicação correta; no celular, painel a menos de 40px da etapa tocada.
+- Exemplo do briefing: "Distribuir o conteúdo" desenha a conexão até "Site ou WhatsApp".
+- Barra de progresso (meio da página = 0,50), menu com a seção atual, revelação ao entrar na tela e nenhum conteúdo oculto depois de rolar.
+- 90 dias (clique e teclado, linha em 50% e 100%), indicadores (etapas certas por objetivo), anúncios (2 × 5), planos ↔ simulador, cálculos, copiar, perguntas, impressão (30 etapas + 3 objetivos no PDF).
+- Sem rolagem horizontal, sem erros de console, alvos ≥ 44px, contraste ≥ 4,5:1.
+- Conferência textual: sem Canva, sem "Esclarecimentos da proposta", sem LKT, sem "capta"; valores 1.280 / 2.100 / 3.200 / 1.200 / 15 mantidos; nenhum valor antigo, quantidade não confirmada, promessa ou número fictício.
+
+**Defeitos encontrados e corrigidos nesta rodada:** setas inclinadas e pontas soltas quando etapas da mesma linha tinham alturas diferentes (o motor passou a decidir a direção pela posição no grid, e etapas da mesma linha ficam com a mesma altura); ligações entre trilhas espremidas no celular (vão maior e saída lateral); transição de revelação aparecendo na impressão.
+
+**Não testado:** leitores de tela reais, zoom de 200%, Safari e Firefox.
 

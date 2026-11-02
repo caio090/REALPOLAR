@@ -5,18 +5,17 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="color-scheme" content="light" />
 <meta name="robots" content="noindex,nofollow" />
-<title>Real Polar | Esclarecimentos da proposta (protótipo)</title>
-<meta name="description" content="Protótipo para revisão: como funciona a gestão de marketing proposta à Real Polar, os primeiros 90 dias, as métricas e os custos separados." />
+<title>Real Polar | Como o marketing vai funcionar</title>
+<meta name="description" content="Como a equipe de marketing e a Real Polar trabalham juntas: processo, primeiros 90 dias, indicadores, anúncios, audiovisual e planos." />
 <style>
-/* Tokens: ver docs/AUDITORIA_DESIGN_REALPOLAR.md, seção I */
+/* Tokens: ver docs/AUDITORIA_DESIGN_REALPOLAR.md, seções J e M */
 :root{
   --navy-950:#08192a;--navy-900:#0c2235;--navy-800:#123049;--navy-700:#1b4260;
   --silver-50:#f5f7f9;--silver-100:#eef2f5;--silver-200:#dde5ea;--silver-300:#c3ced6;--silver-500:#7d8d98;--silver-700:#4a5a66;
   --ink:#13212c;--ink-2:#3f505c;
   --glacial-300:#9fe0ea;--glacial-400:#6fcbdb;--glacial-600:#14708a;--glacial-50:#e8f6f9;
-  --mkt:#14708a;--mkt-bg:#e8f6f9;--rp:#1b4260;--rp-bg:#eef2f5;
+  --mkt:#14708a;--mkt-bg:#e8f6f9;--rp:#1b4260;--rp-bg:#eef2f5;--ext:#5b4a8a;--ext-bg:#f1eef8;
   --radius:16px;--radius-sm:10px;
-  --shadow:0 10px 30px rgba(12,34,53,.08);
   --dur:.32s;--dur-fast:.16s;--ease:cubic-bezier(.2,.7,.2,1);
   --gutter:clamp(16px,4vw,40px);
 }
@@ -25,182 +24,230 @@
 html{scroll-behavior:smooth;scroll-padding-top:72px}
 body{margin:0;background:var(--silver-50);color:var(--ink);font:16px/1.6 system-ui,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
 button,input,select{font:inherit;color:inherit}
-button{cursor:pointer}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--glacial-400);outline-offset:3px;border-radius:6px}
 .wrap{max-width:1120px;margin:0 auto;padding-inline:var(--gutter)}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* Faixa de protótipo */
+/* Aviso de ambiente de teste (remover ao promover para a página do cliente) */
 .proto-bar{background:#fff7e0;color:#5a4300;font-size:13px;border-bottom:1px solid #f0dfa8}
-.proto-bar .wrap{padding-block:8px}
+.proto-bar .wrap{padding-block:6px}
+
+/* Progresso de leitura */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:40;pointer-events:none}
+.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--glacial-600),var(--glacial-400));transform-origin:0 50%;transform:scaleX(var(--p,0))}
 
 /* Cabeçalho */
-.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);border-bottom:1px solid var(--silver-200);backdrop-filter:blur(8px)}
+.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);border-bottom:1px solid var(--silver-200);backdrop-filter:blur(8px)}
 .top .wrap{display:flex;align-items:center;gap:20px;min-height:60px}
 .brand{font-weight:800;letter-spacing:.14em;font-size:15px;color:var(--navy-800);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
 .nav{flex:1;overflow-x:auto;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
-.nav ul{display:flex;gap:4px;list-style:none;margin:0 0 0 auto;padding:0;width:max-content}
-.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:999px;font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:none;white-space:nowrap}
+.nav ul{display:flex;gap:2px;list-style:none;margin:0 0 0 auto;padding:0;width:max-content}
+.nav a{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:999px;font-size:14px;font-weight:600;color:var(--ink-2);text-decoration:none;white-space:nowrap;transition:color var(--dur-fast),background var(--dur-fast)}
+.nav a::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:2px;border-radius:2px;background:var(--glacial-600);transform:scaleX(0);transition:transform var(--dur) var(--ease)}
 .nav a:hover{background:var(--silver-100);color:var(--navy-800)}
+.nav a[aria-current="true"]{color:var(--navy-800)}
+.nav a[aria-current="true"]::after{transform:scaleX(1)}
 
-/* Seções */
-section{padding-block:clamp(56px,8vw,96px)}
-.kicker{display:block;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--glacial-600);margin-bottom:10px}
-h1,h2,h3{line-height:1.15;letter-spacing:-.02em;margin:0}
-h2{font-size:clamp(28px,4vw,40px);max-width:22ch}
-.lead{font-size:clamp(16px,1.6vw,18px);color:var(--ink-2);max-width:62ch;margin:14px 0 0}
-.note{font-size:14px;color:var(--ink-2);background:#fff;border:1px solid var(--silver-200);border-left:4px solid var(--glacial-600);border-radius:var(--radius-sm);padding:14px 16px;margin-top:24px;max-width:72ch}
-.note strong{color:var(--ink)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:12px;font-weight:700;font-size:15px;border:1px solid transparent;text-decoration:none;transition:background var(--dur-fast),transform var(--dur-fast)}
+/* Seções e tipografia */
+section{padding-block:clamp(64px,9vw,112px)}
+.alt{background:#fff}
+h1,h2,h3{line-height:1.12;letter-spacing:-.022em;margin:0}
+h2{font-size:clamp(28px,4.2vw,44px);max-width:20ch}
+.lead{font-size:clamp(17px,1.7vw,19px);color:var(--ink-2);max-width:56ch;margin:16px 0 0}
+.lead strong{color:var(--ink)}
+.small{font-size:14px;color:var(--silver-700);margin:12px 0 0;max-width:68ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:12px;font-weight:700;font-size:15px;border:1px solid transparent;text-decoration:none;transition:background var(--dur-fast),transform var(--dur-fast),border-color var(--dur-fast)}
+.btn:active{transform:scale(.97)}
 .btn-accent{background:var(--glacial-400);color:var(--navy-950)}
 .btn-accent:hover{background:var(--glacial-300)}
 .btn-ghost{border-color:rgba(255,255,255,.35);background:transparent;color:#fff}
 .btn-ghost:hover{background:rgba(255,255,255,.08)}
 .btn-line{border-color:var(--silver-300);background:#fff;color:var(--navy-800)}
-.btn-line:hover{background:var(--silver-100)}
+.btn-line:hover{border-color:var(--navy-800)}
+.btn-line:disabled{opacity:.45;cursor:default;transform:none}
 
-/* Etiquetas de responsabilidade */
+/* Etiquetas de responsável */
 .tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;border-radius:999px;padding:4px 10px;white-space:nowrap}
 .tag::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor}
 .tag-mkt{background:var(--mkt-bg);color:var(--mkt)}
 .tag-rp{background:var(--rp-bg);color:var(--rp)}
 .tag-shared{background:linear-gradient(90deg,var(--mkt-bg),var(--rp-bg));color:var(--navy-800)}
+.tag-ext{background:var(--ext-bg);color:var(--ext)}
 
-/* 01 Hero: dois polos */
+/* Seletores (perguntas, objetivos, verba) */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.chip{min-height:48px;padding:10px 18px;border-radius:999px;border:1px solid var(--silver-300);background:#fff;font-weight:700;font-size:15px;text-align:left;transition:background var(--dur-fast),border-color var(--dur-fast),color var(--dur-fast),transform var(--dur-fast)}
+.chip:hover{border-color:var(--glacial-600)}
+.chip:active{transform:scale(.97)}
+.chip[aria-pressed="true"]{background:var(--navy-800);border-color:var(--navy-800);color:#fff}
+
+/* Revelação progressiva: só ativa com JS e sem preferência por movimento reduzido */
+.motion [data-reveal]{opacity:0;transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease);transition-delay:var(--d,0s)}
+.motion [data-reveal].in{opacity:1;transform:none}
+
+/* 01 Hero */
 .hero{background:radial-gradient(ellipse 70% 60% at 85% 0%,#1d4d6b 0,transparent 60%),var(--navy-900);color:#fff;padding-block:clamp(56px,9vw,104px)}
-.hero .kicker{color:var(--glacial-300)}
-.hero h1{font-size:clamp(32px,5.2vw,56px);max-width:20ch}
+.hero h1{font-size:clamp(32px,5.4vw,58px);max-width:19ch}
 .hero .lead{color:#cfdde6}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.poles{display:grid;grid-template-columns:1fr minmax(120px,180px) 1fr;align-items:stretch;gap:0;margin-top:clamp(36px,6vw,56px)}
-.pole{border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:22px;background:rgba(255,255,255,.04)}
-.pole h2{font-size:18px;letter-spacing:0;max-width:none;display:flex;align-items:center;gap:10px}
-.pole ul{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:15px;color:#d7e3ea}
-.pole li{display:flex;gap:10px}
-.pole li::before{content:"";flex:0 0 6px;height:6px;margin-top:.6em;border-radius:50%;background:var(--glacial-400)}
-.pole.rp li::before{background:var(--silver-300)}
-.pole .dot{width:12px;height:12px;border-radius:50%;background:var(--glacial-400)}
-.pole.rp .dot{background:var(--silver-300)}
-.link{display:flex;flex-direction:column;justify-content:center;gap:14px;padding:0 10px;font-size:12px;color:#a9c3d1;text-align:center}
-.link .line{position:relative;height:2px;background:rgba(255,255,255,.18);overflow:hidden}
-.link .line::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--glacial-400),transparent);animation:flow 2.6s linear infinite}
-.link .line.back::after{animation-direction:reverse}
-@keyframes flow{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
-@keyframes flowY{from{transform:translateY(-100%)}to{transform:translateY(100%)}}
+.duo{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(12px,3vw,32px);margin-top:clamp(36px,6vw,56px);max-width:900px}
+.duo h2{font-size:18px;letter-spacing:0;display:flex;align-items:center;gap:10px;max-width:none}
+.duo h2 i{width:12px;height:12px;border-radius:50%;background:var(--glacial-400)}
+.duo .rp h2 i{background:var(--silver-300)}
+.duo p{margin:8px 0 0;color:#cfdde6;font-size:15px}
+.duo-link{width:clamp(60px,10vw,120px);height:40px;overflow:visible}
+.duo-link path{fill:none;stroke:rgba(255,255,255,.25);stroke-width:2}
+.duo-link .dash{stroke:var(--glacial-400);stroke-dasharray:6 10;animation:dash 1.6s linear infinite}
+.duo-link .dash.back{animation-direction:reverse;stroke:var(--silver-300)}
+@keyframes dash{to{stroke-dashoffset:-32}}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
 
-/* 02 Mapa de caminhos */
-.questions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.q{min-height:48px;padding:10px 18px;border-radius:999px;border:1px solid var(--silver-300);background:#fff;font-weight:700;font-size:15px;text-align:left;transition:background var(--dur-fast),border-color var(--dur-fast),color var(--dur-fast)}
-.q:hover{border-color:var(--glacial-600)}
-.q[aria-pressed="true"]{background:var(--navy-800);border-color:var(--navy-800);color:#fff}
-.map{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(20px,4vw,48px);margin-top:28px;align-items:start}
-.map-intro{font-size:15px;color:var(--ink-2);margin:0 0 16px}
-.flow{list-style:none;margin:0;padding:0;counter-reset:step}
-.flow li{position:relative;padding-left:52px;padding-bottom:10px;opacity:0;transform:translateY(6px);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);transition-delay:calc(var(--i) * 55ms)}
-.flow.ready li{opacity:1;transform:none}
-.flow li::before{content:"";position:absolute;left:19px;top:44px;bottom:-2px;width:2px;background:var(--silver-200)}
-.flow li::after{content:"";position:absolute;left:19px;top:44px;bottom:-2px;width:2px;background:var(--glacial-600);transform:scaleY(0);transform-origin:top;transition:transform var(--dur) var(--ease)}
-.flow li.lit::after{transform:scaleY(1)}
-.flow li:last-child::before,.flow li:last-child::after{display:none}
-.node{position:relative;width:100%;display:flex;align-items:center;gap:12px;min-height:48px;padding:8px 14px;border-radius:12px;border:1px solid var(--silver-200);background:#fff;text-align:left;font-weight:700;font-size:15px;transition:border-color var(--dur-fast),box-shadow var(--dur-fast),background var(--dur-fast)}
-.node:hover{border-color:var(--glacial-600)}
-.node .num{position:absolute;left:-52px;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:14px;font-weight:800;background:#fff;border:2px solid var(--silver-300);color:var(--silver-700);transition:background var(--dur-fast),border-color var(--dur-fast),color var(--dur-fast)}
-.node .who{margin-left:auto;width:10px;height:10px;border-radius:50%;flex:0 0 10px}
-.node .who.mkt{background:var(--mkt)}.node .who.rp{background:var(--rp)}.node .who.shared{background:linear-gradient(90deg,var(--mkt) 50%,var(--rp) 50%)}
-.flow li.lit .num{border-color:var(--glacial-600);color:var(--glacial-600)}
-.node[aria-current="step"]{border-color:var(--navy-800);box-shadow:0 0 0 3px var(--glacial-50),var(--shadow)}
-.node[aria-current="step"] .num{background:var(--navy-800);border-color:var(--navy-800);color:#fff}
-.panel{background:#fff;border:1px solid var(--silver-200);border-radius:var(--radius);box-shadow:var(--shadow);padding:clamp(20px,3vw,28px);position:sticky;top:84px}
-.panel-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 12px}
-.panel .count{font-size:13px;font-weight:700;color:var(--silver-700)}
-.panel h3{font-size:clamp(20px,2.4vw,24px);margin-top:10px}
-.panel dl{margin:18px 0 0;display:grid;gap:14px}
-.panel dt{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--silver-700)}
-.panel dd{margin:4px 0 0;font-size:15px;color:var(--ink)}
-.panel-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.panel-body{transition:opacity var(--dur-fast)}
-.panel-body.swap{opacity:0}
-.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+/* 02 Roteiro (mapa conectado) */
+.rm-caption{font-size:16px;color:var(--ink-2);margin:20px 0 0;max-width:62ch;min-height:3.2em}
+.rm-caption strong{color:var(--ink)}
+.rm{margin-top:24px;transition:opacity var(--dur-fast)}
+.rm.swap{opacity:0}
+.rm-stage{position:relative}
+.rm-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.rm-svg .e{fill:none;stroke:var(--silver-300);stroke-width:2}
+.rm-svg .e.link{stroke-dasharray:5 6}
+.rm-svg .o{fill:none;stroke:var(--glacial-600);stroke-width:3;opacity:0;transition:opacity var(--dur-fast)}
+.rm-svg .o.past{opacity:.45}
+.rm-svg .o.in,.rm-svg .o.out{opacity:1}
+.rm-svg .o.out{transition:stroke-dashoffset .5s var(--ease),opacity var(--dur-fast)}
+.rm-nodes{position:relative;list-style:none;margin:0;padding:0;display:grid;gap:56px 40px}
+.rm-nodes > li{display:flex}
+.rm-nodes > li > .rm-node{height:100%}
+.rm-node{position:relative;z-index:1;width:100%;min-height:68px;display:flex;flex-direction:column;justify-content:center;gap:2px;padding:10px 14px 10px 16px;border-radius:14px;background:#fff;border:1.5px solid var(--silver-300);text-align:left;transition:background var(--dur-fast),border-color var(--dur-fast),color var(--dur-fast),box-shadow var(--dur),transform var(--dur-fast)}
+.rm-node:hover{border-color:var(--glacial-600)}
+.rm-node:active{transform:scale(.98)}
+.rm-node .who{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.rm-node .lbl{font-size:15px;font-weight:700;line-height:1.25}
+.rm-node[data-o="mkt"] .who{color:var(--mkt)}
+.rm-node[data-o="rp"] .who{color:var(--rp)}
+.rm-node[data-o="shared"] .who{color:var(--navy-700)}
+.rm-node[data-o="ext"] .who{color:var(--ext)}
+.rm-node[data-o="rp"]{border-left:4px solid var(--rp)}
+.rm-node[data-o="mkt"]{border-left:4px solid var(--mkt)}
+.rm-node[data-o="shared"]{border-left:4px solid var(--glacial-400)}
+.rm-node[data-o="ext"]{border-left:4px solid var(--ext)}
+.rm-node.past{border-color:var(--glacial-600)}
+.rm-node.next{border-color:var(--glacial-600);box-shadow:0 0 0 4px var(--glacial-50)}
+.rm-node[aria-current="step"]{background:var(--navy-800);border-color:var(--navy-800);color:#fff;box-shadow:0 10px 24px rgba(12,34,53,.18)}
+.rm-node[aria-current="step"] .who{color:var(--glacial-300)}
+.rm-detail{margin-top:24px;border-top:2px solid var(--navy-800);padding-top:18px;max-width:760px}
+.rm-detail .step{font-size:13px;font-weight:700;color:var(--silver-700);margin:0}
+.rm-detail h3{font-size:clamp(20px,2.4vw,24px);margin-top:4px}
+.rm-detail .txt{font-size:17px;margin:8px 0 0;max-width:60ch}
+.rm-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:12px;font-size:14px;color:var(--ink-2)}
+.rm-meta b{color:var(--ink)}
+.rm-nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.rm-detail-body{transition:opacity var(--dur-fast),transform var(--dur-fast)}
+.rm-detail-body.swap{opacity:0;transform:translateY(4px)}
+.rm-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.rm.inline .rm-detail{margin:-14px 0 0 44px;border-top:0;border-left:2px solid var(--navy-800);padding:4px 0 4px 16px}
+.rm.inline .rm-detail .txt{font-size:16px}
 
 /* 03 Linha do tempo */
-.alt{background:#fff}
-.tabs{display:flex;gap:8px;margin-top:28px;overflow-x:auto;padding:2px}
-.tab{flex:1 0 auto;min-height:48px;padding:10px 18px;border-radius:12px;border:1px solid var(--silver-300);background:#fff;font-weight:700;text-align:left}
-.tab small{display:block;font-size:12px;font-weight:600;color:var(--silver-700)}
-.tab[aria-selected="true"]{background:var(--navy-800);border-color:var(--navy-800);color:#fff}
-.tab[aria-selected="true"] small{color:var(--glacial-300)}
-.track{position:relative;height:6px;background:var(--silver-200);border-radius:999px;margin:18px 0 0;overflow:hidden}
-.track span{position:absolute;inset:0 auto 0 0;width:var(--p,33.3%);background:linear-gradient(90deg,var(--glacial-600),var(--glacial-400));border-radius:999px;transition:width var(--dur) var(--ease)}
-.month{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
-.month article{background:var(--silver-50);border:1px solid var(--silver-200);border-radius:var(--radius);padding:20px}
-.month h3{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--glacial-600)}
-.month ul{margin:10px 0 0;padding-left:18px;display:grid;gap:6px;font-size:15px}
-.month p{margin:10px 0 0;font-size:15px}
-.month-title{font-size:20px;margin:22px 0 0}
+.tl{position:relative;margin-top:36px}
+.tl-track{position:absolute;left:16.66%;right:16.66%;top:21px;height:4px;background:var(--silver-200);border-radius:4px;overflow:hidden}
+.tl-track span{display:block;height:100%;width:var(--p,0%);background:linear-gradient(90deg,var(--glacial-600),var(--glacial-400));transition:width .6s var(--ease)}
+.tl-marks{position:relative;display:grid;grid-template-columns:repeat(3,1fr)}
+.tl-mark{display:flex;flex-direction:column;align-items:center;gap:8px;min-height:44px;padding:0 6px 6px;border:0;background:transparent;text-align:center}
+.tl-mark .dot{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-weight:800;background:#fff;border:2px solid var(--silver-300);color:var(--silver-700);transition:background var(--dur),border-color var(--dur),color var(--dur),transform var(--dur-fast)}
+.tl-mark:active .dot{transform:scale(.94)}
+.tl-mark .m{font-weight:800}
+.tl-mark small{font-size:13px;color:var(--silver-700)}
+.tl-mark.done .dot{border-color:var(--glacial-600);color:var(--glacial-600)}
+.tl-mark[aria-selected="true"] .dot{background:var(--navy-800);border-color:var(--navy-800);color:#fff}
+.tl-panel{margin-top:26px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(16px,4vw,48px);align-items:start}
+.motion .tl-panel:not([hidden]){animation:rise .35s var(--ease)}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tl-panel .goal{font-size:clamp(20px,2.4vw,26px);font-weight:800;line-height:1.25;margin:0}
+.tl-panel .learn{margin:14px 0 0;font-size:15px;color:var(--ink-2);border-left:3px solid var(--glacial-400);padding-left:12px}
+.tl-panel ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.tl-panel li{background:var(--silver-100);border-radius:999px;padding:8px 14px;font-size:15px}
 
-/* 04 Funil */
-.funnel-wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);margin-top:28px;align-items:start}
-.funnel{list-style:none;margin:0;padding:0;display:grid;gap:8px;justify-items:center}
-.funnel li{width:var(--w);min-width:min(100%,210px)}
-.stage{width:100%;min-height:52px;border-radius:12px;border:2px solid transparent;font-weight:700;font-size:15px;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;padding:6px 12px;transition:transform var(--dur-fast),box-shadow var(--dur-fast)}
-.stage.mkt{background:var(--mkt)}
-.stage.rp{background:var(--rp)}
-.stage:hover{transform:translateY(-1px)}
-.stage[aria-pressed="true"]{border-color:var(--navy-950);box-shadow:0 0 0 3px var(--glacial-300)}
-.funnel-legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
-.boundary{font-size:13px;color:var(--silver-700);text-align:center;width:100%;display:flex;align-items:center;gap:10px}
-.boundary::before,.boundary::after{content:"";flex:1;border-top:1px dashed var(--silver-300)}
+/* 04 Indicadores por objetivo */
+.chain{list-style:none;margin:32px 0 0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.chain li{position:relative;min-height:64px;border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;font-weight:700;font-size:14px;line-height:1.25;background:#fff;border:1.5px dashed var(--silver-300);color:var(--silver-700);transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);transition-delay:var(--d,0s)}
+.chain li:not(:last-child)::after{content:"";position:absolute;right:-9px;top:50%;width:8px;height:2px;background:var(--silver-300)}
+.chain li.on{border-style:solid;color:#fff}
+.chain li.on.mkt{background:var(--mkt);border-color:var(--mkt)}
+.chain li.on.rp{background:var(--rp);border-color:var(--rp)}
+.chain li.on.shared{background:var(--navy-700);border-color:var(--navy-700)}
+.chain li.cut::before{content:"";position:absolute;left:-7px;top:-12px;bottom:-12px;border-left:2px dotted var(--rp)}
+.handoff{display:flex;justify-content:flex-end;margin:10px 0 0;font-size:13px;color:var(--rp);font-weight:700}
+.goal-box{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,4vw,48px);margin-top:28px;align-items:start}
+.motion .goal-box.swap{animation:rise .35s var(--ease)}
+.goal-box h3{font-size:clamp(20px,2.4vw,24px)}
+.goal-box .when{margin:6px 0 0;color:var(--ink-2)}
+.goal-box ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.goal-box li{display:flex;gap:10px;font-size:16px}
+.goal-box li::before{content:"";flex:0 0 8px;height:8px;margin-top:.55em;border-radius:2px;background:var(--glacial-600);transform:rotate(45deg)}
+.goal-box .ex{margin:14px 0 0;font-size:15px;color:var(--ink-2)}
+.goal-box .ex b{color:var(--ink)}
 
 /* 05 Verba */
-.budget{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);margin-top:28px;align-items:start}
-.seg{display:inline-flex;border:1px solid var(--silver-300);border-radius:12px;padding:4px;background:#fff;gap:4px}
-.seg button{min-height:44px;padding:0 16px;border-radius:9px;border:0;background:transparent;font-weight:700}
-.seg button[aria-pressed="true"]{background:var(--navy-800);color:#fff}
-.lanes{margin-top:18px;background:#fff;border:1px solid var(--silver-200);border-radius:var(--radius);padding:20px;display:grid;gap:10px}
-.lane{display:grid;grid-template-columns:90px 1fr;align-items:center;gap:12px;font-size:13px;color:var(--silver-700);transition:opacity var(--dur)}
-.lane .bar{height:12px;border-radius:999px;background:var(--silver-200);overflow:hidden}
-.lane .bar span{display:block;height:100%;width:var(--fill,0%);background:var(--glacial-600);border-radius:999px;transition:width .6s var(--ease)}
-.lane.off{opacity:.35}
-.lanes p{margin:6px 0 0;font-size:14px;color:var(--ink-2)}
+.budget{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);margin-top:28px;align-items:start}
+.aud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}
+.aud div{position:relative;min-height:64px;border-radius:12px;border:1.5px dashed var(--silver-300);display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;font-size:13px;font-weight:700;color:var(--silver-700);background:#fff;overflow:hidden;transition:border-color var(--dur),color var(--dur),background var(--dur)}
+.aud div.on{border-style:solid;border-color:var(--glacial-600);color:var(--ink);background:var(--glacial-50)}
+.aud div.on::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--glacial-600);transform-origin:0 50%;animation:test 1.8s var(--ease) both;animation-delay:var(--d,0s)}
+@keyframes test{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.aud-cap{font-size:13px;color:var(--silver-700);margin:10px 0 0}
+.points{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.points li{display:flex;gap:10px;font-size:17px}
+.points li::before{content:"";flex:0 0 8px;height:8px;margin-top:.6em;border-radius:50%;background:var(--glacial-600)}
+.callout{margin:22px 0 0;font-size:18px;font-weight:700;color:var(--navy-800)}
 
 /* 06 Audiovisual */
-.chain{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;counter-reset:c}
-.chain li{position:relative;background:#fff;border:1px solid var(--silver-200);border-radius:var(--radius);padding:16px;font-size:14px}
-.chain li .tag{margin-bottom:10px}
-.chain li strong{display:block;font-size:15px}
-.chain li:not(:last-child)::after{content:"";position:absolute;right:-12px;top:50%;width:12px;height:2px;background:var(--glacial-600)}
-.services{margin-top:28px;display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:20px;align-items:start}
+.post{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 24px;margin-top:32px}
+.post div{border-top:3px solid var(--silver-300);padding-top:10px;font-size:15px}
+.post div b{display:block;font-size:15px}
+.post .in-plan{border-color:var(--mkt)}
+.post .extra{border-color:var(--rp)}
+.post .third{border-color:var(--ext)}
+.services{margin-top:36px;display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:20px;align-items:start}
 .services [role="tablist"]{display:grid;gap:8px}
-.services .tab{width:100%}
-.svc{background:#fff;border:1px solid var(--silver-200);border-radius:var(--radius);padding:22px}
+.tab{width:100%;min-height:48px;padding:10px 16px;border-radius:12px;border:1px solid var(--silver-300);background:#fff;font-weight:700;text-align:left;transition:background var(--dur-fast),color var(--dur-fast),transform var(--dur-fast)}
+.tab:active{transform:scale(.98)}
+.tab[aria-selected="true"]{background:var(--navy-800);border-color:var(--navy-800);color:#fff}
 .svc h3{font-size:20px}
-.svc p{margin:10px 0 0;font-size:15px}
-.ext{display:inline-block;margin-top:14px;font-size:13px;font-weight:700;color:var(--rp);background:var(--rp-bg);border-radius:8px;padding:6px 10px}
+.svc p{margin:8px 0 0;font-size:16px}
+.motion .svc:not([hidden]){animation:rise .3s var(--ease)}
+.ref{margin-top:28px;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;padding-top:16px;border-top:1px solid var(--silver-200)}
+.ref strong{font-size:22px;color:var(--navy-800)}
+.ref span{font-size:15px;color:var(--ink-2)}
 
 /* 07 Planos */
 .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px}
-.plan{background:#fff;border:1px solid var(--silver-200);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column}
+.plan{background:#fff;border:1.5px solid var(--silver-200);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;transition:border-color var(--dur),box-shadow var(--dur)}
+.plan.selected{border-color:var(--navy-800);box-shadow:0 0 0 4px var(--glacial-50)}
 .plan h3{font-size:20px}
-.price{font-size:clamp(30px,3.6vw,38px);font-weight:800;letter-spacing:-.03em;color:var(--navy-800);margin-top:10px;white-space:nowrap}
+.price{font-size:clamp(32px,3.8vw,40px);font-weight:800;letter-spacing:-.03em;color:var(--navy-800);margin-top:8px;white-space:nowrap}
 .price small{font-size:14px;font-weight:600;color:var(--silver-700);letter-spacing:0}
-.plan .label{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--silver-700);margin-top:4px}
-.plan ul{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:8px;font-size:15px}
+.plan .label{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--silver-700)}
+.plan ul{margin:18px 0 0;padding:0;list-style:none;display:grid;gap:7px;font-size:15px}
 .plan li{position:relative;padding-left:16px}
 .plan li::before{content:"";position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--glacial-600)}
 .plan li em{font-style:normal;font-size:13px;color:var(--silver-700)}
-.costs{margin-top:auto;padding-top:18px;display:grid;gap:6px;font-size:14px;border-top:1px solid var(--silver-200)}
+.costs{margin-top:auto;padding-top:16px;display:grid;gap:6px;font-size:14px;border-top:1px solid var(--silver-200)}
 .plan ul + .costs{margin-top:18px}
 .costs div{display:flex;justify-content:space-between;gap:10px}
 .costs span{color:var(--ink-2)}
+.plan .pick{margin-top:16px}
+.plan.selected .pick{background:var(--navy-800);color:#fff;border-color:var(--navy-800)}
 
 /* Simulador */
-.sim{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,40px);margin-top:40px;background:#fff;border:1px solid var(--silver-200);border-radius:var(--radius);padding:clamp(20px,3vw,32px)}
+.sim{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,40px);margin-top:36px;background:#fff;border:1px solid var(--silver-200);border-radius:var(--radius);padding:clamp(20px,3vw,32px)}
 .sim h3{font-size:22px}
 .field{margin-top:16px}
 .field label{display:block;font-size:14px;font-weight:700;margin-bottom:6px}
-.field input,.field select{width:100%;min-height:48px;border:1px solid var(--silver-300);border-radius:10px;padding:0 12px;background:#fff}
+.field input,.field select{width:100%;min-height:48px;border:1px solid var(--silver-300);border-radius:10px;padding:0 12px;background:#fff;transition:border-color var(--dur-fast),box-shadow var(--dur-fast)}
+.field input:focus,.field select:focus{border-color:var(--glacial-600);box-shadow:0 0 0 3px var(--glacial-50)}
 .field .hint{font-size:13px;color:var(--silver-700);margin:6px 0 0}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .receipt{display:grid;gap:12px;align-content:start}
@@ -208,11 +255,13 @@ h2{font-size:clamp(28px,4vw,40px);max-width:22ch}
 .line small{display:block;font-size:13px;color:var(--silver-700)}
 .line strong{white-space:nowrap}
 .total{background:var(--glacial-50);border-radius:12px;padding:16px;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.total strong{font-size:clamp(22px,3vw,28px);color:var(--navy-800);white-space:nowrap}
+.total strong{font-size:clamp(22px,3vw,28px);color:var(--navy-800);white-space:nowrap;display:inline-block}
+.total strong.bump{animation:bump .3s var(--ease)}
+@keyframes bump{40%{transform:scale(1.06)}}
 .fine{font-size:13px;color:var(--silver-700);margin:0}
 
 /* FAQ curta */
-.faq{max-width:820px;margin-top:24px;display:grid;gap:10px}
+.faq{max-width:820px;margin-top:20px;display:grid;gap:10px}
 .faq details{background:#fff;border:1px solid var(--silver-200);border-radius:12px}
 .faq summary{min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;font-weight:700;cursor:pointer;list-style:none}
 .faq summary::-webkit-details-marker{display:none}
@@ -223,74 +272,71 @@ h2{font-size:clamp(28px,4vw,40px);max-width:22ch}
 /* 08 Próximo passo */
 .closing{background:var(--navy-900);color:#fff}
 .closing h2{color:#fff}
-.closing .lead{color:#cfdde6}
-.checklist{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.checklist li{border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:16px;font-size:15px;color:#e1ebf1;display:flex;gap:12px}
+.checklist{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px 24px}
+.checklist li{font-size:16px;color:#e1ebf1;display:flex;gap:12px;align-items:flex-start}
 .checklist b{flex:0 0 28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--glacial-400);color:var(--navy-950);font-size:13px}
-.closing .hero-actions .btn-line{background:#fff}
 footer{background:var(--navy-950);color:#9fb6c4;font-size:13px}
 footer .wrap{padding-block:18px}
-
 .print-only{display:none}
 
 /* Responsivo */
 @media (max-width:900px){
-  .map,.funnel-wrap,.budget,.sim,.services{grid-template-columns:1fr}
-  .panel{position:static}
+  .budget,.sim,.services,.goal-box,.tl-panel{grid-template-columns:1fr}
   .plans{grid-template-columns:1fr}
-  .month{grid-template-columns:1fr}
-  .chain{grid-template-columns:1fr}
-  .chain li:not(:last-child)::after{right:auto;left:28px;top:auto;bottom:-12px;width:2px;height:12px}
+  .chain{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:14px}
+  .chain li:nth-child(3)::after{display:none}
+  .post{grid-template-columns:1fr}
 }
 @media (max-width:640px){
-  .poles{grid-template-columns:1fr}
-  .link{display:grid;grid-template-columns:1fr 2px 2px 1fr;align-items:center;gap:10px;padding:12px 0}
-  .link span:first-child{text-align:right}
-  .link span:last-child{text-align:left}
-  .link .line{height:36px;width:2px}
-  .link .line::after{background:linear-gradient(180deg,transparent,var(--glacial-400),transparent);animation-name:flowY}
-  .nav{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
-  .nav ul{padding-right:28px}
+  .duo{grid-template-columns:1fr;gap:6px}
+  .duo-link{transform:rotate(90deg);margin:4px auto}
+  .row2{grid-template-columns:1fr}
   .top .wrap{gap:10px}
   .brand{font-size:14px}
-  .row2{grid-template-columns:1fr}
-  .flow-mobile-panel{margin:6px 0 4px}
-  .tabs{flex-wrap:nowrap}
+  .nav{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+  .nav ul{padding-right:28px}
+  .rm-nodes{gap:30px 14px}
+  .rm.lanes-v .rm-nodes{column-gap:36px}
+  .rm-node{min-height:56px}
+  .rm-node .lbl{font-size:14px}
+  .aud{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .chain li.cut::before{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{transition:none!important;animation:none!important}
-  .flow li{opacity:1;transform:none}
 }
 @media print{
-  .proto-bar,.top,.hero-actions,.questions,.map,.seg,.panel-actions,#copySummary,#printBtn,.tabs,.services [role="tablist"]{display:none!important}
+  .proto-bar,.progress,.top,.hero-actions,.chips,.rm,.rm-caption,.tl,.chain,.handoff,.aud,.aud-cap,#copySummary,#printBtn,.services [role="tablist"],.plan .pick{display:none!important}
   .print-only{display:block}
-  [role="tabpanel"][hidden]{display:block!important}
+  [role="tabpanel"][hidden]{display:grid!important}
+  .svc[hidden]{display:block!important}
+  [data-reveal]{opacity:1!important;transform:none!important;transition:none!important}
   body{background:#fff;font-size:12px}
-  section{padding-block:18px;break-inside:avoid-page}
+  section{padding-block:18px}
   .hero,.closing{background:#fff;color:var(--ink)}
-  .hero .lead,.closing .lead,.pole ul,.checklist li{color:var(--ink-2)}
+  .hero .lead,.duo p,.checklist li{color:var(--ink-2)}
   .hero h1,.closing h2{color:var(--ink)}
-  .pole,.checklist li{border-color:var(--silver-300)}
-  .link .line::after{display:none}
-  .plan,.svc,.month article,.panel{break-inside:avoid;box-shadow:none}
+  .duo-link{display:none}
+  .plan,.svc,.tl-panel{break-inside:avoid}
   .faq details:not([open]) p{display:block}
-  .print-step{border-top:1px solid var(--silver-200);padding:6px 0;break-inside:avoid}
+  .print-step{border-top:1px solid var(--silver-200);padding:5px 0;break-inside:avoid}
   .print-step p{margin:2px 0}
 }
 </style>
 </head>
 <body>
-<div class="proto-bar" role="note"><div class="wrap"><strong>Protótipo para revisão interna.</strong> Valores conforme a proposta no Canva. Quantidades, prazos e condições finais dependem do contrato. Não é a página enviada ao cliente.</div></div>
+<div class="proto-bar" role="note" data-internal><div class="wrap"><strong>Ambiente de teste.</strong> Protótipo em revisão interna; não enviar ao cliente. Quantidades, prazos e condições finais dependem do contrato.</div></div>
+<div class="progress" aria-hidden="true"><span id="progress"></span></div>
 
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#inicio">REAL POLAR</a>
-    <nav class="nav" aria-label="Seções">
+    <nav class="nav" aria-label="Seções" id="nav">
       <ul>
-        <li><a href="#caminhos">Dúvidas</a></li>
+        <li><a href="#processo">Processo</a></li>
         <li><a href="#noventa">90 dias</a></li>
-        <li><a href="#metricas">Métricas</a></li>
+        <li><a href="#metricas">Indicadores</a></li>
         <li><a href="#verba">Anúncios</a></li>
         <li><a href="#audiovisual">Audiovisual</a></li>
         <li><a href="#planos">Planos</a></li>
@@ -303,185 +349,106 @@ footer .wrap{padding-block:18px}
 <!-- 01 -->
 <section class="hero" id="inicio" aria-labelledby="t-hero">
   <div class="wrap">
-    <span class="kicker">Esclarecimentos da proposta</span>
-    <h1 id="t-hero">Quem cuida de encontrar o próximo projeto enquanto vocês executam o atual?</h1>
-    <p class="lead">Nossa equipe organiza a comunicação e a busca de oportunidades. A Real Polar continua com o atendimento técnico, os orçamentos e o fechamento.</p>
-    <div class="poles">
-      <article class="pole">
-        <h2><span class="dot" aria-hidden="true"></span>Equipe de marketing</h2>
-        <ul>
-          <li>Posicionamento e conteúdo</li>
-          <li>Gestão do perfil e das publicações</li>
-          <li>Campanhas na Meta (Instagram e Facebook)</li>
-          <li>Medição e ajustes</li>
-        </ul>
-      </article>
-      <div class="link" aria-hidden="true">
-        <span>informações dos projetos</span>
-        <div class="line"></div>
-        <div class="line back"></div>
-        <span>retorno dos contatos</span>
-      </div>
-      <article class="pole rp">
-        <h2><span class="dot" aria-hidden="true"></span>Real Polar</h2>
-        <ul>
-          <li>Atendimento dos interessados</li>
-          <li>Visita técnica e orçamento</li>
-          <li>Negociação e fechamento</li>
-          <li>Execução dos projetos</li>
-        </ul>
-      </article>
+    <h1 id="t-hero" data-reveal>Quem cuida de encontrar o próximo projeto enquanto vocês executam o atual?</h1>
+    <p class="lead" data-reveal style="--d:.08s">Nossa equipe fortalece a presença da Real Polar e cria novas oportunidades. A Real Polar continua com o atendimento técnico, os orçamentos e o fechamento.</p>
+    <div class="duo" data-reveal style="--d:.16s">
+      <div><h2><i aria-hidden="true"></i>Equipe de marketing</h2><p>Posicionamento, conteúdo, divulgação e medição.</p></div>
+      <svg class="duo-link" viewBox="0 0 120 40" aria-hidden="true"><path d="M4 13H116"/><path class="dash" d="M4 13H116"/><path d="M4 27H116"/><path class="dash back" d="M4 27H116"/></svg>
+      <div class="rp"><h2><i aria-hidden="true"></i>Real Polar</h2><p>Atendimento, visita técnica, orçamento e fechamento.</p></div>
     </div>
-    <p class="sr-only">As duas equipes trocam informações: a Real Polar envia dados e materiais dos projetos; a equipe de marketing devolve os contatos gerados.</p>
-    <div class="hero-actions">
-      <a class="btn btn-accent" href="#caminhos">Escolher uma dúvida</a>
-      <a class="btn btn-ghost" href="#planos">Ver planos e investimento</a>
+    <p class="sr-only">As duas equipes trocam informações: a Real Polar compartilha dados e materiais dos projetos; a equipe de marketing entrega os contatos gerados.</p>
+    <div class="hero-actions" data-reveal style="--d:.24s">
+      <a class="btn btn-accent" href="#processo">Ver como funciona</a>
+      <a class="btn btn-ghost" href="#planos">Ver planos</a>
     </div>
   </div>
 </section>
 
 <!-- 02 -->
-<section id="caminhos" aria-labelledby="t-map">
+<section id="processo" aria-labelledby="t-proc">
   <div class="wrap">
-    <span class="kicker">Da dúvida à ação</span>
-    <h2 id="t-map">Escolha uma pergunta e veja o caminho da resposta</h2>
-    <p class="lead">Cada etapa mostra o que fazemos, por que fazemos, quem é responsável e o que medimos.</p>
-    <div class="questions" role="group" aria-label="Perguntas">
-      <button class="q" type="button" data-q="atrair" aria-pressed="true">Como vocês vão atrair novos clientes?</button>
-      <button class="q" type="button" data-q="porque" aria-pressed="false">Por que precisamos de uma equipe de marketing?</button>
-      <button class="q" type="button" data-q="lkt" aria-pressed="false">Como funciona o Diagnóstico LKT?</button>
+    <h2 id="t-proc" data-reveal>Como tudo funciona na prática?</h2>
+    <p class="lead" data-reveal style="--d:.08s">Escolha uma pergunta e acompanhe o processo.</p>
+    <div class="chips" role="group" aria-label="Perguntas" data-reveal style="--d:.16s">
+      <button class="chip" type="button" data-map="atrair" aria-pressed="true">Como vocês vão atrair novos clientes?</button>
+      <button class="chip" type="button" data-map="porque" aria-pressed="false">Por que precisamos de uma equipe de marketing?</button>
+      <button class="chip" type="button" data-map="metas" aria-pressed="false">Por que não definimos metas fixas nos primeiros três meses?</button>
+      <button class="chip" type="button" data-map="medir" aria-pressed="false">Como saberemos se o marketing está funcionando?</button>
     </div>
-    <div class="map">
-      <div>
-        <p class="map-intro" id="mapIntro"></p>
-        <ol class="flow" id="flow" aria-labelledby="mapIntro"></ol>
-        <div class="legend" aria-label="Legenda de responsáveis">
-          <span class="tag tag-mkt">Equipe de marketing</span>
-          <span class="tag tag-rp">Real Polar</span>
-          <span class="tag tag-shared">Compartilhado</span>
-        </div>
-      </div>
-      <aside id="panelHome">
-        <div class="panel" id="panel" aria-live="polite">
-          <div class="panel-body" id="panelBody">
-            <div class="panel-head"><span class="count" id="pCount"></span><span class="tag" id="pTag"></span></div>
-            <h3 id="pTitle"></h3>
-            <dl>
-              <div><dt>O que fazemos</dt><dd id="pFaz"></dd></div>
-              <div><dt>Por que fazemos</dt><dd id="pPorque"></dd></div>
-              <div><dt>Quem é responsável</dt><dd id="pResp"></dd></div>
-              <div><dt>O que medimos</dt><dd id="pMede"></dd></div>
-            </dl>
-          </div>
-          <div class="panel-actions">
-            <button class="btn btn-line" type="button" id="prevStep">Etapa anterior</button>
-            <button class="btn btn-accent" type="button" id="nextStep">Ver próximo passo</button>
-          </div>
-        </div>
-      </aside>
-    </div>
-    <div class="print-only" id="printMap"></div>
+    <p class="rm-caption" id="mapCaption" aria-live="polite"></p>
+    <div class="rm" id="mapMain" data-reveal style="--d:.2s"></div>
+    <div class="print-only" id="printMaps"></div>
   </div>
 </section>
 
 <!-- 03 -->
 <section class="alt" id="noventa" aria-labelledby="t-90">
   <div class="wrap">
-    <span class="kicker">Primeiros 90 dias</span>
-    <h2 id="t-90">Diagnosticar, testar e só então definir metas</h2>
-    <p class="lead">O terceiro mês é um marco de avaliação. Antes da validação, não definimos quantidade fixa de contatos.</p>
-    <div class="tabs" role="tablist" aria-label="Meses">
-      <button class="tab" role="tab" id="tab-m1" aria-controls="m1" aria-selected="true" data-p="33.3%">Mês 1 <small>Diagnosticar e estruturar</small></button>
-      <button class="tab" role="tab" id="tab-m2" aria-controls="m2" aria-selected="false" tabindex="-1" data-p="66.6%">Mês 2 <small>Testar e validar</small></button>
-      <button class="tab" role="tab" id="tab-m3" aria-controls="m3" aria-selected="false" tabindex="-1" data-p="100%">Mês 3 <small>Consolidar e avaliar</small></button>
-    </div>
-    <div class="track" aria-hidden="true"><span id="track"></span></div>
-    <div role="tabpanel" id="m1" aria-labelledby="tab-m1" tabindex="0">
-      <h3 class="month-title print-only">Mês 1: diagnosticar e estruturar</h3>
-      <div class="month">
-        <article><h3>Entregamos</h3><ul><li>Diagnóstico LKT</li><li>Organização do perfil e primeiras peças</li><li>Configuração das campanhas e do destino (site ou WhatsApp)</li></ul></article>
-        <article><h3>Aprendemos</h3><ul><li>O que diferencia a Real Polar</li><li>Quais materiais existem e quais faltam</li><li>Por onde os contatos chegam hoje</li></ul></article>
-        <article><h3>Próxima decisão</h3><p>Quais hipóteses de público e mensagem vamos testar no mês 2.</p></article>
+    <h2 id="t-90" data-reveal>Por que não definimos metas fixas nos primeiros três meses?</h2>
+    <p class="lead" data-reveal style="--d:.08s"><strong>Porque primeiro precisamos descobrir o que funciona para a Real Polar.</strong> Os primeiros 90 dias permitem estruturar, testar e avaliar públicos, mensagens e canais. Com esses dados, definimos metas mais realistas para a etapa seguinte.</p>
+    <div class="tl" data-reveal style="--d:.16s">
+      <div class="tl-track" aria-hidden="true"><span id="tlFill"></span></div>
+      <div class="tl-marks" role="tablist" aria-label="Meses">
+        <button class="tl-mark" role="tab" id="tab-m1" aria-controls="m1" aria-selected="true" data-p="0%"><span class="dot">1</span><span class="m">Mês 1</span><small>Estruturação</small></button>
+        <button class="tl-mark" role="tab" id="tab-m2" aria-controls="m2" aria-selected="false" tabindex="-1" data-p="50%"><span class="dot">2</span><span class="m">Mês 2</span><small>Testes</small></button>
+        <button class="tl-mark" role="tab" id="tab-m3" aria-controls="m3" aria-selected="false" tabindex="-1" data-p="100%"><span class="dot">3</span><span class="m">Mês 3</span><small>Validação</small></button>
       </div>
     </div>
-    <div role="tabpanel" id="m2" aria-labelledby="tab-m2" tabindex="0" hidden>
-      <h3 class="month-title print-only">Mês 2: testar e validar</h3>
-      <div class="month">
-        <article><h3>Entregamos</h3><ul><li>Campanhas autorizadas no ar</li><li>Variações de mensagens, peças, públicos e regiões</li><li>Ajustes a partir dos primeiros sinais</li></ul></article>
-        <article><h3>Aprendemos</h3><ul><li>Custo por clique e por contato</li><li>Quais mensagens despertam interesse</li><li>Qualidade dos contatos, com o retorno da Real Polar</li></ul></article>
-        <article><h3>Próxima decisão</h3><p>O que manter, ajustar ou interromper.</p></article>
-      </div>
+    <div class="tl-panel" role="tabpanel" id="m1" aria-labelledby="tab-m1" tabindex="0">
+      <div><p class="goal">Preparar a operação.</p><p class="learn">Ao final: serviços, públicos possíveis e canais organizados para começar os testes.</p></div>
+      <ul><li>Entender serviços e diferenciais</li><li>Analisar o posicionamento atual</li><li>Identificar públicos possíveis</li><li>Organizar os canais</li><li>Levantar materiais disponíveis</li><li>Definir as primeiras hipóteses</li></ul>
     </div>
-    <div role="tabpanel" id="m3" aria-labelledby="tab-m3" tabindex="0" hidden>
-      <h3 class="month-title print-only">Mês 3: consolidar e avaliar</h3>
-      <div class="month">
-        <article><h3>Entregamos</h3><ul><li>Análise consolidada dos dados</li><li>Relatório com recomendações</li></ul></article>
-        <article><h3>Aprendemos</h3><ul><li>Quais combinações trazem contatos mais qualificados</li><li>Quanto custa cada contato nessas combinações</li></ul></article>
-        <article><h3>Próxima decisão</h3><p>Metas progressivas para os meses seguintes, proporcionais à verba e ao ciclo comercial da Real Polar.</p></article>
-      </div>
+    <div class="tl-panel" role="tabpanel" id="m2" aria-labelledby="tab-m2" tabindex="0" hidden>
+      <div><p class="goal">Identificar quais estratégias respondem melhor.</p><p class="learn">Ao final: primeiros sinais de quais públicos e mensagens trazem interesse.</p></div>
+      <ul><li>Testar mensagens</li><li>Comparar públicos</li><li>Analisar a distribuição</li><li>Avaliar custos e contatos</li><li>Ajustar conteúdos e campanhas contratadas</li></ul>
     </div>
-    <p class="note">A proposta no Canva indica <strong>período mínimo de três meses</strong>. Renovação e encerramento seguem o que estiver no contrato.</p>
+    <div class="tl-panel" role="tabpanel" id="m3" aria-labelledby="tab-m3" tabindex="0" hidden>
+      <div><p class="goal">Consolidar os aprendizados.</p><p class="learn">Ao final: recomendações e metas projetadas para o próximo ciclo.</p></div>
+      <ul><li>Comparar os testes</li><li>Identificar oportunidades</li><li>Avaliar a qualidade dos contatos</li><li>Verificar os resultados disponíveis</li><li>Definir recomendações</li><li>Projetar metas para o próximo ciclo</li></ul>
+    </div>
+    <p class="small" data-reveal>O período mínimo previsto é de três meses. O fim do terceiro mês é um marco de avaliação e planejamento; as demais condições seguem o contrato.</p>
   </div>
 </section>
 
 <!-- 04 -->
 <section id="metricas" aria-labelledby="t-met">
   <div class="wrap">
-    <span class="kicker">O que medimos</span>
-    <h2 id="t-met">Do alcance ao projeto fechado</h2>
-    <p class="lead">Toque em cada etapa. As primeiras medem o trabalho de marketing; as últimas dependem do atendimento e das informações da Real Polar.</p>
-    <div class="funnel-wrap">
-      <div>
-        <ol class="funnel" id="funnel">
-          <li style="--w:100%"><button class="stage mkt" type="button" data-m="alcance" aria-pressed="true">Alcance</button></li>
-          <li style="--w:91%"><button class="stage mkt" type="button" data-m="cliques" aria-pressed="false">Cliques</button></li>
-          <li style="--w:82%"><button class="stage mkt" type="button" data-m="contatos" aria-pressed="false">Contatos</button></li>
-          <li class="boundary" aria-hidden="true">daqui em diante, dados da Real Polar</li>
-          <li style="--w:73%"><button class="stage rp" type="button" data-m="qualificados" aria-pressed="false">Contatos qualificados</button></li>
-          <li style="--w:64%"><button class="stage rp" type="button" data-m="propostas" aria-pressed="false">Reuniões e propostas</button></li>
-          <li style="--w:55%"><button class="stage rp" type="button" data-m="fechados" aria-pressed="false">Projetos fechados</button></li>
-        </ol>
-        <div class="funnel-legend"><span class="tag tag-mkt">Indicador de marketing</span><span class="tag tag-rp">Resultado comercial da Real Polar</span></div>
-      </div>
-      <div class="panel" aria-live="polite" id="mPanel">
-        <div class="panel-head"><span class="count">Métrica</span><span class="tag" id="mTag"></span></div>
-        <h3 id="mTitle"></h3>
-        <dl>
-          <div><dt>O que significa</dt><dd id="mSig"></dd></div>
-          <div><dt>Por que importa</dt><dd id="mImp"></dd></div>
-          <div><dt>Quem informa</dt><dd id="mQuem"></dd></div>
-        </dl>
-      </div>
+    <h2 id="t-met" data-reveal>O que realmente vamos medir?</h2>
+    <p class="lead" data-reveal style="--d:.08s">Os indicadores mudam conforme o objetivo.</p>
+    <div class="chips" role="group" aria-label="Objetivo" data-reveal style="--d:.16s">
+      <button class="chip" type="button" data-goal="pos" aria-pressed="true">Posicionamento</button>
+      <button class="chip" type="button" data-goal="cont" aria-pressed="false">Contatos</button>
+      <button class="chip" type="button" data-goal="proj" aria-pressed="false">Projetos</button>
     </div>
-    <p class="note">Não usamos números de exemplo. <strong>A Real Polar continua responsável pelo atendimento, orçamento, negociação e fechamento.</strong> Quando compartilha o andamento dos contatos, as campanhas podem ser ajustadas para trazer interessados com mais perfil.</p>
+    <ol class="chain" id="chain" aria-label="Etapas acompanhadas" data-reveal style="--d:.2s">
+      <li class="mkt">Exposição</li><li class="mkt">Interesse</li><li class="mkt">Ação</li><li class="shared">Contato</li><li class="rp cut">Oportunidade</li><li class="rp">Resultado comercial</li>
+    </ol>
+    <p class="handoff" aria-hidden="true">A partir da oportunidade: dados da Real Polar</p>
+    <div class="goal-box" id="goalBox" aria-live="polite"></div>
+    <div class="print-only" id="printGoals"></div>
   </div>
 </section>
 
 <!-- 05 -->
 <section class="alt" id="verba" aria-labelledby="t-verba">
   <div class="wrap">
-    <span class="kicker">Anúncios na Meta</span>
-    <h2 id="t-verba">A verba muda o ritmo dos testes, não a promessa</h2>
+    <h2 id="t-verba" data-reveal>Como o investimento em anúncios influencia os testes?</h2>
+    <p class="lead" data-reveal style="--d:.08s">A verba é usada para distribuir os anúncios no Instagram e no Facebook. <strong>A mensalidade remunera a gestão; o investimento em anúncios é definido separadamente pela Real Polar.</strong></p>
     <div class="budget">
-      <div>
-        <p class="lead">Cada vez que alguém abre o Instagram ou o Facebook, a Meta decide quais anúncios mostrar. Os anunciantes disputam esse espaço em um <strong>leilão</strong>, que considera a concorrência pelo mesmo público, o orçamento e a relevância do anúncio.</p>
-        <p class="lead">Um orçamento maior pode permitir mais testes ao mesmo tempo, maior distribuição e aprendizado mais rápido. <strong>Isso não garante vendas nem retorno.</strong> O resultado também depende da oferta, das peças, do destino do anúncio e do atendimento.</p>
-        <p class="note">A verba é paga pela Real Polar diretamente à Meta, separada da mensalidade. A proposta usa como referência <strong>a partir de R$ 15 por dia</strong>.</p>
+      <div data-reveal style="--d:.12s">
+        <div class="chips" role="group" aria-label="Comparar investimento" style="margin-top:0">
+          <button class="chip" type="button" data-b="menor" aria-pressed="true">Menor investimento</button>
+          <button class="chip" type="button" data-b="maior" aria-pressed="false">Maior investimento</button>
+        </div>
+        <div class="aud" id="aud" aria-hidden="true">
+          <div>Proprietários de alto padrão</div><div>Arquitetos</div><div>Engenheiros</div><div>Construtoras</div><div>Clínicas</div><div>Escritórios</div>
+        </div>
+        <p class="aud-cap">Públicos ilustrativos. Em destaque: testados ao mesmo tempo.</p>
       </div>
-      <div>
-        <div class="seg" role="group" aria-label="Comparar orçamento">
-          <button type="button" data-b="menor" aria-pressed="true">Orçamento menor</button>
-          <button type="button" data-b="maior" aria-pressed="false">Orçamento maior</button>
-        </div>
-        <div class="lanes" id="lanes" aria-live="polite">
-          <span class="sr-only" id="lanesSr"></span>
-          <div class="lane" aria-hidden="true"><span>Teste A</span><div class="bar"><span></span></div></div>
-          <div class="lane" aria-hidden="true"><span>Teste B</span><div class="bar"><span></span></div></div>
-          <div class="lane" aria-hidden="true"><span>Teste C</span><div class="bar"><span></span></div></div>
-          <div class="lane" aria-hidden="true"><span>Teste D</span><div class="bar"><span></span></div></div>
-          <p id="lanesText"></p>
-        </div>
-        <p class="fine" style="margin-top:10px">Ilustração de ritmo. As barras não representam números reais de contatos.</p>
+      <div data-reveal style="--d:.2s">
+        <ul class="points" id="points" aria-live="polite"></ul>
+        <p class="callout">Investir mais pode ampliar os testes, mas não garante mais vendas.</p>
+        <p class="small">Os anúncios disputam espaço em um leilão da Meta: o resultado também depende da concorrência, da mensagem e do atendimento.</p>
       </div>
     </div>
   </div>
@@ -490,41 +457,40 @@ footer .wrap{padding-block:18px}
 <!-- 06 -->
 <section id="audiovisual" aria-labelledby="t-av">
   <div class="wrap">
-    <span class="kicker">Audiovisual</span>
-    <h2 id="t-av">Captação presencial é contratada à parte</h2>
-    <p class="lead">Em São Paulo, a gravação e a fotografia são feitas por profissionais terceirizados, mediante orçamento e aprovação da Real Polar. Nossa equipe coordena pautas, roteiros e o uso do material conforme o plano.</p>
-    <ol class="chain">
-      <li><span class="tag tag-rp">Real Polar</span><strong>Aprova a necessidade e o orçamento</strong></li>
-      <li><span class="tag tag-mkt">Marketing</span><strong>Define pauta e roteiro</strong></li>
-      <li><span class="tag tag-rp">Externo</span><strong>Profissional em São Paulo capta</strong></li>
-      <li><span class="tag tag-mkt">Marketing</span><strong>Recebe e edita conforme o plano</strong></li>
-      <li><span class="tag tag-shared">Compartilhado</span><strong>Peça aprovada e publicada</strong></li>
-    </ol>
-    <div class="services">
-      <div role="tablist" aria-label="Serviços externos" aria-orientation="vertical">
+    <h2 id="t-av" data-reveal>Como funciona a produção audiovisual?</h2>
+    <p class="lead" data-reveal style="--d:.08s">Planejamos o conteúdo e coordenamos a produção conforme a necessidade do projeto.</p>
+    <div class="rm" id="mapAv" data-reveal style="--d:.16s"></div>
+    <div class="post" data-reveal>
+      <div class="in-plan"><b>Edição prevista no plano</b>Incluída nos planos que contemplam roteiro e edição.</div>
+      <div class="extra"><b>Produções adicionais</b>Fora das quantidades ou condições contratadas: orçamento separado, com aprovação prévia.</div>
+      <div class="third"><b>Serviços de terceiros</b>Profissionais especializados, cotados e aprovados à parte.</div>
+    </div>
+    <div class="services" data-reveal>
+      <div role="tablist" aria-label="Profissionais externos opcionais" aria-orientation="vertical">
         <button class="tab" role="tab" id="tab-s1" aria-controls="s1" aria-selected="true">Videomaker e fotografia</button>
         <button class="tab" role="tab" id="tab-s2" aria-controls="s2" aria-selected="false" tabindex="-1">Storymaker</button>
         <button class="tab" role="tab" id="tab-s3" aria-controls="s3" aria-selected="false" tabindex="-1">Drone e piloto</button>
         <button class="tab" role="tab" id="tab-s4" aria-controls="s4" aria-selected="false" tabindex="-1">Apresentador ou ator</button>
       </div>
       <div>
-        <div class="svc" role="tabpanel" id="s1" aria-labelledby="tab-s1" tabindex="0"><h3>Videomaker e fotografia</h3><p>Registro de obras, instalações e equipe para virar artes e vídeos. A proposta usa como referência <strong>R$ 1.200 por diária</strong>, valor sujeito a cotação. Segundo a proposta, uma diária pode ser planejada para gerar conteúdo por até dois meses, conforme o material, as condições e a logística.</p><span class="ext">Serviço externo · cotação e aprovação à parte</span></div>
-        <div class="svc" role="tabpanel" id="s2" aria-labelledby="tab-s2" tabindex="0" hidden><h3>Storymaker</h3><p>Registros rápidos no local para os Stories. É opcional e só vale quando justificar o custo.</p><span class="ext">Serviço externo · cotação e aprovação à parte</span></div>
-        <div class="svc" role="tabpanel" id="s3" aria-labelledby="tab-s3" tabindex="0" hidden><h3>Drone e piloto</h3><p>Imagens aéreas que mostram escala em obras e instalações maiores. Depende de viabilidade e das autorizações de voo.</p><span class="ext">Serviço externo · cotação e aprovação à parte</span></div>
-        <div class="svc" role="tabpanel" id="s4" aria-labelledby="tab-s4" tabindex="0" hidden><h3>Apresentador ou ator</h3><p>Para vídeos que pedem alguém conduzindo a explicação em frente à câmera.</p><span class="ext">Serviço externo · cotação e aprovação à parte</span></div>
+        <div class="svc" role="tabpanel" id="s1" aria-labelledby="tab-s1" tabindex="0"><h3>Videomaker e fotografia</h3><p>Produção presencial de imagens e vídeos.</p></div>
+        <div class="svc" role="tabpanel" id="s2" aria-labelledby="tab-s2" tabindex="0" hidden><h3>Storymaker</h3><p>Cobertura de momentos específicos, bastidores e registros rápidos.</p></div>
+        <div class="svc" role="tabpanel" id="s3" aria-labelledby="tab-s3" tabindex="0" hidden><h3>Drone e piloto</h3><p>Imagens aéreas, mediante viabilidade e autorizações necessárias.</p></div>
+        <div class="svc" role="tabpanel" id="s4" aria-labelledby="tab-s4" tabindex="0" hidden><h3>Apresentador ou ator</h3><p>Participação de profissional em vídeos que precisam de apresentação.</p></div>
+        <p class="small">Todos são opcionais e só são contratados quando há necessidade, orçamento e aprovação da Real Polar. Não são contratações mensais.</p>
       </div>
     </div>
+    <div class="ref" data-reveal><strong>R$ 1.200 por diária</strong><span>Valor inicial de referência para captação presencial, sujeito a cotação. Pode variar conforme deslocamento, profissionais envolvidos e equipamentos.</span></div>
   </div>
 </section>
 
 <!-- 07 -->
 <section class="alt" id="planos" aria-labelledby="t-planos">
   <div class="wrap">
-    <span class="kicker">Planos e investimento</span>
-    <h2 id="t-planos">O que cada plano inclui</h2>
-    <p class="lead">Itens e valores conforme a proposta no Canva. Quantidades de peças e vídeos, limites do bônus e condições finais serão confirmados no contrato.</p>
+    <h2 id="t-planos" data-reveal>O que cada plano inclui</h2>
+    <p class="lead" data-reveal style="--d:.08s">Investimento e serviços previstos em cada plano. Quantidades e condições finais são confirmadas em contrato.</p>
     <div class="plans">
-      <article class="plan">
+      <article class="plan" data-fee="1280" data-reveal>
         <h3>Econômico</h3>
         <div class="price">R$ 1.280 <small>/ mês</small></div>
         <div class="label">Gestão mensal</div>
@@ -534,9 +500,10 @@ footer .wrap{padding-block:18px}
           <li>Meta Ads</li>
           <li>Peças a partir do acervo fornecido, com apoio de IA e orientação humana</li>
         </ul>
-        <div class="costs"><div><span>Verba Meta Ads</span><strong>à parte</strong></div><div><span>Captação</span><strong>cotação separada</strong></div></div>
+        <div class="costs"><div><span>Verba de anúncios</span><strong>à parte</strong></div><div><span>Captação</span><strong>cotação separada</strong></div></div>
+        <button class="btn btn-line pick" type="button" aria-pressed="false">Simular este plano</button>
       </article>
-      <article class="plan">
+      <article class="plan selected" data-fee="2100" data-reveal style="--d:.08s">
         <h3>Essencial</h3>
         <div class="price">R$ 2.100 <small>/ mês</small></div>
         <div class="label">Gestão mensal</div>
@@ -549,9 +516,10 @@ footer .wrap{padding-block:18px}
           <li>Revisão básica do Google Meu Negócio</li>
           <li>Relatório</li>
         </ul>
-        <div class="costs"><div><span>Verba Meta Ads</span><strong>à parte</strong></div><div><span>Captação</span><strong>ref. R$ 1.200/diária</strong></div></div>
+        <div class="costs"><div><span>Verba de anúncios</span><strong>à parte</strong></div><div><span>Captação</span><strong>ref. R$ 1.200/diária</strong></div></div>
+        <button class="btn btn-line pick" type="button" aria-pressed="true">Simular este plano</button>
       </article>
-      <article class="plan">
+      <article class="plan" data-fee="3200" data-reveal style="--d:.16s">
         <h3>Presença Ampliada</h3>
         <div class="price">R$ 3.200 <small>/ mês</small></div>
         <div class="label">Gestão mensal</div>
@@ -568,17 +536,18 @@ footer .wrap{padding-block:18px}
           <li>Relatório</li>
           <li>Bônus de artes <em>(limites a definir em contrato)</em></li>
         </ul>
-        <div class="costs"><div><span>Verba Meta Ads</span><strong>à parte</strong></div><div><span>Captação</span><strong>ref. R$ 1.200/diária</strong></div></div>
+        <div class="costs"><div><span>Verba de anúncios</span><strong>à parte</strong></div><div><span>Captação</span><strong>ref. R$ 1.200/diária</strong></div></div>
+        <button class="btn btn-line pick" type="button" aria-pressed="false">Simular este plano</button>
       </article>
     </div>
 
-    <div class="sim" id="simulador">
+    <div class="sim" id="simulador" data-reveal>
       <div>
         <h3>Simule os custos separados</h3>
         <p class="fine" style="margin-top:6px">Estimativa de custos. Não é previsão de contatos, vendas ou faturamento.</p>
         <div class="field"><label for="sPlan">Plano</label><select id="sPlan"><option value="1280">Econômico · R$ 1.280/mês</option><option value="2100" selected>Essencial · R$ 2.100/mês</option><option value="3200">Presença Ampliada · R$ 3.200/mês</option></select></div>
         <div class="row2">
-          <div class="field"><label for="sDaily">Verba Meta por dia (R$)</label><input id="sDaily" type="number" inputmode="decimal" min="0" max="10000" step="1" value="15"><p class="hint">Referência da proposta: a partir de R$ 15</p></div>
+          <div class="field"><label for="sDaily">Verba de anúncios por dia (R$)</label><input id="sDaily" type="number" inputmode="decimal" min="0" max="10000" step="1" value="15"><p class="hint">Referência: a partir de R$ 15</p></div>
           <div class="field"><label for="sDays">Dias anunciando</label><input id="sDays" type="number" inputmode="numeric" min="0" max="31" step="1" value="30"><p class="hint">Até 31 dias</p></div>
         </div>
         <div class="row2">
@@ -588,19 +557,19 @@ footer .wrap{padding-block:18px}
       </div>
       <div class="receipt" aria-live="polite">
         <div class="line"><span>Gestão mensal</span><strong id="oFee"></strong></div>
-        <div class="line"><span>Verba Meta Ads <small id="oAdsDetail"></small></span><strong id="oAds"></strong></div>
+        <div class="line"><span>Verba de anúncios <small id="oAdsDetail"></small></span><strong id="oAds"></strong></div>
         <div class="line"><span>Captação externa <small id="oShootDetail"></small></span><strong id="oShoot"></strong></div>
         <div class="total"><span>Soma do período simulado</span><strong id="oTotal"></strong></div>
         <p class="fine">A verba é paga à Meta e a captação, ao profissional contratado. A captação não é cobrança mensal fixa.</p>
       </div>
     </div>
 
-    <h3 style="margin-top:48px;font-size:22px">Outras perguntas</h3>
+    <h3 style="margin-top:48px;font-size:22px" data-reveal>Outras perguntas</h3>
     <div class="faq">
       <details><summary>O valor mensal inclui os anúncios?</summary><p>Não. A mensalidade remunera a equipe. A verba de anúncios é definida pela Real Polar e paga diretamente à Meta.</p></details>
-      <details><summary>Investir mais garante mais clientes?</summary><p>Não. Mais verba pode acelerar testes e a coleta de dados, mas o resultado também depende da concorrência, da oferta, das peças e do atendimento.</p></details>
-      <details><summary>O que é o painel central interno citado na Presença Ampliada?</summary><p>É um item listado na proposta. As funcionalidades, o prazo e a forma de entrega ainda precisam ser definidos em contrato. Ele não está implementado nesta página.</p></details>
-      <details><summary>Existe prazo mínimo de contratação?</summary><p>A proposta indica período mínimo de três meses. As demais condições seguem o contrato.</p></details>
+      <details><summary>A edição dos vídeos é cobrada à parte?</summary><p>Não, quando está prevista no plano contratado. Só produções adicionais, fora das quantidades ou condições contratadas, e serviços de terceiros têm orçamento separado, sempre com aprovação prévia.</p></details>
+      <details><summary>O que é o painel central interno da Presença Ampliada?</summary><p>É um item previsto nesse plano. Funcionalidades, prazo e forma de entrega serão definidos em contrato.</p></details>
+      <details><summary>Existe prazo mínimo de contratação?</summary><p>Sim, de três meses. As demais condições seguem o contrato.</p></details>
     </div>
   </div>
 </section>
@@ -608,15 +577,13 @@ footer .wrap{padding-block:18px}
 <!-- 08 -->
 <section class="closing" id="proximo" aria-labelledby="t-next">
   <div class="wrap">
-    <span class="kicker" style="color:var(--glacial-300)">Próximo passo</span>
-    <h2 id="t-next">Uma conversa de alinhamento antes de começar</h2>
-    <p class="lead">Para iniciar, precisamos combinar juntos:</p>
+    <h2 id="t-next" data-reveal>Antes de começar, alinhamos cinco pontos</h2>
     <ol class="checklist">
-      <li><b>1</b>O plano de gestão</li>
-      <li><b>2</b>A verba inicial de anúncios</li>
-      <li><b>3</b>Se haverá captação externa e com qual orçamento</li>
-      <li><b>4</b>O acervo disponível e as autorizações de uso de imagem</li>
-      <li><b>5</b>Quem informa o andamento dos contatos</li>
+      <li data-reveal><b>1</b>O plano de gestão</li>
+      <li data-reveal style="--d:.06s"><b>2</b>A verba inicial de anúncios</li>
+      <li data-reveal style="--d:.12s"><b>3</b>Se haverá captação externa e com qual orçamento</li>
+      <li data-reveal style="--d:.18s"><b>4</b>O acervo disponível e as autorizações de uso de imagem</li>
+      <li data-reveal style="--d:.24s"><b>5</b>Quem informa o andamento dos contatos</li>
     </ol>
     <div class="hero-actions">
       <button class="btn btn-accent" type="button" id="copySummary">Copiar resumo</button>
@@ -625,141 +592,255 @@ footer .wrap{padding-block:18px}
   </div>
 </section>
 </main>
-<footer><div class="wrap">REAL POLAR · Esclarecimentos da proposta comercial · Protótipo em revisão</div></footer>
+<footer><div class="wrap">REAL POLAR · Protótipo em revisão</div></footer>
 
 <script>
 (function(){
 const $=id=>document.getElementById(id);
-const RESP={mkt:['tag-mkt','Equipe de marketing'],rp:['tag-rp','Real Polar'],shared:['tag-shared','Compartilhado']};
 const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+const OWN={mkt:['tag-mkt','Equipe de marketing','Marketing'],rp:['tag-rp','Real Polar','Real Polar'],shared:['tag-shared','Marketing e Real Polar','Juntos'],ext:['tag-ext','Profissional terceirizado','Terceirizado']};
+if(!reduce.matches&&'IntersectionObserver' in window)document.documentElement.classList.add('motion');
 
-/* 02 Mapa de caminhos */
-const Q={
- atrair:{intro:'Do primeiro diagnóstico até o orçamento: onde termina o marketing e começa o comercial.',steps:[
-  {t:'Diagnóstico LKT',r:'mkt',faz:'Levantamos serviços prioritários, materiais, canais e o caminho que o interessado percorre até pedir orçamento.',porque:'Anunciar sem entender a operação desperdiça verba.',resp:'Equipe de marketing, com informações da Real Polar.',mede:'Objetivo da campanha definido e materiais mapeados.'},
-  {t:'Identificação de públicos',r:'mkt',faz:'Montamos hipóteses de quem contrata ou indica projetos: regiões, perfis e segmentos.',porque:'A mensagem muda conforme quem decide.',resp:'Equipe de marketing.',mede:'Alcance e custo em cada público testado.'},
-  {t:'Criação de campanhas',r:'mkt',faz:'Criamos mensagens, peças e roteiros a partir de projetos reais autorizados.',porque:'Mostrar obras e instalações reais transmite capacidade técnica.',resp:'Equipe de marketing. A Real Polar aprova.',mede:'Cliques e interações em cada peça.'},
-  {t:'Anúncios Meta Ads',r:'mkt',faz:'Configuramos, publicamos e ajustamos as campanhas no Instagram e no Facebook.',porque:'Levar a mensagem a quem ainda não conhece a empresa.',resp:'Equipe de marketing. A verba é paga pela Real Polar à Meta.',mede:'Alcance, cliques e custo por clique.'},
-  {t:'Site ou WhatsApp',r:'mkt',faz:'Definimos o destino de cada anúncio e revisamos o caminho até o contato.',porque:'Um destino confuso faz o interessado desistir.',resp:'Equipe de marketing, com os acessos da Real Polar.',mede:'Contatos iniciados, quando for possível rastrear.'},
-  {t:'Contato interessado',r:'shared',faz:'O interessado envia uma mensagem ou um pedido.',porque:'É aqui que o marketing entrega a oportunidade ao comercial.',resp:'Compartilhado: o marketing mede, a Real Polar recebe.',mede:'Quantidade e custo dos contatos.'},
-  {t:'Atendimento Real Polar',r:'rp',faz:'A Real Polar responde, entende o projeto e avalia se tem perfil.',porque:'A rapidez e a clareza do atendimento influenciam o fechamento.',resp:'Real Polar.',mede:'Contatos qualificados, quando a Real Polar compartilha essa informação.'},
-  {t:'Orçamento e negociação',r:'rp',faz:'Visita técnica, proposta, negociação e fechamento.',porque:'É a etapa de venda, que continua com a Real Polar.',resp:'Real Polar.',mede:'Propostas enviadas e projetos fechados, com os dados compartilhados.'}
- ]},
- porque:{intro:'Enquanto a Real Polar executa obras, alguém precisa manter a empresa visível para quem vai contratar.',steps:[
-  {t:'Clareza de posicionamento',r:'shared',faz:'Definimos quais serviços destacar e para quem.',porque:'Quem procura climatização precisa entender rápido o que a empresa resolve.',resp:'Equipe de marketing, com a Real Polar.',mede:'Serviços prioritários definidos.'},
-  {t:'Conteúdo técnico',r:'mkt',faz:'Transformamos obras e instalações reais em artes e vídeos.',porque:'Material próprio comprova capacidade técnica melhor que imagens genéricas.',resp:'Equipe de marketing. A captação presencial é contratada à parte.',mede:'Publicações entregues conforme o plano.'},
-  {t:'Presença organizada',r:'mkt',faz:'Cuidamos do perfil e das publicações e, conforme o plano, do Google Meu Negócio.',porque:'Quem recebe uma indicação costuma pesquisar a empresa antes de chamar.',resp:'Equipe de marketing.',mede:'Frequência e consistência das publicações.'},
-  {t:'Confiança de quem contrata',r:'mkt',faz:'Mostramos processos, cuidados técnicos e projetos concluídos.',porque:'Arquitetos, gestores de obra e proprietários comparam fornecedores antes de decidir.',resp:'Equipe de marketing.',mede:'Interações e visitas ao perfil.'},
-  {t:'Novas oportunidades',r:'shared',faz:'Os anúncios levam a mensagem a novos públicos, e os contatos chegam à Real Polar.',porque:'Indicações continuam importantes, mas não dependem só delas.',resp:'Compartilhado: o marketing gera o contato, a Real Polar atende.',mede:'Quantidade e qualidade dos contatos.'}
- ]},
- lkt:{intro:'É a primeira etapa: entender a empresa antes de investir em anúncios.',steps:[
-  {t:'Serviços e prioridades',r:'shared',faz:'Identificamos os serviços que a Real Polar quer vender mais e as regiões de atuação.',porque:'Concentra a verba no que interessa ao negócio.',resp:'Equipe de marketing, com a Real Polar.',mede:'Lista de serviços prioritários.'},
-  {t:'Materiais disponíveis',r:'shared',faz:'Avaliamos fotos, vídeos e dados de projetos que podem ser usados com autorização.',porque:'Mostra o que já pode ser publicado e o que exige captação.',resp:'A Real Polar fornece; o marketing avalia.',mede:'Acervo utilizável e lacunas registradas.'},
-  {t:'Presença atual',r:'mkt',faz:'Analisamos Instagram, site e Google Meu Negócio, e como a empresa aparece hoje.',porque:'É o que o interessado vê antes de entrar em contato.',resp:'Equipe de marketing.',mede:'Pontos de melhoria registrados.'},
-  {t:'Caminho até o orçamento',r:'shared',faz:'Mapeamos por onde o interessado chega e quem responde.',porque:'Um contato sem resposta é verba perdida.',resp:'Equipe de marketing, com a Real Polar.',mede:'Canal de contato e forma de registro definidos.'},
-  {t:'Objetivo e hipóteses',r:'mkt',faz:'Definimos o objetivo da campanha e as primeiras hipóteses de público e mensagem.',porque:'Os testes do mês 2 partem dessas hipóteses.',resp:'Equipe de marketing, com aprovação da Real Polar.',mede:'Plano de testes aprovado.'}
- ]}
+/* ===== Roteiros conectados (SVG) =====
+   Cada mapa: etapas com responsável, texto curto e indicador; arestas reais entre etapas.
+   Layout "snake": as linhas alternam a direção; "lanes": duas trilhas paralelas ligadas. */
+const MAPS={
+ atrair:{caption:'O processo completo, quando as ações correspondentes estão contratadas. <strong>O Plano Econômico tem foco mais restrito.</strong>',layout:'snake',cols:5,indLabel:'Indicador',
+  nodes:[
+   ['Entender o negócio','shared','Levantamos com a Real Polar os serviços, diferenciais e materiais disponíveis.','Serviços prioritários definidos'],
+   ['Identificar o público','mkt','Identificamos os públicos com maior potencial, comparando a resposta de cada segmento.','Resposta dos públicos testados'],
+   ['Definir a mensagem','mkt','Escolhemos o que mostrar a cada público: o serviço, o diferencial e a prova técnica.','Interesse por mensagem'],
+   ['Produzir o conteúdo','mkt','Artes e vídeos a partir de projetos reais, conforme o plano.','Peças entregues no período'],
+   ['Distribuir o conteúdo','mkt','Publicações no perfil e, quando previstas no plano, campanhas Meta Ads que levam ao site ou ao WhatsApp.','Alcance e cliques'],
+   ['Site ou WhatsApp','mkt','Cada campanha leva a um destino claro para o interessado falar com a empresa.','Conversas e visitas iniciadas'],
+   ['Contato interessado','shared','O interessado chama. Aqui o marketing entrega a oportunidade ao comercial.','Contatos e custo por contato'],
+   ['Atendimento Real Polar','rp','A Real Polar responde, entende o projeto e avalia se ele tem perfil.','Contatos qualificados, informados pela Real Polar'],
+   ['Orçamento e negociação','rp','Visita técnica, proposta e fechamento continuam com a Real Polar.','Propostas e projetos fechados, quando compartilhados']]},
+ porque:{caption:'<strong>Enquanto a Real Polar executa seus projetos, nossa equipe trabalha para fortalecer sua presença e criar novas oportunidades comerciais.</strong> As linhas tracejadas mostram onde as duas equipes trocam informações.',layout:'lanes',indLabel:'Indicador',
+  lanes:[['mkt',['Posicionamento','Conteúdo','Distribuição','Oportunidades comerciais','Acompanhamento']],['rp',['Execução dos projetos','Atendimento técnico','Orçamentos','Negociação','Entrega']]],
+  texts:{
+   'Posicionamento':['Definimos como a Real Polar quer ser lembrada, e por quem.','Serviços e públicos prioritários'],
+   'Conteúdo':['Projetos executados viram artes e vídeos que mostram competência técnica.','Publicações conforme o plano'],
+   'Distribuição':['Levamos o conteúdo a quem pode contratar: perfil e, quando previsto, anúncios.','Alcance e interesse'],
+   'Oportunidades comerciais':['Os interessados chegam pelo site ou WhatsApp e seguem para a Real Polar.','Contatos gerados'],
+   'Acompanhamento':['Com o retorno da Real Polar, ajustamos o que traz contatos com mais perfil.','Qualidade dos contatos'],
+   'Execução dos projetos':['A Real Polar segue focada em executar bem cada obra. Cada projeto vira material para o conteúdo.',''],
+   'Atendimento técnico':['A Real Polar responde aos interessados e entende cada necessidade.',''],
+   'Orçamentos':['Visita técnica e elaboração da proposta ficam com a Real Polar.',''],
+   'Negociação':['Condições e fechamento são conduzidos pela Real Polar, que compartilha o andamento.',''],
+   'Entrega':['O projeto entregue fortalece a reputação e gera novas referências.','']},
+  links:[['Execução dos projetos','Conteúdo'],['Oportunidades comerciais','Atendimento técnico'],['Negociação','Acompanhamento']]},
+ metas:{caption:'<strong>Antes de estabelecer metas comerciais, precisamos entender quais públicos, mensagens e canais respondem melhor.</strong> Cada etapa leva a uma decisão.',layout:'snake',cols:5,indLabel:'Quando',
+  nodes:[
+   ['Entender','shared','Decisão: quais serviços e públicos testar primeiro.','Mês 1'],
+   ['Testar','mkt','Decisão: quais mensagens e canais colocar à prova.','Mês 2'],
+   ['Comparar','mkt','Decisão: o que respondeu melhor, em custo e em qualidade dos contatos.','Meses 2 e 3'],
+   ['Ajustar','mkt','Decisão: o que manter, mudar ou interromper.','Mês 3'],
+   ['Definir metas','shared','Decisão: metas realistas para o próximo ciclo, com base nos dados.','Fim do mês 3']]},
+ medir:{caption:'Do primeiro contato com o conteúdo até o projeto fechado. <strong>O indicador principal depende do objetivo</strong>, como mostramos em <a href="#metricas">Indicadores</a>.',layout:'snake',cols:6,indLabel:'Indicador',
+  nodes:[
+   ['Exposição','mkt','Pessoas certas viram o conteúdo.','Alcance qualificado'],
+   ['Interesse','mkt','Pararam para ver, clicaram ou visitaram o perfil.','Cliques e visitas ao perfil'],
+   ['Ação','mkt','Tomaram uma atitude: abriram o WhatsApp ou o formulário.','Conversas e formulários iniciados'],
+   ['Contato','shared','Um interessado falou com a empresa.','Contatos e custo por contato'],
+   ['Oportunidade','rp','O contato tem perfil e virou reunião, visita ou proposta.','Reuniões e propostas, com dados da Real Polar'],
+   ['Resultado comercial','rp','O projeto foi fechado.','Projetos fechados, quando compartilhados']]},
+ av:{layout:'snake',cols:6,indLabel:'',
+  nodes:[
+   ['Definição da necessidade','shared','Definimos juntos o objetivo, o serviço ou projeto a mostrar, os materiais e se é preciso gravar. A Real Polar fornece as informações técnicas.',''],
+   ['Planejamento','mkt','Organizamos pauta, roteiro, formatos e orientações de produção. A Real Polar valida as informações técnicas e aprova a direção.',''],
+   ['Orçamento e aprovação','rp','Se houver produção externa, apresentamos a demanda para orçamento. Nada é contratado sem aprovação prévia da Real Polar.',''],
+   ['Captação','ext','Profissional terceirizado em São Paulo realiza a captação audiovisual: gravação, fotografia, instalações, equipamentos e registros técnicos, conforme o orçamento aprovado.',''],
+   ['Pós-produção','mkt','Organizamos e editamos o material conforme os serviços contratados.',''],
+   ['Aprovação e publicação','shared','A Real Polar valida o conteúdo quando necessário. Publicamos e acompanhamos conforme o escopo.','']]}
 };
-const flow=$('flow'),panel=$('panel'),panelHome=$('panelHome'),body=$('panelBody');
-const mobile=matchMedia('(max-width:900px)');
-let cur='atrair',idx=0;
-function renderFlow(){
-  const q=Q[cur];$('mapIntro').textContent=q.intro;
-  flow.classList.remove('ready');
-  flow.innerHTML=q.steps.map((s,i)=>`<li style="--i:${i}"><button class="node" type="button" data-i="${i}" aria-controls="panel"><span class="num" aria-hidden="true">${i+1}</span><span>${s.t}</span><span class="sr-only">, etapa ${i+1} de ${q.steps.length}, ${RESP[s.r][1]}</span><span class="who ${s.r}" aria-hidden="true"></span></button></li>`).join('');
-  requestAnimationFrame(()=>requestAnimationFrame(()=>flow.classList.add('ready')));
+function normalize(m){
+  if(m.layout==='lanes'){
+    m.nodes=[];m.lanes.forEach(([o,ls],li)=>ls.forEach((l,i)=>m.nodes.push({label:l,o,text:m.texts[l][0],ind:m.texts[l][1],lane:li,pos:i})));
+    const id=l=>m.nodes.findIndex(n=>n.label===l);
+    m.E=[];m.lanes.forEach(([,ls])=>ls.slice(1).forEach((l,i)=>m.E.push([id(ls[i]),id(l),'flow'])));
+    m.links.forEach(([a,b])=>m.E.push([id(a),id(b),'link']));
+  }else{
+    m.nodes=m.nodes.map(([label,o,text,ind])=>({label,o,text,ind}));
+    m.E=m.nodes.slice(1).map((_,i)=>[i,i+1,'flow']);
+  }
 }
-function show(i,focus){
-  const steps=Q[cur].steps;idx=Math.max(0,Math.min(steps.length-1,i));const s=steps[idx];
-  const fill=()=>{
-    $('pCount').textContent=`Etapa ${idx+1} de ${steps.length}`;
-    const t=$('pTag');t.className='tag '+RESP[s.r][0];t.textContent=RESP[s.r][1];
-    $('pTitle').textContent=s.t;$('pFaz').textContent=s.faz;$('pPorque').textContent=s.porque;$('pResp').textContent=s.resp;$('pMede').textContent=s.mede;
-    body.classList.remove('swap');
-  };
-  if(reduce.matches)fill();else{body.classList.add('swap');setTimeout(fill,120)}
-  flow.querySelectorAll('li').forEach((li,k)=>{li.classList.toggle('lit',k<idx);const b=li.querySelector('.node');if(k===idx)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')});
-  $('prevStep').disabled=idx===0;
-  $('nextStep').textContent=idx===steps.length-1?'Voltar ao início':'Ver próximo passo';
-  placePanel();
-  if(focus)flow.querySelectorAll('.node')[idx].focus({preventScroll:true});
-}
-function placePanel(){
-  if(mobile.matches){const li=flow.children[idx];if(panel.parentElement!==li){li.appendChild(panel);panel.classList.add('flow-mobile-panel')}}
-  else if(panel.parentElement!==panelHome){panelHome.appendChild(panel);panel.classList.remove('flow-mobile-panel')}
-}
-mobile.addEventListener('change',placePanel);
-document.querySelectorAll('.q').forEach(b=>b.addEventListener('click',()=>{
-  cur=b.dataset.q;document.querySelectorAll('.q').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
-  if(panel.parentElement!==panelHome)panelHome.appendChild(panel);
-  renderFlow();show(0);
-}));
-flow.addEventListener('click',e=>{const n=e.target.closest('.node');if(n)show(+n.dataset.i)});
-flow.addEventListener('keydown',e=>{const n=e.target.closest('.node');if(!n)return;
-  if(e.key==='ArrowDown'||e.key==='ArrowRight'){e.preventDefault();show(+n.dataset.i+1,true)}
-  if(e.key==='ArrowUp'||e.key==='ArrowLeft'){e.preventDefault();show(+n.dataset.i-1,true)}});
-$('nextStep').addEventListener('click',()=>{const last=idx===Q[cur].steps.length-1;show(last?0:idx+1);if(mobile.matches)panel.scrollIntoView({block:'nearest',behavior:reduce.matches?'auto':'smooth'})});
-$('prevStep').addEventListener('click',()=>show(idx-1));
-renderFlow();show(0);
+Object.values(MAPS).forEach(normalize);
 
-/* Abas acessíveis (90 dias e audiovisual) */
+const NS='http://www.w3.org/2000/svg';
+function Roadmap(root,opts){
+  root.innerHTML=`<div class="rm-stage"><svg class="rm-svg" aria-hidden="true"><defs>
+    <marker id="${root.id}-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#c3ced6"/></marker>
+    <marker id="${root.id}-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#14708a"/></marker></defs><g class="g-base"></g><g class="g-on"></g></svg>
+    <ol class="rm-nodes"></ol></div>
+    <div class="rm-detail"><div class="rm-detail-body" aria-live="polite"><p class="step"></p><h3></h3><p class="txt"></p><div class="rm-meta"></div></div>
+    <div class="rm-nav"><button class="btn btn-line" type="button" data-nav="-1">Etapa anterior</button><button class="btn btn-accent" type="button" data-nav="1">Próxima etapa</button></div></div>`
+    +(opts.legend?'<div class="rm-legend">'+opts.legend.map(o=>`<span class="tag ${OWN[o][0]}">${OWN[o][1]}</span>`).join('')+'</div>':'');
+  const stage=root.querySelector('.rm-stage'),svg=root.querySelector('svg'),gB=svg.querySelector('.g-base'),gO=svg.querySelector('.g-on'),list=root.querySelector('.rm-nodes'),detail=root.querySelector('.rm-detail'),body=root.querySelector('.rm-detail-body');
+  const items=()=>[...list.querySelectorAll(':scope > li')];
+  let m,cur=0,cols=1,inline=false,paths=[];
+  function layout(){
+    const w=stage.clientWidth;
+    if(m.layout==='lanes'){
+      const vertical=w<600;cols=vertical?2:m.lanes[0][1].length;
+      m.nodes.forEach(n=>{n.row=vertical?n.pos:n.lane;n.col=vertical?n.lane:n.pos});
+    }else{
+      cols=w<600?1:w<900?3:m.cols;
+      m.nodes.forEach((n,i)=>{const r=Math.floor(i/cols),c=i%cols;n.row=r;n.col=r%2?cols-1-c:c});
+    }
+    inline=cols===1;root.classList.toggle('inline',inline);root.classList.toggle('lanes-v',m.layout==='lanes'&&cols===2);
+    list.style.gridTemplateColumns=`repeat(${cols},minmax(0,1fr))`;
+    const ar=m.nodes[cur].row;
+    items().forEach((li,i)=>{const n=m.nodes[i];li.style.gridRow=n.row+1+(inline&&n.row>ar?1:0);li.style.gridColumn=n.col+1});
+    if(inline){list.appendChild(detail);detail.style.gridRow=ar+2;detail.style.gridColumn='1/-1'}
+    else if(detail.parentElement!==root){stage.after(detail);detail.style.gridRow=detail.style.gridColumn=''}
+  }
+  function rectOf(i){const b=items()[i].firstElementChild.getBoundingClientRect(),s=stage.getBoundingClientRect();return {l:b.left-s.left,r:b.right-s.left,t:b.top-s.top,b:b.bottom-s.top,cx:(b.left+b.right)/2-s.left,cy:(b.top+b.bottom)/2-s.top}}
+  // A direção de cada ligação vem da posição no grid (linha/coluna), não da altura medida.
+  function d(a,b){
+    const A=rectOf(a),B=rectOf(b),NA=m.nodes[a],NB=m.nodes[b],g=6;
+    if(NA.row===NB.row)return NB.col>NA.col?`M${A.r} ${A.cy}L${B.l-g} ${A.cy}`:`M${A.l} ${A.cy}L${B.r+g} ${A.cy}`;
+    if(inline){const x=A.l+22;return `M${x} ${A.b}L${x} ${B.t-g}`}
+    if(NA.col===NB.col)return NB.row>NA.row?`M${A.cx} ${A.b}L${B.cx} ${B.t-g}`:`M${A.cx} ${A.t}L${B.cx} ${B.b+g}`;
+    if(m.layout==='lanes'&&cols===2){const x1=NB.col>NA.col?A.r:A.l,x2=NB.col>NA.col?B.l-g:B.r+g,mx=(x1+x2)/2;return `M${x1} ${A.cy}C${mx} ${A.cy} ${mx} ${B.cy} ${x2} ${B.cy}`}
+    if(B.t>A.b){const my=(A.b+B.t)/2;return `M${A.cx} ${A.b}C${A.cx} ${my} ${B.cx} ${my} ${B.cx} ${B.t-g}`}
+    const my=(A.t+B.b)/2;return `M${A.cx} ${A.t}C${A.cx} ${my} ${B.cx} ${my} ${B.cx} ${B.b+g}`;
+  }
+  function draw(){
+    gB.textContent='';gO.textContent='';paths=[];
+    m.E.forEach(([a,b,t])=>{const p=d(a,b);
+      const base=document.createElementNS(NS,'path');base.setAttribute('d',p);base.setAttribute('class','e '+t);base.setAttribute('marker-end',`url(#${root.id}-a)`);gB.appendChild(base);
+      const on=document.createElementNS(NS,'path');on.setAttribute('d',p);on.setAttribute('class','o '+t);on.setAttribute('marker-end',`url(#${root.id}-b)`);if(t==='link')on.style.strokeDasharray='5 6';gO.appendChild(on);paths.push(on)});
+  }
+  function states(animate){
+    const before=new Set();(function walk(i){m.E.forEach(([a,b,t])=>{if(t==='flow'&&b===i&&!before.has(a)){before.add(a);walk(a)}})})(cur);
+    const next=new Set(m.E.filter(([a])=>a===cur).map(([,b])=>b));
+    m.E.forEach(([a,b,t],k)=>{const p=paths[k],out=a===cur,inn=b===cur,past=t==='flow'&&before.has(a)&&before.has(b);
+      p.classList.toggle('out',out);p.classList.toggle('in',inn);p.classList.toggle('past',past);
+      if(t==='link')return;
+      if(out){const L=p.getTotalLength();p.style.strokeDasharray=L;
+        if(animate&&!reduce.matches){p.style.transition='none';p.style.strokeDashoffset=L;p.getBoundingClientRect();p.style.transition='';p.style.strokeDashoffset=0}else p.style.strokeDashoffset=0}
+      else{p.style.strokeDasharray='';p.style.strokeDashoffset=''}});
+    items().forEach((li,i)=>{const b=li.firstElementChild;b.classList.toggle('past',before.has(i));b.classList.toggle('next',next.has(i));
+      if(i===cur)b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')});
+  }
+  function fill(){
+    const n=m.nodes[cur];
+    body.querySelector('.step').textContent=`Etapa ${cur+1} de ${m.nodes.length}`;
+    body.querySelector('h3').textContent=n.label;body.querySelector('.txt').textContent=n.text;
+    body.querySelector('.rm-meta').innerHTML=`<span class="tag ${OWN[n.o][0]}">${OWN[n.o][1]}</span>`+(n.ind&&m.indLabel?`<span><b>${m.indLabel}:</b> ${n.ind}</span>`:'');
+    detail.querySelector('[data-nav="-1"]').disabled=cur===0;
+    detail.querySelector('[data-nav="1"]').textContent=cur===m.nodes.length-1?'Voltar ao início':'Próxima etapa';
+  }
+  function select(i,{focus=false,animate=true}={}){
+    cur=(i+m.nodes.length)%m.nodes.length;
+    layout();draw();states(animate);
+    if(animate&&!reduce.matches){body.classList.add('swap');setTimeout(()=>{fill();body.classList.remove('swap')},110)}else fill();
+    if(focus)items()[cur].firstElementChild.focus({preventScroll:inline});
+    if(inline&&animate)detail.scrollIntoView({block:'nearest',behavior:reduce.matches?'auto':'smooth'});
+  }
+  function load(map){
+    m=map;cur=0;
+    if(detail.parentElement!==root)stage.after(detail);
+    list.innerHTML=m.nodes.map((n,i)=>`<li><button class="rm-node" type="button" data-o="${n.o}" data-i="${i}"><span class="who">${OWN[n.o][2]}</span><span class="lbl">${n.label}</span><span class="sr-only">, etapa ${i+1} de ${m.nodes.length}</span></button></li>`).join('');
+    select(0,{animate:false});
+  }
+  list.addEventListener('click',e=>{const b=e.target.closest('.rm-node');if(b)select(+b.dataset.i)});
+  list.addEventListener('keydown',e=>{const b=e.target.closest('.rm-node');if(!b)return;const k={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];if(k){e.preventDefault();select(+b.dataset.i+k,{focus:true})}});
+  detail.querySelector('.rm-nav').addEventListener('click',e=>{const b=e.target.closest('[data-nav]');if(b&&!b.disabled)select(cur+ +b.dataset.nav)});
+  let raf;new ResizeObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{if(m){layout();draw();states(false)}})}).observe(stage);
+  return {load};
+}
+
+const main=Roadmap($('mapMain'),{legend:['mkt','rp','shared']});
+const chips=[...document.querySelectorAll('[data-map]')];
+function showMap(k,animate){
+  chips.forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.map===k)));
+  const go=()=>{$('mapCaption').innerHTML=MAPS[k].caption;main.load(MAPS[k]);$('mapMain').classList.remove('swap')};
+  if(animate&&!reduce.matches){$('mapMain').classList.add('swap');setTimeout(go,150)}else go();
+}
+chips.forEach(c=>c.addEventListener('click',()=>showMap(c.dataset.map,true)));
+showMap('atrair',false);
+Roadmap($('mapAv'),{legend:['mkt','rp','shared','ext']}).load(MAPS.av);
+
+/* ===== Abas acessíveis ===== */
 function tabs(list,onSelect){
   const ts=[...list.querySelectorAll('[role="tab"]')];
-  const sel=t=>{ts.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',String(on));x.tabIndex=on?0:-1;$(x.getAttribute('aria-controls')).hidden=!on});onSelect&&onSelect(t)};
+  const sel=t=>{ts.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',String(on));x.tabIndex=on?0:-1;$(x.getAttribute('aria-controls')).hidden=!on});onSelect&&onSelect(t,ts)};
   ts.forEach((t,i)=>{t.addEventListener('click',()=>sel(t));t.addEventListener('keydown',e=>{
     const k={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];let n=null;
     if(k)n=ts[(i+k+ts.length)%ts.length];if(e.key==='Home')n=ts[0];if(e.key==='End')n=ts[ts.length-1];
     if(n){e.preventDefault();n.focus();sel(n)}})});
 }
-tabs(document.querySelector('#noventa [role="tablist"]'),t=>$('track').style.setProperty('--p',t.dataset.p));
+tabs(document.querySelector('.tl-marks'),(t,ts)=>{$('tlFill').style.setProperty('--p',t.dataset.p);const i=ts.indexOf(t);ts.forEach((x,k)=>x.classList.toggle('done',k<i))});
 tabs(document.querySelector('.services [role="tablist"]'));
 
-/* 04 Funil */
-const M={
- alcance:['Alcance','mkt','Quantas pessoas viram os anúncios ou o conteúdo.','Mostra se a mensagem está chegando a quem pode contratar.','Plataforma da Meta, no relatório da equipe de marketing.'],
- cliques:['Cliques','mkt','Quem clicou para saber mais, ir ao site ou abrir o WhatsApp.','Indica interesse. O custo por clique ajuda a comparar anúncios.','Plataforma da Meta, no relatório da equipe de marketing.'],
- contatos:['Contatos','mkt','Mensagens e pedidos recebidos a partir das campanhas.','É a primeira medida de oportunidade comercial.','Equipe de marketing, quando for possível rastrear. A Real Polar confirma o recebimento.'],
- qualificados:['Contatos qualificados','rp','Contatos com perfil de projeto que a Real Polar atende.','Separa quantidade de qualidade e orienta o ajuste de públicos.','Real Polar. A equipe usa essa informação para ajustar as campanhas.'],
- propostas:['Reuniões e propostas','rp','Visitas técnicas, reuniões e orçamentos enviados.','Mostra a passagem do marketing para o comercial.','Real Polar.'],
- fechados:['Projetos fechados','rp','Contratos fechados a partir desses contatos.','É o resultado de negócio que interessa à Real Polar.','Real Polar, quando compartilha o andamento.']
-};
-const stages=[...document.querySelectorAll('.stage')];
-function metric(k){const m=M[k];stages.forEach(s=>s.setAttribute('aria-pressed',String(s.dataset.m===k)));
-  $('mTitle').textContent=m[0];const t=$('mTag');t.className='tag '+RESP[m[1]][0];t.textContent=m[1]==='mkt'?'Indicador de marketing':'Resultado comercial da Real Polar';
-  $('mSig').textContent=m[2];$('mImp').textContent=m[3];$('mQuem').textContent=m[4]}
-stages.forEach(s=>s.addEventListener('click',()=>metric(s.dataset.m)));metric('alcance');
+/* ===== Indicadores por objetivo ===== */
+const GOALS={
+ pos:{t:'Posicionamento',when:'Quando precisamos fortalecer a presença da marca.',on:[0,1],m:['Alcance qualificado','Visitas ao perfil','Engajamento relevante','Interações com conteúdos técnicos','Crescimento da presença digital'],ex:'<b>Atenção:</b> número de seguidores, sozinho, não prova sucesso.'},
+ cont:{t:'Geração de contatos',when:'Quando buscamos solicitações de orçamento.',on:[1,2,3],m:['Cliques relevantes','Conversas iniciadas','Formulários enviados','Custo por contato','Qualidade das oportunidades'],ex:'<b>Exemplo:</b> uma campanha para o WhatsApp é avaliada pelas conversas e pela qualidade dos interessados. Uma campanha para o site, pelas visitas relevantes e pelas solicitações de orçamento.'},
+ proj:{t:'Resultado comercial',when:'Quando é possível acompanhar o processo até a contratação.',on:[3,4,5],m:['Contatos qualificados','Reuniões realizadas','Propostas enviadas','Projetos fechados','Receita atribuível, quando houver dados suficientes'],ex:'<b>Exemplo:</b> um projeto de maior valor passa por visita técnica, proposta e negociação. Acompanhamos essa evolução desde que a Real Polar compartilhe os dados. O resultado comercial não depende só do marketing.'}};
+const goalBtns=[...document.querySelectorAll('[data-goal]')],chain=[...$('chain').children];
+function goal(k,animate){const g=GOALS[k];
+  goalBtns.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.goal===k)));
+  chain.forEach((li,i)=>{const on=g.on.includes(i);li.classList.toggle('on',on);li.style.setProperty('--d',on?(g.on.indexOf(i)*.08)+'s':'0s')});
+  const box=$('goalBox');box.innerHTML=`<div><h3>${g.t}</h3><p class="when">${g.when}</p><p class="ex">${g.ex}</p></div><ul aria-label="Indicadores">${g.m.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+  if(animate){box.classList.remove('swap');void box.offsetWidth;box.classList.add('swap')}}
+goalBtns.forEach(b=>b.addEventListener('click',()=>goal(b.dataset.goal,true)));goal('pos',false);
 
-/* 05 Verba */
-const B={menor:{on:2,fill:[38,30],txt:'Com orçamento menor, testamos poucas variações por vez. Cada uma leva mais tempo para reunir dados suficientes.'},
-         maior:{on:4,fill:[78,70,64,58],txt:'Com orçamento maior, dá para testar mais variações ao mesmo tempo e chegar antes a conclusões. Não é garantia de mais vendas.'}};
-const lanes=[...document.querySelectorAll('.lane')];
-function budget(k){const b=B[k];document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.b===k)));
-  lanes.forEach((l,i)=>{l.classList.toggle('off',i>=b.on);l.querySelector('.bar span').style.setProperty('--fill',(i<b.on?b.fill[i]:0)+'%')});
-  $('lanesText').textContent=b.txt;$('lanesSr').textContent=`${b.on} testes simultâneos.`}
-document.querySelectorAll('.seg button').forEach(x=>x.addEventListener('click',()=>budget(x.dataset.b)));budget('menor');
+/* ===== Verba ===== */
+const BUD={menor:{on:[0,1],pts:['Menor volume de distribuição','Menos espaço para testes simultâneos','Aprendizado possivelmente mais lento']},
+           maior:{on:[0,1,2,3,4],pts:['Maior possibilidade de distribuição','Mais espaço para comparar públicos e mensagens','Possibilidade de aprender mais rapidamente']}};
+const aud=[...$('aud').children];
+function budget(k){const b=BUD[k];document.querySelectorAll('[data-b]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.b===k)));
+  aud.forEach((a,i)=>{a.classList.remove('on');void a.offsetWidth;if(b.on.includes(i)){a.classList.add('on');a.style.setProperty('--d',(b.on.indexOf(i)*.12)+'s')}});
+  $('points').innerHTML=b.pts.map(p=>`<li>${p}</li>`).join('')}
+document.querySelectorAll('[data-b]').forEach(x=>x.addEventListener('click',()=>budget(x.dataset.b)));budget('menor');
 
-/* Simulador */
+/* ===== Planos e simulador ===== */
 const brl=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
 const num=(id,max)=>{const v=Number($(id).value);return Math.max(0,Math.min(max,Number.isFinite(v)?v:0))};
+let lastTotal=null;
 function sim(){const fee=Number($('sPlan').value),d=num('sDaily',10000),n=num('sDays',31),sh=num('sShoots',10),sp=num('sShootPrice',100000);
-  const ads=d*n,shoot=sh*sp;
+  const ads=d*n,shoot=sh*sp,total=fee+ads+shoot;
   $('oFee').textContent=brl.format(fee);$('oAds').textContent=brl.format(ads);$('oShoot').textContent=brl.format(shoot);
   $('oAdsDetail').textContent=`(${n} dia${n===1?'':'s'} × ${brl.format(d)})`;
   $('oShootDetail').textContent=sh?`(${sh} × ${brl.format(sp)})`:'(sem captação)';
-  $('oTotal').textContent=brl.format(fee+ads+shoot)}
-['sPlan','sDaily','sDays','sShoots','sShootPrice'].forEach(id=>$(id).addEventListener('input',sim));sim();
+  const t=$('oTotal');t.textContent=brl.format(total);
+  if(lastTotal!==null&&total!==lastTotal){t.classList.remove('bump');void t.offsetWidth;t.classList.add('bump')}lastTotal=total;
+  document.querySelectorAll('.plan').forEach(p=>{const on=p.dataset.fee===$('sPlan').value;p.classList.toggle('selected',on);p.querySelector('.pick').setAttribute('aria-pressed',String(on))})}
+['sPlan','sDaily','sDays','sShoots','sShootPrice'].forEach(id=>$(id).addEventListener('input',sim));
+document.querySelectorAll('.plan .pick').forEach(b=>b.addEventListener('click',()=>{$('sPlan').value=b.closest('.plan').dataset.fee;sim();$('simulador').scrollIntoView({block:'nearest',behavior:reduce.matches?'auto':'smooth'})}));
+sim();
 
-/* Impressão: lista estática de todos os caminhos */
+/* ===== Rolagem: progresso, seção ativa e revelação ===== */
+const bar=$('progress');let ticking=false;
+function prog(){const h=document.documentElement.scrollHeight-innerHeight;bar.style.setProperty('--p',h>0?Math.min(1,scrollY/h):0);ticking=false}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(prog)}},{passive:true});prog();
+const links=[...document.querySelectorAll('#nav a')],nav=$('nav');
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;
+    links.forEach(a=>{const on=a.getAttribute('href')==='#'+e.target.id;a.setAttribute('aria-current',String(on));
+      if(on&&nav.scrollWidth>nav.clientWidth)nav.scrollTo({left:a.offsetLeft-16,behavior:reduce.matches?'auto':'smooth'})})}),{rootMargin:'-45% 0px -50% 0px'});
+  links.forEach(a=>{const s=document.querySelector(a.getAttribute('href'));if(s)io.observe(s)});
+  if(document.documentElement.classList.contains('motion')){
+    const rv=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('[data-reveal]').forEach(el=>rv.observe(el));
+  }
+}
+
+/* ===== Impressão: versão estática dos mapas e objetivos ===== */
 addEventListener('beforeprint',()=>{
-  $('printMap').innerHTML=Object.values(Q).map((q,qi)=>`<h3 style="margin-top:14px">${document.querySelectorAll('.q')[qi].textContent}</h3>`+q.steps.map((s,i)=>`<div class="print-step"><strong>${i+1}. ${s.t}</strong> (${RESP[s.r][1]})<p>O que fazemos: ${s.faz}</p><p>Por quê: ${s.porque}</p><p>O que medimos: ${s.mede}</p></div>`).join('')).join('');
+  $('printMaps').innerHTML=chips.map(c=>{const m=MAPS[c.dataset.map];return `<h3 style="margin-top:14px">${c.textContent}</h3>`+m.nodes.map((n,i)=>`<div class="print-step"><strong>${i+1}. ${n.label}</strong> (${OWN[n.o][1]})<p>${n.text}${n.ind&&m.indLabel?` ${m.indLabel}: ${n.ind}.`:''}</p></div>`).join('')}).join('');
+  $('printGoals').innerHTML=Object.values(GOALS).map(g=>`<div class="print-step"><strong>${g.t}</strong>: ${g.m.join('; ')}.</div>`).join('');
   document.querySelectorAll('.faq details').forEach(d=>{d.dataset.o=d.open?'1':'';d.open=true});
 });
 addEventListener('afterprint',()=>document.querySelectorAll('.faq details').forEach(d=>d.open=!!d.dataset.o));
 $('printBtn').addEventListener('click',()=>window.print());
 
-/* Resumo */
+/* ===== Resumo ===== */
 $('copySummary').addEventListener('click',async function(){
-  const txt='REAL POLAR | RESUMO DOS ESCLARECIMENTOS\n\nPapéis: a equipe de marketing cuida de posicionamento, conteúdo, perfil, campanhas na Meta e medição. A Real Polar cuida do atendimento, orçamento, negociação e fechamento.\n\nPrimeiros 90 dias: mês 1 diagnosticar e estruturar; mês 2 testar e validar; mês 3 consolidar e avaliar. Sem quantidade fixa de contatos antes da validação. Período mínimo de três meses indicado na proposta; demais condições no contrato.\n\nPlanos (gestão mensal, conforme proposta no Canva): Econômico R$ 1.280; Essencial R$ 2.100; Presença Ampliada R$ 3.200.\nVerba Meta Ads: paga à parte à Meta (referência a partir de R$ 15/dia).\nCaptação presencial em SP: terceirizada, referência R$ 1.200/diária sujeita a cotação.\n\nQuantidades, limites do bônus, painel interno e rebranding: a definir em contrato.';
+  const txt='REAL POLAR | COMO O MARKETING VAI FUNCIONAR\n\nPapéis: a equipe de marketing cuida de posicionamento, conteúdo, divulgação e medição. A Real Polar cuida do atendimento, visita técnica, orçamento e fechamento.\n\nPrimeiros 90 dias: mês 1 estruturação; mês 2 testes; mês 3 validação. Metas definidas depois dos testes, para o ciclo seguinte. Período mínimo de três meses; demais condições no contrato.\n\nIndicadores: mudam conforme o objetivo (posicionamento, contatos ou resultado comercial). Resultados comerciais dependem dos dados compartilhados pela Real Polar.\n\nPlanos (gestão mensal): Econômico R$ 1.280; Essencial R$ 2.100; Presença Ampliada R$ 3.200.\nVerba de anúncios: à parte, paga à Meta (referência a partir de R$ 15/dia).\nCaptação presencial em SP: profissional terceirizado, referência R$ 1.200/diária sujeita a cotação, com aprovação prévia.\n\nQuantidades, limites do bônus, painel interno e rebranding: a definir em contrato.';
   const b=this,orig=b.textContent;
   try{await navigator.clipboard.writeText(txt);b.textContent='Resumo copiado'}catch(e){b.textContent='Não foi possível copiar'}
   setTimeout(()=>b.textContent=orig,2400)});

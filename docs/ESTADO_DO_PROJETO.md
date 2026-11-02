@@ -89,9 +89,9 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 | --- | --- |
 | HTML interativo com planos/FAQ/simulador | **Implementado na `main`** (inclui o PR #1, já mesclado), mas com divergências comerciais versus Canva |
 | Site do cliente em Vercel | **Existente** em https://realpolar-proposta.vercel.app/; verificar deployment e commit antes de afirmar versão em produção |
-| Novo storytelling de dúvidas e mapas clicáveis | **Codado e testado em protótipo** (`prototipo/index.html`); aguardando aprovação; não publicado na produção |
+| Novo storytelling de dúvidas e mapas clicáveis | **Codado e testado em protótipo** (`prototipo/index.html`), **2ª rodada**: 4 roteiros com caminhos SVG, animações de rolagem e textos sem termos internos; aguardando aprovação; não publicado na produção |
 | Fluxo dos primeiros 90 dias | **Codado e testado em protótipo**, como marco de avaliação, sem meta fixa de leads |
-| Funil de métricas, comparador de verba e trilha do audiovisual | **Codados e testados em protótipo** |
+| Indicadores por objetivo, comparador de verba e roteiro do audiovisual | **Codados e testados em protótipo** (2ª rodada) |
 | Contrato a anexar | **Pendente de leitura e validação** |
 | Arte/logo oficial | **Ausente do repositório e do Codespace em 02/11/2026.** Protótipo usa a marca em texto |
 | Correção de preços no HTML | **Pendente no `index.html` principal.** O protótipo já usa os valores do Canva (R$ 1.280 / 2.100 / 3.200 e diária de referência R$ 1.200) |
@@ -108,6 +108,8 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 - **Ponto de entrada para Claude:** ler `CLAUDE.md`, depois `docs/AUDITORIA_DESIGN_REALPOLAR.md` (seção “Brief de execução para o Claude”).
 
 ## 8. Histórico de alterações
+
+- **02/11/2026 | Refinamento do protótipo, 2ª rodada (Claude Code):** branch `design/prototipo-esclarecimento`, PR #3. **Decidido pelo responsável:** mapas conectados em vez de listas, animações discretas de rolagem, linguagem sem "Esclarecimentos da proposta", Canva ou LKT na interface, métricas por objetivo e audiovisual com responsabilidades. **Codado:** motor de roteiro em SVG (4 mapas + audiovisual), linha do tempo de 90 dias, seletor de objetivos, comparação de investimento, barra de progresso, menu com seção ativa, revelação progressiva, ligação planos ↔ simulador. **Testado:** 111 verificações em 1440, 768 e 390px + movimento reduzido (seção M da auditoria). **Publicado:** nada em produção. **Limitações:** briefing recebido cortado na seção 11; Canva, logo e contrato continuam indisponíveis. **Divergências:** sem novas; continuam as da seção 3.
 
 - **02/11/2026 | Protótipo de esclarecimento (Claude Code):** branch `design/prototipo-esclarecimento`, criada a partir de `docs/alinhamento-chatgpt-claude-20261101`. **Decidido:** protótipo isolado, sem tocar no `index.html` principal. **Codado:** `prototipo/index.html` com dois polos, mapa de 3 perguntas (18 etapas com o que fazemos / por quê / responsável / medição), cronograma de 90 dias, funil de 6 métricas, comparador de verba, trilha do audiovisual, planos com valores do Canva, simulador e próximos passos. **Testado:** 48 verificações automáticas em 1440×900 e 390×844, porta 5500 e conferência textual (seção L da auditoria). **Publicado:** nada em produção; prévia somente pela Vercel da branch. **Divergências novas:** Meta Ads não listado na Presença Ampliada no texto extraído do Canva; prazo de 48h do bônus sem confirmação no Canva. **Limitações:** Canva inacessível ao Claude; logo ausente; contrato não recebido. **PR #3** (base: `docs/alinhamento-chatgpt-claude-20261101`): https://github.com/caio090/REALPOLAR/pull/3. **Prévia:** https://realpolar-proposta-git-design-prototipo-esclarecimento-caio21.vercel.app/prototipo/ (48 verificações também aprovadas na prévia; produção conferida sem alteração).
 
