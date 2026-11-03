@@ -2,7 +2,7 @@
 
 Data: 02/11/2026, horário do responsável. Repositório: `caio090/REALPOLAR`.
 Branch: `refinamento/proposta-v8`. Base: `ec052835b081332112860e9fba22157eefc15d16` (merge PR #4).
-Commit da interface: consultar o histórico desta branch; o registro de entrega após a prévia identifica o SHA exato, sem autorreferência de hash.
+Commit da interface: `4b79e080e0f9805ede25aa2480af49432524c193`. O commit posterior contém somente evidências e documentação; seu SHA final é informado na entrega e no PR #5.
 
 ## Fontes e produção conferidas
 
@@ -61,7 +61,7 @@ Não executados: Safari/iOS, Android físicos, Firefox, leitor de tela real, imp
 
 ## Evidências visuais
 
-Capturas atuais de produção (antes) e local (depois): [capturas/v8/](capturas/v8/), 390 e 1280 px. Incluem abertura, planos, serviços, 90 dias, acompanhamento, investimento, fechamento, três cartões abertos e pop-up. A seção final adicional tem captura própria de resumo.
+Capturas atuais de produção (antes) e da prévia V8 (depois): [capturas/v8/](capturas/v8/), 390 e 1280 px. Incluem abertura, planos, serviços, 90 dias, acompanhamento, investimento, fechamento, três cartões abertos e pop-up. A seção final adicional tem captura própria de resumo.
 
 ![Abertura antes no celular](capturas/v8/antes-inicio-390.jpg)
 ![Abertura depois no celular](capturas/v8/depois-inicio-390.jpg)
@@ -75,3 +75,76 @@ Continuam pendentes contrato, periodicidade dos relatórios do Ampliado, volumes
 Sem merge e sem deploy de produção nesta tarefa. Alterações destinam-se a PR revisável e prévia técnica na rota `/`. PR, SHA final, URL e verificação remota constam no registro de entrega adicionado após os checks. A publicação exige revisão e autorização do responsável.
 
 Arquivos de código: somente `index.html`. Documentação: `AGENTS.md`, `README.md`, `docs/ESTADO_DO_PROJETO.md`, `docs/AUDITORIA_DESIGN_REALPOLAR.md`, este relatório, teste e capturas. Sem alterações em assets, `.devcontainer`, `.vercelignore`, credenciais ou infraestrutura.
+
+## Registro de entrega e prévia verificada
+
+- PR: https://github.com/caio090/REALPOLAR/pull/5 (aberto, base main).
+- Prévia imutável da interface: https://realpolar-proposta-683yp1ubz-caio21.vercel.app/ — rota `/`, projeto `realpolar-proposta`, deployment `dpl_ELSNyA7amyxCipaYEokXu3T9zEbZ`, READY, branch `refinamento/proposta-v8`, SHA `4b79e080e0f9805ede25aa2480af49432524c193`, conferidos pelo conector Vercel.
+- Prévia de branch: https://realpolar-proposta-git-refinamento-proposta-v8-caio21.vercel.app/ (pode acompanhar commits documentais posteriores).
+- Testes na URL remota: **363/363** e **648 combinações**, mesmos resultados locais. Evidências: `testes/resultados-v8.json` e `testes/resultados-v8-preview.json`.
+- HTML remoto equivale ao `index.html`, com acréscimo apenas do script de feedback da Vercel. Sem alteração de código cliente para disponibilizar a prévia.
+- Remoto: `/prototipo/`, `/AGENTS.md`, `/CLAUDE.md`, `/README.md` e `/docs/ESTADO_DO_PROJETO.md` retornaram **404**. Nenhuma segunda apresentação pública nessas rotas.
+- Nenhum merge ou deploy de produção. O push de branch criou prévias automáticas nos projetos já conectados `realpolar-proposta` e `realpolar`; não houve criação nem reconfiguração desses projetos. A URL a revisar é a do projeto oficial acima.
+- Evidência de execução local: servidor Python na porta 5500 usado nos testes. Processos temporários de QA podem encerrar ao fim da ferramenta; `.devcontainer` e seu comando automático não foram modificados.
+
+Revisar o PR e a prévia antes de autorizar publicação. A V5 permanece no domínio oficial até autorização expressa.
+
+## Lista de arquivos alterados em relação à base
+
+```text
+AGENTS.md
+README.md
+docs/AUDITORIA_DESIGN_REALPOLAR.md
+docs/ESTADO_DO_PROJETO.md
+docs/RELATORIO_V8.md
+docs/capturas/v8/antes-acompanhamento-1280.jpg
+docs/capturas/v8/antes-acompanhamento-390.jpg
+docs/capturas/v8/antes-inicio-1280.jpg
+docs/capturas/v8/antes-inicio-390.jpg
+docs/capturas/v8/antes-investimento-1280.jpg
+docs/capturas/v8/antes-investimento-390.jpg
+docs/capturas/v8/antes-noventa-1280.jpg
+docs/capturas/v8/antes-noventa-390.jpg
+docs/capturas/v8/antes-plano-A-aberto-1280.jpg
+docs/capturas/v8/antes-plano-A-aberto-390.jpg
+docs/capturas/v8/antes-plano-E-aberto-1280.jpg
+docs/capturas/v8/antes-plano-E-aberto-390.jpg
+docs/capturas/v8/antes-plano-S-aberto-1280.jpg
+docs/capturas/v8/antes-plano-S-aberto-390.jpg
+docs/capturas/v8/antes-planos-1280.jpg
+docs/capturas/v8/antes-planos-390.jpg
+docs/capturas/v8/antes-popup-1280.jpg
+docs/capturas/v8/antes-popup-390.jpg
+docs/capturas/v8/antes-proximo-1280.jpg
+docs/capturas/v8/antes-proximo-390.jpg
+docs/capturas/v8/antes-servicos-1280.jpg
+docs/capturas/v8/antes-servicos-390.jpg
+docs/capturas/v8/depois-acompanhamento-1280.jpg
+docs/capturas/v8/depois-acompanhamento-390.jpg
+docs/capturas/v8/depois-inicio-1280.jpg
+docs/capturas/v8/depois-inicio-390.jpg
+docs/capturas/v8/depois-investimento-1280.jpg
+docs/capturas/v8/depois-investimento-390.jpg
+docs/capturas/v8/depois-noventa-1280.jpg
+docs/capturas/v8/depois-noventa-390.jpg
+docs/capturas/v8/depois-plano-A-aberto-1280.jpg
+docs/capturas/v8/depois-plano-A-aberto-390.jpg
+docs/capturas/v8/depois-plano-E-aberto-1280.jpg
+docs/capturas/v8/depois-plano-E-aberto-390.jpg
+docs/capturas/v8/depois-plano-S-aberto-1280.jpg
+docs/capturas/v8/depois-plano-S-aberto-390.jpg
+docs/capturas/v8/depois-planos-1280.jpg
+docs/capturas/v8/depois-planos-390.jpg
+docs/capturas/v8/depois-popup-1280.jpg
+docs/capturas/v8/depois-popup-390.jpg
+docs/capturas/v8/depois-proximo-1280.jpg
+docs/capturas/v8/depois-proximo-390.jpg
+docs/capturas/v8/depois-resumo-1280.jpg
+docs/capturas/v8/depois-resumo-390.jpg
+docs/capturas/v8/depois-servicos-1280.jpg
+docs/capturas/v8/depois-servicos-390.jpg
+docs/testes/resultados-v8.json
+docs/testes/v8.cjs
+index.html
+docs/testes/resultados-v8-preview.json
+```
