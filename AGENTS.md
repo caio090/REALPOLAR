@@ -2,7 +2,7 @@
 
 > Documento de orientação para Codex, agentes de IA, desenvolvedores e colaboradores.
 > Objetivo: preservar o contexto do projeto, evitar desvios de escopo e impedir mudanças não autorizadas.
-> Última revisão: 2026-11-01.
+> Última revisão: 2026-11-02 (decisões V8).
 > Idioma de trabalho: português brasileiro.
 
 ## 1. Identidade e finalidade
@@ -86,6 +86,13 @@ A referência de R$ 1.200/diária **não é preço fechado nem mensalidade fixa*
 - SEO e melhorias de presença nas buscas devem ser explicados de modo delimitado **conforme o plano e o contrato**. O Canva diferencia Essencial (revisão básica do Google Meu Negócio) de Ampliado (gestão do perfil e SEO). **Não** apresentar como auditoria técnica completa, desenvolvimento de site, posicionamento garantido ou Google Ads.
 - A Real Polar atende contatos comerciais, qualifica oportunidades, realiza orçamentos e fecha contratos, salvo contratação específica em sentido contrário.
 - Não incluir Perfil da Empresa no Google como serviço certo se isso não estiver expressamente confirmado no escopo.
+
+### Decisão expressa V8 (02/11/2026)
+
+- Gestão de Meta Ads e gestão do Google Meu Negócio estão **incluídas no Presença Ampliada**, por confirmação do responsável. A verba paga à Meta continua separada; detalhes de manutenção do Google seguem contrato.
+- A apresentação canônica fica em `/`, no projeto Vercel `realpolar-proposta`. Não recriar `/prototipo/`, repositório, projeto ou domínio.
+- Serviços têm somente três filtros (Econômico, Essencial e Presença Ampliada), iniciando no Ampliado; explorar serviços ou pop-ups não altera o simulador.
+- Alterações seguem branch e PR, sem merge ou produção sem autorização expressa. O V8 substitui decisões anteriores conflitantes, preservadas como histórico.
 
 ## 5. Processo estratégico de anúncios
 

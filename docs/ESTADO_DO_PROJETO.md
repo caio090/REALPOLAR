@@ -2,7 +2,7 @@
 
 > Atualizado em **02/11/2026**. Documento de trabalho compartilhado para ChatGPT, Claude/Codespaces e colaboradores.
 > **Leia junto com `AGENTS.md`, `CLAUDE.md` e `docs/AUDITORIA_DESIGN_REALPOLAR.md` antes de editar.** Este registro distingue a proposta, o conceito visual e o que existe de verdade no código.
-> **Status:** existe um **protótipo isolado** em `prototipo/index.html` (branch `design/prototipo-esclarecimento`). O `index.html` principal e a produção **não foram alterados**.
+> **Status atual V8:** V5 publicada na raiz por PR #4, merge `ec052835b081332112860e9fba22157eefc15d16`. Nesta tarefa, refinamento V8 em `refinamento/proposta-v8`, sem merge ou deploy de produção. Registro atual e testes em [RELATORIO_V8.md](RELATORIO_V8.md). As seções antigas abaixo mantêm o histórico; menções a protótipo e escopos anteriores não descrevem o estado atual.
 
 ## 1. Objetivo atual, em uma frase
 
@@ -108,6 +108,25 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 - **Ponto de entrada para Claude:** ler `CLAUDE.md`, depois `docs/AUDITORIA_DESIGN_REALPOLAR.md` (seção “Brief de execução para o Claude”).
 
 ## 8. Histórico de alterações
+
+- **03/11/2026 | Domínio curto e publicação da V10 (Claude Code):** **pedido do responsável:** usar um endereço menor, mostrando a versão da prévia `realpolar-proposta-hl76ucgg8` (commit `06cd1ee`: V10 mais a correção do celular). **Verificado:** o projeto `realpolar` (time `caio21`, mesmo repositório) publica a `main` em **https://realpolar.vercel.app**, e o projeto `realpolar-proposta` publica a mesma `main` em https://realpolar-proposta.vercel.app. Antes da publicação, os dois mostravam a V5. **Testado na prévia:** abertura 121/121 e V8 366/366, mais 648 combinações. **Publicado com autorização do responsável:** merge do PR #5 na `main`; os dois endereços passam a mostrar a página da prévia. Configuração da Vercel sem alteração. **Pendente, se desejado:** manter um único projeto oficial ou registrar um domínio próprio.
+
+- **03/11/2026 | V10: abertura final e retirada de "Imprimir ou salvar" (Claude Code):** PR #5, base `1bd8c50`. **Decidido pelo responsável:** sem logo, sem nome em formato de marca e sem rótulo na abertura; título menor; animação explicando a transferência do operacional; remover "Imprimir ou salvar". **Codado:**
+  - cabeçalho só com navegação;
+  - título "A Real Polar cresce. O marketing precisa acompanhar.", com um apoio curto;
+  - transição "Sem equipe dedicada → Com a equipe de marketing", feita em CSS e acessível;
+  - preços compactos no celular;
+  - "Conhecer os planos" como continuação;
+  - botão de imprimir e seu handler removidos, com a impressão nativa preservada.
+
+  **Testado:** abertura 121/121 e V8 366/366, mais 648 combinações. **Publicado:** nada em produção. Detalhes em `docs/RELATORIO_V10.md`.
+
+- **03/11/2026 | V9: abertura da apresentação (Claude Code):** PR #5, branch `refinamento/proposta-v8`, base `55b22ab`. **Decidido pelo responsável:** a abertura deve parecer capa de proposta e responder "por que uma equipe de marketing hoje". **Codado:** só a seção `#inicio` de `index.html`. O título passa a "A Real Polar está crescendo. O marketing precisa acompanhar.", com uma explicação única, rótulo de proposta, legenda dos preços e links discretos; nenhum asset novo. **Testado:** abertura 100/100 e regressão V8 366/366, mais 648 combinações do simulador. **Publicado:** nada em produção. Detalhes em `docs/RELATORIO_V9.md`.
+
+- **02/11/2026 | Correção pontual do PR #5 (Codex):** base `08f1780`, branch `refinamento/proposta-v8`. **Decidido:** gestão Meta Ads incluída no Ampliado; verba paga separadamente. **Alterado:** célula-resumo X01/A retirando confirmação indevida e token CSS indefinido substituído por `--silver-700`; teste reforçado. **Conferido:** referências Meta/Google em todo o HTML e saídas dinâmicas, sem retirar pendências contratuais. **Testado localmente:** 366/366 verificações, 648 combinações e 1.944 estados de pop-up; simulador idêntico à base. Arquivos/resultados no adendo do relatório V8. **Publicado:** nenhum merge ou deploy de produção; PR #5 atualizado, prévia automática por push. Commit de correção identificado na entrega/PR. Valores, cálculos, layout e infraestrutura preservados.
+
+- **02/11/2026 | Consolidação V7 + V8 (Codex):** base `origin/main` `ec052835b081332112860e9fba22157eefc15d16`, HTML idêntico à produção por SHA-256 antes da edição. **Decidido:** V8 prevalece sobre V7 e orientações antigas; planos e preços no início, logo grande removida, headline aprovada, cartões expansíveis, três filtros, 90 dias e acompanhamento simples, resumo/campanha/FAQ antes do fechamento. Meta Ads e Google no Ampliado incluídos por confirmação do responsável (substitui os antigos conflitos F30/F19). **Codado:** `index.html`, sem dependências, preservando #cmp, pop-ups específicos e cálculo. **Proposto:** nenhum novo sistema ou escopo. **Testado:** relatório V8, Chromium em 9 larguras, fonte ampliada, teclado, pop-ups, impressão, cópia e 648 combinações matemáticas; ver resultados finais no relatório. **Publicado:** nada desta rodada em produção; V5 permanece oficial. **Pendências:** contrato, periodicidade do Ampliado, volumes/revisões, rebranding, painel e bônus. Branch `refinamento/proposta-v8`; PR #5: https://github.com/caio090/REALPOLAR/pull/5. Interface `4b79e080e0f9805ede25aa2480af49432524c193`; prévia https://realpolar-proposta-683yp1ubz-caio21.vercel.app/. Local e prévia: 363/363 verificações e 648 combinações aprovadas. Commit posterior apenas documental/evidências, identificado no GitHub e na entrega final.
+
 
 - **02/11/2026 | Publicação da V5 como página principal (Claude Code):** **decidido pelo responsável:** a versão nova substitui a antiga na raiz, e os documentos internos ficam fora do site. **Motivo:** a produção mostrava a página antiga (R$ 1.100 / R$ 1.800 / R$ 3.200), enquanto a prévia tinha a V5 (R$ 1.280 / R$ 2.100 / R$ 3.200); havia duas versões com preços conflitantes. Além disso, `/AGENTS.md` estava acessível no site. **Codado** na branch `release/proposta-v5`:
   - `prototipo/index.html` passou a ser `index.html`, e `prototipo/assets/` passou a ser `assets/`;
