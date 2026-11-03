@@ -188,6 +188,17 @@ h2{font-size:clamp(1.75rem,4vw,2.625rem);max-width:22ch}
 /* 03 Explorador de serviços */
 .views{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:24px}
 .views .chips{margin-top:0}
+/* Alinhamento dos seletores do explorador em telas pequenas.
+   Dois grupos claros: plano (2 + 1) e visualização (2). */
+@media (max-width:760px){
+  #servicos .views{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;align-items:stretch;justify-content:stretch;margin-top:20px}
+  #servicos .views .chips{width:100%;min-width:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0}
+  #servicos .views .chips::before{grid-column:1/-1;color:var(--silver-700);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;font-weight:800;line-height:1.4}
+  #servicos .views .chips[role="group"]::before{content:"Plano"}
+  #servicos .views .chips[role="tablist"]::before{content:"Visualização"}
+  #servicos .views .chips .chip{min-width:0;width:100%;min-height:46px;padding:10px 8px;display:flex;align-items:center;justify-content:center;border-radius:12px;line-height:1.25;text-align:center;white-space:normal;overflow-wrap:break-word;font-size:clamp(.84rem,3.1vw,.95rem)}
+  #servicos .views [data-mm-plan="A"]{grid-column:1/-1}
+}
 .mm-desc{margin:14px 0 0;font-size:1rem;color:var(--ink-2);max-width:70ch;min-height:3.2em}
 .mm-desc strong{color:var(--ink)}
 .mm-stage{position:relative;margin-top:12px}
