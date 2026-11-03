@@ -109,6 +109,16 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 
 ## 8. Histórico de alterações
 
+- **03/11/2026 | V10: abertura final e retirada de "Imprimir ou salvar" (Claude Code):** PR #5, base `1bd8c50`. **Decidido pelo responsável:** sem logo, sem nome em formato de marca e sem rótulo na abertura; título menor; animação explicando a transferência do operacional; remover "Imprimir ou salvar". **Codado:**
+  - cabeçalho só com navegação;
+  - título "A Real Polar cresce. O marketing precisa acompanhar.", com um apoio curto;
+  - transição "Sem equipe dedicada → Com a equipe de marketing", feita em CSS e acessível;
+  - preços compactos no celular;
+  - "Conhecer os planos" como continuação;
+  - botão de imprimir e seu handler removidos, com a impressão nativa preservada.
+
+  **Testado:** abertura 121/121 e V8 366/366, mais 648 combinações. **Publicado:** nada em produção. Detalhes em `docs/RELATORIO_V10.md`.
+
 - **03/11/2026 | V9: abertura da apresentação (Claude Code):** PR #5, branch `refinamento/proposta-v8`, base `55b22ab`. **Decidido pelo responsável:** a abertura deve parecer capa de proposta e responder "por que uma equipe de marketing hoje". **Codado:** só a seção `#inicio` de `index.html`. O título passa a "A Real Polar está crescendo. O marketing precisa acompanhar.", com uma explicação única, rótulo de proposta, legenda dos preços e links discretos; nenhum asset novo. **Testado:** abertura 100/100 e regressão V8 366/366, mais 648 combinações do simulador. **Publicado:** nada em produção. Detalhes em `docs/RELATORIO_V9.md`.
 
 - **02/11/2026 | Correção pontual do PR #5 (Codex):** base `08f1780`, branch `refinamento/proposta-v8`. **Decidido:** gestão Meta Ads incluída no Ampliado; verba paga separadamente. **Alterado:** célula-resumo X01/A retirando confirmação indevida e token CSS indefinido substituído por `--silver-700`; teste reforçado. **Conferido:** referências Meta/Google em todo o HTML e saídas dinâmicas, sem retirar pendências contratuais. **Testado localmente:** 366/366 verificações, 648 combinações e 1.944 estados de pop-up; simulador idêntico à base. Arquivos/resultados no adendo do relatório V8. **Publicado:** nenhum merge ou deploy de produção; PR #5 atualizado, prévia automática por push. Commit de correção identificado na entrega/PR. Valores, cálculos, layout e infraestrutura preservados.

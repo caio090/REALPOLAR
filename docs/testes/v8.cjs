@@ -5,7 +5,7 @@ const url=process.argv[2]||'http://localhost:5500/';const results=[];const ok=(v
 for(const w of [320,360,375,390,430,768,1024,1280,1440]){
 const ctx=await b.newContext({viewport:{width:w,height:900},reducedMotion:'reduce'});const p=await ctx.newPage();const errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto(url);
 const check=async(label)=>ok(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${w} ${label} overflow`);
-await check('initial');ok(await p.locator('.brand img').evaluate(x=>x.complete&&x.naturalWidth>0)&&await p.locator('.hero img').count()===0,`${w} logo`);
+await check('initial');ok(await p.locator('.top img, .hero img, .brand').count()===0&&await p.locator('#nav a').count()===6,`${w} logo (V10: sem marca no cabeçalho nem na abertura; navegação mantida)`);
 ok(await p.locator('[data-mm-plan]').count()===3&&await p.getAttribute('[data-mm-plan="A"]','aria-pressed')==='true',`${w} filter three / default A`);
 ok(await p.locator('#noventa .conv,[data-goal]').count()===0&&await p.locator('.faq details').count()===4,`${w} editorial`);
 ok(await p.evaluate(()=>[...document.querySelectorAll('main>section')].map(s=>s.id).join(',')==='inicio,planos,servicos,audiovisual,noventa,acompanhamento,investimento,resumo,proximo'),`${w} order`);

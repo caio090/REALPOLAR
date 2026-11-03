@@ -18,7 +18,7 @@ Página HTML responsiva para apresentar os planos de marketing da Real Polar e e
 
 **Edição avulsa do Econômico:** o preço está na constante `ECON_EDIT_UNIT` (R$ 180) do script e no item `X04` da tabela; altere os dois juntos.
 
-**Logo:** `assets/real-polar-logo-original.png` é o arquivo original e não deve ser editado. As cópias `real-polar-logo-96/192/512.png` são só recortes do enquadramento e redimensionamentos para exibição.
+**Logo (sem uso na página desde a V10, que tirou a marca do cabeçalho e da abertura):** `assets/real-polar-logo-original.png` é o arquivo original e não deve ser editado. As cópias `real-polar-logo-96/192/512.png` são só recortes do enquadramento e redimensionamentos para exibição.
 
 - No Codespaces: porta **5500**, caminho `/`.
 - Na prévia da Vercel do pull request e na produção: caminho `/`.

@@ -41,12 +41,10 @@ html:not(.js) .js-only{display:none!important}
 
 /* Cabeçalho */
 .top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);border-bottom:1px solid var(--silver-200);backdrop-filter:blur(8px)}
-.top .wrap{display:flex;align-items:center;gap:20px;min-height:60px}
-.brand{font-weight:800;letter-spacing:.14em;font-size:0.9375rem;color:var(--navy-800);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;gap:10px;min-height:44px}
-.brand img{width:40px;height:40px;border-radius:8px;display:block;flex:0 0 40px}
+.top .wrap{display:flex;align-items:center;gap:20px;min-height:52px}
 .nav{flex:1;overflow-x:auto;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
-.nav ul{display:flex;gap:2px;list-style:none;margin:0 0 0 auto;padding:0;width:max-content}
+.nav ul{display:flex;gap:2px;list-style:none;margin:0 0 0 -11px;padding:0;width:max-content}
 .nav a{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:0 11px;border-radius:999px;font-size:0.875rem;font-weight:600;color:var(--ink-2);text-decoration:none;white-space:nowrap}
 .nav a::after{content:"";position:absolute;left:11px;right:11px;bottom:6px;height:2px;border-radius:2px;background:var(--glacial-600);transform:scaleX(0);transition:transform var(--dur) var(--ease)}
 .nav a:hover{background:var(--silver-100);color:var(--navy-800)}
@@ -55,7 +53,7 @@ html:not(.js) .js-only{display:none!important}
 .nav-toggle{display:none}
 /* Celular e tablet: menu "Seções" em painel vertical, no lugar da faixa horizontal pouco perceptível */
 @media (max-width:900px){
-  .js .top .wrap{position:relative;justify-content:space-between}
+  .js .top .wrap{position:relative;justify-content:flex-start}
   .js .nav-toggle{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:10px;border:1.5px solid var(--silver-300);background:#fff;font-weight:700;font-size:.9375rem;color:var(--navy-800)}
   .js .nav-toggle::after{content:"";width:8px;height:8px;margin-top:-4px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform var(--dur-fast)}
   .js .nav-toggle[aria-expanded="true"]::after{transform:rotate(-135deg);margin-top:4px}
@@ -112,15 +110,34 @@ h2{font-size:clamp(1.75rem,4vw,2.625rem);max-width:22ch}
 /* 01 Abertura */
 .hero{background:radial-gradient(ellipse 70% 60% at 85% 0%,#1d4d6b 0,transparent 60%),var(--navy-900);color:#fff;padding-block:clamp(40px,6vw,76px)}
 /* Abertura como capa de proposta: rótulo, tese em duas frases, explicação e preços */
-.hero-kicker{margin:0 0 14px;font-size:.8125rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--glacial-300)}
-.hero h1{font-size:clamp(2.125rem,4.6vw,3.25rem);text-wrap:balance}
-.hero-em{display:block;color:var(--glacial-300);font-family:Georgia,"Times New Roman",serif;font-style:italic}
-.hero .lead{color:#d7e3ea;font-size:clamp(1.125rem,1.9vw,1.3125rem);max-width:58ch}
-.prices-cap{margin:28px 0 0;font-size:.8125rem;font-weight:700;color:#b5cbd7}
-.hero .prices{margin-top:10px}
+
+.hero h1{font-size:clamp(1.75rem,3.4vw,2.5rem);max-width:none;text-wrap:balance}
+.hero-em{color:var(--glacial-300);font-family:Georgia,"Times New Roman",serif;font-style:italic;font-weight:700}
+.hero .lead{color:#d7e3ea;font-size:clamp(1.0625rem,1.6vw,1.1875rem);max-width:56ch;margin-top:12px}
+/* Transição de responsabilidades: estado final legível sem movimento */
+.shift{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1.15fr);align-items:start;gap:0 20px;max-width:980px;margin-top:26px;padding-top:20px;border-top:1px solid rgba(255,255,255,.14)}
+.shift h2{font-size:.9375rem;font-weight:700;letter-spacing:0;max-width:none;color:#fff}
+.shift ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.shift li{position:relative;padding-left:20px;font-size:.9375rem;line-height:1.45}
+.shift-from li{color:#a9bfcc}
+.shift-from li::before{content:"";position:absolute;left:2px;top:.7em;width:9px;height:2px;background:#7f98a8}
+.shift-to li{color:#eef5f8}
+.shift-to li::before{content:"";position:absolute;left:3px;top:.42em;width:10px;height:5px;border-left:2px solid var(--glacial-400);border-bottom:2px solid var(--glacial-400);transform:rotate(-45deg)}
+.shift-arrow{position:relative;align-self:center;height:2px;background:var(--glacial-400);transform-origin:0 50%}
+.shift-arrow::after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid var(--glacial-400);border-top:5px solid transparent;border-bottom:5px solid transparent}
+.motion .shift .shift-from li{color:#d7e3ea;transition:color .4s var(--ease) .35s}
+.motion .shift.in .shift-from li{color:#a9bfcc}
+.motion .shift .shift-arrow{transform:scaleX(0);transition:transform .35s var(--ease) .45s}
+.motion .shift.in .shift-arrow{transform:none}
+.motion .shift .shift-to li{opacity:0;transform:translateX(-8px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.motion .shift.in .shift-to li{opacity:1;transform:none}
+.motion .shift.in .shift-to li:nth-child(1){transition-delay:.7s}
+.motion .shift.in .shift-to li:nth-child(2){transition-delay:.82s}
+.motion .shift.in .shift-to li:nth-child(3){transition-delay:.94s}
+.hero .prices{margin-top:24px}
 .hero-next{display:flex;flex-wrap:wrap;gap:4px 24px;margin:18px 0 0}
 .hero-next a{display:inline-flex;align-items:center;min-height:44px;color:#d7e3ea;font-weight:700;text-underline-offset:4px}
-.hero-next a:first-child::after{content:"";width:7px;height:7px;margin:-3px 0 0 10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg)}
+.hero-next a::after{content:"";width:7px;height:7px;margin:-3px 0 0 10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg)}
 .hero-next a:hover{color:#fff}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 .prices{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;padding:0;list-style:none}
@@ -418,7 +435,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
   .js .plans{margin-top:20px}
   .js .plans[data-view="E"] .plan:not(#plano-E),.js .plans[data-view="S"] .plan:not(#plano-S),.js .plans[data-view="A"] .plan:not(#plano-A){display:none}
 }
-@media (max-width:359px){.plantabs .pm{display:none}}
+@media (max-width:359px){.plantabs .pm{display:none}.hero .prices a{padding:8px 7px}.hero .prices strong{font-size:.9375rem}}
 @media (max-width:760px){
   .cmp thead{display:none}
   .cmp,.cmp tbody,.cmp tr,.cmp th,.cmp td{display:block;width:auto}
@@ -433,14 +450,18 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
 }
 @media (max-width:640px){
   .top .wrap{gap:6px 10px;flex-wrap:wrap}
-  .brand{font-size:0.875rem}
   .nav{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
   .nav ul{padding-right:28px}
   .hero{padding-block:28px 32px}
-  .hero-kicker{margin-bottom:8px}
-  .hero .lead{font-size:1.0625rem;line-height:1.5;margin-top:12px}
-  .prices-cap{margin-top:20px}
-  .hero-next{margin-top:10px}
+  .hero .lead{font-size:1rem;line-height:1.5;margin-top:10px}
+  .shift{grid-template-columns:minmax(0,1fr);gap:0;margin-top:18px;padding-top:14px}
+  .shift-arrow{justify-self:start;width:2px;height:18px;margin:8px 0 8px 6px;transform-origin:50% 0}
+  .shift-arrow::after{right:-4px;top:auto;bottom:-1px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:7px solid var(--glacial-400);border-bottom:0}
+  .motion .shift .shift-arrow{transform:scaleY(0)}
+  .shift ul{gap:2px;margin-top:4px}
+  .shift li{font-size:.875rem}
+  .hero-next{margin-top:8px}
+  .hero .prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,5.5rem),1fr));gap:6px;margin-top:16px}
   .hero h1{font-size:clamp(1.875rem,8.4vw,2.25rem)}
   .prices span{flex:1 1 auto}
   /* Produção audiovisual em sequência vertical, com setas curtas */
@@ -449,11 +470,11 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
   .flow li:not(:last-child)::after{width:2px;height:12px;margin:4px 0 4px 22px;background:var(--glacial-600)}
   .progress{height:5px}
   .grp-edit{margin-left:0}
-  .brand img{width:34px;height:34px;flex-basis:34px}
   .hero-actions{margin-top:22px}
   .prices{margin-top:22px;gap:6px}
-  .prices a{flex:1 1 100%;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:6px 14px}
-  .prices strong{font-size:1.125rem}
+  .prices a{min-width:0;flex-direction:column;align-items:flex-start;justify-content:center;gap:0;min-height:48px;padding:8px 10px}
+  .prices strong{font-size:1.0625rem;white-space:normal;line-height:1.25}
+  .prices small{display:inline-block}
   #planos{padding-top:44px}
   /* 90 dias empilhados: trilha vertical à esquerda, texto com largura total */
   .tl-track{display:none}
@@ -485,7 +506,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
   *,*::before,*::after{transition:none!important;animation:none!important}
 }
 @media print{
-  .progress,.top,.hero-actions,.hero-next,#editReset,.views,.mm,.mm-desc,.plan .acts,#copySummary,#printBtn,.planpick,.row-open,.svc-btn .i,dialog,.outside button,.ref .btns{display:none!important}
+  .progress,.top,.hero-actions,.hero-next,#editReset,.views,.mm,.mm-desc,.plan .acts,#copySummary,.planpick,.row-open,.svc-btn .i,dialog,.outside button,.ref .btns{display:none!important}
   .js-only{display:none!important}
   .plans .plan{display:flex!important}
   .nav-toggle,.plantabs,.sim-now{display:none!important}
@@ -495,7 +516,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
   body{background:#fff;font-size:0.75rem}
   section{padding-block:16px}
   .hero,.closing{background:#fff;color:var(--ink)}
-  .hero .lead,.hero-em,.hero-kicker,.prices-cap,.checklist li,.prices span,.prices small{color:var(--ink-2)}
+  .hero .lead,.hero-em,.shift h2,.shift li,.checklist li,.prices span,.prices small{color:var(--ink-2)}
   .prices a{border-color:var(--silver-300)}
   .closing h2{color:var(--ink)}
   .cmp thead th{position:static}
@@ -510,7 +531,6 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
 
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="#inicio"><img src="assets/real-polar-logo-96.png" srcset="assets/real-polar-logo-96.png 1x, assets/real-polar-logo-192.png 2x" width="40" height="40" alt="">REAL POLAR</a>
     <button class="nav-toggle js-only" type="button" id="navToggle" aria-expanded="false" aria-controls="nav">Seções</button>
     <nav class="nav" aria-label="Seções" id="nav">
       <ul>
@@ -529,16 +549,34 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
 <!-- 01 Abertura -->
 <section class="hero" id="inicio" aria-labelledby="t-hero">
   <div class="wrap">
-    <p class="hero-kicker">Proposta de gestão de marketing</p>
-    <h1 id="t-hero" data-reveal>A Real Polar está crescendo. <span class="hero-em">O marketing precisa acompanhar.</span></h1>
-    <p class="lead" data-reveal style="--d:.08s">O empresário não precisa planejar conteúdos, gerir anúncios e coordenar fornecedores sozinho. Nossa equipe organiza essas frentes, conforme o plano. A direção aprova o necessário e mantém o foco na operação e nas decisões da empresa.</p>
-    <p class="prices-cap" data-reveal style="--d:.16s">Mensalidade da gestão, por plano</p>
-    <ul class="prices" aria-label="Mensalidade de cada plano" data-reveal style="--d:.16s">
-      <li><a href="#plano-E"><span>Econômico</span><strong>R$ 1.280 <small>/ mês</small></strong></a></li>
-      <li><a href="#plano-S"><span>Essencial</span><strong>R$ 2.100 <small>/ mês</small></strong></a></li>
-      <li><a class="feat" href="#plano-A"><span>Presença Ampliada</span><strong>R$ 3.200 <small>/ mês</small></strong></a></li>
+    <h1 id="t-hero" data-reveal>A Real Polar cresce. <span class="hero-em">O marketing precisa acompanhar.</span></h1>
+    <p class="lead" data-reveal style="--d:.08s">Campanhas, conteúdo, anúncios e produção precisam de uma equipe coordenando as entregas. Assim, a direção da Real Polar cuida do que só ela pode decidir.</p>
+    <div class="shift" data-reveal style="--d:.14s">
+      <div class="shift-from">
+        <h2>Sem equipe dedicada</h2>
+        <ul>
+          <li>O dono pensa as campanhas</li>
+          <li>Cobra a criação dos conteúdos</li>
+          <li>Contrata e coordena o videomaker</li>
+          <li>Acompanha anúncios e entregas</li>
+        </ul>
+      </div>
+      <span class="shift-arrow" aria-hidden="true"></span>
+      <div class="shift-to">
+        <h2>Com a equipe de marketing</h2>
+        <ul>
+          <li>A equipe planeja e executa o marketing do plano</li>
+          <li>A direção acompanha e aprova o que é importante</li>
+          <li>O dono se dedica a clientes, operação e crescimento</li>
+        </ul>
+      </div>
+    </div>
+    <ul class="prices" aria-label="Mensalidade de cada plano" data-reveal style="--d:.2s">
+      <li><a href="#plano-E"><span>Econômico</span><strong>R$&nbsp;1.280 <small>/ mês</small></strong></a></li>
+      <li><a href="#plano-S"><span>Essencial</span><strong>R$&nbsp;2.100 <small>/ mês</small></strong></a></li>
+      <li><a class="feat" href="#plano-A"><span>Presença Ampliada</span><strong>R$&nbsp;3.200 <small>/ mês</small></strong></a></li>
     </ul>
-    <p class="hero-next" data-reveal style="--d:.24s"><a href="#planos">Ver os planos</a><a href="#servicos">Conhecer os serviços</a></p>
+    <p class="hero-next" data-reveal style="--d:.24s"><a href="#planos">Conhecer os planos</a></p>
   </div>
 </section>
 
@@ -991,7 +1029,6 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
     </ol>
     <div class="hero-actions js-only">
       <button class="btn btn-accent" type="button" id="copySummary">Copiar resumo</button>
-      <button class="btn btn-ghost" type="button" id="printBtn">Imprimir ou salvar PDF</button>
     </div>
   </div>
 </section>
@@ -1237,7 +1274,6 @@ if(motion){const rv=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersect
 /* ===== Impressão e resumo ===== */
 addEventListener('beforeprint',()=>document.querySelectorAll('.faq details').forEach(d=>{d.dataset.o=d.open?'1':'';d.open=true}));
 addEventListener('afterprint',()=>document.querySelectorAll('.faq details').forEach(d=>d.open=!!d.dataset.o));
-$('printBtn').addEventListener('click',()=>window.print());
 $('copySummary').addEventListener('click',async function(){
   const plan=k=>`${PLAN[k].toUpperCase()}: ${brl.format(FEE[k])}/mês\n`+SV.filter(s=>s.group==='mensalidade'&&INCL(s.p[k].st)).map(s=>{const c=s.p[k];return `- ${s.name}${c.st==='incluido'&&!c.note?'':` (${c.label}${c.note?': '+c.note:''})`}`}).join('\n');
   const st=readSim(),r=calc(st);
