@@ -22,6 +22,7 @@ Página HTML responsiva para apresentar os planos de marketing da Real Polar e e
 
 - No Codespaces: porta **5500**, caminho `/`.
 - Na prévia da Vercel do pull request e na produção: caminho `/`.
+- Endereços de produção: **https://realpolar.vercel.app** (curto, projeto `realpolar`) e https://realpolar-proposta.vercel.app (projeto `realpolar-proposta`). Os dois publicam a mesma `main`.
 - `.vercelignore` mantém `AGENTS.md`, `CLAUDE.md`, `README.md`, `docs/` e `.devcontainer/` fora do site publicado; eles ficam só no GitHub.
 - Auditoria, decisões e testes: [docs/AUDITORIA_DESIGN_REALPOLAR.md](docs/AUDITORIA_DESIGN_REALPOLAR.md), seções I a S.
 

@@ -109,6 +109,8 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 
 ## 8. Histórico de alterações
 
+- **03/11/2026 | Domínio curto (Claude Code):** **pedido do responsável:** um endereço menor para a proposta. **Verificado na Vercel (time `caio21`):** o projeto `realpolar` (ligado ao mesmo repositório e à `main`) já publica em **https://realpolar.vercel.app**. Ele serve o mesmo arquivo do projeto oficial `realpolar-proposta` (SHA-256 `af84a8d1…`, igual ao `index.html` da `main`). `/AGENTS.md`, `/README.md` e `/docs/` também dão 404 nele. **Nenhuma configuração foi alterada:** os dois endereços continuam ativos e atualizam juntos a cada merge na `main`. Endereço curto para enviar ao cliente: `realpolar.vercel.app`. **Pendente, se desejado:** escolher um único projeto oficial e desligar o outro, ou registrar um domínio próprio, que tem custo de compra.
+
 - **03/11/2026 | V10: abertura final e retirada de "Imprimir ou salvar" (Claude Code):** PR #5, base `1bd8c50`. **Decidido pelo responsável:** sem logo, sem nome em formato de marca e sem rótulo na abertura; título menor; animação explicando a transferência do operacional; remover "Imprimir ou salvar". **Codado:**
   - cabeçalho só com navegação;
   - título "A Real Polar cresce. O marketing precisa acompanhar.", com um apoio curto;
