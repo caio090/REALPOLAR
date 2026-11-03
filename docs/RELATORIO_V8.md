@@ -148,3 +148,16 @@ docs/testes/v8.cjs
 index.html
 docs/testes/resultados-v8-preview.json
 ```
+
+## Correção pontual do PR #5 — 02/11/2026
+
+Base desta correção: `08f17803a99e9f89de3aeae7acd67168e8a39d18`, branch `refinamento/proposta-v8`, PR #5 aberto para `main`, diretório inicialmente limpo e origem conferida por fetch.
+
+- **X01 / Presença Ampliada:** removido da célula do comparativo “Direto à Meta; depende da gestão de anúncios a confirmar”. Novo texto: “Gestão de Meta Ads incluída na mensalidade; verba dos anúncios paga separadamente à Meta”. O estado `fora` permanece correto para **a verba**, sem excluir a gestão da mensalidade.
+- **CSS:** marcador neutro usa `--silver-700` (`#4a5a66`), já definido na paleta, em lugar de `--silver-500`, inexistente. Nenhuma mudança de dimensões, estrutura ou layout.
+- **Revisão integral do HTML:** conferidos tabela, fichas específicas, geração de cartões/mapa/pop-ups, recibo, resumo executivo e cópia. S05 e S06 do Ampliado continuam `incluido`; X00/X01 distinguem gestão e verba. Detalhes contratuais do Google e periodicidade dos relatórios continuam pendentes. Nenhuma outra ressalva indevida de confirmação da gestão foi encontrada.
+- **Regressão local em Chromium:** **366/366 verificações aprovadas**, **648 combinações matemáticas** e varredura de **1.944 estados de pop-up**, executadas na porta 5500. Três verificações novas cobrem a célula-resumo X01, o token definido e o trecho do Ampliado no resumo copiado. O teste agora termina com código de erro se qualquer verificação falhar. Evidência: [resultados-v8-correcao.json](testes/resultados-v8-correcao.json).
+- **Integridade:** comparação automatizada confirmou que todo o bloco de lógica do simulador é idêntico à base desta correção; `git diff --check` aprovado. Não houve alteração de valores, fórmulas, assets, infraestrutura, domínio ou dependências.
+- **Limites:** esta correção foi testada localmente; os resultados remotos 363/363 acima pertencem à versão anterior. Sem novos testes físicos, Safari ou leitores de tela reais. Sem merge nem deploy de produção. O push atualiza a prévia automaticamente pela integração já existente.
+
+Arquivos desta correção: `index.html`, `docs/testes/v8.cjs`, `docs/testes/resultados-v8-correcao.json`, `docs/AUDITORIA_DESIGN_REALPOLAR.md`, `docs/ESTADO_DO_PROJETO.md` e este relatório. O SHA do commit de correção é informado na entrega e no PR, evitando autorreferência de hash.

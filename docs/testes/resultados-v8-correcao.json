@@ -1,0 +1,1472 @@
+{
+  "oracle": {
+    "pass": true,
+    "count": 648
+  },
+  "results": [
+    {
+      "pass": true,
+      "label": "320 initial overflow"
+    },
+    {
+      "pass": true,
+      "label": "320 logo"
+    },
+    {
+      "pass": true,
+      "label": "320 filter three / default A"
+    },
+    {
+      "pass": true,
+      "label": "320 editorial"
+    },
+    {
+      "pass": true,
+      "label": "320 order"
+    },
+    {
+      "pass": true,
+      "label": "320 E expand enter"
+    },
+    {
+      "pass": true,
+      "label": "320 E card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "320 E source equality"
+    },
+    {
+      "pass": true,
+      "label": "320 E expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "320 E collapse space"
+    },
+    {
+      "pass": true,
+      "label": "320 E dialog"
+    },
+    {
+      "pass": true,
+      "label": "320 E dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "320 E focus restored"
+    },
+    {
+      "pass": true,
+      "label": "320 E filter independent"
+    },
+    {
+      "pass": true,
+      "label": "320 S expand enter"
+    },
+    {
+      "pass": true,
+      "label": "320 S card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "320 S source equality"
+    },
+    {
+      "pass": true,
+      "label": "320 S expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "320 S collapse space"
+    },
+    {
+      "pass": true,
+      "label": "320 S dialog"
+    },
+    {
+      "pass": true,
+      "label": "320 S dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "320 S focus restored"
+    },
+    {
+      "pass": true,
+      "label": "320 S filter independent"
+    },
+    {
+      "pass": true,
+      "label": "320 A expand enter"
+    },
+    {
+      "pass": true,
+      "label": "320 A card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "320 A source equality"
+    },
+    {
+      "pass": true,
+      "label": "320 A expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "320 A collapse space"
+    },
+    {
+      "pass": true,
+      "label": "320 A dialog"
+    },
+    {
+      "pass": true,
+      "label": "320 A dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "320 A focus restored"
+    },
+    {
+      "pass": true,
+      "label": "320 A filter independent"
+    },
+    {
+      "pass": true,
+      "label": "320 unique IDs"
+    },
+    {
+      "pass": true,
+      "label": "320 menu escape"
+    },
+    {
+      "pass": true,
+      "label": "320 18x3x4 popup states"
+    },
+    {
+      "pass": true,
+      "label": "320 popup overflow"
+    },
+    {
+      "pass": true,
+      "label": "320 no JS errors"
+    },
+    {
+      "pass": true,
+      "label": "360 initial overflow"
+    },
+    {
+      "pass": true,
+      "label": "360 logo"
+    },
+    {
+      "pass": true,
+      "label": "360 filter three / default A"
+    },
+    {
+      "pass": true,
+      "label": "360 editorial"
+    },
+    {
+      "pass": true,
+      "label": "360 order"
+    },
+    {
+      "pass": true,
+      "label": "360 E expand enter"
+    },
+    {
+      "pass": true,
+      "label": "360 E card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "360 E source equality"
+    },
+    {
+      "pass": true,
+      "label": "360 E expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "360 E collapse space"
+    },
+    {
+      "pass": true,
+      "label": "360 E dialog"
+    },
+    {
+      "pass": true,
+      "label": "360 E dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "360 E focus restored"
+    },
+    {
+      "pass": true,
+      "label": "360 E filter independent"
+    },
+    {
+      "pass": true,
+      "label": "360 S expand enter"
+    },
+    {
+      "pass": true,
+      "label": "360 S card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "360 S source equality"
+    },
+    {
+      "pass": true,
+      "label": "360 S expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "360 S collapse space"
+    },
+    {
+      "pass": true,
+      "label": "360 S dialog"
+    },
+    {
+      "pass": true,
+      "label": "360 S dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "360 S focus restored"
+    },
+    {
+      "pass": true,
+      "label": "360 S filter independent"
+    },
+    {
+      "pass": true,
+      "label": "360 A expand enter"
+    },
+    {
+      "pass": true,
+      "label": "360 A card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "360 A source equality"
+    },
+    {
+      "pass": true,
+      "label": "360 A expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "360 A collapse space"
+    },
+    {
+      "pass": true,
+      "label": "360 A dialog"
+    },
+    {
+      "pass": true,
+      "label": "360 A dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "360 A focus restored"
+    },
+    {
+      "pass": true,
+      "label": "360 A filter independent"
+    },
+    {
+      "pass": true,
+      "label": "360 unique IDs"
+    },
+    {
+      "pass": true,
+      "label": "360 menu escape"
+    },
+    {
+      "pass": true,
+      "label": "360 18x3x4 popup states"
+    },
+    {
+      "pass": true,
+      "label": "360 popup overflow"
+    },
+    {
+      "pass": true,
+      "label": "360 no JS errors"
+    },
+    {
+      "pass": true,
+      "label": "375 initial overflow"
+    },
+    {
+      "pass": true,
+      "label": "375 logo"
+    },
+    {
+      "pass": true,
+      "label": "375 filter three / default A"
+    },
+    {
+      "pass": true,
+      "label": "375 editorial"
+    },
+    {
+      "pass": true,
+      "label": "375 order"
+    },
+    {
+      "pass": true,
+      "label": "375 E expand enter"
+    },
+    {
+      "pass": true,
+      "label": "375 E card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "375 E source equality"
+    },
+    {
+      "pass": true,
+      "label": "375 E expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "375 E collapse space"
+    },
+    {
+      "pass": true,
+      "label": "375 E dialog"
+    },
+    {
+      "pass": true,
+      "label": "375 E dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "375 E focus restored"
+    },
+    {
+      "pass": true,
+      "label": "375 E filter independent"
+    },
+    {
+      "pass": true,
+      "label": "375 S expand enter"
+    },
+    {
+      "pass": true,
+      "label": "375 S card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "375 S source equality"
+    },
+    {
+      "pass": true,
+      "label": "375 S expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "375 S collapse space"
+    },
+    {
+      "pass": true,
+      "label": "375 S dialog"
+    },
+    {
+      "pass": true,
+      "label": "375 S dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "375 S focus restored"
+    },
+    {
+      "pass": true,
+      "label": "375 S filter independent"
+    },
+    {
+      "pass": true,
+      "label": "375 A expand enter"
+    },
+    {
+      "pass": true,
+      "label": "375 A card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "375 A source equality"
+    },
+    {
+      "pass": true,
+      "label": "375 A expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "375 A collapse space"
+    },
+    {
+      "pass": true,
+      "label": "375 A dialog"
+    },
+    {
+      "pass": true,
+      "label": "375 A dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "375 A focus restored"
+    },
+    {
+      "pass": true,
+      "label": "375 A filter independent"
+    },
+    {
+      "pass": true,
+      "label": "375 unique IDs"
+    },
+    {
+      "pass": true,
+      "label": "375 menu escape"
+    },
+    {
+      "pass": true,
+      "label": "375 18x3x4 popup states"
+    },
+    {
+      "pass": true,
+      "label": "375 popup overflow"
+    },
+    {
+      "pass": true,
+      "label": "375 no JS errors"
+    },
+    {
+      "pass": true,
+      "label": "390 initial overflow"
+    },
+    {
+      "pass": true,
+      "label": "390 logo"
+    },
+    {
+      "pass": true,
+      "label": "390 filter three / default A"
+    },
+    {
+      "pass": true,
+      "label": "390 editorial"
+    },
+    {
+      "pass": true,
+      "label": "390 order"
+    },
+    {
+      "pass": true,
+      "label": "390 E expand enter"
+    },
+    {
+      "pass": true,
+      "label": "390 E card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "390 E source equality"
+    },
+    {
+      "pass": true,
+      "label": "390 E expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "390 E collapse space"
+    },
+    {
+      "pass": true,
+      "label": "390 E dialog"
+    },
+    {
+      "pass": true,
+      "label": "390 E dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "390 E focus restored"
+    },
+    {
+      "pass": true,
+      "label": "390 E filter independent"
+    },
+    {
+      "pass": true,
+      "label": "390 S expand enter"
+    },
+    {
+      "pass": true,
+      "label": "390 S card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "390 S source equality"
+    },
+    {
+      "pass": true,
+      "label": "390 S expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "390 S collapse space"
+    },
+    {
+      "pass": true,
+      "label": "390 S dialog"
+    },
+    {
+      "pass": true,
+      "label": "390 S dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "390 S focus restored"
+    },
+    {
+      "pass": true,
+      "label": "390 S filter independent"
+    },
+    {
+      "pass": true,
+      "label": "390 A expand enter"
+    },
+    {
+      "pass": true,
+      "label": "390 A card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "390 A source equality"
+    },
+    {
+      "pass": true,
+      "label": "390 A expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "390 A collapse space"
+    },
+    {
+      "pass": true,
+      "label": "390 A dialog"
+    },
+    {
+      "pass": true,
+      "label": "390 A dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "390 A focus restored"
+    },
+    {
+      "pass": true,
+      "label": "390 A filter independent"
+    },
+    {
+      "pass": true,
+      "label": "390 unique IDs"
+    },
+    {
+      "pass": true,
+      "label": "390 menu escape"
+    },
+    {
+      "pass": true,
+      "label": "390 18x3x4 popup states"
+    },
+    {
+      "pass": true,
+      "label": "390 popup overflow"
+    },
+    {
+      "pass": true,
+      "label": "390 no JS errors"
+    },
+    {
+      "pass": true,
+      "label": "430 initial overflow"
+    },
+    {
+      "pass": true,
+      "label": "430 logo"
+    },
+    {
+      "pass": true,
+      "label": "430 filter three / default A"
+    },
+    {
+      "pass": true,
+      "label": "430 editorial"
+    },
+    {
+      "pass": true,
+      "label": "430 order"
+    },
+    {
+      "pass": true,
+      "label": "430 E expand enter"
+    },
+    {
+      "pass": true,
+      "label": "430 E card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "430 E source equality"
+    },
+    {
+      "pass": true,
+      "label": "430 E expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "430 E collapse space"
+    },
+    {
+      "pass": true,
+      "label": "430 E dialog"
+    },
+    {
+      "pass": true,
+      "label": "430 E dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "430 E focus restored"
+    },
+    {
+      "pass": true,
+      "label": "430 E filter independent"
+    },
+    {
+      "pass": true,
+      "label": "430 S expand enter"
+    },
+    {
+      "pass": true,
+      "label": "430 S card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "430 S source equality"
+    },
+    {
+      "pass": true,
+      "label": "430 S expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "430 S collapse space"
+    },
+    {
+      "pass": true,
+      "label": "430 S dialog"
+    },
+    {
+      "pass": true,
+      "label": "430 S dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "430 S focus restored"
+    },
+    {
+      "pass": true,
+      "label": "430 S filter independent"
+    },
+    {
+      "pass": true,
+      "label": "430 A expand enter"
+    },
+    {
+      "pass": true,
+      "label": "430 A card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "430 A source equality"
+    },
+    {
+      "pass": true,
+      "label": "430 A expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "430 A collapse space"
+    },
+    {
+      "pass": true,
+      "label": "430 A dialog"
+    },
+    {
+      "pass": true,
+      "label": "430 A dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "430 A focus restored"
+    },
+    {
+      "pass": true,
+      "label": "430 A filter independent"
+    },
+    {
+      "pass": true,
+      "label": "430 unique IDs"
+    },
+    {
+      "pass": true,
+      "label": "430 menu escape"
+    },
+    {
+      "pass": true,
+      "label": "430 18x3x4 popup states"
+    },
+    {
+      "pass": true,
+      "label": "430 popup overflow"
+    },
+    {
+      "pass": true,
+      "label": "430 no JS errors"
+    },
+    {
+      "pass": true,
+      "label": "768 initial overflow"
+    },
+    {
+      "pass": true,
+      "label": "768 logo"
+    },
+    {
+      "pass": true,
+      "label": "768 filter three / default A"
+    },
+    {
+      "pass": true,
+      "label": "768 editorial"
+    },
+    {
+      "pass": true,
+      "label": "768 order"
+    },
+    {
+      "pass": true,
+      "label": "768 E expand enter"
+    },
+    {
+      "pass": true,
+      "label": "768 E card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "768 E source equality"
+    },
+    {
+      "pass": true,
+      "label": "768 E expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "768 E collapse space"
+    },
+    {
+      "pass": true,
+      "label": "768 E dialog"
+    },
+    {
+      "pass": true,
+      "label": "768 E dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "768 E focus restored"
+    },
+    {
+      "pass": true,
+      "label": "768 E filter independent"
+    },
+    {
+      "pass": true,
+      "label": "768 S expand enter"
+    },
+    {
+      "pass": true,
+      "label": "768 S card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "768 S source equality"
+    },
+    {
+      "pass": true,
+      "label": "768 S expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "768 S collapse space"
+    },
+    {
+      "pass": true,
+      "label": "768 S dialog"
+    },
+    {
+      "pass": true,
+      "label": "768 S dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "768 S focus restored"
+    },
+    {
+      "pass": true,
+      "label": "768 S filter independent"
+    },
+    {
+      "pass": true,
+      "label": "768 A expand enter"
+    },
+    {
+      "pass": true,
+      "label": "768 A card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "768 A source equality"
+    },
+    {
+      "pass": true,
+      "label": "768 A expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "768 A collapse space"
+    },
+    {
+      "pass": true,
+      "label": "768 A dialog"
+    },
+    {
+      "pass": true,
+      "label": "768 A dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "768 A focus restored"
+    },
+    {
+      "pass": true,
+      "label": "768 A filter independent"
+    },
+    {
+      "pass": true,
+      "label": "768 unique IDs"
+    },
+    {
+      "pass": true,
+      "label": "768 menu escape"
+    },
+    {
+      "pass": true,
+      "label": "768 18x3x4 popup states"
+    },
+    {
+      "pass": true,
+      "label": "768 popup overflow"
+    },
+    {
+      "pass": true,
+      "label": "768 no JS errors"
+    },
+    {
+      "pass": true,
+      "label": "1024 initial overflow"
+    },
+    {
+      "pass": true,
+      "label": "1024 logo"
+    },
+    {
+      "pass": true,
+      "label": "1024 filter three / default A"
+    },
+    {
+      "pass": true,
+      "label": "1024 editorial"
+    },
+    {
+      "pass": true,
+      "label": "1024 order"
+    },
+    {
+      "pass": true,
+      "label": "1024 E expand enter"
+    },
+    {
+      "pass": true,
+      "label": "1024 E card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1024 E source equality"
+    },
+    {
+      "pass": true,
+      "label": "1024 E expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "1024 E collapse space"
+    },
+    {
+      "pass": true,
+      "label": "1024 E dialog"
+    },
+    {
+      "pass": true,
+      "label": "1024 E dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1024 E focus restored"
+    },
+    {
+      "pass": true,
+      "label": "1024 E filter independent"
+    },
+    {
+      "pass": true,
+      "label": "1024 S expand enter"
+    },
+    {
+      "pass": true,
+      "label": "1024 S card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1024 S source equality"
+    },
+    {
+      "pass": true,
+      "label": "1024 S expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "1024 S collapse space"
+    },
+    {
+      "pass": true,
+      "label": "1024 S dialog"
+    },
+    {
+      "pass": true,
+      "label": "1024 S dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1024 S focus restored"
+    },
+    {
+      "pass": true,
+      "label": "1024 S filter independent"
+    },
+    {
+      "pass": true,
+      "label": "1024 A expand enter"
+    },
+    {
+      "pass": true,
+      "label": "1024 A card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1024 A source equality"
+    },
+    {
+      "pass": true,
+      "label": "1024 A expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "1024 A collapse space"
+    },
+    {
+      "pass": true,
+      "label": "1024 A dialog"
+    },
+    {
+      "pass": true,
+      "label": "1024 A dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1024 A focus restored"
+    },
+    {
+      "pass": true,
+      "label": "1024 A filter independent"
+    },
+    {
+      "pass": true,
+      "label": "1024 unique IDs"
+    },
+    {
+      "pass": true,
+      "label": "1024 18x3x4 popup states"
+    },
+    {
+      "pass": true,
+      "label": "1024 popup overflow"
+    },
+    {
+      "pass": true,
+      "label": "1024 no JS errors"
+    },
+    {
+      "pass": true,
+      "label": "1280 initial overflow"
+    },
+    {
+      "pass": true,
+      "label": "1280 logo"
+    },
+    {
+      "pass": true,
+      "label": "1280 filter three / default A"
+    },
+    {
+      "pass": true,
+      "label": "1280 editorial"
+    },
+    {
+      "pass": true,
+      "label": "1280 order"
+    },
+    {
+      "pass": true,
+      "label": "1280 E expand enter"
+    },
+    {
+      "pass": true,
+      "label": "1280 E card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1280 E source equality"
+    },
+    {
+      "pass": true,
+      "label": "1280 E expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "1280 E collapse space"
+    },
+    {
+      "pass": true,
+      "label": "1280 E dialog"
+    },
+    {
+      "pass": true,
+      "label": "1280 E dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1280 E focus restored"
+    },
+    {
+      "pass": true,
+      "label": "1280 E filter independent"
+    },
+    {
+      "pass": true,
+      "label": "1280 S expand enter"
+    },
+    {
+      "pass": true,
+      "label": "1280 S card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1280 S source equality"
+    },
+    {
+      "pass": true,
+      "label": "1280 S expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "1280 S collapse space"
+    },
+    {
+      "pass": true,
+      "label": "1280 S dialog"
+    },
+    {
+      "pass": true,
+      "label": "1280 S dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1280 S focus restored"
+    },
+    {
+      "pass": true,
+      "label": "1280 S filter independent"
+    },
+    {
+      "pass": true,
+      "label": "1280 A expand enter"
+    },
+    {
+      "pass": true,
+      "label": "1280 A card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1280 A source equality"
+    },
+    {
+      "pass": true,
+      "label": "1280 A expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "1280 A collapse space"
+    },
+    {
+      "pass": true,
+      "label": "1280 A dialog"
+    },
+    {
+      "pass": true,
+      "label": "1280 A dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1280 A focus restored"
+    },
+    {
+      "pass": true,
+      "label": "1280 A filter independent"
+    },
+    {
+      "pass": true,
+      "label": "1280 unique IDs"
+    },
+    {
+      "pass": true,
+      "label": "1280 18x3x4 popup states"
+    },
+    {
+      "pass": true,
+      "label": "1280 popup overflow"
+    },
+    {
+      "pass": true,
+      "label": "1280 no JS errors"
+    },
+    {
+      "pass": true,
+      "label": "1440 initial overflow"
+    },
+    {
+      "pass": true,
+      "label": "1440 logo"
+    },
+    {
+      "pass": true,
+      "label": "1440 filter three / default A"
+    },
+    {
+      "pass": true,
+      "label": "1440 editorial"
+    },
+    {
+      "pass": true,
+      "label": "1440 order"
+    },
+    {
+      "pass": true,
+      "label": "1440 E expand enter"
+    },
+    {
+      "pass": true,
+      "label": "1440 E card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1440 E source equality"
+    },
+    {
+      "pass": true,
+      "label": "1440 E expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "1440 E collapse space"
+    },
+    {
+      "pass": true,
+      "label": "1440 E dialog"
+    },
+    {
+      "pass": true,
+      "label": "1440 E dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1440 E focus restored"
+    },
+    {
+      "pass": true,
+      "label": "1440 E filter independent"
+    },
+    {
+      "pass": true,
+      "label": "1440 S expand enter"
+    },
+    {
+      "pass": true,
+      "label": "1440 S card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1440 S source equality"
+    },
+    {
+      "pass": true,
+      "label": "1440 S expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "1440 S collapse space"
+    },
+    {
+      "pass": true,
+      "label": "1440 S dialog"
+    },
+    {
+      "pass": true,
+      "label": "1440 S dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1440 S focus restored"
+    },
+    {
+      "pass": true,
+      "label": "1440 S filter independent"
+    },
+    {
+      "pass": true,
+      "label": "1440 A expand enter"
+    },
+    {
+      "pass": true,
+      "label": "1440 A card doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1440 A source equality"
+    },
+    {
+      "pass": true,
+      "label": "1440 A expanded overflow"
+    },
+    {
+      "pass": true,
+      "label": "1440 A collapse space"
+    },
+    {
+      "pass": true,
+      "label": "1440 A dialog"
+    },
+    {
+      "pass": true,
+      "label": "1440 A dialog doesn't change sim"
+    },
+    {
+      "pass": true,
+      "label": "1440 A focus restored"
+    },
+    {
+      "pass": true,
+      "label": "1440 A filter independent"
+    },
+    {
+      "pass": true,
+      "label": "1440 unique IDs"
+    },
+    {
+      "pass": true,
+      "label": "1440 18x3x4 popup states"
+    },
+    {
+      "pass": true,
+      "label": "1440 popup overflow"
+    },
+    {
+      "pass": true,
+      "label": "1440 no JS errors"
+    },
+    {
+      "pass": true,
+      "label": "oracle 648 combinations"
+    },
+    {
+      "pass": true,
+      "label": "E/0 UI receipt copied 1280"
+    },
+    {
+      "pass": true,
+      "label": "E/1 UI receipt copied 1460"
+    },
+    {
+      "pass": true,
+      "label": "E/2 UI receipt copied 1640"
+    },
+    {
+      "pass": true,
+      "label": "E/3 UI receipt copied 1820"
+    },
+    {
+      "pass": true,
+      "label": "E/10 UI receipt copied 3080"
+    },
+    {
+      "pass": true,
+      "label": "E/50 UI receipt copied 10280"
+    },
+    {
+      "pass": true,
+      "label": "S/50 UI receipt copied 2100"
+    },
+    {
+      "pass": true,
+      "label": "A/50 UI receipt copied 3200"
+    },
+    {
+      "pass": true,
+      "label": "restores quantity"
+    },
+    {
+      "pass": true,
+      "label": "quantity clamp"
+    },
+    {
+      "pass": true,
+      "label": "S05 A confirmed"
+    },
+    {
+      "pass": true,
+      "label": "S06 A confirmed"
+    },
+    {
+      "pass": true,
+      "label": "Meta Ads consistent across services, fee, ad budget"
+    },
+    {
+      "pass": true,
+      "label": "X01 A: gestão incluída, mídia separada, sem confirmação indevida"
+    },
+    {
+      "pass": true,
+      "label": "neutral marker uses defined silver token"
+    },
+    {
+      "pass": true,
+      "label": "copied A summary includes Meta Ads and Google without pending status"
+    },
+    {
+      "pass": true,
+      "label": "E simulate CTA selects plan"
+    },
+    {
+      "pass": true,
+      "label": "S simulate CTA selects plan"
+    },
+    {
+      "pass": true,
+      "label": "A simulate CTA selects plan"
+    },
+    {
+      "pass": true,
+      "label": "progress 0"
+    },
+    {
+      "pass": true,
+      "label": "progress 100"
+    },
+    {
+      "pass": true,
+      "label": "side by side comparison"
+    },
+    {
+      "pass": true,
+      "label": "map connectors preserved"
+    },
+    {
+      "pass": true,
+      "label": "print plans and summary"
+    },
+    {
+      "pass": true,
+      "label": "568x320 font 1 no overflow"
+    },
+    {
+      "pass": true,
+      "label": "568x320 font 1 modal reachable"
+    },
+    {
+      "pass": true,
+      "label": "844x390 font 1 no overflow"
+    },
+    {
+      "pass": true,
+      "label": "844x390 font 1 modal reachable"
+    },
+    {
+      "pass": true,
+      "label": "390x844 font 1.25 no overflow"
+    },
+    {
+      "pass": true,
+      "label": "390x844 font 1.25 modal reachable"
+    },
+    {
+      "pass": true,
+      "label": "390x844 font 2 no overflow"
+    },
+    {
+      "pass": true,
+      "label": "390x844 font 2 modal reachable"
+    },
+    {
+      "pass": true,
+      "label": "720x450 font 1 no overflow"
+    },
+    {
+      "pass": true,
+      "label": "720x450 font 1 modal reachable"
+    },
+    {
+      "pass": true,
+      "label": "no JS source, summaries"
+    }
+  ]
+}

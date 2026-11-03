@@ -762,3 +762,11 @@ Base: `ec052835b081332112860e9fba22157eefc15d16`, igual ao HTML público antes d
 6. **Acessibilidade/regressão:** corrigido overflow de FAQ com fonte 200% após falha reproduzível. Matriz final, evidências e limites no relatório V8. Não houve teste em aparelhos físicos ou leitor de tela real.
 
 Capturas: `docs/capturas/v8/`. Teste reproduzível: `docs/testes/v8.cjs`. Sem merge ou deploy de produção; revisão pendente.
+
+### T.1 Correção pontual do PR #5 (02/11/2026)
+
+Base `08f1780`, mesma branch `refinamento/proposta-v8`. A revisão anterior não detectou a ressalva antiga na célula-resumo X01/A: corrigida para gestão Meta Ads incluída e verba separada. `--silver-500`, indefinido no marcador neutro, foi substituído pelo token existente `--silver-700`. Layout e estrutura preservados.
+
+Revisados todos os textos de Meta/Google e seus geradores no HTML. As fichas de S05/S06 e X00/X01 já refletiam a decisão V8; apenas a célula-resumo estava divergente. Google continua incluído com frequência/ações em contrato; relatórios do Ampliado mantêm periodicidade pendente. Recibo e cálculo sem alteração.
+
+Teste atualizado para prevenir a regressão dessa célula, validar o token e o resumo copiado: **366/366 verificações locais**, **648 combinações**, **1.944 estados de pop-up**, sem falhas. Simulador comparado integralmente com a base e idêntico. Evidência e limitações em `RELATORIO_V8.md`, seção de correção pontual. Sem merge ou publicação em produção.
