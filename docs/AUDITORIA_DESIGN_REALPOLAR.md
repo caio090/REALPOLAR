@@ -1,5 +1,7 @@
 # REAL POLAR | Auditoria do HTML, direção de UX e briefing de execução no Claude
 
+> **Estado atual (02/11/2026, V8):** V5 publicada na raiz pelo PR #4. Auditoria e refinamentos desta rodada em [RELATORIO_V8.md](RELATORIO_V8.md), branch `refinamento/proposta-v8`; sem merge/produção nesta rodada. Os achados originais abaixo são históricos.
+
 **Data:** 01/11/2026  
 **Alvo auditado:** `index.html` na `main`, conforme consulta ao GitHub (blob `7f5d3c157d0f38ef1701b86e98b14aebbfe26395`), e documentos comerciais do Canva.  
 > **Atualização 02/11/2026 (Claude Code):** auditoria visual em navegador, sistema de design e protótipo isolado registrados nas seções I a L; **segunda rodada de refinamento (roteiros em SVG, movimento e textos) na seção M**, ao final. O protótipo está em `prototipo/index.html`, na branch `design/prototipo-esclarecimento`. **O `index.html` principal e a produção não foram alterados.**
@@ -747,3 +749,16 @@ Em 320×568 os preços terminam em 705 px: a faixa interna "Ambiente de teste" o
   - **Impressão:** os três cartões saem impressos.
 - **Não testado:** Safari iOS (barra dinâmica, teclado virtual e área segura reais), Firefox, aparelhos físicos e leitores de tela reais. O comportamento do teclado virtual foi tratado com `scroll-margin` nos campos, sem prova em aparelho.
 
+
+## T. Consolidação V7 + V8 (02/11/2026, Codex)
+
+Base: `ec052835b081332112860e9fba22157eefc15d16`, igual ao HTML público antes da edição. Auditoria com capturas atuais de produção em 390 e 1280 px; preservadas logo original, paleta, navegação, matriz, audiovisual e simulador.
+
+1. **Abertura:** logo grande e título antigos confirmados; título aprovado V7 aplicado, frase final em azul existente, Marketing em Georgia do sistema. Sem fonte ou asset novo.
+2. **Planos:** listas extensas confirmadas. Resumo de três serviços + expansão independente com `aria-expanded`, `aria-controls` e painel oculto sem foco; demais serviços e exclusões vêm de `#cmp`. Estados conservados ao trocar cartão; preço e CTA fora da expansão.
+3. **Serviços:** opção Todos removida do HTML e do estado JavaScript; Ampliado já era default e foi preservado. Status de Meta Ads/Google corrigidos na matriz e nos detalhes, incluindo mensalidade e verba de anúncios. Nenhuma periodicidade inventada.
+4. **90 dias e acompanhamento:** retirados bloco técnico e seletor de indicadores; mantidos marcos, período mínimo e limites. Ações, observações e próximos ajustes em linguagem de cliente.
+5. **Final:** resumo curto de valores e campanha, custos externos, âncora para simulador, quatro perguntas e fechamento. Cópia e impressão acompanham a redação.
+6. **Acessibilidade/regressão:** corrigido overflow de FAQ com fonte 200% após falha reproduzível. Matriz final, evidências e limites no relatório V8. Não houve teste em aparelhos físicos ou leitor de tela real.
+
+Capturas: `docs/capturas/v8/`. Teste reproduzível: `docs/testes/v8.cjs`. Sem merge ou deploy de produção; revisão pendente.

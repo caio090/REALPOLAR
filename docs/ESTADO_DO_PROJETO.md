@@ -2,7 +2,7 @@
 
 > Atualizado em **02/11/2026**. Documento de trabalho compartilhado para ChatGPT, Claude/Codespaces e colaboradores.
 > **Leia junto com `AGENTS.md`, `CLAUDE.md` e `docs/AUDITORIA_DESIGN_REALPOLAR.md` antes de editar.** Este registro distingue a proposta, o conceito visual e o que existe de verdade no código.
-> **Status:** existe um **protótipo isolado** em `prototipo/index.html` (branch `design/prototipo-esclarecimento`). O `index.html` principal e a produção **não foram alterados**.
+> **Status atual V8:** V5 publicada na raiz por PR #4, merge `ec052835b081332112860e9fba22157eefc15d16`. Nesta tarefa, refinamento V8 em `refinamento/proposta-v8`, sem merge ou deploy de produção. Registro atual e testes em [RELATORIO_V8.md](RELATORIO_V8.md). As seções antigas abaixo mantêm o histórico; menções a protótipo e escopos anteriores não descrevem o estado atual.
 
 ## 1. Objetivo atual, em uma frase
 
@@ -108,6 +108,9 @@ Visual sugerido: fluxo de nós conectados, cartões com rótulos curtos, linhas 
 - **Ponto de entrada para Claude:** ler `CLAUDE.md`, depois `docs/AUDITORIA_DESIGN_REALPOLAR.md` (seção “Brief de execução para o Claude”).
 
 ## 8. Histórico de alterações
+
+- **02/11/2026 | Consolidação V7 + V8 (Codex):** base `origin/main` `ec052835b081332112860e9fba22157eefc15d16`, HTML idêntico à produção por SHA-256 antes da edição. **Decidido:** V8 prevalece sobre V7 e orientações antigas; planos e preços no início, logo grande removida, headline aprovada, cartões expansíveis, três filtros, 90 dias e acompanhamento simples, resumo/campanha/FAQ antes do fechamento. Meta Ads e Google no Ampliado incluídos por confirmação do responsável (substitui os antigos conflitos F30/F19). **Codado:** `index.html`, sem dependências, preservando #cmp, pop-ups específicos e cálculo. **Proposto:** nenhum novo sistema ou escopo. **Testado:** relatório V8, Chromium em 9 larguras, fonte ampliada, teclado, pop-ups, impressão, cópia e 648 combinações matemáticas; ver resultados finais no relatório. **Publicado:** nada desta rodada em produção; V5 permanece oficial. **Pendências:** contrato, periodicidade do Ampliado, volumes/revisões, rebranding, painel e bônus. Branch `refinamento/proposta-v8`; PR e commit final no relatório/GitHub.
+
 
 - **02/11/2026 | Publicação da V5 como página principal (Claude Code):** **decidido pelo responsável:** a versão nova substitui a antiga na raiz, e os documentos internos ficam fora do site. **Motivo:** a produção mostrava a página antiga (R$ 1.100 / R$ 1.800 / R$ 3.200), enquanto a prévia tinha a V5 (R$ 1.280 / R$ 2.100 / R$ 3.200); havia duas versões com preços conflitantes. Além disso, `/AGENTS.md` estava acessível no site. **Codado** na branch `release/proposta-v5`:
   - `prototipo/index.html` passou a ser `index.html`, e `prototipo/assets/` passou a ser `assets/`;

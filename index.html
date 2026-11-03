@@ -110,9 +110,10 @@ h2{font-size:clamp(1.75rem,4vw,2.625rem);max-width:22ch}
 .motion [data-reveal].in{opacity:1;transform:none}
 
 /* 01 Abertura */
-.hero-logo{display:block;width:104px;height:104px;border-radius:22px;margin-bottom:24px;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 14px 34px rgba(0,0,0,.25)}
 .hero{background:radial-gradient(ellipse 70% 60% at 85% 0%,#1d4d6b 0,transparent 60%),var(--navy-900);color:#fff;padding-block:clamp(56px,8vw,96px)}
-.hero h1{font-size:clamp(2.125rem,5.4vw,3.625rem);max-width:16ch}
+.hero h1{font-size:clamp(2.125rem,5.4vw,3.625rem);max-width:24ch;text-wrap:balance}
+.hero-em{color:var(--glacial-300)}
+.hero .editorial{font-family:Georgia,"Times New Roman",serif;font-style:italic}
 .hero .lead{color:#d7e3ea;font-size:clamp(1.125rem,1.9vw,1.3125rem)}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 .prices{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;padding:0;list-style:none}
@@ -124,7 +125,7 @@ h2{font-size:clamp(1.75rem,4vw,2.625rem);max-width:22ch}
 .prices .feat{border-color:var(--glacial-400)}
 
 /* 02 Planos */
-.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px;align-items:stretch}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:28px;align-items:start}
 .plantabs{display:none}
 .plan{position:relative;background:#fff;border:1.5px solid var(--silver-200);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;transition:border-color var(--dur),box-shadow var(--dur)}
 .plan.featured{border:2px solid var(--navy-800);box-shadow:0 14px 34px rgba(12,34,53,.12)}
@@ -146,7 +147,7 @@ h2{font-size:clamp(1.75rem,4vw,2.625rem);max-width:22ch}
 .svc-btn .col{display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-width:0;overflow-wrap:anywhere}
 .not{margin-top:14px;padding-top:12px;border-top:1px solid var(--silver-200);font-size:0.875rem;color:var(--ink-2)}
 .not b{color:var(--ink)}
-.plan .acts{margin-top:auto;padding-top:18px;display:grid;gap:8px}
+.plan .acts{margin-top:0;padding-top:18px;display:grid;gap:8px}
 .plan.selected .pick{background:var(--navy-800);color:#fff;border-color:var(--navy-800)}
 .outside-t{margin:32px 0 0;font-size:0.8125rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--silver-700)}
 .outside{margin-top:12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 24px}
@@ -154,6 +155,12 @@ h2{font-size:clamp(1.75rem,4vw,2.625rem);max-width:22ch}
 .outside .o b{display:block}
 .outside .o button{margin-top:6px;min-height:44px;padding:0;border:0;background:none;color:var(--glacial-600);font-weight:700;font-size:0.875rem;text-decoration:underline}
 
+/* Conteúdo adicional independente por plano */
+.plan>.svc-list .ld{display:none}
+.plan-more{margin-top:12px}
+.plan-toggle{width:100%;min-height:44px;text-align:left;padding:8px 10px;border:1px solid var(--silver-300);border-radius:10px;background:var(--silver-50);color:var(--navy-800);font-weight:700;font-size:.875rem}
+.plan-more:not([hidden]){animation:rise .2s var(--ease)}
+.svc-btn.neutral .nm::before{border:1.5px solid var(--silver-500);height:11px;border-radius:50%;transform:none}
 /* 03 Explorador de serviços */
 .views{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:24px}
 .views .chips{margin-top:0}
@@ -232,36 +239,17 @@ h2{font-size:clamp(1.75rem,4vw,2.625rem);max-width:22ch}
 .tl-marks .m{font-weight:800;margin-top:8px}
 .tl-marks p{margin:4px 0 0;font-size:0.9375rem;color:var(--ink-2);max-width:30ch}
 .tl-marks small{display:block;margin-top:6px;font-size:0.8125rem;font-weight:700;color:var(--glacial-600);max-width:30ch}
-/* Aviso de metas de conversão: faixa fina sob os 3 meses (mês 1 → mês 3) */
-.conv{position:relative;margin-top:18px;padding-top:16px;font-size:0.875rem;color:var(--ink-2)}
-.conv-lane{position:absolute;top:0;left:16.66%;right:16.66%;height:2px}
-.conv-lane span{display:block;height:100%;background:repeating-linear-gradient(90deg,var(--glacial-600) 0 6px,transparent 6px 11px);transform-origin:0 50%}
-.conv-lane::after{content:"";position:absolute;right:-2px;top:-3px;border-left:7px solid var(--glacial-600);border-top:4px solid transparent;border-bottom:4px solid transparent}
-.conv p{display:flex;gap:10px;align-items:flex-start;margin:0;max-width:820px}
-.conv strong{color:var(--ink)}
-.conv-ico{flex:0 0 20px;width:20px;height:20px;margin-top:1px;overflow:visible}
-.conv-ico circle{fill:none;stroke:var(--glacial-600);stroke-width:1.6;transform-box:fill-box;transform-origin:center}
-.conv-ico .core{fill:var(--glacial-600);stroke:none}
-.conv-plans{list-style:none;margin:8px 0 0 30px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
-.conv-plans li{font-size:0.875rem;color:var(--ink-2);min-width:0;max-width:100%;overflow-wrap:break-word}
-.conv-plans li:not(:last-child)::after{content:"·";margin-left:10px;color:var(--silver-500)}
-.conv-plans b{color:var(--ink);margin-right:6px}
-.motion .conv .conv-lane span{transform:scaleX(0);transition:transform .9s var(--ease) .35s}
-.motion .conv.in .conv-lane span{transform:none}
-.motion .conv.in .r1{animation:ring .7s var(--ease) .5s both}
-.motion .conv.in .r2{animation:ring .6s var(--ease) .62s both}
-.motion .conv.in .core{animation:ring .4s var(--ease) .74s both}
-@keyframes ring{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
-
 /* 07 Acompanhamento */
 .track-box{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,4vw,48px);margin-top:24px;align-items:start}
-.metrics{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-.metrics li{border-radius:999px;padding:8px 14px;background:var(--glacial-50);border:1px solid #cdebf1;font-size:0.9375rem;font-weight:600}
-.motion .metrics li{animation:rise .35s var(--ease) both;animation-delay:var(--d,0s)}
 @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.track-box .where{margin:0;font-size:1rem}
-.track-box .note{margin:10px 0 0;font-size:0.9375rem;color:var(--ink-2)}
 
+.executive{margin:24px 0;display:grid;gap:0}
+.executive>div{padding:16px 0;border-bottom:1px solid var(--silver-300)}
+.executive dt{font-weight:700;color:var(--navy-800);display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px}
+.executive dt strong{white-space:nowrap}
+.executive dd{margin:4px 0 0;color:var(--ink-2);font-size:.9375rem}
+.executive .featured{border-left:3px solid var(--glacial-600);padding-left:16px}
+.quick-title{margin-top:32px;font-size:1.375rem}
 /* 08 Simulador */
 .sim{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,4vw,40px);margin-top:28px;background:#fff;border:1px solid var(--silver-200);border-radius:var(--radius);padding:clamp(20px,3vw,32px)}
 .grp{padding-top:16px;margin-top:16px;border-top:1px solid var(--silver-200)}
@@ -305,8 +293,8 @@ h2{font-size:clamp(1.75rem,4vw,2.625rem);max-width:22ch}
 .avulsa{display:block;margin-top:10px;padding-top:10px;border-top:1px dashed var(--silver-300)}
 
 /* Perguntas rápidas */
-.faq{max-width:840px;margin-top:20px;display:grid;gap:10px}
-.faq details{background:#fff;border:1px solid var(--silver-200);border-radius:12px}
+.faq{grid-template-columns:minmax(0,1fr);max-width:840px;margin-top:20px;display:grid;gap:10px}
+.faq details{min-width:0;overflow-wrap:anywhere;background:#fff;border:1px solid var(--silver-200);border-radius:12px}
 .faq summary{min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;font-weight:700;cursor:pointer;list-style:none}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";font-size:1.375rem;color:var(--glacial-600);transition:transform var(--dur-fast)}
@@ -442,7 +430,6 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
   .nav{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
   .nav ul{padding-right:28px}
   .hero{padding-block:40px 44px}
-  .hero-logo{width:56px;height:56px;border-radius:12px;margin-bottom:14px}
   .hero h1{font-size:clamp(1.875rem,8.4vw,2.25rem)}
   .prices span{flex:1 1 auto}
   /* Produção audiovisual em sequência vertical, com setas curtas */
@@ -457,8 +444,6 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
   .prices a{flex:1 1 100%;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:6px 14px}
   .prices strong{font-size:1.125rem}
   #planos{padding-top:44px}
-  .conv-plans{margin-left:0;flex-direction:column;gap:4px}
-  .conv-plans li::after{display:none}
   /* 90 dias empilhados: trilha vertical à esquerda, texto com largura total */
   .tl-track{display:none}
   .tl-marks{grid-template-columns:1fr;gap:18px}
@@ -467,8 +452,6 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
   .tl-marks .dot{grid-row:span 3}
   .tl-marks .m{margin-top:10px}
   .tl-marks p,.tl-marks small{grid-column:2;max-width:none}
-  .conv-lane{display:none}
-  .conv{padding-top:4px}
   .row2{grid-template-columns:1fr}
   .total{flex-wrap:wrap}
   .total span{flex:1 1 140px}
@@ -501,7 +484,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
   body{background:#fff;font-size:0.75rem}
   section{padding-block:16px}
   .hero,.closing{background:#fff;color:var(--ink)}
-  .hero .lead,.checklist li,.prices span,.prices small{color:var(--ink-2)}
+  .hero .lead,.hero-em,.checklist li,.prices span,.prices small{color:var(--ink-2)}
   .prices a{border-color:var(--silver-300)}
   .closing h2{color:var(--ink)}
   .cmp thead th{position:static}
@@ -535,9 +518,8 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
 <!-- 01 Abertura -->
 <section class="hero" id="inicio" aria-labelledby="t-hero">
   <div class="wrap">
-    <img class="hero-logo" src="assets/real-polar-logo-192.png" srcset="assets/real-polar-logo-192.png 192w, assets/real-polar-logo-512.png 512w" sizes="(max-width:640px) 72px, 104px" width="104" height="104" alt="Logotipo da Real Polar: monograma RP prateado com detalhe azul-claro sobre fundo azul-marinho" data-reveal>
-    <h1 id="t-hero" data-reveal>O marketing da Real Polar, sob nossa gestão.</h1>
-    <p class="lead" data-reveal style="--d:.08s">Posicionamento, conteúdo, redes sociais e anúncios, com serviços e acompanhamento definidos por plano.</p>
+    <h1 id="t-hero" data-reveal>O que realmente a Real Polar ganha <span class="hero-em">com esse investimento?</span></h1>
+    <p class="lead" data-reveal style="--d:.08s"><span class="editorial">Marketing</span> com uma equipe que coordena planejamento, criação, anúncios e melhorias, conforme o plano. Você acompanha as ações e participa das aprovações combinadas.</p>
     <ul class="prices" aria-label="Mensalidade de cada plano" data-reveal style="--d:.16s">
       <li><a href="#plano-E"><span>Econômico</span><strong>R$ 1.280 <small>/ mês</small></strong></a></li>
       <li><a href="#plano-S"><span>Essencial</span><strong>R$ 2.100 <small>/ mês</small></strong></a></li>
@@ -566,7 +548,8 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
         <div class="price">R$&nbsp;1.280 <small>/ mês</small></div>
         <p class="focus"><b>Foco:</b> presença digital e posicionamento, com operação enxuta.</p>
         <ul class="svc-list js-only" aria-label="Serviços do Econômico"></ul>
-        <p class="not js-only"></p>
+        <button class="plan-toggle js-only" type="button" aria-expanded="false">Ver tudo que está incluso</button>
+        <div class="plan-more js-only" hidden><ul class="svc-list"></ul><p class="not"></p></div>
         <div class="acts js-only"><button class="btn btn-line pick" type="button" data-pick="E" aria-pressed="false">Simular este plano</button></div>
       </article>
       <article class="plan" id="plano-S" data-plan="S" data-reveal style="--d:.08s">
@@ -574,7 +557,8 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
         <div class="price">R$&nbsp;2.100 <small>/ mês</small></div>
         <p class="focus"><b>Foco:</b> posicionamento e prospecção, com objetivos de conversão desde o início.</p>
         <ul class="svc-list js-only" aria-label="Serviços do Essencial"></ul>
-        <p class="not js-only"></p>
+        <button class="plan-toggle js-only" type="button" aria-expanded="false">Ver tudo que está incluso</button>
+        <div class="plan-more js-only" hidden><ul class="svc-list"></ul><p class="not"></p></div>
         <div class="acts js-only"><button class="btn btn-line pick" type="button" data-pick="S" aria-pressed="false">Simular este plano</button></div>
       </article>
       <article class="plan featured" id="plano-A" data-plan="A" data-reveal style="--d:.16s">
@@ -583,7 +567,8 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
         <div class="price">R$&nbsp;3.200 <small>/ mês</small></div>
         <p class="focus"><b>Foco:</b> gestão mais abrangente de posicionamento, comunicação, aquisição e acompanhamento.</p>
         <ul class="svc-list js-only" aria-label="Serviços do Presença Ampliada"></ul>
-        <p class="not js-only"></p>
+        <button class="plan-toggle js-only" type="button" aria-expanded="false">Ver tudo que está incluso</button>
+        <div class="plan-more js-only" hidden><ul class="svc-list"></ul><p class="not"></p></div>
         <div class="acts js-only"><button class="btn btn-line pick" type="button" data-pick="A" aria-pressed="true">Simular este plano</button></div>
       </article>
     </div>
@@ -600,7 +585,6 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
     <p class="lead" data-reveal style="--d:.08s">Escolha um plano e toque em um serviço para ver a explicação. Ou compare os três planos lado a lado.</p>
     <div class="views js-only" data-reveal style="--d:.12s">
       <div class="chips" role="group" aria-label="Plano no mapa">
-        <button class="chip" type="button" data-mm-plan="all" aria-pressed="false">Todos</button>
         <button class="chip" type="button" data-mm-plan="E" aria-pressed="false">Econômico</button>
         <button class="chip" type="button" data-mm-plan="S" aria-pressed="false">Essencial</button>
         <button class="chip" type="button" data-mm-plan="A" aria-pressed="true">Presença Ampliada</button>
@@ -614,7 +598,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
     <div class="mm js-only" id="mm" role="tabpanel" aria-labelledby="v-map">
       <div class="mm-stage" id="mmStage">
         <svg class="mm-svg" id="mmSvg" aria-hidden="true"></svg>
-        <div class="mm-center">Nossa gestão de marketing<small>Serviços incluídos na mensalidade</small></div>
+        <div class="mm-center">Nossa gestão de marketing<small>Serviços e condições por plano</small></div>
       </div>
     </div>
 
@@ -677,9 +661,9 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
                 <p data-f="dep">Insumos: Acesso às contas e orçamento de anúncios aprovado.</p>
                 <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Gestão de campanhas em formato enxuto.</p><ul data-f="get"><li>Gestão de campanhas em formato enxuto</li><li>Foco inicial em objetivos compatíveis com a verba e os materiais disponíveis</li><li>Verba de mídia sempre paga fora da mensalidade</li></ul><ol data-f="how"><li>Definimos o objetivo e o teto de verba do formato enxuto.</li><li>Configuramos as campanhas dentro do escopo.</li><li>Acompanhamos indicadores básicos, sem confundir gestão e verba.</li></ol><ul data-f="lim"><li>Gestão de campanhas prevista na mensalidade do Econômico</li><li>Verba de mídia sempre paga à parte</li></ul></div>
                 <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Planejamento, configuração e acompanhamento das campanhas previstas.</p><ul data-f="get"><li>Planejamento, configuração e acompanhamento das campanhas previstas</li><li>Testes de públicos e mensagens conforme escopo</li><li>Objetivos de conversão e acompanhamento das métricas cabíveis</li></ul><ol data-f="how"><li>Organizamos objetivos e públicos de conversão.</li><li>Configuramos, testamos e ajustamos as campanhas previstas.</li><li>Consolidamos os aprendizados conforme escopo e dados disponíveis.</li></ol><ul data-f="lim"><li>Gestão prevista na mensalidade do Essencial</li><li>Verba de mídia separada</li></ul></div>
-                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">A gestão de Meta Ads ainda não consta como entrega confirmada neste plano.</p><ul data-f="get"><li>Gestão de Meta Ads ainda não confirmada neste plano</li><li>Integração com outras frentes depende de decisão comercial</li><li>Campanhas não são apresentadas como serviço incluído antes da validação</li></ul><ol data-f="how"><li>Informamos que Meta Ads não está confirmado neste pacote.</li><li>Solicitamos a validação do escopo.</li><li>Só planejamos e executamos campanhas se o contrato passar a incluí-las.</li></ol><ul data-f="lim"><li>Gestão de Meta Ads não confirmada: não é entrega antes da validação</li><li>Verba sempre paga à parte</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Gestão de Meta Ads incluída e integrada às frentes do plano ampliado.</p><ul data-f="get"><li>Planejamento e gestão das campanhas de Meta Ads</li><li>Integração com as frentes de comunicação aprovadas</li><li>Acompanhamento e ajustes conforme dados disponíveis</li></ul><ol data-f="how"><li>Alinhamos objetivos, materiais e verba com a Real Polar.</li><li>Configuramos as campanhas e os testes aprovados.</li><li>Acompanhamos os resultados para ajustar as próximas ações.</li></ol><ul data-f="lim"><li>Gestão incluída na mensalidade do Presença Ampliada</li><li>Verba paga separadamente à Meta</li><li>Sem garantia de contatos ou vendas</li></ul></div>
               </details></th>
-            <td data-plan="Econômico" data-st="incluido" data-src="canva">Incluído<small>Foco compatível com a proposta enxuta</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td><td data-plan="Presença Ampliada" data-st="conflito" data-src="conflito">A confirmar<small>Ainda não listado no plano; será confirmado em contrato</small></td>
+            <td data-plan="Econômico" data-st="incluido" data-src="canva">Incluído<small>Foco compatível com a proposta enxuta</small></td><td data-plan="Essencial" data-st="incluido" data-src="canva">Incluído</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="responsavel-v8">Incluído<small>Verba de anúncios paga à parte</small></td>
           </tr>
           <tr data-id="S06" data-node="Google Meu Negócio" data-rel="S07">
             <th scope="row"><span class="nm">Google Meu Negócio (Perfil da Empresa no Google)</span>
@@ -688,9 +672,9 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
                 <p data-f="dep">Insumos: Acesso administrativo ao Perfil da Empresa no Google.</p>
                 <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Nenhuma gestão do Perfil da Empresa no Google na mensalidade.</p><ul data-f="get"><li>Nenhuma gestão do Perfil da Empresa no Google na mensalidade</li><li>O serviço é explicado sem simular entrega contratada</li><li>Contratação separada só após orçamento</li></ul><ol data-f="how"><li>Identificamos a solicitação sobre o perfil.</li><li>Informamos que não há gestão contratada.</li><li>Oferecemos orçamento separado, se a Real Polar quiser.</li></ol><ul data-f="lim"><li>Perfil da Empresa fora da mensalidade</li><li>Somente mediante orçamento específico</li></ul></div>
                 <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Conferência e organização básica das informações do perfil.</p><ul data-f="get"><li>Conferência e organização básica das informações do perfil</li><li>Correções pontuais previstas no escopo</li><li>Sem manutenção contínua presumida</li></ul><ol data-f="how"><li>Obtemos acesso ao perfil.</li><li>Conferimos os dados básicos e corrigimos as informações previstas.</li><li>Encerramos após a revisão pontual, sem presumir manutenção.</li></ol><ul data-f="lim"><li>Revisão básica incluída, com escopo limitado</li><li>Manutenção recorrente não presumida</li><li>Não é o mesmo serviço que SEO</li></ul></div>
-                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Gestão do Perfil da Empresa no Google prevista.</p><ul data-f="get"><li>Gestão prevista do Perfil da Empresa no Google</li><li>Frequência e ações de manutenção a especificar em contrato</li><li>Não é SEO técnico completo nem Google Ads</li></ul><ol data-f="how"><li>Confirmamos o escopo de manutenção, ainda pendente.</li><li>Planejamos as informações e rotinas autorizadas.</li><li>Executamos apenas a frequência e as ações definidas em contrato.</li></ol><ul data-f="lim"><li>Gestão prevista: extensão, frequência e entregas a definir em contrato</li><li>Não é um pacote ilimitado</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Gestão do Perfil da Empresa no Google incluída no Presença Ampliada.</p><ul data-f="get"><li>Gestão do Perfil da Empresa no Google incluída</li><li>Frequência e ações de manutenção a especificar em contrato</li><li>Não é SEO técnico completo nem Google Ads</li></ul><ol data-f="how"><li>Alinhamos as ações de manutenção dentro do escopo contratado.</li><li>Planejamos as informações e rotinas autorizadas.</li><li>Executamos apenas a frequência e as ações definidas em contrato.</li></ol><ul data-f="lim"><li>Gestão incluída; extensão, frequência e entregas detalhadas em contrato</li><li>Não é um pacote ilimitado</li></ul></div>
               </details></th>
-            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="limitado" data-src="canva">Limitado<small>Revisão básica do perfil</small></td><td data-plan="Presença Ampliada" data-st="pendente" data-src="canva">Previsto<small>Gestão do perfil; detalhes em contrato</small></td>
+            <td data-plan="Econômico" data-st="fora" data-src="canva">Fora da mensalidade</td><td data-plan="Essencial" data-st="limitado" data-src="canva">Limitado<small>Revisão básica do perfil</small></td><td data-plan="Presença Ampliada" data-st="incluido" data-src="responsavel-v8">Incluído<small>Gestão do perfil; detalhes em contrato</small></td>
           </tr>
           <tr data-id="S07" data-node="SEO" data-rel="S06">
             <th scope="row"><span class="nm">Otimização de busca no Google (SEO)</span>
@@ -758,7 +742,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
                 <p data-f="dep">Insumos: Formalização do escopo e condições de pagamento.</p>
                 <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Gestão das entregas e limites específicos do Econômico.</p><ul data-f="get"><li>Gestão das entregas e limites específicos do Econômico</li><li>Custo mensal fixo pelos serviços confirmados neste plano</li><li>Captação e edição avulsa não integram a mensalidade</li></ul><ol data-f="how"><li>Você seleciona o Econômico.</li><li>Confere as entregas reduzidas e os custos externos.</li><li>Simula o investimento antes da contratação.</li></ol><ul data-f="lim"><li>Período mínimo de três meses</li><li>O simulador mostra a base de 1 mês</li><li>Edição avulsa e captação somam à parte</li></ul></div>
                 <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Gestão dos serviços previstos no Essencial.</p><ul data-f="get"><li>Gestão dos serviços previstos no Essencial</li><li>Roteiro e edição previstos sem preço por vídeo</li><li>Verba de anúncios e captação permanecem separadas</li></ul><ol data-f="how"><li>Você seleciona o Essencial.</li><li>Confere os serviços e a edição prevista no pacote.</li><li>Soma somente mídia e produções externas opcionais.</li></ol><ul data-f="lim"><li>Período mínimo de três meses</li><li>O simulador mostra a base de 1 mês</li><li>A edição dos vídeos previstos já está na mensalidade</li></ul></div>
-                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Gestão ampliada do escopo definido em contrato.</p><ul data-f="get"><li>Gestão ampliada do escopo definido em contrato</li><li>Meta Ads e frequência dos relatórios ainda a confirmar</li><li>Custos externos continuam separados</li></ul><ol data-f="how"><li>Você seleciona o Presença Ampliada.</li><li>Distingue serviços incluídos, previstos e a confirmar.</li><li>Simula os custos externos sem presumir aprovação das pendências.</li></ol><ul data-f="lim"><li>Período mínimo de três meses</li><li>O simulador mostra a base de 1 mês</li><li>Meta Ads e periodicidade dos relatórios ainda a confirmar</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Gestão ampliada do escopo definido em contrato.</p><ul data-f="get"><li>Gestão ampliada do escopo definido em contrato</li><li>Gestão de Meta Ads incluída; periodicidade dos relatórios a confirmar</li><li>Custos externos continuam separados</li></ul><ol data-f="how"><li>Você seleciona o Presença Ampliada.</li><li>Distingue serviços incluídos, previstos e a confirmar.</li><li>Simula os custos externos sem presumir aprovação das pendências.</li></ol><ul data-f="lim"><li>Período mínimo de três meses</li><li>O simulador mostra a base de 1 mês</li><li>Gestão de Meta Ads incluída; periodicidade dos relatórios a confirmar</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="incluido" data-src="canva">R$ 1.280/mês</td><td data-plan="Essencial" data-st="incluido" data-src="canva">R$ 2.100/mês</td><td data-plan="Presença Ampliada" data-st="incluido" data-src="canva">R$ 3.200/mês</td>
           </tr>
@@ -784,7 +768,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
                 <p data-f="ext">Referência: a partir de R$ 15 por dia.</p>
                 <div data-plan-detail="E"><h4>No Econômico</h4><p data-f="lead">Verba das campanhas do formato enxuto, paga direto à Meta.</p><ul data-f="get"><li>Não sai da mensalidade: a verba é paga direto à Meta</li><li>Distribui os anúncios das campanhas do formato enxuto</li><li>Acompanhamento do uso dentro do teto aprovado</li></ul><ol data-f="how"><li>Definimos juntos um teto de verba compatível com o formato enxuto.</li><li>A Meta cobra diretamente da Real Polar.</li><li>Acompanhamos o consumo e ajustamos a distribuição.</li></ol><ul data-f="lim"><li>Não faz parte da mensalidade de R$ 1.280</li><li>Referência a partir de R$ 15 por dia</li><li>Investir mais não garante mais vendas</li></ul></div>
                 <div data-plan-detail="S"><h4>No Essencial</h4><p data-f="lead">Verba das campanhas de conversão do Essencial, paga direto à Meta.</p><ul data-f="get"><li>Não sai da mensalidade: a verba dos testes é paga direto à Meta</li><li>Distribui as campanhas e os testes previstos</li><li>Leitura do uso da verba no relatório mensal</li></ul><ol data-f="how"><li>Definimos juntos a verba inicial dos testes.</li><li>A Meta cobra diretamente da Real Polar.</li><li>Redistribuímos a verba conforme a resposta dos testes.</li></ol><ul data-f="lim"><li>Não faz parte da mensalidade de R$ 2.100</li><li>Mais verba pode ampliar os testes, sem garantir vendas</li><li>Referência a partir de R$ 15 por dia</li></ul></div>
-                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Só se aplica se a gestão de Meta Ads for confirmada neste plano.</p><ul data-f="get"><li>Nenhuma campanha confirmada neste plano até a validação</li><li>Se confirmada, verba paga direto à Meta</li><li>Valor definido pela Real Polar</li></ul><ol data-f="how"><li>Validamos se o contrato inclui gestão de Meta Ads.</li><li>Se incluir, definimos a verba inicial.</li><li>A Meta cobra diretamente da Real Polar.</li></ol><ul data-f="lim"><li>Não faz parte da mensalidade de R$ 3.200</li><li>Depende da confirmação da gestão de Meta Ads</li><li>Investir mais não garante mais vendas</li></ul></div>
+                <div data-plan-detail="A"><h4>No Presença Ampliada</h4><p data-f="lead">Verba das campanhas do Presença Ampliada, paga separadamente à Meta.</p><ul data-f="get"><li>Gestão de campanhas incluída; verba não integra a mensalidade</li><li>Investimento em anúncios pago diretamente à Meta</li><li>Valor definido pela Real Polar</li></ul><ol data-f="how"><li>Alinhamos objetivos das campanhas incluídas no plano.</li><li>Definimos a verba inicial com a Real Polar.</li><li>A Meta cobra diretamente da Real Polar.</li></ol><ul data-f="lim"><li>Não faz parte da mensalidade de R$ 3.200</li><li>Gestão incluída; verba aprovada separadamente</li><li>Investir mais não garante mais vendas</li></ul></div>
               </details></th>
             <td data-plan="Econômico" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta</small></td><td data-plan="Essencial" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta</small></td><td data-plan="Presença Ampliada" data-st="fora" data-src="canva">Pago à parte<small>Direto à Meta; depende da gestão de anúncios a confirmar</small></td>
           </tr>
@@ -886,15 +870,7 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
         <li><span class="dot" aria-hidden="true">2</span><span class="m">Mês 2: Testar</span><p>Acompanhamos a resposta das primeiras ações e ajustamos a estratégia.</p><small>Ao final: primeiras leituras do que responde melhor.</small></li>
         <li><span class="dot" aria-hidden="true">3</span><span class="m">Mês 3: Avaliar</span><p>Analisamos os resultados disponíveis e definimos os próximos objetivos.</p><small>Ao final: próximos objetivos definidos com a Real Polar.</small></li>
       </ol>
-      <div class="conv" data-reveal style="--d:.3s">
-        <div class="conv-lane" aria-hidden="true"><span></span></div>
-        <p><svg class="conv-ico" viewBox="0 0 24 24" aria-hidden="true"><circle class="r1" cx="12" cy="12" r="10"/><circle class="r2" cx="12" cy="12" r="5.5"/><circle class="core" cx="12" cy="12" r="1.8"/></svg><span><strong>Metas de conversão desde o início, a partir do Plano Essencial.</strong> Os testes ajudam a estabelecer e ajustar metas realistas, sem prometer quantidades.</span></p>
-        <ul class="conv-plans" aria-label="Foco de cada plano">
-          <li><b>Econômico</b>posicionamento e presença digital</li>
-          <li><b>Essencial</b>+ prospecção e objetivos de conversão</li>
-          <li><b>Presença Ampliada</b>+ estratégia mais abrangente e acompanhamento dos resultados</li>
-        </ul>
-      </div>
+      <p class="small">No Essencial e no Ampliado, avaliamos os primeiros resultados para ajustar os próximos objetivos. Sem garantia de contatos ou vendas.</p>
     </div>
     <p class="small" data-reveal>O período mínimo de contratação é de três meses. As demais condições seguem o contrato.</p>
   </div>
@@ -904,15 +880,12 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
 <section class="alt" id="acompanhamento" aria-labelledby="t-acomp">
   <div class="wrap">
     <h2 id="t-acomp" data-reveal>Como acompanhamos o trabalho</h2>
-    <p class="lead" data-reveal style="--d:.08s">Os indicadores mudam conforme o objetivo de cada ação. Não usamos números de exemplo.</p>
-    <div class="chips js-only" role="group" aria-label="Objetivo" data-reveal style="--d:.12s">
-      <button class="chip" type="button" data-goal="pos" aria-pressed="true">Posicionamento</button>
-      <button class="chip" type="button" data-goal="pros" aria-pressed="false">Prospecção</button>
-      <button class="chip" type="button" data-goal="com" aria-pressed="false">Resultados comerciais</button>
+    <p class="lead" data-reveal>Você acompanha o trabalho por atualizações, aprovações do que será publicado e relatórios previstos no seu plano.</p>
+    <div class="track-box" data-reveal>
+      <p><b>O que foi feito e o que observamos.</b><br>Apresentamos as principais ações realizadas e um resumo do desempenho disponível.</p>
+      <p><b>O que vamos melhorar.</b><br>Alinhamos os próximos ajustes e as aprovações necessárias. Relatório mensal no Essencial; no Ampliado, a periodicidade será confirmada em contrato.</p>
     </div>
-    <div class="track-box" id="goalBox" aria-live="polite" data-reveal style="--d:.16s">
-      <p class="no-js-only">Posicionamento: alcance, visitas ao perfil e interações relevantes. Prospecção: cliques, contatos, custo por contato e qualidade das oportunidades. Resultados comerciais: propostas e projetos fechados, quando houver dados fornecidos pela Real Polar.</p>
-    </div>
+    <p class="small">Atualizações e aprovações não substituem o relatório formal. O acompanhamento segue o escopo de cada plano e não garante vendas.</p>
   </div>
 </section>
 
@@ -971,10 +944,26 @@ dialog.sheet::backdrop{background:rgba(8,25,42,.55)}
       </div>
     </div>
 
-    <h3 style="margin-top:48px;font-size:22px" data-reveal>Perguntas rápidas</h3>
+  </div>
+</section>
+
+<section class="alt" id="resumo" aria-labelledby="t-resumo">
+  <div class="wrap">
+    <h2 id="t-resumo" data-reveal>Em resumo, quanto custa e o que está incluído?</h2>
+    <dl class="executive" data-reveal>
+      <div><dt>Econômico <strong>R$ 1.280/mês</strong></dt><dd>Perfil, peças e gestão de anúncios em formato enxuto.</dd></div>
+      <div><dt>Essencial <strong>R$ 2.100/mês</strong></dt><dd>Posicionamento, conteúdo com roteiro e edição, campanhas e revisão básica no Google.</dd></div>
+      <div class="featured"><dt>Presença Ampliada <strong>R$ 3.200/mês</strong></dt><dd>Gestão mais abrangente, com Meta Ads, gestão do Google e SEO; rebranding e painel previstos, com detalhes em contrato.</dd></div>
+    </dl>
+    <p class="small">A gestão mensal é separada da verba paga à Meta e da captação ou produção externa eventual. No Econômico, edição avulsa a R$ 180 por vídeo solicitado.</p>
+    <p class="small"><b>A campanha:</b> planejamos, anunciamos conforme a verba aprovada, acompanhamos e ajustamos. Mais verba pode permitir mais testes, sem garantir contatos ou vendas.</p>
+    <p><a class="btn btn-line" href="#investimento">Rever minha simulação</a></p>
+    <h3 class="quick-title">Perguntas rápidas</h3>
     <div class="faq">
-      <details><summary>Existe prazo mínimo de contratação?</summary><p>Sim, de três meses. As demais condições seguem o contrato.</p></details>
-      <details><summary>O que a gestão de marketing não inclui?</summary><p>Atendimento comercial, elaboração de orçamentos técnicos e fechamento de contratos continuam com a Real Polar. Verba de anúncios e captação presencial são pagas à parte.</p></details>
+      <details><summary>O investimento em anúncios está incluído?</summary><p>Não. A mensalidade remunera a gestão; a verba dos anúncios é definida pela Real Polar e paga separadamente à Meta.</p></details>
+      <details><summary>A gravação presencial é cobrada à parte?</summary><p>Sim. A captação é terceirizada e depende de cotação. A referência de R$ 1.200 por diária é ilustrativa; edição e captação são etapas distintas.</p></details>
+      <details><summary>O que recebo no acompanhamento?</summary><p>Atualizações, aprovações e os relatórios do plano contratado, com ações realizadas, desempenho resumido e próximos ajustes. A periodicidade do Ampliado ainda depende de contrato.</p></details>
+      <details><summary>Existe prazo mínimo de contratação?</summary><p>Sim, três meses para estruturar, testar e avaliar as ações, sem promessa de resultados. As demais condições seguem o contrato.</p></details>
     </div>
   </div>
 </section>
@@ -1066,10 +1055,17 @@ function setActive(k){active=k;listeners.forEach(fn=>fn(k))}
 document.querySelectorAll('.plan').forEach(card=>{
   const k=card.dataset.plan;
   const inc=SV.filter(s=>s.group==='mensalidade'&&INCL(s.p[k].st)),out=SV.filter(s=>s.group==='mensalidade'&&!INCL(s.p[k].st));
-  card.querySelector('.svc-list').innerHTML=inc.map(s=>{const c=s.p[k];const extra=c.st!=='incluido'?pill(c.st,c.label)+`<span class="ld">${esc(c.lead)}</span>`:'';
-    return `<li><button class="svc-btn" type="button" data-open="${s.id}" data-ctx="${k}" aria-haspopup="dialog"><span class="col"><span class="nm">${esc(s.name)}</span>${extra}</span><span class="i"><span class="sr-only">Ver explicação</span></span></button></li>`}).join('');
-  card.querySelector('.not').innerHTML=(out.length?`<b>Não incluído neste plano:</b> ${out.map(s=>esc(s.name)).join('; ')}.`:'<b>Inclui todos os serviços listados</b>, com os detalhes indicados.')+
-    (k==='E'?`<span class="avulsa"><b>Edição de vídeos avulsa:</b> R$ 180 por vídeo, quando solicitada. <button type="button" class="lnk" data-open="X04" data-ctx="E" aria-haspopup="dialog">Entender</button></span>`:'');
+  const primary={E:['S01','S03','S05'],S:['S01','S04','S05'],A:['S01','S04','S05']}[k];
+  const item=s=>{const c=s.p[k],extra=c.st!=='incluido'?pill(c.st,c.label)+`<span class="ld">${esc(c.lead)}</span>`:'';
+    return `<li><button class="svc-btn${c.st==='pendente'||c.st==='conflito'?' neutral':''}" type="button" data-open="${s.id}" data-ctx="${k}" aria-haspopup="dialog"><span class="col"><span class="nm">${esc(s.name)}</span>${extra}</span><span class="i"><span class="sr-only">Ver explicação</span></span></button></li>`};
+  card.querySelector('.svc-list').innerHTML=inc.filter(s=>primary.includes(s.id)).map(item).join('');
+  const panel=card.querySelector('.plan-more'),toggle=card.querySelector('.plan-toggle');
+  panel.id=`plan-more-${k}`;toggle.setAttribute('aria-controls',panel.id);
+  panel.querySelector('.svc-list').innerHTML=inc.filter(s=>!primary.includes(s.id)).map(item).join('');
+  panel.querySelector('.not').innerHTML=out.length?`<b>Fora da mensalidade:</b> ${out.map(s=>esc(s.name)).join('; ')}.`:'<b>Todos os serviços da matriz estão contemplados</b>, com as condições indicadas em cada item.';
+  toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));panel.hidden=!open;toggle.textContent=open?'Recolher detalhes':'Ver tudo que está incluso'});
+  if(k==='E')panel.insertAdjacentHTML('afterend',`<p class="small avulsa"><b>Edição avulsa:</b> R$ 180 por vídeo, quando solicitada. <button type="button" class="lnk" data-open="X04" data-ctx="E" aria-haspopup="dialog">Entender</button></p>`);
+
 });
 $('extras').innerHTML=['X03','X05','X06'].map(id=>{const s=byId[id];return `<div class="xo"><b>${esc(s.name)}</b><span>${esc(s.short)}</span><span class="st st-opcional">Sob orçamento</span><button type="button" class="lnk" data-open="${id}" aria-haspopup="dialog" aria-label="Entender ${esc(s.name)}">Entender</button></div>`}).join('');
 $('outside').innerHTML=SV.filter(s=>s.group==='externo').map(s=>`<div class="o"><b>${esc(s.name)}</b>${esc(s.ext)}<br><button type="button" data-open="${s.id}">Ver explicação</button></div>`).join('');
@@ -1135,7 +1131,7 @@ const stage=$('mmStage'),svg=$('mmSvg'),center=stage.querySelector('.mm-center')
 stage.insertAdjacentHTML('beforeend',MS.map(s=>{const g=THEME.find(([,ids])=>ids[0]===s.id);return (g?`<p class="mm-grp">${g[0]}</p>`:'')+`<button class="mm-node" type="button" data-open="${s.id}" aria-haspopup="dialog"><span class="lbl">${esc(s.node)}</span><span class="stw"></span></button>`}).join(''));
 const nodes=[...stage.querySelectorAll('.mm-node')];
 let mmPlan='A',radial=true,paths=[],revealed=!motion;
-const DESC={all:'<strong>Todos os serviços da gestão.</strong> Escolha um plano para ver o que está incluído.',E:'<strong>Econômico:</strong> presença digital e posicionamento, com operação enxuta.',S:'<strong>Essencial:</strong> posicionamento e prospecção, com objetivos de conversão desde o início.',A:'<strong>Presença Ampliada:</strong> gestão mais abrangente, incluindo identidade visual e estrutura digital.'};
+const DESC={E:'<strong>Econômico:</strong> presença digital e posicionamento, com operação enxuta.',S:'<strong>Essencial:</strong> posicionamento e prospecção, com objetivos de conversão desde o início.',A:'<strong>Presença Ampliada:</strong> gestão mais abrangente, incluindo identidade visual e estrutura digital.'};
 function layout(){
   const W=stage.clientWidth;radial=W>=760;stage.classList.toggle('radial',radial);stage.classList.toggle('list',!radial);
   if(radial){const H=620,nw=184,cx=W/2,cy=H/2,rx=W/2-nw/2-6,ry=H/2-40;
@@ -1155,8 +1151,8 @@ function draw(){
 function states(){
   document.querySelectorAll('[data-mm-plan]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mmPlan===mmPlan)));
   $('mmDesc').innerHTML=DESC[mmPlan];
-  nodes.forEach((n,i)=>{const s=MS[i],c=mmPlan==='all'?null:s.p[mmPlan];
-    n.className='mm-node'+(c?' is-'+c.st:'');n.dataset.ctx=mmPlan==='all'?'':mmPlan;
+  nodes.forEach((n,i)=>{const s=MS[i],c=s.p[mmPlan];
+    n.className='mm-node'+(c?' is-'+c.st:'');n.dataset.ctx=mmPlan;
     n.querySelector('.stw').innerHTML=c?pill(c.st,c.label):'';
     n.setAttribute('aria-label',`${s.name}${c?', '+c.label+' no '+PLAN[mmPlan]:''}. Abrir explicação`);
     const p=paths[i];if(p){p.setAttribute('class',c?(c.st==='fora'?'out':'inc'):'');if(revealed){p.style.strokeDasharray=c&&c.st==='conflito'?'5 6':'';p.style.strokeDashoffset=''}}});
@@ -1173,15 +1169,6 @@ let raf;new ResizeObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFr
 if(motion){const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){io.disconnect();
   paths.forEach((p,i)=>{p.style.transition=`stroke-dashoffset .6s var(--ease) ${.15+i*.06}s`;p.style.strokeDashoffset=0});
   setTimeout(()=>{revealed=true;paths.forEach(p=>p.style.transition='');states()},1600)}},{threshold:.2});io.observe(stage)}
-
-/* ===== Acompanhamento ===== */
-const GOALS={
- pos:{m:['Alcance','Visitas ao perfil','Interações relevantes'],w:'<b>Em todos os planos</b>, conforme o escopo de cada um.',n:'Mostra se a marca está sendo vista pelas pessoas certas.'},
- pros:{m:['Cliques','Contatos','Custo por contato','Qualidade das oportunidades'],w:'<b>Essencial e Presença Ampliada</b>, que trabalham objetivos de conversão.',n:'Mostra se as ações estão gerando pedidos de contato e orçamento.'},
- com:{m:['Propostas enviadas','Projetos fechados'],w:'<b>Quando houver dados fornecidos pela Real Polar.</b>',n:'O fechamento depende do atendimento comercial da Real Polar; acompanhamos a evolução com as informações compartilhadas.'}};
-function goal(k){document.querySelectorAll('[data-goal]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.goal===k)));const g=GOALS[k];
-  $('goalBox').innerHTML=`<ul class="metrics" aria-label="Indicadores">${g.m.map((x,i)=>`<li style="--d:${i*.06}s">${x}</li>`).join('')}</ul><div><p class="where">${g.w}</p><p class="note">${g.n}</p></div>`}
-document.querySelectorAll('[data-goal]').forEach(b=>b.addEventListener('click',()=>goal(b.dataset.goal)));goal('pos');
 
 /* ===== Simulador ===== */
 const brl=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
@@ -1246,7 +1233,7 @@ $('copySummary').addEventListener('click',async function(){
   const st=readSim(),r=calc(st);
   const simTxt=`SIMULAÇÃO ATUAL (estimativa):\n- Plano: ${PLAN[st.plan]} | Mensalidade de gestão: ${brl.format(r.fee)}\n- Investimento em anúncios: ${st.days} dias × ${brl.format(st.daily)} = ${brl.format(r.ads)}\n- Produção audiovisual externa: ${st.shoots} diária(s) × ${brl.format(st.shootPrice)} = ${brl.format(r.shoot)}\n`+
     (st.plan==='E'?`- Edição de vídeos (Econômico): ${st.editQty} × ${brl.format(ECON_EDIT_UNIT)} = ${brl.format(r.edit)}\n`:`- Edição de vídeos: prevista no plano, sem cobrança por vídeo\n`)+`- Investimento estimado no período: ${brl.format(r.total)}\n\n`;
-  const txt='REAL POLAR | GESTÃO DE MARKETING\n\n'+simTxt+KEYS.map(plan).join('\n\n')+'\n\nFORA DA MENSALIDADE:\n'+SV.filter(s=>s.group==='externo').map(s=>`- ${s.name}: ${s.ext}`).join('\n')+'\n- Atendimento comercial, orçamentos técnicos e fechamento de contratos continuam com a Real Polar.\n\nPRIMEIROS 90 DIAS: estruturar, testar, avaliar. A partir do Essencial, metas de conversão desde o início, ajustadas com os testes, sem quantidades prometidas. Período mínimo de três meses; demais condições no contrato.';
+  const txt='REAL POLAR | GESTÃO DE MARKETING\n\n'+simTxt+KEYS.map(plan).join('\n\n')+'\n\nFORA DA MENSALIDADE:\n'+SV.filter(s=>s.group==='externo').map(s=>`- ${s.name}: ${s.ext}`).join('\n')+'\n- Atendimento comercial, orçamentos técnicos e fechamento de contratos continuam com a Real Polar.\n\nPRIMEIROS 90 DIAS: estruturar, testar, avaliar. No Essencial e no Ampliado, avaliamos os primeiros resultados para ajustar os próximos objetivos, sem garantir contatos ou vendas. Período mínimo de três meses; demais condições no contrato.\n\nACOMPANHAMENTO: atualizações, aprovações e relatórios conforme o plano. Relatório mensal no Essencial; periodicidade do Ampliado a confirmar em contrato.\nCAMPANHA: planejamos, anunciamos conforme verba aprovada, acompanhamos e ajustamos, sem garantia de vendas.';
   const b=this,o=b.textContent;try{await navigator.clipboard.writeText(txt);b.textContent='Resumo copiado'}catch(e){b.textContent='Não foi possível copiar'}setTimeout(()=>b.textContent=o,2400)});
 })();
 </script>
